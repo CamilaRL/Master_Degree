@@ -69,14 +69,38 @@ def Bell_Diagonal_Density_Matrix_2(rho0):
 	rho = rho/4
 	
 	return rho
+	
+	
+def Bell_Diagonal_Density_Matrix_3(c):
+
+	identity = np.array([[1, 0], [0, 1]])
+	pauli_x = np.array([[0, 1],[1, 0]])
+	pauli_y = np.array([[0, -1j],[1j, 0]])
+	pauli_z = np.array([[1, 0],[0, -1]])
+	
+	pauli_matrix_list = [identity, pauli_x, pauli_y, pauli_z]
+	
+	rho = Tensor_Product_2D(identity, identity)
+	
+	for i in range(1, len(pauli_matrix_list), 1):
+
+		sigmai = Tensor_Product_2D(pauli_matrix_list[i], pauli_matrix_list[i])
+
+		rho = rho + c[i-1]*sigmai
+		
+	rho = rho/4
+	
+	return rho
 
 
 ## MAIN ##
 
-#print(Bell_Diagonal_Density_Matrix(0.25,0.25,0.25,0.25))
+print(Bell_Diagonal_Density_Matrix(0.25,0.25,0.25,0.25))
 
 rho0 = np.ones((4,4))
 for i in range(4):
 	rho0[i][i] = 0.25
 
 print(Bell_Diagonal_Density_Matrix_2(rho0))
+
+print(Bell_Diagonal_Density_Matrix_3([4,4,4]))
