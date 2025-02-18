@@ -22,22 +22,43 @@ def Bell_Diagonal_Density_Matrix_4(a):
 def Hilbert_Schmidt_Distance(a1, a2, a3):
 	# formula retirada de nonlocality-bell-diagonal-zanfardino-2023
 	return (1/4)*((a1 - a2)**2 + (a1**2 + a2**2)/2 + (a2 - a2)*(np.sqrt(a1**2 + 4) - np.sqrt(a2**2 + 4)) + 2)
+
+def tetrahedron(a1, a2, a3):
+
+	is_bell_state = False
 	
+	plano1 = a1 - a2 + a3
+	plano2 = a1 + a2 - a3
+	plano3 = a1 - a2 - a3
+	plano4 = a1 + a2 + a3
+	
+	if plano1 >= -1 and plano2  >= -1 and plano3 <= 1 and plano4 <= 1:
+		is_bell_state = True
+	
+	return is_bell_state
 
 # MAIN #
 
-f = open('./results/nonlocality.txt', 'w')
+f = open('./results/nonlocality/nonlocality.txt', 'w')
 
 
-a = np.arange(-1, 1, 0.1)
+a = np.arange(-1, 1, 0.05)
 
 for a1 in a:
 	for a2 in a:
+		for a3 in a:
 		
-			#rho = Bell_Diagonal_Density_Matrix_4([1,a1, a2, a3])
-		HS = Hilbert_Schmidt_Distance(a1, a2, 0)
+			if tetrahedron(a1, a2, a3):
+					
+					M = [[1,1,1,-1], [1,1,-1,1], [1,-1,1,1], [1,-1,-1,-1]]
+					
+					e = np.dot(M, [1, a1, a2, a3])/4
+		
+					if sum(e) == 1:
 			
-		f.write(f'{a1} {a2} {HS}\n')
+						HS = Hilbert_Schmidt_Distance(a1, a2, a3)
+				
+						f.write(f'{a1} {a2} {a3} {HS}\n')
 			
 			
 f.close()

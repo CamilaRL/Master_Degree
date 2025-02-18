@@ -24,9 +24,9 @@ def Tensor_Product_2D(matrix1, matrix2):
 		for j in range(len(matrix1)):
 			
 			for k in range(len(matrix2)):
-				m = len(matrix1)*i + k
+				m = 2*i + k
 				for l in range(len(matrix2)):
-					mm = len(matrix2)*j + l
+					mm = 2*j + l
 					
 					matrix[m][mm] = matrix1[i][j]*matrix2[k][l]
 				
@@ -47,7 +47,7 @@ def Bell_Diagonal_Density_Matrix_3(a):
 	for i in range(1, len(pauli_matrix_list), 1):
 
 		sigmai = Tensor_Product_2D(pauli_matrix_list[i], pauli_matrix_list[i])
-
+		
 		rho = rho + a[i-1]*sigmai
 		
 	rho = rho/4
@@ -76,31 +76,20 @@ def Partial_Trace(rho, base, subsystem_index):
 	for b in base:
 		base_A.append(tuple(b[si] for si in subsystem_index))
 		
-	base_A  = list(set(base_A))
-	
-	if (0.0, 0.0) in base_A:
-		base_A.remove((0.0, 0.0))
+	base_A  = set(base_A)
 	
 	base_A_dict = {b:i for i, b in enumerate(base_A)}
 	
-	rho_A = np.zeros((len(base_A[0]), len(base_A[0])), dtype=complex)
+	rho_A = np.zeros((len(base_A), len(base_A)), dtype=complex)
 	
 	for i in range(len(base)):
 	
 		estado_A = tuple(base[i][si] for si in subsystem_index)
-		
-		if estado_A not in base_A_dict:
-			continue
-			
 		i_estado_A = base_A_dict[estado_A]
 		
 		for j in range(len(base)):
 			
 			estado_A_prime = tuple(base[j][sj] for sj in subsystem_index)
-			
-			if estado_A_prime not in base_A_dict:
-				continue
-			
 			j_estado_A = base_A_dict[estado_A_prime]
 			
 			system_B_equal = True
@@ -125,9 +114,8 @@ def Entanglement_Entropy(rho_A):
 	
 	for v in eigvals:
 		S = S - v*np.log(v)/np.log(2)
-
-	return S
 	
+	return S
 	
 	
 def tetrahedron(a1, a2, a3):
@@ -147,39 +135,34 @@ def tetrahedron(a1, a2, a3):
 
 # MAIN #
 
-f = open(f'./results/entropy/entanglement_entropy.txt', 'w')
 
 base = []
 
 qubit_base = np.array([np.array([1,0]), np.array([0,1])])
 
-base.append(Tensor_Product_1D(qubit_base[0], qubit_base[0]))
-base.append(Tensor_Product_1D(qubit_base[0], qubit_base[1]))
-base.append(Tensor_Product_1D(qubit_base[1], qubit_base[0]))
-base.append(Tensor_Product_1D(qubit_base[1], qubit_base[1]))
+base.append((Tensor_Product_1D(qubit_base[0], qubit_base[0]) + Tensor_Product_1D(qubit_base[1], qubit_base[1]))/np.sqrt(2))
+base.append((Tensor_Product_1D(qubit_base[0], qubit_base[0]) - Tensor_Product_1D(qubit_base[1], qubit_base[1]))/np.sqrt(2))
+base.append((Tensor_Product_1D(qubit_base[0], qubit_base[1]) + Tensor_Product_1D(qubit_base[1], qubit_base[0]))/np.sqrt(2))
+base.append((Tensor_Product_1D(qubit_base[0], qubit_base[1]) - Tensor_Product_1D(qubit_base[1], qubit_base[0]))/np.sqrt(2))
 
 
-a = np.arange(-1, 1, 0.1)
-for a1 in a:
-	for a2 in a:
-		for a3 in a:
+a1 = -1.0 
+a2 = -1.0
+a3 = -1.0
 
-			if tetrahedron(a1, a2, a3):
+if tetrahedron(a1, a2, a3):
 				
-				M = [[1,1,-1,1], [1,-1,1,1], [1,1,1,-1], [1,-1,-1,-1]]
+	M = [[1,1,-1,1], [1,-1,1,1], [1,1,1,-1], [1,-1,-1,-1]]
+	
+	e = np.dot(M, [1, a1, a2, a3])/4
 				
-				e = np.dot(M, [1, a1, a2, a3])/4
-				
-				if np.isclose(sum(e), 1):
-					
-					#rho = Bell_Diagonal_Density_Matrix_3([a1, a2, a3])
-					rho = Bell_Diagonal_Density_Matrix_4(e)
-
-					rho_A = Partial_Trace(rho, base, [0,1])
-					
-					S = Entanglement_Entropy(rho_A)
-
-					f.write(f'{a1} {a2} {a3} {S}\n')
-
-f.close()
+	if sum(e) == 1:
+	
+		rho = Bell_Diagonal_Density_Matrix_4(e)
+		
+		rho_A = Partial_Trace(rho, base, [0,1])
+		print(rho_A)
+		
+		S = Entanglement_Entropy(rho_A)
+		print(S)
 
