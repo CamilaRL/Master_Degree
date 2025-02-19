@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 from matplotlib.colors import ListedColormap
 
-a1, a2, a3, kdq_r, kdq_i = np.loadtxt('./results/KDQ/kdq_zi_yi.txt', unpack=True)
+a1, a2, a3, kdq_r, kdq_i = np.loadtxt('./results/KDQ/kdq_zz_yy.txt', unpack=True)
 
 
 # Create 3D scatter plot

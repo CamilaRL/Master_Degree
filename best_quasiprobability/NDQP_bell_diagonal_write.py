@@ -77,7 +77,7 @@ def tetrahedron(a1, a2, a3):
 
 ## MAIN ##
 
-ff = open("./results/NDQP/ndqp_zz_yy.txt", "w")
+ff = open("./results/NDQP/ndqp_zz_yy_negative.txt", "w")
 
 a = np.arange(-1, 1, 0.05)
 
@@ -87,7 +87,7 @@ for a1 in a:
 			
 			if tetrahedron(a1, a2, a3):
 				
-				M = [[1,1,1,-1], [1,1,-1,1], [1,-1,1,1], [1,-1,-1,-1]]
+				M = [[1,1,-1,1], [1,-1,1,1], [1,1,1,-1], [1,-1,-1,-1]]
 				
 				e = np.dot(M, [1, a1, a2, a3])/4
 	
@@ -97,8 +97,8 @@ for a1 in a:
 				
 					ndqp_ff = NDQP_ZZ_AA(rho)
 				
-					#if ndqp_ff.real < 0:
-					ff.write(f'{a1} {a2} {a3} {ndqp_ff.real} {ndqp_ff.imag}\n')
+					if ndqp_ff.real < 0:
+						ff.write(f'{a1} {a2} {a3} {ndqp_ff.real} {ndqp_ff.imag}\n')
 
 
 ff.close()

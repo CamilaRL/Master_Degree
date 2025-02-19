@@ -53,7 +53,7 @@ def KDQ_ZZ_AA(rho):
 	pauli_z = np.array([[1, 0],[0, -1]])
 	
 	ZZ = Tensor_Product_2D(pauli_z, pauli_z)
-	AA = Tensor_Product_2D(pauli_x, pauli_x)
+	AA = Tensor_Product_2D(pauli_y, pauli_y)
 	
 	
 	return np.trace(np.dot(AA, np.dot(ZZ, rho)))
@@ -68,7 +68,7 @@ def KDQ_ZI_AI(rho):
 	pauli_z = np.array([[1, 0],[0, -1]])
 	
 	ZI = Tensor_Product_2D(pauli_z, identity)
-	AI = Tensor_Product_2D(pauli_y, identity)
+	AI = Tensor_Product_2D(pauli_x, identity)
 	
 	return np.trace(np.dot(AI, np.dot(ZI, rho)))
 	
@@ -91,8 +91,8 @@ def tetrahedron(a1, a2, a3):
 	
 ## MAIN ##
 
-ff = open("./results/KDQ/kdq_zz_xx.txt", 'w')
-fi = open("./results/KDQ/kdq_zi_yi.txt", 'w')
+ff = open("./results/KDQ/kdq_zz_yy.txt", 'w')
+#fi = open("./results/KDQ/kdq_zi_xi_negative.txt", 'w')
 
 a = np.arange(-1, 1, 0.05)
 
@@ -102,11 +102,11 @@ for a1 in a:
 		
 			if tetrahedron(a1, a2, a3):
 				
-				M = [[1,1,1,-1], [1,1,-1,1], [1,-1,1,1], [1,-1,-1,-1]]
+				M = [[1,1,-1,1], [1,-1,1,1], [1,1,1,-1], [1,-1,-1,-1]]
 				
 				e = np.dot(M, [1, a1, a2, a3])/4
 	
-				if sum(e) == 1:
+				if np.isclose(sum(e), 1):
 				
 					rho = Bell_Diagonal_Density_Matrix_4(e)
 			
@@ -114,12 +114,13 @@ for a1 in a:
 					kdq_fi = KDQ_ZI_AI(rho)
 					
 					#if kdq_ff.real < 0:
+                        
 					ff.write(f'{a1} {a2} {a3} {kdq_ff.real} {kdq_ff.imag}\n')
-					
-					fi.write(f'{a1} {a2} {a3} {kdq_fi.real} {kdq_fi.imag}\n')
+
+					#	fi.write(f'{a1} {a2} {a3} {kdq_fi.real} {kdq_fi.imag}\n')
 
 
 ff.close()
-fi.close()
+#fi.close()
 
 
