@@ -28,8 +28,6 @@ def Formation_Entropy(rho):
         Ef = -x*np.log2(x) - (1-x)*np.log2(1-x)
     
     return Ef
-
-
 	
 	
 def tetrahedron(a1, a2, a3):
