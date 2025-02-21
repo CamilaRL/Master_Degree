@@ -116,6 +116,7 @@ def Entanglement_Entropy(rho_A):
 		S = S - v*np.log(v)/np.log(2)
 	
 	return S
+    
 	
 	
 def tetrahedron(a1, a2, a3):
