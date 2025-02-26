@@ -17,94 +17,84 @@ def MUB():
 	d = 4
 	
 	### base MUB retirada do MUB_andreas_2003.pdf
+	## each vector is associated with a line in the striation
 	M0 = np.array([[1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,0,1]], dtype=complex)
 	M1 = 0.5*np.array([[1,1,1,1], [1,1,-1,-1], [1,-1,-1,1], [1,-1,1,-1]], dtype=complex)
 	M2 = 0.5*np.array([[1,-1,-1.j,-1.j], [1,-1,1.j,1.j], [1,1,1.j,-1.j], [1,1,-1.j,1.j]], dtype=complex)
 	M3 = 0.5*np.array([[1,-1.j,-1.j,-1], [1,-1.j,1.j,1], [1,1.j,1.j,-1], [1,1.j,-1.j,1]], dtype=complex)
 	M4 = 0.5*np.array([[1,-1.j,-1,-1.j], [1,-1.j,1,1.j], [1,1.j,-1,1.j], [1,1.j,1,-1.j]], dtype=complex)
 	
-	for m in M1:
-		for mm in M1:
-			print(abs(np.dot(m, mm))**2)
+	MUBs = [M0, M1, M2, M3, M4] # each Mi is a different striation
+	
+	projector = []
+	
+	for M in MUBs:
+	
+		Pk = []
 		
-	return MUB
+		for vector in M:
+			Pk.append(np.outer(vector, vector))
 	
-def striation(MUB):
+		projector.append(Pk)
+	
+		
+	return MUBs, projector
+	
+def Line(ak, bk, q, p):
 
-	#Pk = [ [] for _ in range(N) ]
+	return ak*q + bk*p	
 	
-	d = 2
+
+def Translation(c):
+
+	return 
+
+
+def Lines_per_Striation(k, ak, bk, qlim, plim):
+
 	
-	striation = [[]] # list of liens for each striation
+
+	q_list = np.arange(-qlim, qlim + 0.1, 0.1)
+	p_list = np.arange(-plim, plim + 0.1, 0.1)
 	
-	for i in range(len(MUB)):
-		for s in range(len(MUB)):
+	line_c = []
+	
+	for j in range(len(q_list)):
+		c = Line(ak, bk, q_list[j], p_list[j])
+		
+		if np.iscloe(c, 0):
+			line_c.append(c)
 			
-			kj = np.dot(MUB[i], MUB[s])
-			
-			if np.isclose(kj**2, 1): ## same striation, same line
-			
-				for k in range(len(striation)):
-					if len(striation[k]) == 0:
-						striation[k].append(i)	
-			
-			if np.isclose(kj**2, 1/d): ## different striation, different line
-				
-				ki_exist = False
-				ks_exist = False
-				
-				for k in range(len(striation)):
-				
-					if i in striation[k]:
-						ki_exist = True
-				
-					if s in striation[k]:
-						ks_exist = True
-				
-				if ki_exist == False:
-					striation.append([i])
-					
-				if ks_exist == False:
-					striation.append([s])
-				
-				
-			if np.isclose(kj**2, 0): ## same striation, different line
-				
-				ki_exist = False
-				ks_exist = False
-				
-				for k in range(len(striation)):
-				
-					if s in striation[k]:
-						ks_exist = True
-						ks = k
-					if i in striation[k]:
-						ki_exist = True
-						ki = k
-				
-				if ki_exist and ks_exist: # if i and s exist in same k but are in different k
-					
-					if ki < ks:
-						striation[ki].append(s)
-						striation[ks].remove(s)
-					elif ks < ki:
-						striation[ks].append(i)
-						striation[ki].remove(i)
-				
-				if ki_exist == False:
-					striation[ks].append(i)
-						
-				if ks_exist == False:
-					striation[ki].append(s)
-			
-			print(f'{i} {s} {kj**2:.2f} {striation}')
+	
+	
+
+def Quantum_Net(Pkj, q, p):
+
+	Q = []
 	
 	
 	
+	for k in range(len(ak_list)):
+		
+		c = Line(a[k], b[k], q, p)
+		
+	
+	
+
+#def probabilities(striations, rho:
+
+	
+	
+
 ## MAIN ##
 
-mub = MUB()
+ak_list = [0, 1, 1, 1, 2]
+bk_list = [1, 0, 1, 2, 1]
 
-for m in mub:
-	print(m)
-#striation(MUB)
+#striations, Pkj = MUB()
+
+k = 0
+Lines_per_Striation(k, ak_list[k], bk_list[k], 1, 1)
+
+
+
