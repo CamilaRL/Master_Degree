@@ -11,6 +11,7 @@ def Werner_Density_Matrix(p, b):
         
     return rho
 
+
 def CHSH(rho):
 	
 	pauli_x = np.array([[0, 1],[1, 0]])
@@ -23,6 +24,7 @@ def CHSH(rho):
 	RT = np.kron(pauli_x, (pauli_z - pauli_x)/np.sqrt(2))
 	
 	return np.trace(np.dot(rho, QS)) + np.trace(np.dot(rho, RS)) + np.trace(np.dot(rho, RT)) - np.trace(np.dot(rho, QT))
+
 
 # MAIN #
 
