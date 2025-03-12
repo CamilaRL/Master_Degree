@@ -1,11 +1,12 @@
 import numpy as np
-import qutip as q
+import qutip as qt
+
 
 def Werner_Density_Matrix(p, b):
     
-    bell_density_matrix = q.bell_state(b) * q.bell_state(b).dag()
+    bell_density_matrix = qt.bell_state(b) * qt.bell_state(b).dag()
     
-    I = q.Qobj( q.qeye(4)/4 , dims=[[2,2],[2,2]])
+    I = qt.Qobj( qt.qeye(4)/4 , dims=[[2,2],[2,2]])
     
     rho = p * bell_density_matrix + (1-p) * I
         
@@ -14,16 +15,31 @@ def Werner_Density_Matrix(p, b):
 
 def KDQ_ZZ_AA(rho):
 
-	pauli_x = np.array([[0, 1],[1, 0]])
-	pauli_y = np.array([[0, -1j],[1j, 0]])
-	pauli_z = np.array([[1, 0],[0, -1]])
+	kdq = []
+
+	zeig = qt.tensor(qt.sigmaz(), qt.sigmaz()).eigenstates()
+	aeig = qt.tensor(qt.sigmax(), qt.sigmax()).eigenstates()
 	
-	ZZ = np.kron(pauli_z, pauli_z)
-	AA = np.kron(pauli_x, pauli_x)
+	projectors_z = []
+	projectors_a = []
 	
+	for v in range(len(zeig[1])):
+		
+		projectors_z.append(zeig[1][v] * zeig[1][v].dag())
+		projectors_a.append(aeig[1][v] * aeig[1][v].dag())
 	
-	return np.trace(np.dot(AA, np.dot(ZZ, rho)))
+	for i in range(len(zeig[0])):
 	
+		for j in range(len(zeig[0])):
+			
+			M = projectors_a[j] * projectors_z[i] * qt.Qobj(rho)
+			
+			q = np.trace(M.full())
+	
+			kdq.append(q)
+			print(f'{zeig[0][i]} {aeig[0][j]} {q}')
+	
+	return kdq
 	
 	
 def KDQ_ZI_AI(rho):
@@ -39,6 +55,11 @@ def KDQ_ZI_AI(rho):
 	return np.trace(np.dot(AI, np.dot(ZI, rho)))
 	
 	
+def Write_File(f, kdq, p):
+
+	for q in kdq:
+	
+		ff.write(f'{p} {q.real} {q.imag}\n')
 	
 	
 ## MAIN ##
@@ -49,7 +70,7 @@ pList = np.arange(0, 1, 0.05)
 b = 3
 
 ff = open(f"./results/KDQ/kdq_zz_xx_{bell_states[b]}.txt", 'w')
-fi = open(f"./results/KDQ/kdq_zi_xi_{bell_states[b]}.txt", 'w')
+#fi = open(f"./results/KDQ/kdq_zi_xi_{bell_states[b]}.txt", 'w')
 
 for p in pList:
 
@@ -57,16 +78,16 @@ for p in pList:
 	
 	kdq_aa = KDQ_ZZ_AA(rho)
 	
-	kdq_ai = KDQ_ZI_AI(rho)
+	#kdq_ai = KDQ_ZI_AI(rho)
 
-	ff.write(f'{p} {kdq_aa.real} {kdq_aa.imag}\n')
+	Write_File(ff, kdq_aa, p)
 	
-	fi.write(f'{p} {kdq_ai.real} {kdq_ai.imag}\n')
+	#fi.write(f'{p} {kdq_ai.real} {kdq_ai.imag}\n')
 
 
 
 
 ff.close()
-fi.close()
+#fi.close()
 
 
