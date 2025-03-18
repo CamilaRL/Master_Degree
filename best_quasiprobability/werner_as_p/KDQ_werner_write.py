@@ -37,12 +37,41 @@ def KDQ_ZZ_AA(rho):
 			q = np.trace(M.full())
 	
 			kdq.append(q)
-			print(f'{zeig[0][i]} {aeig[0][j]} {q}')
+			#print(f'{zeig[0][i]} {aeig[0][j]} {q}')
+	
+	return kdq
+	
+
+def KDQ_ZI_AI(rho):
+
+	kdq = []
+
+	zeig = qt.tensor(qt.sigmaz(), qt.qeye(2)).eigenstates()
+	aeig = qt.tensor(qt.sigmax(), qt.qeye(2)).eigenstates()
+	
+	projectors_z = []
+	projectors_a = []
+	
+	for v in range(len(zeig[1])):
+		
+		projectors_z.append(zeig[1][v] * zeig[1][v].dag())
+		projectors_a.append(aeig[1][v] * aeig[1][v].dag())
+	
+	for i in range(len(zeig[0])):
+	
+		for j in range(len(zeig[0])):
+			
+			M = projectors_a[j] * projectors_z[i] * qt.Qobj(rho)
+			
+			q = np.trace(M.full())
+	
+			kdq.append(q)
+			#print(f'{zeig[0][i]} {aeig[0][j]} {q}')
 	
 	return kdq
 
 	
-def Write_File(f, kdq, p):
+def Write_File(ff, kdq, p):
 
 	for q in kdq:
 	
@@ -52,17 +81,19 @@ def Write_File(f, kdq, p):
 ## MAIN ##
 
 bell_states = ['00', '01', '10', '11']
-pList = np.arange(0, 1, 0.1)
+pList = np.arange(0, 1, 0.01)
 
-b = 0
+b = 3
 
-ff = open(f"./results/KDQ/kdq_zz_xx_{bell_states[b]}.txt", 'w')
+#ff = open(f"./results/KDQ/kdq_zz_xx_{bell_states[b]}.txt", 'w')
+ff = open(f"./results/KDQ/kdq_zi_xi_{bell_states[b]}.txt", 'w')
 
 for p in pList:
 
 	rho = Werner_Density_Matrix(p, bell_states[b])
 	
-	kdq_aa = KDQ_ZZ_AA(rho)
+	#kdq_aa = KDQ_ZZ_AA(rho)
+	kdq_aa = KDQ_ZI_AI(rho)
 
 	Write_File(ff, kdq_aa, p)
 	

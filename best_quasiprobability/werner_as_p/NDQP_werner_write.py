@@ -1,6 +1,7 @@
 import numpy as np
 import qutip as qt
 
+
 def Werner_Density_Matrix(p, b):
     
     bell_density_matrix = qt.bell_state(b) * qt.bell_state(b).dag()
@@ -39,7 +40,7 @@ def NDQP_ZZ_AA(rho):
 	
 			ndqp.append(q)
 			
-			print(f'{zeig[0][i]} {aeig[0][j]} {q}')
+			#print(f'{zeig[0][i]} {aeig[0][j]} {q}')
 	
 	return ndqp
 	
@@ -55,9 +56,9 @@ def Write(ff, ndqp_list, p):
 
 
 bell_states = ['00', '01', '10', '11']
-pList = np.arange(0, 1, 0.05)
+pList = np.arange(0, 1, 0.01)
 
-b = 2
+b = 1
 
 ff = open(f"./results/NDQP/ndqp_zz_xx_{bell_states[b]}.txt", "w")
 
