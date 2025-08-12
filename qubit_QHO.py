@@ -39,8 +39,8 @@ def FisherInformation(rho, drho):
 				
 				if abs(den) > 1e-12:
 				
-					sanduiche = avet[i].dag() * drho[t] * avet[j]
-					print(aval[i] + aval[j])
+					sanduiche = (avet[i].dag() * drho[t] * avet[j])[0,0]
+
 					FQt = FQt + (2*sanduiche*(sanduiche.conjugate()) / (den))
 		
 		FQ.append(FQt.real)
@@ -60,27 +60,41 @@ def RHO(tlist, c, p, g, w, nbar):
 	rho = []
 	
 	for t in tlist:
-	
-		coerencia = c*np.exp(4*g*g.conjugate()*(2*nbar + 1)*(np.cos(w*t) - 1)/w**2)
+        
+		coerencia = Verifica_Positividade(t, c, p, g, w, nbar)
 	
 		rhot = Qobj( [[p, coerencia], [coerencia.conjugate(), 1-p]] )
-		
+        
 		rho.append(rhot)
 	
 	return rho
 
 
+def Verifica_Positividade(t, c, p, g, w, nbar):
+    
+    coerencia = c*np.exp(4*g*g.conjugate()*(2*nbar + 1)*(np.cos(w*t) - 1)/w**2)
+    
+    coerencia_max = np.sqrt(max(0.0, p*(1-p)))
+    
+    mag = abs(coerencia)
+    
+    if mag > coerencia_max:
+        
+        coerencia = (coerencia/(mag + 0j)) * coerencia_max
+    
+    return coerencia
+
 
 ### MAIN ###
 
-T = 0.5
+T = 10
 w = 2
 
-c = complex(0.5, 0.1)
+c = complex(0.5, 0.9)
 p = 0.5
-g = complex(0.2, 0.4)
+g = complex(0.2, 0.1)
 
-tlist = np.arange(0, 5, 0.1)
+tlist = np.arange(0, 10, 0.01)
 
 nbar = nbarFunc(T, w)
 
@@ -91,9 +105,10 @@ drho = DERIVADA_RHO(tlist, c, p, g, w, nbar)
 FQlist, FQlistIMG = FisherInformation(rho, drho)
 
 
-plt.scatter(tlist, FQlist, s=1)
+plt.plot(tlist, FQlist)
 plt.ylabel('Fisher Information')
 plt.xlabel('Time')
+plt.tight_layout()
 plt.show()
 
 
