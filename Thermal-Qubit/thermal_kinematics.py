@@ -1,0 +1,84 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def Integracao(ydata, xdata):
+
+    dt = xdata[1] - xdata[0]
+    
+    L = np.cumsum(ydata) * dt
+
+    return L
+
+
+def WriteOutput(tlist, velocity, position, completion, i):
+    
+    path = f'./ThermalKinematics/'
+    
+    velocity_file = open(path + f'velocity_{i}.txt', 'w')
+    position_file = open(path + f'position_{i}.txt', 'w')
+    completion_file = open(path + f'completion_{i}.txt', 'w')
+    
+    for t in range(len(tlist)):
+    
+        velocity_file.write(f'{tlist[t]} {velocity[t]}\n')
+        position_file.write(f'{tlist[t]} {position[t]}\n')
+        completion_file.write(f'{tlist[t]} {completion[t]}\n')
+    
+    velocity_file.close()
+    position_file.close()
+    completion_file.close()
+
+
+
+### MAIN ###
+
+tot = 14
+
+
+cmap = plt.get_cmap('rainbow')
+colors = iter(cmap(np.linspace(0.1, 1, tot)))
+fig = plt.figure(figsize=(10,5))
+
+for i in range(1,tot):
+    
+    curve_path = f'./FisherInformation/curva_{i}.txt'
+    
+    
+    tlist, QFI = np.loadtxt(curve_path, unpack=True)
+    
+    vlist = []
+    
+    for qfi in QFI:
+        
+        vlist.append(np.sqrt(qfi))
+    
+    cor = next(colors)
+    
+    Llist = Integracao(vlist, tlist)
+    
+    degree_completion = Llist/Llist[-1]
+    
+    plt.subplot(131)
+    plt.scatter(tlist, vlist, color=cor, s=1, label=f'Curva {i}')
+    plt.xlabel('Time')
+    plt.ylabel('Velocity')
+    
+    plt.subplot(132)
+    plt.scatter(tlist, Llist, color=cor, s=1, label=f'Curva {i}')
+    plt.xlabel('Time')
+    plt.ylabel('Position')
+
+    plt.subplot(133)
+    plt.plot(tlist, degree_completion, color=cor, label=f'Curva {i}')
+    plt.xlabel('Time')
+    plt.ylabel('Degree of Completion')
+    
+    WriteOutput(tlist, vlist, Llist, degree_completion, i)
+
+plt.legend(loc='best', bbox_to_anchor=(1., 0.5, 0.5, 0.5))
+plt.tight_layout()
+plt.show()
+
+
+
