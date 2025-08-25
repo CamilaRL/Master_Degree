@@ -13,8 +13,8 @@ fig = plt.figure(figsize=(10,5))
 
 for i in range(tot):
     
-    path = f'./FisherInformation_Aquecer/c_curva_{i}.txt'
-    curve_path = f'./FisherInformation_Aquecer/curva_{i}.txt'
+    path = f'./FisherInformation_Resfriar/c_curva_{i}.txt'
+    curve_path = f'./FisherInformation_Resfriar/curva_{i}.txt'
     
     curva.append(i)
     
@@ -50,7 +50,7 @@ plt.ylabel('Maximos')
 
 plt.subplot(122)
 plt.xlabel('Curvas')
-plt.ylabel('Parâmtero de coerência (c)')
+plt.ylabel('Módulo da amplitude de coerência (c)')
 
 plt.tight_layout()
 plt.show()

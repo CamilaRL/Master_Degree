@@ -24,16 +24,16 @@ def Maximos(i, modo, maximos):
     
     tlist, QFI = np.loadtxt(curve_path, unpack=True)
     
-    '''for t in tlist:
+    for t in tlist:
     
         if np.sin(2*t) == 0 and np.cos(2*t) == -1:
             
             i = np.where(tlist == t)
             break
     
-    maximos.append(QFI[i])'''
+    maximos.append(QFI[i])
     
-    maximos.append(max(QFI))
+    #maximos.append(max(QFI))
     
     return maximos
     
@@ -106,10 +106,10 @@ for modo in modoList:
     maximos_modo.append(sorted(maximos))
     coerencia_modo.append(sorted(cvalue))
     
-plt.plot(coerencia_modo[0], maximos_modo[0], label=modoList[0])
-plt.scatter(coerencia_modo[0], maximos_modo[0])
-plt.plot(coerencia_modo[1], maximos_modo[1], label=modoList[1])
-plt.scatter(coerencia_modo[1], maximos_modo[1])
+plt.plot(coerencia_modo[0], maximos_modo[0], color='blue', label=modoList[0])
+plt.scatter(coerencia_modo[0], maximos_modo[0], color='blue')
+plt.plot(coerencia_modo[1], maximos_modo[1], color='red', label=modoList[1])
+plt.scatter(coerencia_modo[1], maximos_modo[1], color='red')
 
 plt.xlabel('Amplitude de Coerência')
 plt.ylabel('Maximos de QFI')

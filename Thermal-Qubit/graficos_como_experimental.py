@@ -79,22 +79,22 @@ for i, curva in enumerate(curvasList[1]):
     print(f'c {modoList[1]}: {cList[1][i]}')
     
     
-    tlist_r, completion_r = Read_Completion(curva, modoList[0])
+    tlist_r, completion_r = Read_Completion(curvasList[0][i], modoList[0])
     tlist_a, completion_a = Read_Completion(curva, modoList[1])
     
     plt.plot(tlist_r, completion_r, color='blue', label='Resfriar')
-    plt.plot(tlist_a, completion_a, color='red', label='Aqueceer')
+    plt.plot(tlist_a, completion_a, color='red', label='Aquecer')
     plt.xlabel('Tempo')
     plt.ylabel('Grau de Completude')
     plt.title(f'Curva {curva} (aquecer) e {curvasList[0][i]} (resfriar)')
     plt.legend()
     plt.show()
     
-    tlist_r, velocidade_r = Read_Velocidade(curva, modoList[0])
+    tlist_r, velocidade_r = Read_Velocidade(curvasList[0][i], modoList[0])
     tlist_a, velocidade_a = Read_Velocidade(curva, modoList[1])
     
     plt.plot(tlist_r, velocidade_r, color='blue', label='Resfriar')
-    plt.plot(tlist_a, velocidade_a, color='red', label='Aqueceer')
+    plt.plot(tlist_a, velocidade_a, color='red', label='Aquecer')
     plt.xlabel('Tempo')
     plt.ylabel('Velocidade')
     plt.title(f'Curva {curva} (aquecer) e {curvasList[0][i]} (resfriar)')

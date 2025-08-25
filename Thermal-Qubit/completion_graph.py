@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-tot = 7
+tot = 14
 cmap = plt.get_cmap('rainbow')
 colors = iter(cmap(np.linspace(0.01, 1, tot)))
 
@@ -12,7 +12,7 @@ completion2 = []
 
 for i in range(1, tot, 1):
 
-    tlist, completion = np.loadtxt(f'./ThermalKinematics_Aquecer/completion_{i}.txt', unpack=True)
+    tlist, completion = np.loadtxt(f'./ThermalKinematics_Resfriar/completion_{i}.txt', unpack=True)
     
     volta1 = np.where(0.71 == tlist)
     volta2 = np.where(2.2 == tlist)

@@ -42,7 +42,7 @@ def nbarFunc(T, w):
 
 	beta = 1/T
 	
-	return 1/(np.exp(-beta*w) - 1)
+	return 1/(np.exp(beta*w) - 1)
 
 
 def RHO(tlist, c, p, g, w, nbar):
@@ -153,9 +153,9 @@ def FileWrite(path, QFI, tlist, classe, curva):
 
 ### MAIN ###
 
-Tbanho = 2
+Tbanho = 10
 w = 2
-Tqubit = 10
+Tqubit = 2
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 g = complex(0.1, 0.1)

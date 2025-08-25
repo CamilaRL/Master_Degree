@@ -33,7 +33,7 @@ def WriteOutput(tlist, velocity, position, completion, i):
 
 ### MAIN ###
 
-tot = 14
+tot = 13
 
 
 cmap = plt.get_cmap('rainbow')
@@ -42,7 +42,7 @@ fig = plt.figure(figsize=(10,5))
 
 for i in range(1,tot):
     
-    curve_path = f'./FisherInformation/curva_{i}.txt'
+    curve_path = f'./FisherInformation_Aquecer/curva_{i}.txt'
     
     
     tlist, QFI = np.loadtxt(curve_path, unpack=True)
