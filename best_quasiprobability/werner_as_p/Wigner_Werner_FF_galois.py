@@ -1,16 +1,89 @@
 import numpy as np
-import qutip as q
+import qutip
 import galois as gal
 
-def Werner_Density_Matrix(p, b):
+
+def Map_Continous_To_Discrete(N, plim, qlim):
     
-    bell_density_matrix = q.bell_state(b) * q.bell_state(b).dag()
+    ## Grid properties
+    A = 4*plim*qlim
+    side_grid = 2*A/(N*N)
     
-    I = q.Qobj( q.qeye(4)/4 , dims=[[2,2],[2,2]])
+    qList = np.arange(-qlim, qlim, 0.1)
+    pList = np.arange(-plim, plim, 0.1)
     
-    rho = p * bell_density_matrix + (1-p) * I
+    qMapList = []
+    pMapList = []
+    
+    ## map q and p into the grid
+    for p in pList:
+        for q in qList:
+            
+            for i in range(N):
+    
+                p_prime = -plim + i*side_grid
+                
+                if p_prime <= p and p < (p_prime + side_grid):
+                    p_map = i
+                
+                for j in range(N):
+                
+                    q_prime = -qlim + j*side_grid
+                    
+                    if q_prime <= q and q < (q_prime + side_grid):
+                        q_map = j
+            
+            
+            if q_map not in qMapList:
+                qMapList.append(q_map)
+                
+            if p_map not in pMapList:
+                pMapList.append(p_map)
+    
+    qMapList = np.sort(qMapList)
+    pMapList = np.sort(pMapList)
+
+    return qMapList, pMapList
+    
+
+def Lines(N, qlim, plim):
+    
+    a = [0, 1, 1, 1, 1]
+    b = [1, 0, 1, 3, 2]
+
+    qMapList, pMapList = Map_Continous_To_Discrete(N, plim, qlim)
+    
+    
+    ## create lines
+    
+    striations = []
+    
+    for k in range(len(a)):
+            
+        ak = a[k]
+        bk = b[k]
         
-    return rho
+        c_list = []
+        lines_list = []
+        print(f'k = {k}')
+        for p in pMapList:
+            for q in qMapList:
+                
+                c = ak*q + bk*p
+                
+                c = c%N
+                    
+                if c in c_list:
+                    lines_list[c_list.index(c)].append([q, p])
+                    print(f'{c} {[q,p]}')
+                else:
+                    c_list.append(c)
+                    lines_list.append([[q, p]])
+                    print(f'{c} {[q,p]}')
+    
+        striations.append(lines_list)
+    
+    return striations
 
 
 def MUB():
@@ -42,115 +115,74 @@ def MUB():
 	return MUBs, projector
 
 
-def Map_Continous_To_Discrete(p, q, N, plim, qlim):
-    
-    A = 4*plim*qlim
-    side_grid = 2*A/(N*N)
-    
-    for i in range(N):
-    
-        p_prime = -plim + i*side_grid
-        
-        if p_prime <= p and p < (p_prime + side_grid):
-            p_map = i
-        
-        for j in range(N):
-        
-            q_prime = -qlim + j*side_grid
-            
-            if q_prime <= q and q < (q_prime + side_grid):
-                q_map = j
-                
-    return q_map, p_map
+def Translation_Coefficients(q_map, p_map):
 
-
-def Line(ak, bk, q, p):
-
-	return ak*q + bk*p	
-    
-
-def X(k):
-    return k+1
-    
-def Z(k):
-    return (np.exp(2*np.pi*j*k/r)*, dtype=complex)
-
-
-def Lines_per_Striation(plim, qlim, N):
-
+    ## Associate the grid with the galois field to get the coeficients for translation vector
     GF = gal.GF(2**2)
-
-    striations = []
-
-    ak_list = GF.elements
-    bk_list = GF.elements
+   
+    q = GF(q_map)
+    q_coef = q.vector()
     
-    pList = np.arange(-plim, plim, 0.1)
-    qList = np.arange(-qlim, qlim, 0.1)
+    p = GF(p_map)
+    p_coef = p.vector()
+   
+    return q_coef, p_coef
 
 
-    qMapList = []
-    pMapList = []
+def Generalized_Pauli_Matrices(dim):
+
+    phase = np.exp(2j*np.pi/dim)
     
-    ## map q and p into the grid
-    for p in pList:
-        for q in qList:
+    Z = qutip.Qobj( np.diag([phase**d for d in range(dim)]) )
+    
+    X = qt.Qobj(np.roll(np.eye(d), -1, axis=1))  # Shift identity matrix
+    
+    return X, Z
+    
+
+def Translation(x, y):
+
+    X, Z = Generalized_Pauli_Matrices(4)
+    
+    T = (X**(x[0])) * (Z**(y[0]))
+    
+    for e in range(1, len(x), 1):
+    
+        T = qutip.tensor(T, (X**x[e])*(Z**y[e]))
+        
+    
+    return T
+
+
+def Quantum_Net(P, striations):
+
+    Q = []
+
+    for k in range(len(P)):
+    
+        for j in range(len(P[k])):
             
-            q_map, p_map = Map_Continous_To_Discrete(p, q, N, plim, qlim)
+            xy = striations[k][0]
             
-            if q_map not in qMapList:
-                qMapList.append(q_map)
-                
-            if p_map not in pMapList:
-                pMapList.append(p_map)
+            q_coef, p_coef = Translation_Coefficients(xy[0], xy[1])
+            
+            T = Translation(q_coef, p_coef)
+            
+            Q.append( T * P[k][j] * T.dag() )
+            
     
-    qMapList = np.sort(qMapList)
-    pMapList = np.sort(pMapList)
-    
+    return Q
 
-    ## create lines
-    for k in range(len(ak_list)):
+    
+def Werner_Density_Matrix(p, b):
+    
+    bell_density_matrix = qutip.bell_state(b) * qutip.bell_state(b).dag()
+    
+    I = qutip.Qobj( qutip.qeye(4)/4 , dims=[[2,2],[2,2]])
+    
+    rho = p * bell_density_matrix + (1-p) * I
         
-        ## same set [ak, bk] represents one striation k
-        ak = ak_list[k]
-        bk = bk_list[k]
-        
-        c_list = []
-        lines_list = []
-        print(f'k = {k}')
-        
-        for p in pMapList:
-            for q in qMapList:
-                
-                ## associate a point if the line c
-                c = Line(ak, bk, q, p)
-                
-                c = c%N
-                
-                ## check if point [q,p] belongs to a existing line c
-                if c in c_list:
-                    lines_list[c_list.index(c)].append([q, p])
-                    print(f'{c} {[q,p]}')
-                    
-                ## if not, creates another line c
-                else:
-                    c_list.append(c)
-                    lines_list.append([[q, p]])
-                    print(f'{c} {[q,p]}')
-    
-        ## add lines to striation
-        striations.append(lines_list)
-
-    return striations
-
-
-def Quantum_Net(mub, striations):
-
-
-    for k in range(len(striation)):
-    
-        dict = mub[k] + striations[k]
-
+    return rho
 
 
 ## MAIN ##
@@ -161,10 +193,8 @@ plim = 1
 qlim = 1
 
 
+striations = Lines(N, qlim, plim)
+
 #mubs, Pkj = MUB()
 
-striations = Lines_per_Striation(plim, qlim, N)
-
-
-
-
+#
