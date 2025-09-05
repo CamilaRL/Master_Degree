@@ -42,7 +42,7 @@ def Free_Energy(rhot, H, T, St):
     
     Fneqt = (H*rhot_matrix).tr() - T*St
     
-    return Fneqt
+    return Fneqt.real
 
 ### MAIN ###
 
@@ -81,21 +81,21 @@ clist = np.sort_complex(clist)
 ## Separa c pelo modulo pois curvas com o mesmo modulo tem o mesmo comportamento
 cmodlist = [abs(clist[0])]
 cindex = [[0]]
-for c in range(1, len(clist), 1):
+for ci in range(1, len(clist), 1):
     
-    cmod = abs(clist[c])
+    cmod = abs(clist[ci])
     
     novo = True
     for i, cmodi in enumerate(cmodlist):
         
         if math.isclose(cmod, cmodi, rel_tol=1e-10):
             novo = False
-            cindex[i].append(c)
+            cindex[i].append(ci)
     
         elif novo and i == (len(cmodlist)-1):
             
             cmodlist.append(cmod)
-            cindex.append([c])
+            cindex.append([ci])
 
 
 cmodlist, cindex = (list(t) for t in zip(*sorted(zip(cmodlist, cindex))))
@@ -104,6 +104,8 @@ cmap = plt.get_cmap('rainbow')
 colors = iter(cmap(np.linspace(0.01, 1, len(cmodlist))))
 
 H = Hamiltoniano_Sistema(w0)
+
+Fneq_fatiat = [[],[],[],[],[]]
 
 for i in range(len(cmodlist)):
     
@@ -119,9 +121,20 @@ for i in range(len(cmodlist)):
         
         Fneq.append(Free_Energy(rho[t], H, Tbanho, S[t]))
     
+    
+    Fneq_fatiat[0].append(Fneq[0])
+    Fneq_fatiat[1].append(Fneq[2])
+    Fneq_fatiat[2].append(Fneq[5])
+    Fneq_fatiat[3].append(Fneq[10])
+    Fneq_fatiat[4].append(Fneq[-1])    
+        
+    
     c = next(colors)
     
     plt.plot(tlist, Fneq, color=c, label=f'|c| = {cmodlist[i]:.3f}')
+    
+    
+    
     
 plt.ylabel(r'$F_{neq} (\rho (t))$')
 plt.xlabel('Time')
@@ -130,3 +143,18 @@ plt.legend()
 plt.xlim(left=0)
 plt.tight_layout()
 plt.show()
+
+
+plt.plot(cmodlist, Fneq_fatiat[0], color='black', marker='*', label=f'Time = {tlist[0]:.2f}')
+plt.plot(cmodlist, Fneq_fatiat[1], color='black', marker='^', label=f'Time = {tlist[2]:.2f}')
+plt.plot(cmodlist, Fneq_fatiat[2], color='black', linestyle=':', label=f'Time = {tlist[5]:.2f}')
+plt.plot(cmodlist, Fneq_fatiat[3], color='black', linestyle='--', label=f'Time = {tlist[10]:.2f}')
+plt.plot(cmodlist, Fneq_fatiat[4], color='black', linestyle='-', label=f'Time = {tlist[-1]:.2f}')
+plt.xlabel('|c|')
+plt.ylabel(r'$F_{neq} (\rho)$')
+plt.title(r'Cooling ($\Delta$T = ' + f'{abs(Tbanho-Tqubit)})')
+plt.legend(loc='lower right')
+plt.tight_layout()
+plt.show()
+
+
