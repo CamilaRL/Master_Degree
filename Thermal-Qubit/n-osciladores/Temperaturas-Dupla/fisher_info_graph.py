@@ -57,7 +57,7 @@ for i in range(len(iList)):
     
     cor = next(colors)
     
-    plt.scatter(tlist, QFI, color=cor, s=10, label=f'|c| = {abs(cvalue[i]):.3f}')
+    plt.plot(tlist, QFI, color=cor, label=f'|c| = {abs(cvalue[i]):.3f}')
     plt.xlabel('Time')
     plt.ylabel('Quantum Fisher Information')
 
