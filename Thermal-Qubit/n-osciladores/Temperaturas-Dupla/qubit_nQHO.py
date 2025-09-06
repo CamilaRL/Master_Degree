@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from qutip import *
-import math as m
+import math
 
 
 
@@ -39,7 +39,7 @@ def RHO(tlist, c, p, gamma, w, nbar):
 
 		rx = c.real * np.exp(-2*gamma*(nbar + 0.5)*t)
 		ry = -c.imag * np.exp(-2*gamma*(nbar + 0.5)*t)
-		rz = (1/(2*nbar + 1)) - 2*(p - nbar/(2*nbar + 1)) * np.exp(-2*gamma*(2*nbar + 1)*t)
+		rz = (1/(2*nbar + 1)) - 2*((nbar + 1)/(2*nbar + 1) - p) * np.exp(-2*gamma*(2*nbar + 1)*t)
 
 		rmod2 = rx**2 + ry**2 + rz**2
 
@@ -47,7 +47,7 @@ def RHO(tlist, c, p, gamma, w, nbar):
         
 		drx = c.real * (-2*gamma*(nbar + 0.5)) * np.exp(-2*gamma*(nbar + 0.5)*t)
 		dry = -c.imag * (-2*gamma*(nbar + 0.5)) * np.exp(-2*gamma*(nbar + 0.5)*t)
-		drz = 2 * (2*gamma*(2*nbar + 1)) * (p - nbar/(2*nbar + 1)) * np.exp(-2*gamma*(2*nbar + 1)*t)
+		drz = 4 * gamma * (2*nbar + 1) * ((nbar + 1)/(2*nbar + 1) - p) * np.exp(-2*gamma*(2*nbar + 1)*t)
         
 		drmod2 = drx**2 + dry**2 + drz**2
         
@@ -60,65 +60,36 @@ def RHO(tlist, c, p, gamma, w, nbar):
 	return rho, rho_derivada
 
 
-def Classifica_FQ(FQ_classificados, FQ, classes, c):
+def Classifica_FQ(FQ_classificados, FQ, c_classes_list, cmod_list, c):
 
-    inicio_curva = [FQ[1], FQ[2], FQ[3], FQ[4], FQ[5]]
+    cmod = abs(c)
     
-    inicio_curva_class = []
+    novo = True
     
-    for curva in FQ_classificados:
-        
-        inicio_curva_class.append([curva[1], curva[2], curva[3], curva[4], curva[5]])
+    for i, cmodi in enumerate(cmod_list):
     
-    mesma_curva = False
+        if math.isclose(cmodi, cmod, abs_tol=0.00001):
+            novo = False
+            c_classes_list[i].append(c)
     
-    
-    for idx, curva in enumerate(FQ_classificados):
-    
-        inicio_curva_class = [curva[1], curva[2], curva[3], curva[4], curva[5]]
-    
-        if all(m.isclose(inicio_curva[i], inicio_curva_class[i]) for i in range(5)):
-
-            mesma_curva = True
-            k = idx
-            break
-                
-    if mesma_curva:
-        
-        classes[k].append(c)
-
-    else:
+    if novo:
         
         FQ_classificados.append(FQ)
-        classes.append([c])
+        
+        cmod_list.append(cmod)
+        
+        c_classes_list.append([c])
         
 
-    return FQ_classificados, classes
+    return FQ_classificados, c_classes_list, cmod_list
 
-
-def FileWrite(path, QFI, tlist, classe, curva):
-
-    f = open(path+f'curva_{curva}.txt', 'w')
-    cfile = open(path+f'c_curva_{curva}.txt', 'w')
-    
-    for i in range(len(tlist)):
-        
-        f.write(f'{tlist[i]} {QFI[i]}\n')
-    
-    for c in classe:
-    
-        cfile.write(f'{c}\n')
-        
-    f.close()
-    cfile.close()
-    
 
 
 ### MAIN ###
 
 Tbanho = 10
 w = 2
-Tqubit = 19
+Tqubit = 2
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 
@@ -149,8 +120,8 @@ clist = np.sort_complex(clist)
 
 
 FQ_classificados = []
-classes = []
-maximos = []
+c_classes = []
+cmod_list = []
 
 for c in clist:
     
@@ -160,30 +131,44 @@ for c in clist:
     
     FQ = FisherInformation(rho, drho)
     
-    FQ_classificados, classes = Classifica_FQ(FQ_classificados, FQ, classes, c)
+    FQ_classificados, c_classes, cmod_list = Classifica_FQ(FQ_classificados, FQ, c_classes, cmod_list, c)
 
 
-cmap = plt.get_cmap('rainbow')
-colors = iter(cmap(np.linspace(0.1, 1, len(classes))))
+## write files ##
 
-for i in range(len(classes)):
 
-    cor = next(colors)
+curvas = np.arange(0, len(cmod_list), 1, dtype=np.int16)
+
+cmod_list, curvas = (list(t) for t in zip(*sorted(zip(cmod_list, curvas))))
+
+
+f_cmod = open(f'./FisherInformation/cmod.txt', 'w')
+
+for i in range(len(curvas)):
     
-    nome = f'Curve {i}'
+    f_cmod.write(f'{curvas[i]} {cmod_list[i]}\n')
     
-    print(f'{nome}')
-    
-    FileWrite('./FisherInformation/', FQ_classificados[i], tlist, classes[i], i)
-    
-    plt.scatter(tlist, FQ_classificados[i], color=cor, s=10, label=f'{nome}')
+f_cmod.close()
 
 
-plt.ylabel('Fisher Information')
-plt.xlabel('Time')
-plt.legend()
-plt.tight_layout()
-plt.show()
+for i in curvas:
+    
+    f_fisher = open(f'./FisherInformation/QFI_curve_{i}.txt', 'w')
+    
+    f_c_classes = open(f'./FisherInformation/c_curve_{i}.txt', 'w')
+
+
+    for t in range(len(tlist)):
+    
+        f_fisher.write(f'{tlist[t]} {FQ_classificados[i][t]}\n')
+    
+    for c in c_classes[i]:
+    
+        f_c_classes.write(f'{c}\n')
+        
+    f_fisher.close()
+    f_c_classes.close()
+
 
 
 

@@ -33,16 +33,21 @@ def WriteOutput(tlist, velocity, position, completion, i):
 
 ### MAIN ###
 
-tot = 14
+modo = 'Resfriar'
+
+curvas, cmod = np.loadtxt(f'./FisherInformation_{modo}/cmod.txt', unpack=True)
+
 
 cmap = plt.get_cmap('rainbow')
-colors = iter(cmap(np.linspace(0.1, 1, tot)))
-fig = plt.figure(figsize=(10,5))
+colors = iter(cmap(np.linspace(0.1, 1, len(curvas))))
+fig = plt.figure(figsize=(12,5))
 
-for i in range(tot):
+
+for i, j in enumerate(curvas):
     
-    curve_path = f'./FisherInformation_Resfriar/curva_{i}.txt'
+    curva = int(j)
     
+    curve_path = f'./FisherInformation_{modo}/QFI_curve_{curva}.txt'
     
     tlist, QFI = np.loadtxt(curve_path, unpack=True)
     
@@ -59,23 +64,24 @@ for i in range(tot):
     degree_completion = Llist/Llist[-1]
     
     plt.subplot(131)
-    plt.scatter(tlist, vlist, color=cor, s=1, label=f'Curva {i}')
+    plt.scatter(tlist, vlist, color=cor, s=1, label=f'|c| = {cmod[i]:.3f}')
     plt.xlabel('Time')
     plt.ylabel('Velocity')
     
     plt.subplot(132)
-    plt.scatter(tlist, Llist, color=cor, s=1, label=f'Curva {i}')
+    plt.scatter(tlist, Llist, color=cor, s=1, label=f'|c| = {cmod[i]:.3f}')
     plt.xlabel('Time')
     plt.ylabel('Position')
 
     plt.subplot(133)
-    plt.plot(tlist, degree_completion, color=cor, label=f'Curva {i}')
+    plt.plot(tlist, degree_completion, color=cor, label=f'|c| = {cmod[i]:.3f}')
     plt.xlabel('Time')
     plt.ylabel('Degree of Completion')
     
-    WriteOutput(tlist, vlist, Llist, degree_completion, i)
+    WriteOutput(tlist, vlist, Llist, degree_completion, curva)
 
 plt.legend(loc='best', bbox_to_anchor=(1., 0.5, 0.5, 0.5))
+plt.suptitle('Cooling')
 plt.tight_layout()
 plt.show()
 

@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from qutip import *
 import math
 
 def nbarFunc(T, w):
@@ -18,7 +19,7 @@ def RHO(tlist, c, p, gamma, w, nbar):
 
 		rx = c.real * np.exp(-2*gamma*(nbar + 0.5)*t)
 		ry = -c.imag * np.exp(-2*gamma*(nbar + 0.5)*t)
-		rz = (1/(2*nbar + 1)) - 2*((nbar + 1)/(2*nbar + 1) - p) * np.exp(-2*gamma*(2*nbar + 1)*t)
+		rz = -(1/(2*nbar + 1)) + 2*(p - nbar/(2*nbar + 1)) * np.exp(-2*gamma*(2*nbar + 1)*t)
 
 		rmod2 = rx**2 + ry**2 + rz**2
 
@@ -30,27 +31,22 @@ def RHO(tlist, c, p, gamma, w, nbar):
 	return rho
 
 
+def Temperatura_Real(rho, w0):
+    
+    pg = (1 + rho[2])/2
+    pe = (1 - rho[2])/2
 
-def Temperatura_Efetiva(rho, w0):
-    
-    lamb_mais = 1 + np.sqrt(rho[3])
-    lamb_menos = 1 - np.sqrt(rho[3])
-    
-    E_mais = -w0/2
-    E_menos = w0/2
-    
-    Teff = (E_menos - E_mais)/np.log(lamb_mais/lamb_menos)
+    T = w0/np.log(pg/pe)
 
-    return Teff
-    
-    
+    return T
+
 ### MAIN ###
 
-modo = 'Resfriar'
+modo = 'Aquecer'
 
-Tbanho = 2
+Tbanho = 10
 w = 2
-Tqubit = 10
+Tqubit = 2
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 
@@ -65,44 +61,38 @@ curvas, cmodlist = np.loadtxt(f'./FisherInformation_{modo}/cmod.txt', unpack=Tru
 cmap = plt.get_cmap('rainbow')
 colors = iter(cmap(np.linspace(0.01, 1, len(cmodlist))))
 
-Teff_inicial = []
 
-for i, cmod in enumerate(cmodlist):
+for i in range(len(cmodlist)):
     
-    print(cmod)
+    Treal = []
+
+    print(cmodlist[i])
     
     clist = np.loadtxt(f'./FisherInformation_{modo}/c_curve_{int(curvas[i])}.txt', unpack=True, dtype=complex, ndmin=1)
-    Teff = []
     
     rho = RHO(tlist, clist[0], p, gamma, w, nbar)
-        
-    for t in range(len(rho)):
-        Teff.append(Temperatura_Efetiva(rho[t], w0))
     
-    Teff_inicial.append(Teff[0])
+    for t in range(len(tlist)):
+        Treal.append(Temperatura_Real(rho[t], w0))
+    
     
     c = next(colors)
-    plt.plot(tlist, Teff, color=c, label=f'|c| = {cmod:.3f}')
     
+    plt.plot(tlist, Treal, color=c, label=f'|c| = {cmodlist[i]:.3f}')
+
+
 plt.hlines(y=Tbanho, xmin=tlist[0], xmax=tlist[-1], linestyle='--', color='black', label='Thermal Bath')
 plt.hlines(y=Tqubit, xmin=tlist[0], xmax=tlist[-1], linestyle=':', color='black', label='Qubit')
-plt.ylabel('Effective Temperature')
+plt.ylabel('Real Temperature')
 plt.xlabel('Time')
-plt.title('Cooling')
+plt.title('Heating')
 plt.legend(loc='upper right', bbox_to_anchor=(1., 0.5, 0.5, 0.5))
 plt.tight_layout()
 plt.show()
 
-plt.scatter(cmodlist, Teff_inicial, s=15, color='black')
-plt.plot(cmodlist, Teff_inicial, color='black')
-plt.ylabel('Initial Effective Temperature')
-plt.xlabel('|c|')
-plt.title('Cooling')
-plt.show()
-
-
-
-
-
-
-
+    
+    
+    
+    
+    
+    

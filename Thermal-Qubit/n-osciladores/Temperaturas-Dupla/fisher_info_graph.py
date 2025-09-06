@@ -1,63 +1,28 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-
-
-def Read_Mod_Cvalue(i, modo):
-
-    path = f'./FisherInformation_{modo}/c_curva_{i}.txt'
-    
-    cvalue = np.loadtxt(path, unpack=True, dtype=complex, ndmin=1)
-    
-    cmod = abs(cvalue[0])
-    
-    return cmod
-
-
-def Ordenamento(dados, curvas):
-
-    dados, curvas_ordenadas = (list(t) for t in zip(*sorted(zip(dados, curvas))))
-    
-    return dados, curvas_ordenadas
-    
     
 
 ### MAIN ###
 
 modo = 'Aquecer'
 
-iList = []
-cvalue = []
-    
-for arquivo in os.listdir(f'./FisherInformation_{modo}/'):
-
-    if os.path.isfile(os.path.join(f'./FisherInformation_{modo}/', arquivo)) and 'c_curva_' in arquivo:
-            
-        curva_i = int(arquivo.replace('c_curva_', '').replace('.txt', ''))
-            
-        if curva_i > 0:
-            
-            iList.append(curva_i)
-
-for i in iList:
-        
-    cvalue.append(Read_Mod_Cvalue(i, modo))
-    
-cvalue, iList = Ordenamento(cvalue, iList)
-
+curvas, cmod = np.loadtxt(f'./FisherInformation_{modo}/cmod.txt', unpack=True)
+cmod, curvas = (list(t) for t in zip(*sorted(zip(cmod, curvas))))
 
 cmap = plt.get_cmap('rainbow')
-colors = iter(cmap(np.linspace(0.01, 1, len(iList))))
+colors = iter(cmap(np.linspace(0.01, 1, len(curvas))))
 
-curvas = []
 
-for i in range(len(iList)):
+for i, j in enumerate(curvas):
 
-    tlist, QFI = np.loadtxt(f'./FisherInformation_{modo}/curva_{iList[i]}.txt', unpack=True)
+    curva = int(j)    
+    
+    tlist, QFI = np.loadtxt(f'./FisherInformation_{modo}/QFI_curve_{curva}.txt', unpack=True)
     
     cor = next(colors)
     
-    plt.plot(tlist, QFI, color=cor, label=f'|c| = {abs(cvalue[i]):.3f}')
+    plt.plot(tlist, QFI, color=cor, label=f'|c| = {cmod[i]:.3f}')
     plt.xlabel('Time')
     plt.ylabel('Quantum Fisher Information')
 

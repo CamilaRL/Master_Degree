@@ -46,9 +46,11 @@ def Free_Energy(rhot, H, T, St):
 
 ### MAIN ###
 
-Tbanho = 2
+modo = 'Aquecer'
+
+Tbanho = 10
 w = 2
-Tqubit = 10
+Tqubit = 2
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 
@@ -58,47 +60,7 @@ tlist = np.arange(0, 10, 0.01)
 
 nbar = nbarFunc(Tbanho, w)
 
-coerencia_max = np.sqrt(max(0.0, p*(1-p)))
-
-clist = []
-ilist = np.arange(0, 1, 0.1)
-for i in ilist:
-    for j in ilist:
-    
-        c = complex(i, j)
-        
-        mag = abs(c)
-        
-        if mag > coerencia_max:
-            c = (c/mag) * coerencia_max
-        
-        if c not in clist:
-            clist.append(c)
-            
-clist = np.sort_complex(clist)
-
-
-## Separa c pelo modulo pois curvas com o mesmo modulo tem o mesmo comportamento
-cmodlist = [abs(clist[0])]
-cindex = [[0]]
-for ci in range(1, len(clist), 1):
-    
-    cmod = abs(clist[ci])
-    
-    novo = True
-    for i, cmodi in enumerate(cmodlist):
-        
-        if math.isclose(cmod, cmodi, rel_tol=1e-10):
-            novo = False
-            cindex[i].append(ci)
-    
-        elif novo and i == (len(cmodlist)-1):
-            
-            cmodlist.append(cmod)
-            cindex.append([ci])
-
-
-cmodlist, cindex = (list(t) for t in zip(*sorted(zip(cmodlist, cindex))))
+curvas, cmodlist = np.loadtxt(f'./FisherInformation_{modo}/cmod.txt', unpack=True)
 
 cmap = plt.get_cmap('rainbow')
 colors = iter(cmap(np.linspace(0.01, 1, len(cmodlist))))
@@ -113,9 +75,11 @@ for i in range(len(cmodlist)):
 
     print(cmodlist[i])
     
-    rho = RHO(tlist, clist[cindex[i][0]], p, gamma, w, nbar)
+    clist = np.loadtxt(f'./FisherInformation_{modo}/c_curve_{int(curvas[i])}.txt', unpack=True, dtype=complex, ndmin=1)
     
-    tlist, S = np.loadtxt(f'./Entropy_Resfriar/entropy-{cmodlist[i]:.3f}.txt', unpack=True)    
+    rho = RHO(tlist, clist[0], p, gamma, w, nbar)
+    
+    tlist, S = np.loadtxt(f'./Entropy_{modo}/entropy-{cmodlist[i]:.3f}.txt', unpack=True)    
     
     for t in range(len(rho)):
         
@@ -132,13 +96,11 @@ for i in range(len(cmodlist)):
     c = next(colors)
     
     plt.plot(tlist, Fneq, color=c, label=f'|c| = {cmodlist[i]:.3f}')
-    
-    
-    
+
     
 plt.ylabel(r'$F_{neq} (\rho (t))$')
 plt.xlabel('Time')
-plt.title(r'Cooling ($\Delta$T = ' + f'{abs(Tbanho-Tqubit)})')
+plt.title(r'Heating ($\Delta$T = ' + f'{abs(Tbanho-Tqubit)})')
 plt.legend()
 plt.xlim(left=0)
 plt.tight_layout()
@@ -152,8 +114,8 @@ plt.plot(cmodlist, Fneq_fatiat[3], color='black', linestyle='--', label=f'Time =
 plt.plot(cmodlist, Fneq_fatiat[4], color='black', linestyle='-', label=f'Time = {tlist[-1]:.2f}')
 plt.xlabel('|c|')
 plt.ylabel(r'$F_{neq} (\rho)$')
-plt.title(r'Cooling ($\Delta$T = ' + f'{abs(Tbanho-Tqubit)})')
-plt.legend(loc='lower right')
+plt.title(r'Heating ($\Delta$T = ' + f'{abs(Tbanho-Tqubit)})')
+plt.legend(loc='upper left')
 plt.tight_layout()
 plt.show()
 
