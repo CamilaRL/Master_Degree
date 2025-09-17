@@ -10,6 +10,17 @@ import scipy.constants as constant
 
 tin = time.time()
 
+def Write_Outfile(temperature, fisher, path):
+
+    f = open(path, 'w')
+    
+    for i in range(len(temperature)):
+        
+        f.write(f'{temperature[i]} {fisher[i]}\n')
+        
+    f.close()
+    
+
 # informacao de fisher sistema inteiro
 ###############################################################################
 #################################  Parameters  ################################
@@ -31,6 +42,8 @@ Omega6 = 1.0
 g = 1.0  # Sistema-Campo
 J = 1.0       # Sistema-sistema
 
+## temperature
+
 tT = 100
 TempMin = 0.005
 TempMax = 2.0
@@ -41,8 +54,11 @@ ddTemp = linspace(TempMin,TempMax,dtT) # Temperature
 
 dTemp = Temp[1] - Temp[0]
 
+
+## time
+
 tp = 100 # Step
-tSEmax = (pi/2)
+tSEmax = (pi/2) -1
 tSE = linspace(0.00001,tSEmax,tp)  # Time S-E
 
 td = linspace(0.0,5.0,tp-1)
@@ -425,8 +441,7 @@ for r in range(len(Temp)-1):
     FthSca[r] = (1/(nthermo[r+1]*(nthermo[r+1]+1)*(2*nthermo[r+1]+1)**2))*((nthermo[r+1]-nthermo[r])/dTemp)**2
 
 ###############################################################################
-plt.plot(ddTemp,QFIA1[:,-1])
-plt.show()
+Write_Outfile(ddTemp, QFIA1[:,-1], f'./Results/QFI_all_g{g:.1f}_ttherm{tSEmax:.3f}.txt')
 
 
 

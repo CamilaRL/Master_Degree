@@ -28,7 +28,7 @@ Omega4 = 1.0
 Omega5 = 1.0
 Omega6 = 1.0
 
-g = 1.5  # Sistema-Campo
+g = 10.0  # Sistema-Campo
 J = 1.0       # Sistema-sistema
 
 ## temperature
@@ -46,7 +46,7 @@ dTemp = Temp[1] - Temp[0]
 ## time
 
 tp = 100 # Step
-tSEmax = pi/2
+tSEmax = (pi/2)
 tSE = linspace(0.00001,tSEmax,tp)  # Time S-E
 
 td = linspace(0.0,5.0,tp-1)
@@ -599,12 +599,12 @@ for r in range(len(Temp)-1):
     FthSca[r] = (1/(nthermo[r+1]*(nthermo[r+1]+1)*(2*nthermo[r+1]+1)**2))*((nthermo[r+1]-nthermo[r])/dTemp)**2
 
 ###############################################################################
-plt.plot(ddTemp, QFIA1[:,-1], 'b', label='Qubit 1')
-plt.plot(ddTemp, QFIA2[:,-1], '--r', label='Qubit 2')
-plt.plot(ddTemp,QFIA3[:,-1],'-.k', label='Qubit 3')
-plt.plot(ddTemp,QFIA4[:,-1],':g', label='Qubit 4')
+plt.plot(ddTemp, QFIA1[:,-1], 'b', label=f'Qubit 1 - Max = {max(QFIA1[:,-1]):.3f}')
+plt.plot(ddTemp, QFIA2[:,-1], 'g', label=f'Qubit 2 - Max = {max(QFIA2[:,-1]):.3f}')
+plt.plot(ddTemp,QFIA3[:,-1],':k', label=f'Qubit 3 - Max = {max(QFIA3[:,-1]):.3f}')
+plt.plot(ddTemp,QFIA4[:,-1],'--r', label=f'Qubit 4 - Max = {max(QFIA4[:,-1]):.3f}')
 
-plt.title(f'Thermalization Time: {tSEmax:.3f}')
+plt.title(f'Field: {g:.1f} | Thermalization Time: {tSEmax:.3f}')
 plt.legend()
 
 plt.show()
