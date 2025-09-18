@@ -1,0 +1,437 @@
+from qutip import *
+from math import *
+from pylab import *
+import matplotlib.pyplot as plt
+import numpy as np
+import time
+from numpy import linalg as LA
+from numpy.linalg import norm
+import scipy.constants as constant
+
+tin = time.time()
+
+# informacao de fisher sistema inteiro
+###############################################################################
+#################################  Parameters  ################################
+# hp = 6.62607015E-34 #m2 kg / s
+# kb = 1.380649E-23   #m2 kg s-2 K-1
+
+gamma = 1.0  # System decay rate
+gammaE = 1.0  # Environment decay rate
+
+
+OmegaS = 1.0#1E10*(T/2)  # System: energy level splitting
+Omega1 = 1.0
+Omega2 = 1.0
+Omega3 = 1.0
+Omega4 = 1.0
+Omega5 = 1.0
+Omega6 = 1.0
+
+g = 1.0  # Sistema-Campo
+J = 1.0       # Sistema-sistema
+
+tT = 100
+TempMin = 0.005
+TempMax = 2.0
+Temp = linspace(TempMin,TempMax,tT) # Temperature
+
+dtT = tT - 1
+ddTemp = linspace(TempMin,TempMax,dtT) # Temperature
+
+dTemp = Temp[1] - Temp[0]
+
+tp = 100 # Step
+tSEmax = (pi/2)
+tSE = linspace(0.00001,tSEmax,tp)  # Time S-E
+
+td = linspace(0.0,5.0,tp-1)
+
+dtSE = tSE[1]-tSE[0]
+
+
+n = 30
+NN = range(0, n)
+Tp = len(Temp)
+
+###############################################################################
+
+# POVM Parameter
+theta = linspace(0,pi,10)
+phi = linspace(0,2*pi,20)
+
+dTheta = theta[1]-theta[0]
+dPhi = phi[1]-phi[0]
+
+#################
+
+Coh_S1 = np.zeros((len(Temp),len(range(0, n))))
+Coh_S2 = np.zeros((len(Temp),len(range(0, n))))
+Coh_S3 = np.zeros((len(Temp),len(range(0, n))))
+Coh_S4 = np.zeros((len(Temp),len(range(0, n))))
+
+Coh_A1U1 = np.zeros((len(Temp),len(range(0, n))))
+Coh_A2U2 = np.zeros((len(Temp),len(range(0, n))))
+Coh_A3U2 = np.zeros((len(Temp),len(range(0, n))))
+Coh_A4U2 = np.zeros((len(Temp),len(range(0, n))))
+
+ES = np.zeros((len(Temp),len(range(0, n))))
+
+
+nthermo = np.zeros((len(Temp)))
+
+FthGab = np.zeros((len(Temp)))
+
+
+p1dA1 = np.zeros((len(Temp),len(theta),len(phi)))
+p2dA1 = np.zeros((len(Temp),len(theta),len(phi)))
+
+p1lndA1 = np.zeros((len(Temp),len(theta),len(phi)))
+p2lndA1 = np.zeros((len(Temp),len(theta),len(phi)))
+
+derP1A1 = np.zeros((len(Temp)-1,len(theta),len(phi)))
+derP2A1 = np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+#################
+p1dA2 = np.zeros((len(Temp),len(theta),len(phi)))
+p2dA2 = np.zeros((len(Temp),len(theta),len(phi)))
+
+p1lndA2 = np.zeros((len(Temp),len(theta),len(phi)))
+p2lndA2 = np.zeros((len(Temp),len(theta),len(phi)))
+
+derP1A2 = np.zeros((len(Temp)-1,len(theta),len(phi)))
+derP2A2 = np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+#################
+p1dA3 = np.zeros((len(Temp),len(theta),len(phi)))
+p2dA3 = np.zeros((len(Temp),len(theta),len(phi)))
+
+p1lndA3 = np.zeros((len(Temp),len(theta),len(phi)))
+p2lndA3 = np.zeros((len(Temp),len(theta),len(phi)))
+
+derP1A3 = np.zeros((len(Temp)-1,len(theta),len(phi)))
+derP2A3 = np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+#################
+p1dA4 = np.zeros((len(Temp),len(theta),len(phi)))
+p2dA4 = np.zeros((len(Temp),len(theta),len(phi)))
+
+p1lndA4 = np.zeros((len(Temp),len(theta),len(phi)))
+p2lndA4 = np.zeros((len(Temp),len(theta),len(phi)))
+
+derP1A4 = np.zeros((len(Temp)-1,len(theta),len(phi)))
+derP2A4 = np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+#################
+F1A1 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+F2A1 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+FxA1 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+QFI_tA1 = np.zeros((len(Temp)-1,len(theta)))
+
+
+QFIA1 = np.zeros((len(Temp)-1,len(range(0, n))))
+
+#################
+F1A2 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+F2A2 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+FxA2 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+QFI_tA2 = np.zeros((len(Temp)-1,len(theta)))
+
+
+QFIA2 = np.zeros((len(Temp)-1,len(range(0, n))))
+
+#################
+F1A3 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+F2A3 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+FxA3 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+QFI_tA3 = np.zeros((len(Temp)-1,len(theta)))
+
+
+QFIA3 = np.zeros((len(Temp)-1,len(range(0, n))))
+
+#################
+F1A4 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+F2A4 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+FxA4 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+QFI_tA4 = np.zeros((len(Temp)-1,len(theta)))
+
+
+QFIA4 = np.zeros((len(Temp)-1,len(range(0, n))))
+
+QFI_Therm =  np.zeros((len(Temp)))
+
+#################
+
+PA = np.zeros(len(NN))
+###############################################################################
+#################################  Operadores  ################################
+
+N=2
+
+# System Alone:
+sm= sigmap()
+sp= sigmam()
+sx= sigmax()
+sy= sigmay()
+sz= sigmaz()
+
+# System: 4 qubits
+# qubit 1:
+Sm1 = tensor(sigmap(),qeye(2),qeye(2),qeye(2))
+Sp1 = tensor(sigmam(),qeye(2),qeye(2),qeye(2))
+Sx1 = tensor(sigmax(),qeye(2),qeye(2),qeye(2))
+Sy1 = tensor(sigmay(),qeye(2),qeye(2),qeye(2))
+Sz1 = tensor(sigmaz(),qeye(2),qeye(2),qeye(2))
+
+# print(Sp.ptrace(0))
+
+# qubit 2:
+Sm2 = tensor(qeye(2),sigmap(),qeye(2),qeye(2))
+Sp2 = tensor(qeye(2),sigmam(),qeye(2),qeye(2))
+Sx2 = tensor(qeye(2),sigmax(),qeye(2),qeye(2))
+Sy2 = tensor(qeye(2),sigmay(),qeye(2),qeye(2))
+Sz2 = tensor(qeye(2),sigmaz(),qeye(2),qeye(2))
+
+# qubit 3:
+Sm3 = tensor(qeye(2),qeye(2),sigmap(),qeye(2))
+Sp3 = tensor(qeye(2),qeye(2),sigmam(),qeye(2))
+Sx3 = tensor(qeye(2),qeye(2),sigmax(),qeye(2))
+Sy3 = tensor(qeye(2),qeye(2),sigmay(),qeye(2))
+Sz3 = tensor(qeye(2),qeye(2),sigmaz(),qeye(2))
+
+# qubit 4:
+Sm4 = tensor(qeye(2),qeye(2),qeye(2),sigmap())
+Sp4 = tensor(qeye(2),qeye(2),qeye(2),sigmam())
+Sx4 = tensor(qeye(2),qeye(2),qeye(2),sigmax())
+Sy4 = tensor(qeye(2),qeye(2),qeye(2),sigmay())
+Sz4 = tensor(qeye(2),qeye(2),qeye(2),sigmaz())
+
+
+###############################################################################
+###################################  Hamiltonian ##############################
+
+HP4A = -J * (Sz1* Sz2 + Sz2* Sz3+ Sz3* Sz4)
+HP4B = -g * (Sx1 + Sx2 + Sx3 + Sx4)
+
+HK4A = -J * (Sz1* (Sz2 + Sz3 + Sz4) + Sz2* (Sz3 +Sz4) + Sz3* Sz4)
+HK4B = -g * (Sx1 + Sx2 + Sx3 + Sx4)
+
+HSd4A = -J * (Sz1* (Sz2 + Sz3 + Sz4) + Sz2* (Sz3) + Sz3* Sz4)
+HSd4B = -g * (Sx1 + Sx2 + Sx3 + Sx4)
+
+HC4A = -J * (Sz1* Sz2 + Sz2* Sz3+ Sz3* Sz4 + Sz4*Sz1)
+HC4B = -g * (Sx1 + Sx2 + Sx3 + Sx4)
+
+HpanA = -J * (Sz1* Sz2 + Sz2* Sz3+ Sz3* Sz4 + Sz4*Sz2)
+HpanB = -g * (Sx1 + Sx2 + Sx3 + Sx4)
+
+HS3A = -J * (Sz1* (Sz2 + Sz3 + Sz4))
+HS3B = -g * (Sx1 + Sx2 + Sx3 + Sx4)
+
+H = HP4A + HP4B
+# H = HC4A + HC4B
+# H = HK4A + HK4B
+# H = HSd4A + HSd4B
+# H = HpanA + HpanB
+# H = HS3A + HS3B
+
+
+G = basis(2,0) # base: excited state
+E = basis(2,1) # base: ground state
+
+A1 = G*G.dag()
+A2 = E*E.dag()
+
+S01 = tensor(A1,qeye(2),qeye(2),qeye(2))
+S02 = tensor(qeye(2),A1,qeye(2),qeye(2))
+S03 = tensor(qeye(2),qeye(2),A1,qeye(2))
+S04 = tensor(qeye(2),qeye(2),qeye(2),A1)
+
+S01 = tensor(A1,qeye(2),qeye(2),qeye(2))
+S02 = tensor(qeye(2),A1,qeye(2),qeye(2))
+S03 = tensor(qeye(2),qeye(2),A1,qeye(2))
+S04 = tensor(qeye(2),qeye(2),qeye(2),A1)
+
+S0 = S01 + S02 + S03 + S04
+
+Sm = Sm1 + Sm2 + Sm3 + Sm4
+Sp = Sp1 + Sp2 + Sp3 + Sp4
+
+###############################################################################
+r = -1
+
+for T in Temp:
+
+    r = r + 1
+    print(r)
+###############################################################################
+###############################  Thermal Number  ##############################
+
+    nt = 1/(exp((OmegaS)/(T))-1)
+    nthermo[r] = nt
+
+
+    FthGab[r] = ((OmegaS/(T**2))**2)*(1/(np.cosh(OmegaS/T)))**2
+###############################################################################
+###############################  Collapse Operator  ###########################
+
+    C1S = np.sqrt(gamma*(nt+1))*Sm
+    C2S = np.sqrt(gamma*nt)*Sp
+
+    Clist = [C1S,C2S] 
+
+###############################################################################
+#################################  Initial State  #############################
+
+    G = basis(2,0) # base: excited state
+    E = basis(2,1) # base: ground state
+
+
+#######  Ancilla 1
+    A1_st = G
+
+    A1_mat = A1_st*A1_st.dag()
+
+#######  Ancilla 2
+    A2_st = G
+
+    A2_mat = A2_st*A2_st.dag()
+
+#######  Ancilla 3
+    A3_st = G
+
+    A3_mat = A3_st*A3_st.dag()
+
+ #######  Ancilla 4   
+    A4_st = G
+
+    A4_mat = A4_st*A4_st.dag()
+
+
+    
+    psi = tensor(A1_st,A2_st,A3_st,A4_st)
+
+#######  Completo
+
+    S0mat = psi*psi.dag()
+
+    medataSE = mesolve(H,S0mat,tSE,[Clist],[]) # Master equation evolution - Sistema + Ambiente
+    rho0 = medataSE.states # Take matrices in each time
+    medataH1 = mesolve(H,S0mat,tSE,[Clist],[Sz1]) # Master equation evolution - Sistema + Ambiente
+    Exp_rho0 = medataH1.expect[0] # Take matrices in each time
+
+    
+    rhof = rho0[-1] # Take matrices in each time
+    Rhof1 = rho0[-1].ptrace([0])
+    Rhof2 = rho0[-1].ptrace([1])
+    Rhof3 = rho0[-1].ptrace([2])
+    Rhof4 = rho0[-1].ptrace([3])
+
+    
+    medataH2 = mesolve(H,S0mat,tSE,[Clist],[Sz1*Sz1]) # Master equation evolution - Sistema + Ambiente
+    Exp_rho02 = medataH2.expect[0]
+
+    
+
+    Therm1 = (Exp_rho02[-1] - (Exp_rho0[-1]*Exp_rho0[-1]))
+
+
+    QFI_Therm[r] = Therm1/(T**4)
+    
+
+        
+###############################################################################    
+###############################   POVM   ############################  
+    q = -1
+    for i in range(len(theta)):
+        q = q + 1
+        z = -1
+        for p in range(len(phi)):
+            z = z + 1
+
+            mat1 = Qobj([[cos(theta[i])], [exp(1j*phi[p])*sin(theta[i])]])
+            P1a = mat1*mat1.dag()
+            P1 = tensor(P1a,P1a,P1a,P1a)
+            
+
+            mat2 = Qobj([[exp(-1j*phi[p])*sin(theta[i])],[-cos(theta[i])]])
+            P2a = mat2*mat2.dag()
+            P2 = tensor(P2a,P2a,P2a,P2a)
+
+
+            p1A = (P1*rhof).tr()
+
+            R1A = P1*rhof
+
+            p2A = (P2*rhof).tr()
+            R2A = P2*rhof
+        
+            p1dA1[r,q,z] = real(p1A)
+            p2dA1[r,q,z] = real(p2A)
+        
+            p1lnA1 = np.log(p1A)
+            p2lnA1 = np.log(p2A)
+            
+            p1lndA1[r,q,z] = real(p1lnA1)
+            p2lndA1[r,q,z] = real(p2lnA1)
+
+                
+###############################################################################
+##################################   Fisher Total  ###############################
+for r in range(len(Temp)-1):
+    for i in range(len(theta)):
+                # print(i)
+        for p in range(len(phi)):
+            derP1A1[r,i,p] = (p1lndA1[r+1,i,p] - p1lndA1[r,i,p])/dtSE
+            derP2A1[r,i,p] = (p2lndA1[r+1,i,p] - p2lndA1[r,i,p])/dtSE
+    
+    
+for r in range(len(Temp)-1): 
+    for i in range(len(theta)):
+                # print(i)
+        for p in range(len(phi)):
+            f1 = p1dA1[r,i,p]*(derP1A1[r,i,p])**2
+            f2 = p2dA1[r,i,p]*(derP2A1[r,i,p])**2
+                    # print(f1)
+            fx = f1+f2
+                    # FI = max(fx)
+    
+            F1A1[r,i,p] = f1
+            F2A1[r,i,p] = f2
+    
+            FxA1[r,i,p] = fx
+    
+    
+for r in range(len(Temp)-1):
+    for i in range(len(theta)):
+        QFI_tA1[r,i] = max(FxA1[r,i,:])
+
+for r in range(len(Temp)-1):
+        QFIA1[r] = max(QFI_tA1[r,:])
+            
+
+###############################################################################
+FthSca = np.zeros((len(Temp)-1))
+for r in range(len(Temp)-1):
+    
+    FthSca[r] = (1/(nthermo[r+1]*(nthermo[r+1]+1)*(2*nthermo[r+1]+1)**2))*((nthermo[r+1]-nthermo[r])/dTemp)**2
+
+###############################################################################
+plt.plot(ddTemp,QFIA1[:,-1])
+plt.show()
+
+
+
+tend = time.time()    # tempo final de processamento
+delta = tend - tin    # funcao calculo do intervalo de tempo  de processamento
+print (delta)
+
+
