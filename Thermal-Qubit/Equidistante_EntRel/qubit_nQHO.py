@@ -5,6 +5,9 @@ import math
 
 
 
+def pFunc(T, w0):
+
+    return np.exp(w0/(2*T))/(2*np.cosh(w0/(2*T)))
 
 def nbarFunc(T, w):
 
@@ -67,7 +70,7 @@ def RHO(tlist, c, p, gamma, w, nbar):
 	return rho, rho_derivada
 
 
-def Entropia_Relativa(rho_i, rho_f):
+def Entropia_Relativa_Bloch(rho_i, rho_f):
 
     autoval_i = [1 + np.sqrt(rho_i[3]), 1 - np.sqrt(rho_i[3])]
     autoval_f = [1 + np.sqrt(rho_f[3]), 1 - np.sqrt(rho_f[3])]
@@ -78,6 +81,43 @@ def Entropia_Relativa(rho_i, rho_f):
         Sr = Sr + autoval_i[k] * np.log(autoval_i[k] / autoval_f[k])
     
     return Sr
+
+
+def Entropia_Relativa_Populacoes(pi, pt):
+
+    return pi*np.log(pi/pt) + (1-pi)*np.log((1-pi)/(1-pt))
+    
+
+def Temperatura_Quente_Mesma_SR(w0, Tc, pc, rt2):
+    
+    dT = 1e-15
+    
+    rt = np.sqrt(rt2)
+    
+    if rt < 1:
+    
+        msr_c = Mesma_SR(pc, rt)
+        print(rt)
+        print(pc)
+        Th = Tc + dT
+        
+        ph = np.exp(w0/(2*Th))/(2*np.cosh(w0/(2*Th)))
+        
+        msr_h = Mesma_SR(ph,rt)
+        
+        while math.isclose(msr_h, msr_c, abs_tol=dT):
+            #print(f'{msr_c} {msr_h}')
+            
+            Th = Th + dT
+        
+            ph = np.exp(w0/(2*Th))/(2*np.cosh(w0/(2*Th)))
+            
+            msr_h = Mesma_SR(ph,rt)
+    
+            
+
+    #return Th
+
 
 
 def FisherInformation(rho, drho):
@@ -122,58 +162,76 @@ def Classifica_FQ(FQ_classificados, FQ, c_classes_list, cmod_list, c):
     return FQ_classificados, c_classes_list, cmod_list
 
 
+def Temperaturas_e_Populacoes(w0, p_final, Sr_inicial):
+    
+    Tlist = np.arange(0.1, 50, 0.0001)
+
+    pList = [pFunc(T, w0) for T in Tlist]
+    
+    hline_Sr_inicial = [Sr_inicial for p in pList]
+
+    Sr = []
+
+    for i, p in enumerate(pList):
+        
+        Sr_p = Entropia_Relativa_Populacoes(p, p_final)
+        Sr.append(Sr_p)
+    
+    idx = np.argwhere( np.diff( np.sign(hline_Sr_inicial - Sr) ) ).flatten()
+    
+    print(idx)
+    
+    plt.plot(pList[idx], Sr[idx])
+    plt.plot(pList, Sr, label=f'pf = {pf}')
+    plt.plot(pList, hline_Sr_inicial, color='black')
+    plt.xlabel('Populations')
+    plt.ylabel('Relative Entropy')
+    plt.legend()
+    plt.show()
+
+
+    
+
 
 ##### MAIN #####
 
 ## parametros
-
-Th = 500
-Tw = 5
-Tc = 2
 
 w = 2
 w0 = 2
 
 gamma = 3
 
-nbar = nbarFunc(Tw, w)
-
 tlist = np.arange(0, 10, 0.01)
 
-pc = np.exp(w0/(2*Tc))/(2*np.cosh(w0/(2*Tc)))
-
-clist_c = Coerencia(pc)
+Temperaturas_e_Populacoes(w0, p_final=0.8, Sr_inicial=0.2)
 
 
+
+'''
 ## Aquecer
 
-rho_aquecer = []
-drho_aquecer = []
+rhot_aquecer = []
+drhot_aquecer = []
 Sr_aquecer = []
 
 for c in clist_c:
     
-    rho, drho = RHO(tlist, c, pc, gamma, w, nbar)
+    rhot, drhot = RHO(tlist, c, pc, gamma, w, nbar)
     
-    rho_aquecer.append(rho)
-    drho_aquecer.append(drho)
+    rhot_aquecer.append(rhot)
+    drhot_aquecer.append(drhot)
     
-    Sr_aquecer.append(Entropia_Relativa(rho[0], rho[-1]))
+    Sr_aquecer.append(Entropia_Relativa(rhot[0], rhot[-1]))
     
 
 ## variacao de Th para ter mesma entropia relativa que Tc 
-Sr = 0
-while(Sr_aquecer[0] != Sr):
+Temperatura_Quente_Mesma_SR(w0, Tc, pc, rhot_aquecer[0][-1][3])
+Th = Temperatura_Quente_Mesma_SR(Tc, pc, rho_aquecer[0][-1][3])
 
-    Th = Th + 10
-    
-    ph = np.exp(w0/(2*Th))/(2*np.cosh(w0/(2*Th)))
-    
-    rho, drho = RHO(tlist, 0, ph, gamma, w, nbar)
+ph = np.exp(w0/(2*Th))/(2*np.cosh(w0/(2*Th)))
 
-    Sr = Entropia_Relativa(rho[0], rho[-1])
-    
-    print(f'{Sr_aquecer[0]} {Th} {Sr}')
+clist_h = Coerencia(ph)'''
 
 '''
 ## Resfriamento
