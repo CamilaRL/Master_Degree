@@ -46,11 +46,12 @@ def Temperatura_Efetiva(rho, w0):
     
 ### MAIN ###
 
-modo = 'Resfriar'
+modo = 'Heating' ################### MUDAR
+Sr = 0.1
 
-Tbanho = 2
+Tbanho = 1.442695040888963 
 w = 2
-Tqubit = 10
+Tqubit = 0.6606763453727934 ################### MUDAR
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 
@@ -60,7 +61,7 @@ tlist = np.arange(0, 10, 0.01)
 
 nbar = nbarFunc(Tbanho, w)
 
-curvas, cmodlist = np.loadtxt(f'./FisherInformation_{modo}/cmod.txt', unpack=True)
+curvas, cmodlist = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/cmod.txt', unpack=True)
 
 cmap = plt.get_cmap('rainbow')
 colors = iter(cmap(np.linspace(0.01, 1, len(cmodlist))))
@@ -71,7 +72,7 @@ for i, cmod in enumerate(cmodlist):
     
     print(cmod)
     
-    clist = np.loadtxt(f'./FisherInformation_{modo}/c_curve_{int(curvas[i])}.txt', unpack=True, dtype=complex, ndmin=1)
+    clist = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/c_curve_{int(curvas[i])}.txt', unpack=True, dtype=complex, ndmin=1)
     Teff = []
     
     rho = RHO(tlist, clist[0], p, gamma, w, nbar)
@@ -88,7 +89,7 @@ plt.hlines(y=Tbanho, xmin=tlist[0], xmax=tlist[-1], linestyle='--', color='black
 plt.hlines(y=Tqubit, xmin=tlist[0], xmax=tlist[-1], linestyle=':', color='black', label='Qubit')
 plt.ylabel('Effective Temperature')
 plt.xlabel('Time')
-plt.title('Cooling')
+plt.title(modo)
 plt.legend(loc='upper right', bbox_to_anchor=(1., 0.5, 0.5, 0.5))
 plt.tight_layout()
 plt.show()
@@ -97,7 +98,7 @@ plt.scatter(cmodlist, Teff_inicial, s=15, color='black')
 plt.plot(cmodlist, Teff_inicial, color='black')
 plt.ylabel('Initial Effective Temperature')
 plt.xlabel('|c|')
-plt.title('Cooling')
+plt.title(modo)
 plt.show()
 
 

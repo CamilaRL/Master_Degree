@@ -6,9 +6,10 @@ import os
 
 ### MAIN ###
 
-modo = 'Resfriar'
+modo = 'Heating'
+dSr = 0.1
 
-curvas, cmod = np.loadtxt(f'./FisherInformation_{modo}/cmod.txt', unpack=True)
+curvas, cmod = np.loadtxt(f'./FisherInformation_{modo}_{dSr}/cmod.txt', unpack=True)
 
 t_equilibrio = []
 
@@ -19,7 +20,7 @@ for i, j in enumerate(curvas):
 
     curva = int(j)
     
-    tlist, completion = np.loadtxt(f'./ThermalKinematics_{modo}/completion_{curva}.txt', unpack=True)
+    tlist, completion = np.loadtxt(f'./ThermalKinematics_{modo}_{dSr}/completion_{curva}.txt', unpack=True)
     
     equilibrio = np.where(completion==completion[-1])
     
@@ -32,7 +33,7 @@ for i, j in enumerate(curvas):
     plt.ylabel('Degree of Completion')
 
 plt.legend(loc='best', bbox_to_anchor=(1., 0.5, 0.5, 0.5))
-plt.title('Cooling')
+plt.title(modo)
 plt.xscale('log')
 plt.xlim(left=0.01)
 plt.tight_layout()

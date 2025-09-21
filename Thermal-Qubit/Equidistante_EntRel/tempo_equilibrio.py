@@ -6,8 +6,8 @@ import os
 
 ### MAIN ###
 
-modoList = ['Resfriar', 'Aquecer']
-modoIngles = ['Cooling', 'Heating']
+Sr = 0.1
+modoList = ['Cooling', 'Heating']
 cores = ['blue', 'red']
 
 
@@ -15,7 +15,7 @@ for modo in modoList:
     
     m = modoList.index(modo)
     
-    curvas, cmod = np.loadtxt(f'./FisherInformation_{modo}/cmod.txt', unpack=True)
+    curvas, cmod = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/cmod.txt', unpack=True)
 
     t_equilibrio = []
     
@@ -24,7 +24,7 @@ for modo in modoList:
 
     for i in range(len(curvas)):
 
-        tlist, completion = np.loadtxt(f'./ThermalKinematics_{modo}/completion_{int(curvas[i])}.txt', unpack=True)        
+        tlist, completion = np.loadtxt(f'./ThermalKinematics_{modo}_{Sr}/completion_{int(curvas[i])}.txt', unpack=True)        
         
         equilibrio = np.where(completion==completion[-1])
         
@@ -32,7 +32,7 @@ for modo in modoList:
         
 
     plt.scatter(cmod, t_equilibrio, color=cores[m])
-    plt.plot(cmod, t_equilibrio, color=cores[m], label=f'{modoIngles[m]}')
+    plt.plot(cmod, t_equilibrio, color=cores[m], label=f'{modoList[m]}')
 
 plt.ylabel('Equilibration Time')
 plt.xlabel('|c|')

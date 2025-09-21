@@ -46,11 +46,13 @@ def Free_Energy(rhot, H, T, St):
 
 ### MAIN ###
 
-modo = 'Aquecer'
+Sr = 0.1
 
-Tbanho = 10
+modo = 'Cooling'
+
+Tbanho = 1.442695040888963
 w = 2
-Tqubit = 2
+Tqubit = 4.700782656251331 #0.6606763453727934 #
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 
@@ -60,7 +62,7 @@ tlist = np.arange(0, 10, 0.01)
 
 nbar = nbarFunc(Tbanho, w)
 
-curvas, cmodlist = np.loadtxt(f'./FisherInformation_{modo}/cmod.txt', unpack=True)
+curvas, cmodlist = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/cmod.txt', unpack=True)
 
 cmap = plt.get_cmap('rainbow')
 colors = iter(cmap(np.linspace(0.01, 1, len(cmodlist))))
@@ -75,11 +77,11 @@ for i in range(len(cmodlist)):
 
     print(cmodlist[i])
     
-    clist = np.loadtxt(f'./FisherInformation_{modo}/c_curve_{int(curvas[i])}.txt', unpack=True, dtype=complex, ndmin=1)
+    clist = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/c_curve_{int(curvas[i])}.txt', unpack=True, dtype=complex, ndmin=1)
     
     rho = RHO(tlist, clist[0], p, gamma, w, nbar)
     
-    tlist, S = np.loadtxt(f'./Entropy_{modo}/entropy-{cmodlist[i]:.3f}.txt', unpack=True)    
+    tlist, S = np.loadtxt(f'./Entropy_{modo}_{Sr}/entropy-{cmodlist[i]:.3f}.txt', unpack=True)    
     
     for t in range(len(rho)):
         
@@ -100,7 +102,7 @@ for i in range(len(cmodlist)):
     
 plt.ylabel(r'$F_{neq} (\rho (t))$')
 plt.xlabel('Time')
-plt.title(r'Heating ($\Delta$T = ' + f'{abs(Tbanho-Tqubit)})')
+plt.title(f'{modo}')
 plt.legend()
 plt.xlim(left=0)
 plt.tight_layout()
@@ -114,7 +116,7 @@ plt.plot(cmodlist, Fneq_fatiat[3], color='black', linestyle='--', label=f'Time =
 plt.plot(cmodlist, Fneq_fatiat[4], color='black', linestyle='-', label=f'Time = {tlist[-1]:.2f}')
 plt.xlabel('|c|')
 plt.ylabel(r'$F_{neq} (\rho)$')
-plt.title(r'Heating ($\Delta$T = ' + f'{abs(Tbanho-Tqubit)})')
+plt.title(f'{modo}')
 plt.legend(loc='upper left')
 plt.tight_layout()
 plt.show()

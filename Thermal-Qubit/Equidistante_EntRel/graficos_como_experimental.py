@@ -2,18 +2,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-def Read_Completion(i, modo):
+def Read_Completion(i, modo, Sr):
 
-    path = f'./ThermalKinematics_{modo}/completion_{i}.txt'
+    path = f'./ThermalKinematics_{modo}_{Sr}/completion_{i}.txt'
     
     tlist, completion = np.loadtxt(path, unpack=True)
     
     return tlist, completion
 
 
-def Read_Velocidade(i, modo):
+def Read_Velocidade(i, modo, Sr):
 
-    path = f'./ThermalKinematics_{modo}/velocity_{i}.txt'
+    path = f'./ThermalKinematics_{modo}_{Sr}/velocity_{i}.txt'
     
     tlist, completion = np.loadtxt(path, unpack=True)
     
@@ -24,15 +24,15 @@ def Read_Velocidade(i, modo):
 
 ### MAIN ###
 
-
-modoList = ['Resfriar', 'Aquecer']
+Sr = 0.1
+modoList = ['Cooling', 'Heating']
 
 cList = []
 curvasList = []
 
 for modo in modoList:
 
-    curvas, cmod = np.loadtxt(f'./FisherInformation_{modo}/cmod.txt', unpack=True)
+    curvas, cmod = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/cmod.txt', unpack=True)
     
     curvasList.append(curvas)
     cList.append(cmod)
@@ -48,8 +48,8 @@ for i, curva in enumerate(curvasList[1]):
     print(f'c {modoList[1]}: {cList[1][i]}')
     
     
-    tlist_r, completion_r = Read_Completion(curva_r, modoList[0])
-    tlist_a, completion_a = Read_Completion(curva_a, modoList[1])
+    tlist_r, completion_r = Read_Completion(curva_r, modoList[0], Sr)
+    tlist_a, completion_a = Read_Completion(curva_a, modoList[1], Sr)
     
     plt.plot(tlist_r, completion_r, color='blue', label='Cooling')
     plt.plot(tlist_a, completion_a, color='red', label='Heating')
@@ -62,8 +62,8 @@ for i, curva in enumerate(curvasList[1]):
     plt.xlim(left=0.01)
     plt.show()
     
-    tlist_r, velocidade_r = Read_Velocidade(curva_r, modoList[0])
-    tlist_a, velocidade_a = Read_Velocidade(curva_a, modoList[1])
+    tlist_r, velocidade_r = Read_Velocidade(curva_r, modoList[0], Sr)
+    tlist_a, velocidade_a = Read_Velocidade(curva_a, modoList[1], Sr)
     
     plt.plot(tlist_r, velocidade_r, color='blue', label='Cooling')
     plt.plot(tlist_a, velocidade_a, color='red', label='Heating')

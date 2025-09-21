@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+import os
 
 def Integracao(ydata, xdata):
 
@@ -11,9 +11,10 @@ def Integracao(ydata, xdata):
     return L
 
 
-def WriteOutput(tlist, velocity, position, completion, i):
+def WriteOutput(tlist, velocity, position, completion, i, modo, dSr):
     
-    path = f'./ThermalKinematics/'
+    
+    path = f'./ThermalKinematics_{modo}_{dSr}/'
     
     velocity_file = open(path + f'velocity_{i}.txt', 'w')
     position_file = open(path + f'position_{i}.txt', 'w')
@@ -33,13 +34,16 @@ def WriteOutput(tlist, velocity, position, completion, i):
 
 ### MAIN ###
 
-modo = 'Resfriar'
+modo = 'Cooling'
+dSr = 0.1
 
-curvas, cmod = np.loadtxt(f'./FisherInformation_{modo}/cmod.txt', unpack=True)
+curvas, cmod = np.loadtxt(f'./FisherInformation_{modo}_{dSr}/cmod.txt', unpack=True)
 
+os.mkdir(f'./ThermalKinematics_{modo}_{dSr}')
 
 cmap = plt.get_cmap('rainbow')
 colors = iter(cmap(np.linspace(0.1, 1, len(curvas))))
+
 fig = plt.figure(figsize=(12,5))
 
 
@@ -47,7 +51,7 @@ for i, j in enumerate(curvas):
     
     curva = int(j)
     
-    curve_path = f'./FisherInformation_{modo}/QFI_curve_{curva}.txt'
+    curve_path = f'./FisherInformation_{modo}_{dSr}/QFI_curve_{curva}.txt'
     
     tlist, QFI = np.loadtxt(curve_path, unpack=True)
     
@@ -78,10 +82,10 @@ for i, j in enumerate(curvas):
     plt.xlabel('Time')
     plt.ylabel('Degree of Completion')
     
-    WriteOutput(tlist, vlist, Llist, degree_completion, curva)
+    WriteOutput(tlist, vlist, Llist, degree_completion, curva, modo, dSr)
 
 plt.legend(loc='best', bbox_to_anchor=(1., 0.5, 0.5, 0.5))
-plt.suptitle('Cooling')
+plt.suptitle(modo)
 plt.tight_layout()
 plt.show()
 

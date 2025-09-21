@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from qutip import *
 import math
+import os
 
 def nbarFunc(T, w):
 
@@ -77,11 +78,13 @@ def WriteFile(pasta, S, tlist):
 
 ### MAIN ###
 
-modo = 'Resfriar'
+Sr = 0.1
 
-Tbanho = 2
+modo = 'Heating'
+
+Tbanho = 1.442695040888963
 w = 2
-Tqubit = 10
+Tqubit = 0.6606763453727934 #4.700782656251331
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 
@@ -93,7 +96,9 @@ nbar = nbarFunc(Tbanho, w)
 
 coerencia_max = np.sqrt(max(0.0, p*(1-p)))
 
-curvas, cmodlist = np.loadtxt(f'./FisherInformation_{modo}/cmod.txt', unpack=True)
+curvas, cmodlist = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/cmod.txt', unpack=True)
+
+os.mkdir(f'./Entropy_{modo}_{Sr}')
 
 cmap = plt.get_cmap('rainbow')
 colors = iter(cmap(np.linspace(0.01, 1, len(cmodlist))))
@@ -104,7 +109,7 @@ for i in range(len(cmodlist)):
     
     print(cmodlist[i])
     
-    clist = np.loadtxt(f'./FisherInformation_{modo}/c_curve_{int(curvas[i])}.txt', unpack=True, dtype=complex, ndmin=1)
+    clist = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/c_curve_{int(curvas[i])}.txt', unpack=True, dtype=complex, ndmin=1)
     
     rho = RHO(tlist, clist[0], p, gamma, w, nbar)
     
@@ -118,13 +123,13 @@ for i in range(len(cmodlist)):
     
     c = next(colors)
     
-    WriteFile(f'./Entropy/entropy-{cmodlist[i]:.3f}.txt', S, tlist)
+    WriteFile(f'./Entropy_{modo}_{Sr}/entropy-{cmodlist[i]:.3f}.txt', S, tlist)
     
     plt.plot(tlist, S, color=c, label=f'|c| = {cmodlist[i]:.3f}')
 
 plt.ylabel('S')
 plt.xlabel('Time')
-plt.title('Cooling')
+plt.title(modo)
 plt.xscale('log')
 plt.xlim(left=0.01)
 plt.legend(loc='best', bbox_to_anchor=(1., 0.5, 0.5, 0.5))
@@ -142,7 +147,7 @@ for s in range(len(Slist)):
 
 plt.ylabel('dS/dt')
 plt.xlabel('Time')
-plt.title('Cooling')
+plt.title(modo)
 plt.xscale('log')
 plt.xlim(left=0.01)
 plt.legend(loc='best', bbox_to_anchor=(1., 0.5, 0.5, 0.5))
