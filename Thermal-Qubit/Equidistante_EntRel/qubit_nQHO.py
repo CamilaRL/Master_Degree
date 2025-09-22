@@ -41,7 +41,7 @@ def Coerencia(p):
     return clist
 
 
-def RHO(tlist, c, p, gamma, w, nbar):
+def RHO(tlist, c, p, gamma, w, nbar, pfinal):
 	
 	rho = []
 	rho_derivada = []
@@ -72,11 +72,23 @@ def RHO(tlist, c, p, gamma, w, nbar):
 
 	return rho, rho_derivada, Srt
 
+def Entropia_Relativa_BP(rho_i, p_final):
+
+    autoval_i = [(1 + np.sqrt(rho_i[3]))/2, (1 - np.sqrt(rho_i[3]))/2]
+    autoval_f = [p_final, 1 - p_final]
+    
+    Sr = 0
+    
+    for k in range(2):
+        Sr = Sr + autoval_i[k] * np.log(autoval_i[k] / autoval_f[k])
+    
+    return Sr
+
 
 def Entropia_Relativa_Bloch(rho_i, rho_f):
 
-    autoval_i = [1 + np.sqrt(rho_i[3]), 1 - np.sqrt(rho_i[3])]
-    autoval_f = [1 + np.sqrt(rho_f[3]), 1 - np.sqrt(rho_f[3])]
+    autoval_i = [(1 + np.sqrt(rho_i[3]))/2, (1 - np.sqrt(rho_i[3]))/2]
+    autoval_f = [(1 + np.sqrt(rho_f[3]))/2, (1 - np.sqrt(rho_f[3]))/2]
     
     Sr = 0
     
@@ -286,12 +298,12 @@ cmod_aquecer = []
 
 for c in clist_c:
     
-    rhot, drhot, Srt = RHO(tlist, c, pc, gamma, w, nbar)
+    rhot, drhot, Srt = RHO(tlist, c, pc, gamma, w, nbar, p_final)
     
     QFI = FisherInformation(rhot, drhot)
         
     QFI_aquecer, Srt_aquecer, c_classes_aquecer, cmod_aquecer = Classifica_FQ(QFI_aquecer, QFI, Srt_aquecer, Srt, c_classes_aquecer, cmod_aquecer, c)
-    
+
 
 ## Resfriamento
 
@@ -304,17 +316,18 @@ cmod_resfriar = []
 
 for c in clist_h:
     
-    rhot, drhot, Srt = RHO(tlist, c, ph, gamma, w, nbar)
+    rhot, drhot, Srt = RHO(tlist, c, ph, gamma, w, nbar, p_final)
     
     QFI = FisherInformation(rhot, drhot)
     
     QFI_resfriar, Srt_resfriar, c_classes_resfriar, cmod_resfriar = Classifica_FQ(QFI_resfriar, QFI, Srt_resfriar, Srt, c_classes_resfriar, cmod_resfriar, c)
 
 
+
 ## write files ##
 
-#WriteOutput(f'Heating_{Sr_inicial}', cmod_aquecer, tlist, QFI_aquecer, c_classes_aquecer, Srt_aquecer)
-#WriteOutput(f'Cooling_{Sr_inicial}', cmod_resfriar, tlist, QFI_resfriar, c_classes_resfriar, Srt_resfriar)
+WriteOutput(f'Heating_{Sr_inicial}', cmod_aquecer, tlist, QFI_aquecer, c_classes_aquecer, Srt_aquecer)
+WriteOutput(f'Cooling_{Sr_inicial}', cmod_resfriar, tlist, QFI_resfriar, c_classes_resfriar, Srt_resfriar)
 
 
 
