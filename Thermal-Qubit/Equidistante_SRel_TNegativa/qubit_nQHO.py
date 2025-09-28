@@ -29,7 +29,7 @@ def RHO(tlist, c, p, gamma, w, nbar, pfinal):
 		rx = c.real * np.exp(-2*gamma*(nbar + 0.5)*t)
 		ry = -c.imag * np.exp(-2*gamma*(nbar + 0.5)*t)
 		rz = -(nbar/(2*nbar + 1)) - (p - (nbar + 1)/(2*nbar + 1)) * np.exp(-2*gamma*(2*nbar + 1)*t)
-
+		
 		rmod2 = rx**2 + ry**2 + rz**2
 
 		r_list = [rx, ry, rz, rmod2]
@@ -52,7 +52,7 @@ def RHO(tlist, c, p, gamma, w, nbar, pfinal):
 def Entropia_Relativa_BP(rho_i, p_final):
 
     autoval_i = [(1 + np.sqrt(rho_i[3]))/2, (1 - np.sqrt(rho_i[3]))/2]
-    autoval_f = [1 - p_final, p_final]
+    autoval_f = [p_final, 1 - p_final]
     
     Sr = 0
     
@@ -66,7 +66,7 @@ def Entropia_Relativa_Bloch(rho_i, rho_f):
 
     autoval_i = [(1 + np.sqrt(rho_i[3]))/2, (1 - np.sqrt(rho_i[3]))/2]
     autoval_f = [(1 + np.sqrt(rho_f[3]))/2, (1 - np.sqrt(rho_f[3]))/2]
-    
+    #print(autoval_i, autoval_f)
     Sr = 0
     
     for k in range(2):
@@ -135,7 +135,7 @@ def Intersection_Initial_Sr(pt, pList, Tlist, w0, Sr_init):
 
 def Temperaturas_e_Populacoes(w0, p_final, Sr_inicial):
     
-    Tlist = np.arange(-500, -200, 0.00001)
+    Tlist = np.arange(-10, -0.1, 0.00001)
     
     pList = [pFunc(T, w0) for T in Tlist]
     
@@ -203,7 +203,7 @@ tlist = np.arange(0, 10, 0.01)
 
 print('Temperatura e Populações')
 pc, ph, Sinit, Tc, Th, Tw = Temperaturas_e_Populacoes(w0, p_final, Sr_inicial)
-'''
+
 nbar = nbarFunc(Tw, w)
 
 ### prints de checagem
@@ -214,7 +214,6 @@ print(f'pw {Tw} {p_final} - {pFunc(Tw, w0)}')
 
 print(f'Sc {Sinit[0]} - {Entropia_Relativa_Populacoes(pFunc(Tc, w0), p_final)}')
 print(f'Sh {Sinit[1]} - {Entropia_Relativa_Populacoes(pFunc(Th, w0), p_final)}')
-
 
 ## Aquecer
 
@@ -238,10 +237,9 @@ QFI_resfriar = FisherInformation(rhot, drhot)
 
 ## write files ##
 
-#WriteOutput(f'Heating_{Sr_inicial}', tlist, QFI_aquecer, Srt_aquecer)
-#WriteOutput(f'Cooling_{Sr_inicial}', tlist, QFI_resfriar, Srt_resfriar)
+WriteOutput(f'Heating_{Sr_inicial}', tlist, QFI_aquecer, Srt_aquecer)
+WriteOutput(f'Cooling_{Sr_inicial}', tlist, QFI_resfriar, Srt_resfriar)
 
-'''
 
 
 
