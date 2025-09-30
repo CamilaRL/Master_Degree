@@ -32,11 +32,11 @@ def Quantum_Fisher_Information(rho_list, temp_list):
     
     size_rhoT = rho_list[0].shape[0]
     
-    drho_list = [Qobj(np.zeros((size_rhoT, size_rhoT))) for T in range(len(temp_list)-1)]
+    drho_list = [np.zeros((size_rhoT, size_rhoT), dtype=complex) for T in range(len(temp_list)-1)]
     
     for i in range(size_rhoT):
         for j in range(size_rhoT):
-    
+            
             for t in range(len(temp_list)-1):
     
                 rho_i = rho_list[t][i][j]
@@ -46,7 +46,6 @@ def Quantum_Fisher_Information(rho_list, temp_list):
                 
                 drho_list[t][i][j] = (rho_f - rho_i)/(temp_f - temp_i)
     
-    
     ### calculo da Infomacao de Fisher Quantica
     QFI_T = []
     
@@ -54,15 +53,19 @@ def Quantum_Fisher_Information(rho_list, temp_list):
     
         autoval, autovec = rho_list[t].eigenstates()
         
-        QFI = 0
+        QFI = 0        
         
-        print(autovec[0].dag() * drho_list[t])
-        '''for n in range(len(autoval)):
+        for n in range(len(autoval)):
             for m in range(len(autoval)):
-            
-                #QFI = QFI + (abs(autovec[n].dag() * drho_list[t] * autovec[m])**2)/(autoval[n] + autoval[m])
-                print(autovec[n].dag() * drho_list[t] * autovec[m])
-        print(QFI)
+                
+                bra = autovec[0].full()[0]
+                ket = autovec[0].full()[0]
+                
+                bra_drho_ket = np.vdot(bra, ket)
+                print(abs(bra_drho_ket))
+                '''QFI = QFI + abs(bra_drho_ket)/(autoval[n] + autoval[m])
+                
+        print(bra_drho_ket)
         QFI_T.append(QFI)'''
         
     

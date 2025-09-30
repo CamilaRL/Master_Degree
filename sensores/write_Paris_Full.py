@@ -39,7 +39,7 @@ Omega4 = 1.0
 Omega5 = 1.0
 Omega6 = 1.0
 
-g = 1.0  # Sistema-Campo
+g = 0.45  # Sistema-Campo
 J = 1.0       # Sistema-sistema
 
 ## temperature
@@ -57,9 +57,10 @@ dTemp = Temp[1] - Temp[0]
 
 ## time
 
-tp = 100 # Step
-tSEmax = (pi/2) -1
-tSE = linspace(0.00001,tSEmax,tp)  # Time S-E
+tp = 500 # Step
+tSEmax = 10*J#(pi/2) -1
+#tSE = linspace(0.00001,tSEmax,tp)  # Time S-E
+tSE = np.arange(0.001, tSEmax, 0.001)
 
 td = linspace(0.0,5.0,tp-1)
 

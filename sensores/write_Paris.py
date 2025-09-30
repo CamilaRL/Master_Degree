@@ -41,7 +41,7 @@ Omega4 = 1.0
 Omega5 = 1.0
 Omega6 = 1.0
 
-g = 1.0  # Sistema-Campo
+g = 0.45  # Sistema-Campo
 J = 1.0       # Sistema-sistema
 
 ## temperature
@@ -58,9 +58,10 @@ dTemp = Temp[1] - Temp[0]
 
 ## time
 
-tp = 100 # Step
-tSEmax = (pi/2) -1
-tSE = linspace(0.00001,tSEmax,tp)  # Time S-E
+tp = 500 # Step
+tSEmax = 10*J
+#tSE = linspace(0.00001,tSEmax,tp)  # Time S-E
+tSE = np.arange(0.001, tSEmax, 0.001)
 
 td = linspace(0.0,5.0,tp-1)
 
@@ -243,9 +244,9 @@ HpanB = -g * (Sx1 + Sx2 + Sx3 + Sx4)
 HS3A = -J * (Sz1* (Sz2 + Sz3 + Sz4))
 HS3B = -g * (Sx1 + Sx2 + Sx3 + Sx4)
 
-H = HP4A + HP4B
+#H = HP4A + HP4B
 # H = HC4A + HC4B
-# H = HK4A + HK4B
+H = HK4A + HK4B
 # H = HSd4A + HSd4B
 # H = HpanA + HpanB
 # H = HS3A + HS3B
@@ -613,10 +614,10 @@ for r in range(len(Temp)-1):
 
 ###############################################################################
 
-Write_Outfile(ddTemp, QFIA1[:,-1], f'./Results/QFI_q1_g{g:.1f}_ttherm{tSEmax:.3f}.txt')
-Write_Outfile(ddTemp, QFIA2[:,-1], f'./Results/QFI_q2_g{g:.1f}_ttherm{tSEmax:.3f}.txt')
-Write_Outfile(ddTemp, QFIA3[:,-1], f'./Results/QFI_q3_g{g:.1f}_ttherm{tSEmax:.3f}.txt')
-Write_Outfile(ddTemp, QFIA4[:,-1], f'./Results/QFI_q4_g{g:.1f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(ddTemp, QFIA1[:,-1], f'./Results/QFI_q1_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(ddTemp, QFIA2[:,-1], f'./Results/QFI_q2_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(ddTemp, QFIA3[:,-1], f'./Results/QFI_q3_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(ddTemp, QFIA4[:,-1], f'./Results/QFI_q4_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
 
 ###############################################################################
 ###############################################################################
