@@ -66,7 +66,7 @@ def Entropia_Relativa_Bloch(rho_i, rho_f):
 
     autoval_i = [(1 + np.sqrt(rho_i[3]))/2, (1 - np.sqrt(rho_i[3]))/2]
     autoval_f = [(1 + np.sqrt(rho_f[3]))/2, (1 - np.sqrt(rho_f[3]))/2]
-    #print(autoval_i, autoval_f)
+    print(np.sqrt(rho_f[3]))
     Sr = 0
     
     for k in range(2):
@@ -135,7 +135,7 @@ def Intersection_Initial_Sr(pt, pList, Tlist, w0, Sr_init):
 
 def Temperaturas_e_Populacoes(w0, p_final, Sr_inicial):
     
-    Tlist = np.arange(-10, -0.1, 0.00001)
+    Tlist = np.arange(-10, 1, 0.00001)
     
     pList = [pFunc(T, w0) for T in Tlist]
     
@@ -145,6 +145,7 @@ def Temperaturas_e_Populacoes(w0, p_final, Sr_inicial):
         
         Sr_p = Entropia_Relativa_Populacoes(p, p_final)
         Sr.append(Sr_p)
+    
     
     pinit, Sinit, Tc, Th, Tw = Intersection_Initial_Sr(p_final, pList, Tlist, w0, Sr_inicial)
     
@@ -195,7 +196,7 @@ w0 = 2
 
 gamma = 3
 
-p_final = 0.2
+p_final = 0.5
 
 Sr_inicial = 0.1
 

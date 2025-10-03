@@ -25,50 +25,50 @@ def Write_Outfile(temperature, fisher, path):
     f.close()
     
 
-def Quantum_Fisher_Information(rho_list, temp_list):
+def Quantum_Fisher_Information(rho_list, temp_list, dimensao):
 
     
     ### derivada de rho em relacao a temperatura
     
     size_rhoT = rho_list[0].shape[0]
     
-    drho_list = [np.zeros((size_rhoT, size_rhoT), dtype=complex) for T in range(len(temp_list)-1)]
+    drho_list = [np.zeros((size_rhoT, size_rhoT), dtype=complex) for k in range(len(temp_list)-1)]
     
     for i in range(size_rhoT):
         for j in range(size_rhoT):
             
             for t in range(len(temp_list)-1):
     
-                rho_i = rho_list[t][i][j]
-                rho_f = rho_list[t+1][i][j]
+                rho_i = rho_list[t].full()[i][j]
+                rho_f = rho_list[t+1].full()[i][j]
                 temp_i = temp_list[t]
                 temp_f = temp_list[t+1]
-                
+
                 drho_list[t][i][j] = (rho_f - rho_i)/(temp_f - temp_i)
     
     ### calculo da Infomacao de Fisher Quantica
     QFI_T = []
     
     for t in range(len(temp_list)-1):
-    
+        
+        
         autoval, autovec = rho_list[t].eigenstates()
         
-        QFI = 0        
+        QFI = complex(0,0)       
         
         for n in range(len(autoval)):
             for m in range(len(autoval)):
                 
-                bra = autovec[0].full()[0]
-                ket = autovec[0].full()[0]
+                bra = autovec[n].dag()
+                ket = autovec[m]
                 
-                bra_drho_ket = np.vdot(bra, ket)
-                print(abs(bra_drho_ket))
-                '''QFI = QFI + abs(bra_drho_ket)/(autoval[n] + autoval[m])
+                bra_drho_ket = (bra * Qobj(drho_list[t], dims=dimensao) * ket).full()[0][0]
+
+                QFI = QFI + 2*(abs(bra_drho_ket)**2)/(abs(autoval[n]) + abs(autoval[m]))
                 
-        print(bra_drho_ket)
-        QFI_T.append(QFI)'''
+        QFI_T.append(QFI.real)
         
-    
+    return temp_list[:-1], QFI_T
 
 ###############################################################################
 #################################  MAIN  ################################
@@ -94,14 +94,14 @@ Omega4 = 1.0
 Omega5 = 1.0
 Omega6 = 1.0
 
-g = 1.0  # Sistema-Campo
+g = 0.45  # Sistema-Campo
 J = 1.0       # Sistema-sistema
 
 ## temperature
 
 tT = 100
 TempMin = 0.005
-TempMax = 2.0
+TempMax = 0.01#2.0
 Temp = linspace(TempMin,TempMax,tT) # Temperature
 
 dtT = tT - 1
@@ -112,11 +112,8 @@ dTemp = Temp[1] - Temp[0]
 
 ## time
 
-tp = 100 # Step
-tSEmax = (pi/2) -1
-tSE = linspace(0.00001,tSEmax,tp)  # Time S-E
-
-td = linspace(0.0,5.0,tp-1)
+tSEmax = 10*J
+tSE = np.arange(0.001, tSEmax, 0.001) # Time S-E
 
 dtSE = tSE[1]-tSE[0]
 
@@ -205,9 +202,9 @@ HpanB = -g * (Sx1 + Sx2 + Sx3 + Sx4)
 HS3A = -J * (Sz1* (Sz2 + Sz3 + Sz4))
 HS3B = -g * (Sx1 + Sx2 + Sx3 + Sx4)
 
-H = HP4A + HP4B
+#H = HP4A + HP4B
 # H = HC4A + HC4B
-# H = HK4A + HK4B
+H = HK4A + HK4B
 # H = HSd4A + HSd4B
 # H = HpanA + HpanB
 # H = HS3A + HS3B
@@ -300,9 +297,22 @@ for r, T in enumerate(Temp):
 
 ################################# Quantum Fisher Information ########################################
 
-Quantum_Fisher_Information(rhof, Temp)
+temp_all, QFI_all = Quantum_Fisher_Information(rhof, Temp, [[2,2,2,2],[2,2,2,2]])
+temp_1, QFI_1 = Quantum_Fisher_Information(rhof1, Temp, [[2],[2]])
+temp_2, QFI_2 = Quantum_Fisher_Information(rhof2, Temp, [[2],[2]])
+temp_3, QFI_3 = Quantum_Fisher_Information(rhof3, Temp, [[2],[2]])
+temp_4, QFI_4 = Quantum_Fisher_Information(rhof4, Temp, [[2],[2]])
 
-            
+plt.plot(temp_1, QFI_1, label="Qubit 1")
+plt.plot(temp_2, QFI_2, label="Qubit 2")
+plt.plot(temp_3, QFI_3, label="Qubit 3")
+plt.plot(temp_4, QFI_4, label="Qubit 4")
+plt.plot(temp_all, QFI_all, label="All")
+plt.ylabel('QFI')
+plt.xlabel('Temperature')
+plt.legend()
+plt.show()
+
 ###############################################################################
 #Write_Outfile(ddTemp, QFIA1[:,-1], f'./Results/QFI_all_g{g:.1f}_ttherm{tSEmax:.3f}.txt')
 

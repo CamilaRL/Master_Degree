@@ -7,17 +7,17 @@ g = 0.45
 J = 1.0
 tSEmax = 10*J
 
-#temp, QFI_all = np.loadtxt(f'./Results/QFI_all_g{g:.1f}_ttherm{tSEmax:.3f}.txt', unpack=True)
+temp, QFI_all = np.loadtxt(f'./Results/QFI_all_g{g:.1f}_ttherm{tSEmax:.3f}.txt', unpack=True)
 
 temp1, QFI_q1 = np.loadtxt(f'./Results/QFI_q1_g{g:.2f}_ttherm{tSEmax:.3f}.txt', unpack=True)
 temp2, QFI_q2 = np.loadtxt(f'./Results/QFI_q2_g{g:.2f}_ttherm{tSEmax:.3f}.txt', unpack=True)
 temp3, QFI_q3 = np.loadtxt(f'./Results/QFI_q3_g{g:.2f}_ttherm{tSEmax:.3f}.txt', unpack=True)
 temp4, QFI_q4 = np.loadtxt(f'./Results/QFI_q4_g{g:.2f}_ttherm{tSEmax:.3f}.txt', unpack=True)
 
-QFI_all = []
+'''QFI_all = []
 for i in range(len(QFI_q1)):
     QFI_all.append( QFI_q1[i] + QFI_q2[i] + QFI_q3[i] + QFI_q4[i] )
-
+'''
 
 plt.plot(temp1, QFI_all, color='black', label='Total QFI')
 
@@ -29,5 +29,5 @@ plt.plot(temp4, QFI_q4, color='red', linestyle='--', label=f'Qubit 4 - Max = {ma
 plt.ylabel('QFI')
 plt.xlabel('Temperature')
 plt.legend()
-plt.title(f'Transverse Field: {g:.1f} | Thermalization Time: {tSEmax:.3f}')
+plt.title(f'Transverse Field: {g:.2f} | Thermalization Time: {tSEmax:.1f}')
 plt.show()

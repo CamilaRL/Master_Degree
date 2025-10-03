@@ -26,9 +26,6 @@ def Write_Outfile(temperature, fisher, path):
 ###############################################################################
 #################################  Parameters  ################################
 
-# hp = 6.62607015E-34 #m2 kg / s
-# kb = 1.380649E-23   #m2 kg s-2 K-1
-
 gamma = 1.0  # System decay rate
 gammaE = 1.0  # Environment decay rate
 
@@ -58,12 +55,9 @@ dTemp = Temp[1] - Temp[0]
 
 ## time
 
-tp = 500 # Step
-tSEmax = 10*J
-#tSE = linspace(0.00001,tSEmax,tp)  # Time S-E
-tSE = np.arange(0.001, tSEmax, 0.001)
 
-td = linspace(0.0,5.0,tp-1)
+tSEmax = 10*J
+tSE = np.arange(0.001, tSEmax, 0.001) # Time S-E
 
 dtSE = tSE[1]-tSE[0]
 
