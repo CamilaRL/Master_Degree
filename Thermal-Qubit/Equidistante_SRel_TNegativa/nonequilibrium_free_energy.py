@@ -7,7 +7,7 @@ def nbarFunc(T, w):
 
 	beta = 1/T
 	
-	return 1/(np.exp(beta*w) - 1)
+	return 1/(np.exp(beta*w) + 1)
     
 
 def RHO(tlist, c, p, gamma, w, nbar):
@@ -48,11 +48,11 @@ def Free_Energy(rhot, H, T, St):
 
 Sr = 0.1
 
-modo = 'Cooling'
+modo = 'Heating'
 
-Tbanho = 1.442695040888963
+Tbanho = 1.4426950408889627
 w = 2
-Tqubit = 4.700782656251331 #0.6606763453727934 #
+Tqubit = 0.6606763453727521 #4.700782656252254
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 
@@ -62,7 +62,8 @@ tlist = np.arange(0, 10, 0.01)
 
 nbar = nbarFunc(Tbanho, w)
 
-curvas, cmodlist = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/cmod.txt', unpack=True)
+curvas = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/cmod.txt', unpack=True, usecols=(0), ndmin=1)
+cmodlist = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/cmod.txt', unpack=True, usecols=(1), ndmin=1)
 
 cmap = plt.get_cmap('rainbow')
 colors = iter(cmap(np.linspace(0.01, 1, len(cmodlist))))
@@ -76,10 +77,8 @@ for i in range(len(cmodlist)):
     Fneq = []
 
     print(cmodlist[i])
-    
-    clist = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/c_curve_{int(curvas[i])}.txt', unpack=True, dtype=complex, ndmin=1)
-    
-    rho = RHO(tlist, clist[0], p, gamma, w, nbar)
+
+    rho = RHO(tlist, 0, p, gamma, w, nbar)
     
     tlist, S = np.loadtxt(f'./Entropy_{modo}_{Sr}/entropy-{cmodlist[i]:.3f}.txt', unpack=True)    
     

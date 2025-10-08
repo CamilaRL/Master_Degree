@@ -75,7 +75,7 @@ for i, curva in enumerate(curvasList[1]):
     plt.legend(loc='center right')
     plt.xscale('log')
     plt.xlim(left=0.01)
-    plt.ylim(top=23)
+    plt.ylim(top=26)
     plt.show()
     
     

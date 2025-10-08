@@ -6,10 +6,12 @@ import os
 
 ### MAIN ###
 
-modo = 'Heating'
+modo = 'Cooling'
 dSr = 0.1
 
-curvas, cmod = np.loadtxt(f'./FisherInformation_{modo}_{dSr}/cmod.txt', unpack=True)
+curvas = np.loadtxt(f'./FisherInformation_{modo}_{dSr}/cmod.txt', unpack=True, usecols=(0), ndmin=1)
+
+cmod = np.loadtxt(f'./FisherInformation_{modo}_{dSr}/cmod.txt', unpack=True, usecols=(1), ndmin=1)
 
 t_equilibrio = []
 

@@ -15,8 +15,8 @@ for modo in modoList:
     
     m = modoList.index(modo)
     
-    curvas = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/cmod.txt', unpack=True, usecols=(0), ndmin=1)
-    cmod = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/cmod.txt', unpack=True, usecols=(1), ndmin=1)
+    curvas = np.loadtxt(f'./p_final_0.2/FisherInformation_{modo}_{Sr}/cmod.txt', unpack=True, usecols=(0), ndmin=1)
+    cmod = np.loadtxt(f'./p_final_0.2/FisherInformation_{modo}_{Sr}/cmod.txt', unpack=True, usecols=(1), ndmin=1)
     
     t_equilibrio = []
     
@@ -25,7 +25,7 @@ for modo in modoList:
 
     for i in range(len(curvas)):
 
-        tlist, completion = np.loadtxt(f'./ThermalKinematics_{modo}_{Sr}/completion_{int(curvas[i])}.txt', unpack=True)        
+        tlist, completion = np.loadtxt(f'./p_final_0.2/ThermalKinematics_{modo}_{Sr}/completion_{int(curvas[i])}.txt', unpack=True)        
         
         equilibrio = np.where(completion==completion[-1])
         

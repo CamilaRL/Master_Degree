@@ -14,7 +14,7 @@ def nbarFunc(T, w):
 
 	beta = 1/T
 	
-	return 1/(np.exp(beta*w) - 1)
+	return 1/(np.exp(beta*w) + 1)
 
 
 
@@ -28,7 +28,7 @@ def RHO(tlist, c, p, gamma, w, nbar, pfinal):
 
 		rx = c.real * np.exp(-2*gamma*(nbar + 0.5)*t)
 		ry = -c.imag * np.exp(-2*gamma*(nbar + 0.5)*t)
-		rz = -(nbar/(2*nbar + 1)) - (p - (nbar + 1)/(2*nbar + 1)) * np.exp(-2*gamma*(2*nbar + 1)*t)
+		rz = (1/(2*nbar + 1)) - 2*((nbar + 1)/(2*nbar + 1) - p) * np.exp(-2*gamma*(2*nbar + 1)*t)
 		
 		rmod2 = rx**2 + ry**2 + rz**2
 
@@ -36,7 +36,7 @@ def RHO(tlist, c, p, gamma, w, nbar, pfinal):
         
 		drx = c.real * (-2*gamma*(nbar + 0.5)) * np.exp(-2*gamma*(nbar + 0.5)*t)
 		dry = -c.imag * (-2*gamma*(nbar + 0.5)) * np.exp(-2*gamma*(nbar + 0.5)*t)
-		drz = 2 * gamma * (2*nbar + 1) *(p - (nbar + 1)/(2*nbar + 1)) * np.exp(-2*gamma*(2*nbar + 1)*t)
+		drz = 4 * gamma * (2*nbar + 1) *((nbar + 1)/(2*nbar + 1) - p) * np.exp(-2*gamma*(2*nbar + 1)*t)
         
 		drmod2 = drx**2 + dry**2 + drz**2
         
@@ -66,19 +66,19 @@ def Entropia_Relativa_Bloch(rho_i, rho_f):
 
     autoval_i = [(1 + np.sqrt(rho_i[3]))/2, (1 - np.sqrt(rho_i[3]))/2]
     autoval_f = [(1 + np.sqrt(rho_f[3]))/2, (1 - np.sqrt(rho_f[3]))/2]
-    print(np.sqrt(rho_f[3]))
+    
     Sr = 0
     
     for k in range(2):
+
         Sr = Sr + autoval_i[k] * np.log(autoval_i[k] / autoval_f[k])
     
     return Sr
 
 
 def Entropia_Relativa_Populacoes(pi, pt):
-
-    return pi*np.log(pi/pt) + (1-pi)*np.log((1-pi)/(1-pt))
     
+    return pi*np.log(pi/pt) + (1-pi)*np.log((1-pi)/(1-pt))
 
 
 def FisherInformation(rho, drho):
@@ -112,9 +112,9 @@ def Intersection_Initial_Sr(pt, pList, Tlist, w0, Sr_init):
     Ts = []
     
     for i in range(len(pList) - 1):
-        
+          
         if y_diff[i] * y_diff[i+1] < 0:  # houve cruzamento
-            
+
             xi = brentq(f_diff, pList[i], pList[i+1])  # raiz exata
             yi = Entropia_Relativa_Populacoes(xi, pt)
             
@@ -135,12 +135,14 @@ def Intersection_Initial_Sr(pt, pList, Tlist, w0, Sr_init):
 
 def Temperaturas_e_Populacoes(w0, p_final, Sr_inicial):
     
-    Tlist = np.arange(-10, 1, 0.00001)
+    Tlist = np.concatenate( (np.arange(-100, -0.5, 0.0001), np.arange(0.5, 100, 0.0001)) )
     
     pList = [pFunc(T, w0) for T in Tlist]
     
+    plt.plot(Tlist, pList)
+    plt.show()
     Sr = []
-
+    
     for i, p in enumerate(pList):
         
         Sr_p = Entropia_Relativa_Populacoes(p, p_final)
@@ -196,7 +198,7 @@ w0 = 2
 
 gamma = 3
 
-p_final = 0.5
+p_final = 0.4
 
 Sr_inicial = 0.1
 

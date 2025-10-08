@@ -8,7 +8,7 @@ def nbarFunc(T, w):
 
 	beta = 1/T
 	
-	return 1/(np.exp(beta*w) - 1)
+	return 1/(np.exp(beta*w) + 1)
     
 
 def RHO(tlist, c, p, gamma, w, nbar):
@@ -80,11 +80,11 @@ def WriteFile(pasta, S, tlist):
 
 Sr = 0.1
 
-modo = 'Heating'
+modo = 'Cooling'
 
-Tbanho = 1.442695040888963
+Tbanho = 1.4426950408889627
 w = 2
-Tqubit = 0.6606763453727934 #4.700782656251331
+Tqubit = 4.700782656252254
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 
@@ -96,7 +96,8 @@ nbar = nbarFunc(Tbanho, w)
 
 coerencia_max = np.sqrt(max(0.0, p*(1-p)))
 
-curvas, cmodlist = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/cmod.txt', unpack=True)
+curvas = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/cmod.txt', unpack=True, usecols=(1), ndmin=1)
+cmodlist = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/cmod.txt', unpack=True, usecols=(1), ndmin=1)
 
 os.mkdir(f'./Entropy_{modo}_{Sr}')
 
@@ -109,15 +110,14 @@ for i in range(len(cmodlist)):
     
     print(cmodlist[i])
     
-    clist = np.loadtxt(f'./FisherInformation_{modo}_{Sr}/c_curve_{int(curvas[i])}.txt', unpack=True, dtype=complex, ndmin=1)
     
-    rho = RHO(tlist, clist[0], p, gamma, w, nbar)
+    rho = RHO(tlist, 0, p, gamma, w, nbar)
     
     S = vonNeumann_Entropy(rho)
     
     equilibrio = np.where(S==S[-1])
     
-    print(f'{clist[0]:.3f} : t={tlist[equilibrio[0][0]]} ii={equilibrio[0][0]} if={equilibrio[0][-1]}')
+    print(f'c = 0 : t={tlist[equilibrio[0][0]]} ii={equilibrio[0][0]} if={equilibrio[0][-1]}')
     
     Slist.append(S)
     
