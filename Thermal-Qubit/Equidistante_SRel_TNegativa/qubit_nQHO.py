@@ -26,17 +26,17 @@ def RHO(tlist, c, p, gamma, w, nbar, pfinal):
     
 	for t in tlist:
 
-		rx = c.real * np.exp(-2*gamma*(nbar + 0.5)*t)
-		ry = -c.imag * np.exp(-2*gamma*(nbar + 0.5)*t)
-		rz = (1/(2*nbar + 1)) - 2*((nbar + 1)/(2*nbar + 1) - p) * np.exp(-2*gamma*(2*nbar + 1)*t)
+		rx = (c.real/2) * np.exp(-gamma*t)
+		ry = -(c.imag/2) * np.exp(-gamma*t)
+		rz = (1 - 2*nbar) + 2*(p + nbar - 1) * np.exp(-2*gamma*t)
 		
 		rmod2 = rx**2 + ry**2 + rz**2
 
 		r_list = [rx, ry, rz, rmod2]
         
-		drx = c.real * (-2*gamma*(nbar + 0.5)) * np.exp(-2*gamma*(nbar + 0.5)*t)
-		dry = -c.imag * (-2*gamma*(nbar + 0.5)) * np.exp(-2*gamma*(nbar + 0.5)*t)
-		drz = 4 * gamma * (2*nbar + 1) *((nbar + 1)/(2*nbar + 1) - p) * np.exp(-2*gamma*(2*nbar + 1)*t)
+		drx = -gamma*(c.real/2) * np.exp(-gamma*t)
+		dry = gamma*(c.imag/2) * np.exp(-gamma*t)
+		drz = -4 * gamma * (p + nbar - 1) * np.exp(-2*gamma*t)
         
 		drmod2 = drx**2 + dry**2 + drz**2
         
@@ -100,42 +100,45 @@ def FisherInformation(rho, drho):
 
 
 
-def Intersection_Initial_Sr(pt, pList, Tlist, w0, Sr_init):
+def Interseccao_Inicial(metade, pt, pList, Sr_init):
     
     # diferença entre as funções
     f_diff = lambda p: Entropia_Relativa_Populacoes(p, pt) - Sr_init
 
     # discretiza o intervalo para localizar onde o sinal muda
-    y_diff = f_diff(np.array(pList))
-
-    xs, ys = [], []
-    Ts = []
+    Sr_diff = f_diff(np.array(pList))
     
-    for i in range(len(pList) - 1):
+    
+    if metade == 0:
+        iinit = 0
+        ifinal = int(len(pList)/2)
+    else:
+        iinit = int(len(pList)/2)
+        ifinal = len(pList) - 1
+        
+    print(iinit, ifinal)
+    
+    for i in range(iinit, ifinal, 1):
           
-        if y_diff[i] * y_diff[i+1] < 0:  # houve cruzamento
+        if Sr_diff[i] * Sr_diff[i+1] < 0:  # houve cruzamento
 
-            xi = brentq(f_diff, pList[i], pList[i+1])  # raiz exata
-            yi = Entropia_Relativa_Populacoes(xi, pt)
+            pi = brentq(f_diff, pList[i], pList[i+1])  # raiz exata
+            Sri = Entropia_Relativa_Populacoes(pi, pt)
             
-            xs.append(xi)
-            ys.append(yi)
-            
-            # agora inverte para achar T correspondente
-            g = lambda T: pFunc(T, w0) - xi
-            T_root = brentq(g, Tlist[0], Tlist[-1])  # busca em todo o range de T
-            Ts.append(T_root)
-            
-    g = lambda T: pFunc(T, w0) - pt
-    Tw = brentq(g, Tlist[0], Tlist[-1])
-
-    return xs, ys, Ts[0], Ts[1], Tw
-
-
-
-def Temperaturas_e_Populacoes(w0, p_final, Sr_inicial):
+    return pi, Sri
     
-    Tlist = np.concatenate( (np.arange(-100, -0.5, 0.0001), np.arange(0.5, 100, 0.0001)) )
+    
+def Interseccao_Temperatura_Inicial(w0, p, Tlist):
+    
+    find_T = lambda T: pFunc(T, w0) - p
+        
+    Ti = brentq(find_T, Tlist[0], Tlist[-1])  # busca em todo o range de T
+    
+    return Ti
+
+
+
+def Temperaturas_e_Populacoes(w0, Tlist, p_final, Sr_inicial):
     
     pList = [pFunc(T, w0) for T in Tlist]
     
@@ -148,18 +151,26 @@ def Temperaturas_e_Populacoes(w0, p_final, Sr_inicial):
         Sr_p = Entropia_Relativa_Populacoes(p, p_final)
         Sr.append(Sr_p)
     
+    T_w = Interseccao_Temperatura_Inicial(w0, p_final, Tlist)
     
-    pinit, Sinit, Tc, Th, Tw = Intersection_Initial_Sr(p_final, pList, Tlist, w0, Sr_inicial)
+    p_c, Sr_c = Interseccao_Inicial(0, p_final, pList, Sr_inicial)
     
-    plt.scatter(pinit, Sinit)
-    plt.plot(pList, Sr, label=f'pf = {p_final}')
+    T_c = Interseccao_Temperatura_Inicial(w0, p_c, Tlist)
+    
+    p_h, Sr_h = Interseccao_Inicial(1, p_final, pList, Sr_inicial)
+    
+    T_h = Interseccao_Temperatura_Inicial(w0, p_h, Tlist)
+    
+    plt.scatter([p_c], [Sr_c], color='blue')
+    plt.scatter([p_h], [Sr_h], color='red')
+    plt.plot(pList, Sr, label=f'pf = {p_final}', color='orange')
     plt.hlines(y=Sr_inicial, xmin=min(pList), xmax=max(pList), color='black')
     plt.xlabel('Populations')
     plt.ylabel('Relative Entropy')
     plt.legend()
     plt.show()
 
-    return pinit[0], pinit[1], Sinit, Tc, Th, Tw
+    return p_c, p_h, Sr_c, Sr_h, Tc, Th, Tw
 
 
 
@@ -198,14 +209,17 @@ w0 = 2
 
 gamma = 3
 
-p_final = 0.4
+p_final = 0.8
 
-Sr_inicial = 0.1
+Sr_inicial = 0.1 ### se alterar, deve mudar os ranges de temperatura em Temperaturas_e_Populacoes
 
 tlist = np.arange(0, 10, 0.01)
 
 print('Temperatura e Populações')
-pc, ph, Sinit, Tc, Th, Tw = Temperaturas_e_Populacoes(w0, p_final, Sr_inicial)
+
+TList = np.arange(0.1, 100, 0.0001)
+
+p_c, p_h, Sr_c, Sr_h, Tc, Th, Tw = Temperaturas_e_Populacoes(w0, TList, p_final, Sr_inicial)
 
 nbar = nbarFunc(Tw, w)
 
