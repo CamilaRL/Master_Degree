@@ -17,9 +17,9 @@ def RHO(tlist, c, p, gamma, w, nbar):
 	
 	for t in tlist:
 
-		rx = c.real * np.exp(-2*gamma*(nbar + 0.5)*t)
-		ry = -c.imag * np.exp(-2*gamma*(nbar + 0.5)*t)
-		rz = (1/(2*nbar + 1)) - 2*(p - nbar/(2*nbar + 1)) * np.exp(-2*gamma*(2*nbar + 1)*t)
+		rx = (c.real/2) * np.exp(-gamma*t)
+		ry = -(c.imag/2) * np.exp(-gamma*t)
+		rz = (1 - 2*nbar) + 2*(p + nbar - 1) * np.exp(-2*gamma*t)
 
 		rmod2 = rx**2 + ry**2 + rz**2
 
@@ -50,9 +50,9 @@ Sr = 0.1
 
 modo = 'Heating'
 
-Tbanho = 1.4426950408889627
+Tbanho = -1.4426950408890853 
 w = 2
-Tqubit = 0.6606763453727521 #4.700782656252254
+Tqubit = -0.6606763453727459
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 

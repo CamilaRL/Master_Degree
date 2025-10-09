@@ -108,18 +108,17 @@ def Interseccao_Inicial(metade, pt, pList, Sr_init):
     # discretiza o intervalo para localizar onde o sinal muda
     Sr_diff = f_diff(np.array(pList))
     
-    
     if metade == 0:
         iinit = 0
-        ifinal = int(len(pList)/2)
+        ifinal = np.argmin(Sr_diff)
     else:
-        iinit = int(len(pList)/2)
+        iinit = np.argmin(Sr_diff)
         ifinal = len(pList) - 1
         
-    print(iinit, ifinal)
+    
     
     for i in range(iinit, ifinal, 1):
-          
+
         if Sr_diff[i] * Sr_diff[i+1] < 0:  # houve cruzamento
 
             pi = brentq(f_diff, pList[i], pList[i+1])  # raiz exata
@@ -138,12 +137,10 @@ def Interseccao_Temperatura_Inicial(w0, p, Tlist):
 
 
 
-def Temperaturas_e_Populacoes(w0, Tlist, p_final, Sr_inicial):
+def Temperaturas_e_Populacoes(metade, w0, Tlist, p_final, Sr_inicial):
     
     pList = [pFunc(T, w0) for T in Tlist]
     
-    plt.plot(Tlist, pList)
-    plt.show()
     Sr = []
     
     for i, p in enumerate(pList):
@@ -151,26 +148,12 @@ def Temperaturas_e_Populacoes(w0, Tlist, p_final, Sr_inicial):
         Sr_p = Entropia_Relativa_Populacoes(p, p_final)
         Sr.append(Sr_p)
     
-    T_w = Interseccao_Temperatura_Inicial(w0, p_final, Tlist)
     
-    p_c, Sr_c = Interseccao_Inicial(0, p_final, pList, Sr_inicial)
+    p_i, Sr_i = Interseccao_Inicial(metade, p_final, pList, Sr_inicial)
     
-    T_c = Interseccao_Temperatura_Inicial(w0, p_c, Tlist)
-    
-    p_h, Sr_h = Interseccao_Inicial(1, p_final, pList, Sr_inicial)
-    
-    T_h = Interseccao_Temperatura_Inicial(w0, p_h, Tlist)
-    
-    plt.scatter([p_c], [Sr_c], color='blue')
-    plt.scatter([p_h], [Sr_h], color='red')
-    plt.plot(pList, Sr, label=f'pf = {p_final}', color='orange')
-    plt.hlines(y=Sr_inicial, xmin=min(pList), xmax=max(pList), color='black')
-    plt.xlabel('Populations')
-    plt.ylabel('Relative Entropy')
-    plt.legend()
-    plt.show()
+    T_i = Interseccao_Temperatura_Inicial(w0, p_i, Tlist)
 
-    return p_c, p_h, Sr_c, Sr_h, Tc, Th, Tw
+    return p_i, Sr_i, T_i, Sr, pList
 
 
 
@@ -207,30 +190,49 @@ def WriteOutput(processo, tlist, FQ_classificados, Sr):
 w = 2
 w0 = 2
 
-gamma = 3
+gamma = 1
 
-p_final = 0.8
+p_final = 0.4
 
-Sr_inicial = 0.1 ### se alterar, deve mudar os ranges de temperatura em Temperaturas_e_Populacoes
+Sr_inicial = 0.1 ### se alterar, deve mudar os ranges de temperatura 
 
 tlist = np.arange(0, 10, 0.01)
 
+
+## estados equidistantes
+
 print('Temperatura e Populações')
 
-TList = np.arange(0.1, 100, 0.0001)
 
-p_c, p_h, Sr_c, Sr_h, Tc, Th, Tw = Temperaturas_e_Populacoes(w0, TList, p_final, Sr_inicial)
+
+Tc_list = np.arange(0.1, 100, 0.0001)
+Th_list = np.arange(-100, -0.1, 0.0001)
+
+Tw = Interseccao_Temperatura_Inicial(w0, p_final, Th_list)
+
+pc, Src, Tc, Sr0, pList0 = Temperaturas_e_Populacoes(0, w0, Tc_list, p_final, Sr_inicial)
+
+ph, Srh, Th, Sr1, pList1 = Temperaturas_e_Populacoes(1, w0, Th_list, p_final, Sr_inicial)
+
+plt.plot(pList0, Sr0, color='orange', label=f'pf = {p_final}')
+plt.plot(pList1, Sr1, color='orange')
+plt.scatter([p_final], [0], color='orange', label=f'Tw = {Tw}')
+plt.scatter([pc], [Src], color='blue', label=f'Tc = {Tc}')
+plt.scatter([ph], [Srh], color='red', label=f'Th = {Th}')
+plt.hlines(y=Sr_inicial, xmin=min(pList1), xmax=max(pList0), color='black', label='Initial Relative Entropy')
+plt.xlabel('Populations')
+plt.ylabel('Relative Entropy')
+plt.legend()
+plt.show()
+
 
 nbar = nbarFunc(Tw, w)
 
 ### prints de checagem
 
-print(f'pc {Tc} {pc} - {pFunc(Tc, w0)}')
-print(f'ph {Th} {ph} - {pFunc(Th, w0)}')
-print(f'pw {Tw} {p_final} - {pFunc(Tw, w0)}')
-
-print(f'Sc {Sinit[0]} - {Entropia_Relativa_Populacoes(pFunc(Tc, w0), p_final)}')
-print(f'Sh {Sinit[1]} - {Entropia_Relativa_Populacoes(pFunc(Th, w0), p_final)}')
+print(f'Tc {Tc} : {pc} - {pFunc(Tc, w0)}')
+print(f'Th {Th} : {ph} - {pFunc(Th, w0)}')
+print(f'Tw {Tw} : {p_final} - {pFunc(Tw, w0)}')
 
 ## Aquecer
 
@@ -256,8 +258,6 @@ QFI_resfriar = FisherInformation(rhot, drhot)
 
 WriteOutput(f'Heating_{Sr_inicial}', tlist, QFI_aquecer, Srt_aquecer)
 WriteOutput(f'Cooling_{Sr_inicial}', tlist, QFI_resfriar, Srt_resfriar)
-
-
 
 
 

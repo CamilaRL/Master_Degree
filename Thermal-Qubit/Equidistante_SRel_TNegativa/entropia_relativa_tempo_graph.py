@@ -2,11 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-modo = 'Cooling'
+modo = 'Heating'
 dSr = 0.1
 
-curvas = np.loadtxt(f'./p_final_0.2/FisherInformation_{modo}_{dSr}/cmod.txt', unpack=True, usecols=(0), ndmin=1)
-cmod = np.loadtxt(f'./p_final_0.2/FisherInformation_{modo}_{dSr}/cmod.txt', unpack=True, usecols=(1), ndmin=1)
+curvas = np.loadtxt(f'./FisherInformation_{modo}_{dSr}/cmod.txt', unpack=True, usecols=(0), ndmin=1)
+cmod = np.loadtxt(f'./FisherInformation_{modo}_{dSr}/cmod.txt', unpack=True, usecols=(1), ndmin=1)
 
 cmap = plt.get_cmap('rainbow')
 colors = iter(cmap(np.linspace(0.01, 1, len(cmod))))    
@@ -14,7 +14,7 @@ colors = iter(cmap(np.linspace(0.01, 1, len(cmod))))
 
 for i in range(len(curvas)):
     
-    tlist, Srt = np.loadtxt(f'./p_final_0.2/FisherInformation_{modo}_{dSr}/Sr_curve_{i}.txt', unpack=True)
+    tlist, Srt = np.loadtxt(f'./FisherInformation_{modo}_{dSr}/Sr_curve_{i}.txt', unpack=True)
     
     cor = next(colors)
     

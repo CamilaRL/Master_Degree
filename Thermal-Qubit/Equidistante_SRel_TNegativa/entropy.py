@@ -82,9 +82,9 @@ Sr = 0.1
 
 modo = 'Cooling'
 
-Tbanho = 1.4426950408889627
+Tbanho = -1.4426950408890853
 w = 2
-Tqubit = 4.700782656252254
+Tqubit = -4.700782656252253
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 

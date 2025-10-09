@@ -16,9 +16,9 @@ def RHO(tlist, c, p, gamma, w, nbar):
 	
 	for t in tlist:
 
-		rx = c.real * np.exp(-2*gamma*(nbar + 0.5)*t)
-		ry = -c.imag * np.exp(-2*gamma*(nbar + 0.5)*t)
-		rz = (1/(2*nbar + 1)) - 2*((nbar + 1)/(2*nbar + 1) - p) * np.exp(-2*gamma*(2*nbar + 1)*t)
+		rx = (c.real/2) * np.exp(-gamma*t)
+		ry = -(c.imag/2) * np.exp(-gamma*t)
+		rz = (1 - 2*nbar) + 2*(p + nbar - 1) * np.exp(-2*gamma*t)
 
 		rmod2 = rx**2 + ry**2 + rz**2
 
@@ -36,8 +36,8 @@ def Temperatura_Efetiva(rho, w0):
     lamb_mais = (1 + np.sqrt(rho[3]))/2
     lamb_menos = (1 - np.sqrt(rho[3]))/2
     
-    E_mais = -w0/2
-    E_menos = w0/2
+    E_mais = w0/2
+    E_menos = -w0/2
     
     Teff = (E_menos - E_mais)/np.log(lamb_mais/lamb_menos)
 
@@ -49,13 +49,13 @@ def Temperatura_Efetiva(rho, w0):
 modo = 'Cooling' ################### MUDAR
 Sr = 0.1
 
-Tbanho = -1.4426950408889636
+Tbanho = -4.932606924752467
 w = 2
-Tqubit = -4.700782656252263 #4.700782656252254 ################### MUDAR
+Tqubit = -1.3890971530850744 ################### MUDAR
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 
-gamma = 3
+gamma = 1
 
 tlist = np.arange(0, 10, 0.01)
 
