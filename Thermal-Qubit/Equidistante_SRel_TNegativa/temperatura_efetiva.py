@@ -36,8 +36,8 @@ def Temperatura_Efetiva(rho, w0):
     lamb_mais = (1 + np.sqrt(rho[3]))/2
     lamb_menos = (1 - np.sqrt(rho[3]))/2
     
-    E_mais = w0/2
-    E_menos = -w0/2
+    E_mais = -w0/2
+    E_menos = w0/2
     
     Teff = (E_menos - E_mais)/np.log(lamb_mais/lamb_menos)
 
@@ -49,9 +49,9 @@ def Temperatura_Efetiva(rho, w0):
 modo = 'Cooling' ################### MUDAR
 Sr = 0.1
 
-Tbanho = -4.932606924752467
+Tbanho = 4.932606924752464
 w = 2
-Tqubit = -1.3890971530850744 ################### MUDAR
+Tqubit = -4.013736266992159 ################### MUDAR
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 

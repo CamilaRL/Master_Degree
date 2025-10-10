@@ -17,9 +17,9 @@ def RHO(tlist, c, p, gamma, w, nbar):
 	
 	for t in tlist:
 
-		rx = c.real * np.exp(-2*gamma*(nbar + 0.5)*t)
-		ry = -c.imag * np.exp(-2*gamma*(nbar + 0.5)*t)
-		rz = (1/(2*nbar + 1)) - 2*((nbar + 1)/(2*nbar + 1) - p) * np.exp(-2*gamma*(2*nbar + 1)*t)
+		rx = (c.real/2) * np.exp(-gamma*t)
+		ry = -(c.imag/2) * np.exp(-gamma*t)
+		rz = (1 - 2*nbar) + 2*(p + nbar - 1) * np.exp(-2*gamma*t)
 
 		rmod2 = rx**2 + ry**2 + rz**2
 
