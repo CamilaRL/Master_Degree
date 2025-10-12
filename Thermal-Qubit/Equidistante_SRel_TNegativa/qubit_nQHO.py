@@ -18,7 +18,7 @@ def nbarFunc(T, w):
 
 
 
-def RHO(tlist, c, p, gamma, w, nbar, pfinal):
+def RHO(tlist, c, p, p_final, gamma, nbar):
 	
 	rho = []
 	rho_derivada = []
@@ -45,7 +45,7 @@ def RHO(tlist, c, p, gamma, w, nbar, pfinal):
 		rho.append(r_list)
 		rho_derivada.append(dr_list)
         
-		Srt.append(Entropia_Relativa_Bloch(rho[0], rho[-1]))
+		Srt.append(Entropia_Relativa_BP(rho[-1], p_final))
 
 	return rho, rho_derivada, Srt
 
@@ -148,6 +148,8 @@ def Temperaturas_e_Populacoes(metade, w0, Tlist, p_final, Sr_inicial):
         Sr_p = Entropia_Relativa_Populacoes(p, p_final)
         Sr.append(Sr_p)
     
+    plt.plot(Tlist, Sr)
+    plt.show()
     
     p_i, Sr_i = Interseccao_Inicial(metade, p_final, pList, Sr_inicial)
     
@@ -187,12 +189,12 @@ def WriteOutput(processo, tlist, FQ_classificados, Sr):
 
 ## parametros
 
-w = 2
 w0 = 2
+w = w0
 
 gamma = 1
 
-p_final = 0.4
+p_final = 0.2
 
 Sr_inicial = 0.1 ### se alterar, deve mudar os ranges de temperatura 
 
@@ -205,14 +207,14 @@ print('Temperatura e Populações')
 
 
 
-Tc_list = np.arange(0.1, 100, 0.0001)
+Tc_list = np.arange(-100, -0.1, 0.0001)
 Th_list = np.arange(-100, -0.1, 0.0001)
 
 Tw = Interseccao_Temperatura_Inicial(w0, p_final, Th_list)
 
-pc, Src, Tc, Sr0, pList0 = Temperaturas_e_Populacoes(0, w0, Tc_list, p_final, Sr_inicial)
+pc, Src, Tc, Sr0, pList0 = Temperaturas_e_Populacoes(1, w0, Tc_list, p_final, Sr_inicial)
 
-ph, Srh, Th, Sr1, pList1 = Temperaturas_e_Populacoes(1, w0, Th_list, p_final, Sr_inicial)
+ph, Srh, Th, Sr1, pList1 = Temperaturas_e_Populacoes(0, w0, Th_list, p_final, Sr_inicial)
 
 plt.plot(pList0, Sr0, color='orange', label=f'pf = {p_final}')
 plt.plot(pList1, Sr1, color='orange')
@@ -238,7 +240,7 @@ print(f'Tw {Tw} : {p_final} - {pFunc(Tw, w0)}')
 
 print('Aquecer')
 
-rhot, drhot, Srt_aquecer = RHO(tlist, 0, pc, gamma, w, nbar, p_final)
+rhot, drhot, Srt_aquecer = RHO(tlist, 0, pc, p_final, gamma, nbar)
     
 QFI_aquecer = FisherInformation(rhot, drhot)
 
@@ -247,7 +249,7 @@ QFI_aquecer = FisherInformation(rhot, drhot)
 
 print('Resfriar')
     
-rhot, drhot, Srt_resfriar = RHO(tlist, 0, ph, gamma, w, nbar, p_final)
+rhot, drhot, Srt_resfriar = RHO(tlist, 0, ph, p_final, gamma, nbar)
     
 QFI_resfriar = FisherInformation(rhot, drhot)
     
