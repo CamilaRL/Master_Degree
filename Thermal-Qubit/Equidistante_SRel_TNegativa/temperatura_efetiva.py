@@ -33,25 +33,19 @@ def RHO(tlist, c, p, gamma, w, nbar):
 
 def Temperatura_Efetiva(rho, w0):
     
-    lamb_mais = (1 + np.sqrt(rho[3]))/2
-    lamb_menos = (1 - np.sqrt(rho[3]))/2
-    
-    E_mais = -w0/2
-    E_menos = w0/2
-    
-    Teff = (E_menos - E_mais)/np.log(lamb_mais/lamb_menos)
+    Teff = w0/np.log( (1 + rho[2])/(1 - rho[2]) )
 
     return Teff
     
     
 ### MAIN ###
 
-modo = 'Cooling' ################### MUDAR
+modo = 'Heating_Positive' ################### MUDAR
 Sr = 0.1
 
-Tbanho = 4.932606924752464
+Tbanho = -4.932606924752467
 w = 2
-Tqubit = -4.013736266992159 ################### MUDAR
+Tqubit = 4.013736266992157 ################### MUDAR
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 

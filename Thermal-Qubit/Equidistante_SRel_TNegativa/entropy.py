@@ -39,14 +39,16 @@ def vonNeumann_Entropy(rho):
         
         St = 0
         
-        rhot = 0.5 * Qobj( [[1 + rho[t][2], complex(rho[t][0], -rho[t][1])], [complex(rho[t][0], rho[t][1]), 1 - rho[t][2]]] )
+        '''rhot = 0.5 * Qobj( [[1 + rho[t][2], complex(rho[t][0], -rho[t][1])], [complex(rho[t][0], rho[t][1]), 1 - rho[t][2]]] )
         
         evals = rhot.eigenenergies()
 
         for eval in evals:
             St = St - eval * np.log(eval)
         
-        S.append(St)
+        S.append(St)'''
+        
+        
 
     return S
 
@@ -80,11 +82,11 @@ def WriteFile(pasta, S, tlist):
 
 Sr = 0.1
 
-modo = 'Cooling'
+modo = 'Heating_Positive'
 
-Tbanho = -1.4426950408890853
+Tbanho = -4.932606924752467
 w = 2
-Tqubit = -4.700782656252253
+Tqubit = 4.013736266992157
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 

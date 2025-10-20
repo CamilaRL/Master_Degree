@@ -48,11 +48,11 @@ def Free_Energy(rhot, H, T, St):
 
 Sr = 0.1
 
-modo = 'Cooling'
+modo = 'Heating_Positive'
 
-Tbanho = 4.932606924752464
+Tbanho = -4.932606924752467
 w = 2
-Tqubit = -4.013736266992159
+Tqubit = 4.013736266992157
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 

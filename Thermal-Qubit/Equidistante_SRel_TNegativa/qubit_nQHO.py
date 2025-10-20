@@ -49,9 +49,10 @@ def RHO(tlist, c, p, p_final, gamma, nbar):
 
 	return rho, rho_derivada, Srt
 
+
 def Entropia_Relativa_BP(rho_i, p_final):
 
-    autoval_i = [(1 + np.sqrt(rho_i[3]))/2, (1 - np.sqrt(rho_i[3]))/2]
+    autoval_i = [(1 + rho_i[2])/2, (1 - rho_i[2])/2]
     autoval_f = [p_final, 1 - p_final]
     
     Sr = 0
@@ -147,9 +148,6 @@ def Temperaturas_e_Populacoes(metade, w0, Tlist, p_final, Sr_inicial):
         
         Sr_p = Entropia_Relativa_Populacoes(p, p_final)
         Sr.append(Sr_p)
-    
-    plt.plot(Tlist, Sr)
-    plt.show()
     
     p_i, Sr_i = Interseccao_Inicial(metade, p_final, pList, Sr_inicial)
     
