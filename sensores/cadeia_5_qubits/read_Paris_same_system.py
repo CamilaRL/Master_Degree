@@ -15,7 +15,7 @@ temp3, QFI_q3 = np.loadtxt(f'./Results/QFI_3_g{g:.1f}_ttherm{tSEmax:.3f}.txt', u
 temp4, QFI_q4 = np.loadtxt(f'./Results/QFI_4_g{g:.1f}_ttherm{tSEmax:.3f}.txt', unpack=True)
 temp5, QFI_q5 = np.loadtxt(f'./Results/QFI_5_g{g:.1f}_ttherm{tSEmax:.3f}.txt', unpack=True)
 
-#plt.plot(temp1, QFI_all, color='black', label='Total QFI')
+plt.plot(temp1, QFI_all, color='black', label='Total QFI')
 
 plt.plot(temp1, QFI_q1, color='blue', linestyle='-', label=f'Qubit 1 - QFI_max = {max(QFI_q1):.3f}')
 plt.plot(temp2, QFI_q2, color='green', linestyle='-', label=f'Qubit 2 - QFI_max = {max(QFI_q2):.3f}')

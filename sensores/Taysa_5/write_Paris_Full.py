@@ -79,135 +79,37 @@ dPhi = phi[1]-phi[0]
 
 #################
 
-Coh_S1 = np.zeros((len(Temp),len(range(0, n))))
-Coh_S2 = np.zeros((len(Temp),len(range(0, n))))
-Coh_S3 = np.zeros((len(Temp),len(range(0, n))))
-Coh_S4 = np.zeros((len(Temp),len(range(0, n))))
-Coh_S5 = np.zeros((len(Temp),len(range(0, n))))
-
-Coh_A1U1 = np.zeros((len(Temp),len(range(0, n))))
-Coh_A2U2 = np.zeros((len(Temp),len(range(0, n))))
-Coh_A3U2 = np.zeros((len(Temp),len(range(0, n))))
-Coh_A4U2 = np.zeros((len(Temp),len(range(0, n))))
-Coh_A5U2 = np.zeros((len(Temp),len(range(0, n))))
-
-ES = np.zeros((len(Temp),len(range(0, n))))
-
 
 nthermo = np.zeros((len(Temp)))
 
 FthGab = np.zeros((len(Temp)))
 
 
-p1dA1 = np.zeros((len(Temp),len(theta),len(phi)))
-p2dA1 = np.zeros((len(Temp),len(theta),len(phi)))
+p1dA = np.zeros((len(Temp),len(theta),len(phi)))
+p2dA = np.zeros((len(Temp),len(theta),len(phi)))
 
-p1lndA1 = np.zeros((len(Temp),len(theta),len(phi)))
-p2lndA1 = np.zeros((len(Temp),len(theta),len(phi)))
+p1lndA = np.zeros((len(Temp),len(theta),len(phi)))
+p2lndA = np.zeros((len(Temp),len(theta),len(phi)))
 
-derP1A1 = np.zeros((len(Temp)-1,len(theta),len(phi)))
-derP2A1 = np.zeros((len(Temp)-1,len(theta),len(phi)))
+derP1A = np.zeros((len(Temp)-1,len(theta),len(phi)))
+derP2A = np.zeros((len(Temp)-1,len(theta),len(phi)))
+
 
 #################
-p1dA2 = np.zeros((len(Temp),len(theta),len(phi)))
-p2dA2 = np.zeros((len(Temp),len(theta),len(phi)))
+F1A =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+F2A =  np.zeros((len(Temp)-1,len(theta),len(phi)))
 
-p1lndA2 = np.zeros((len(Temp),len(theta),len(phi)))
-p2lndA2 = np.zeros((len(Temp),len(theta),len(phi)))
+FxA =  np.zeros((len(Temp)-1,len(theta),len(phi)))
 
-derP1A2 = np.zeros((len(Temp)-1,len(theta),len(phi)))
-derP2A2 = np.zeros((len(Temp)-1,len(theta),len(phi)))
-
-#################
-p1dA3 = np.zeros((len(Temp),len(theta),len(phi)))
-p2dA3 = np.zeros((len(Temp),len(theta),len(phi)))
-
-p1lndA3 = np.zeros((len(Temp),len(theta),len(phi)))
-p2lndA3 = np.zeros((len(Temp),len(theta),len(phi)))
-
-derP1A3 = np.zeros((len(Temp)-1,len(theta),len(phi)))
-derP2A3 = np.zeros((len(Temp)-1,len(theta),len(phi)))
-
-#################
-p1dA4 = np.zeros((len(Temp),len(theta),len(phi)))
-p2dA4 = np.zeros((len(Temp),len(theta),len(phi)))
-
-p1lndA4 = np.zeros((len(Temp),len(theta),len(phi)))
-p2lndA4 = np.zeros((len(Temp),len(theta),len(phi)))
-
-derP1A4 = np.zeros((len(Temp)-1,len(theta),len(phi)))
-derP2A4 = np.zeros((len(Temp)-1,len(theta),len(phi)))
-
-#################
-p1dA5 = np.zeros((len(Temp),len(theta),len(phi)))
-p2dA5 = np.zeros((len(Temp),len(theta),len(phi)))
-
-p1lndA5 = np.zeros((len(Temp),len(theta),len(phi)))
-p2lndA5 = np.zeros((len(Temp),len(theta),len(phi)))
-
-derP1A5 = np.zeros((len(Temp)-1,len(theta),len(phi)))
-derP2A5 = np.zeros((len(Temp)-1,len(theta),len(phi)))
-
-#################
-F1A1 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
-F2A1 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
-
-FxA1 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
-
-QFI_tA1 = np.zeros((len(Temp)-1,len(theta)))
+QFI_tA = np.zeros((len(Temp)-1,len(theta)))
 
 
-QFIA1 = np.zeros((len(Temp)-1,len(range(0, n))))
+QFIA = np.zeros((len(Temp)-1,len(range(0, n))))
 
-#################
-F1A2 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
-F2A2 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
-
-FxA2 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
-
-QFI_tA2 = np.zeros((len(Temp)-1,len(theta)))
-
-
-QFIA2 = np.zeros((len(Temp)-1,len(range(0, n))))
-
-#################
-F1A3 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
-F2A3 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
-
-FxA3 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
-
-QFI_tA3 = np.zeros((len(Temp)-1,len(theta)))
-
-
-QFIA3 = np.zeros((len(Temp)-1,len(range(0, n))))
-
-#################
-F1A4 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
-F2A4 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
-
-FxA4 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
-
-QFI_tA4 = np.zeros((len(Temp)-1,len(theta)))
-
-
-QFIA4 = np.zeros((len(Temp)-1,len(range(0, n))))
-
-#################
-F1A5 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
-F2A5 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
-
-FxA5 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
-
-QFI_tA5 = np.zeros((len(Temp)-1,len(theta)))
-
-
-QFIA5 = np.zeros((len(Temp)-1,len(range(0, n))))
 
 QFI_Therm =  np.zeros((len(Temp)))
 
-#################
 
-PA = np.zeros(len(NN))
 ###############################################################################
 #################################  Operadores  ################################
 
@@ -390,12 +292,12 @@ for T in Temp:
 
             mat1 = Qobj([[cos(theta[i])], [exp(1j*phi[p])*sin(theta[i])]])
             P1a = mat1*mat1.dag()
-            P1 = tensor(P1a,P1a,P1a,P1a)
+            P1 = tensor(P1a,P1a,P1a,P1a,P1a)
             
 
             mat2 = Qobj([[exp(-1j*phi[p])*sin(theta[i])],[-cos(theta[i])]])
             P2a = mat2*mat2.dag()
-            P2 = tensor(P2a,P2a,P2a,P2a)
+            P2 = tensor(P2a,P2a,P2a,P2a,P2a)
 
 
             p1A = (P1*rhof).tr()
@@ -405,14 +307,14 @@ for T in Temp:
             p2A = (P2*rhof).tr()
             R2A = P2*rhof
         
-            p1dA1[r,q,z] = real(p1A)
-            p2dA1[r,q,z] = real(p2A)
+            p1dA[r,q,z] = real(p1A)
+            p2dA[r,q,z] = real(p2A)
         
-            p1lnA1 = np.log(p1A)
-            p2lnA1 = np.log(p2A)
+            p1lnA = np.log(p1A)
+            p2lnA = np.log(p2A)
             
-            p1lndA1[r,q,z] = real(p1lnA1)
-            p2lndA1[r,q,z] = real(p2lnA1)
+            p1lndA[r,q,z] = real(p1lnA)
+            p2lndA[r,q,z] = real(p2lnA)
 
                 
 ###############################################################################
@@ -421,32 +323,32 @@ for r in range(len(Temp)-1):
     for i in range(len(theta)):
                 # print(i)
         for p in range(len(phi)):
-            derP1A1[r,i,p] = (p1lndA1[r+1,i,p] - p1lndA1[r,i,p])/dtSE
-            derP2A1[r,i,p] = (p2lndA1[r+1,i,p] - p2lndA1[r,i,p])/dtSE
+            derP1A[r,i,p] = (p1lndA[r+1,i,p] - p1lndA[r,i,p])/dtSE
+            derP2A[r,i,p] = (p2lndA[r+1,i,p] - p2lndA[r,i,p])/dtSE
     
     
 for r in range(len(Temp)-1): 
     for i in range(len(theta)):
                 # print(i)
         for p in range(len(phi)):
-            f1 = p1dA1[r,i,p]*(derP1A1[r,i,p])**2
-            f2 = p2dA1[r,i,p]*(derP2A1[r,i,p])**2
+            f1 = p1dA[r,i,p]*(derP1A[r,i,p])**2
+            f2 = p2dA[r,i,p]*(derP2A[r,i,p])**2
                     # print(f1)
             fx = f1+f2
                     # FI = max(fx)
     
-            F1A1[r,i,p] = f1
-            F2A1[r,i,p] = f2
+            F1A[r,i,p] = f1
+            F2A[r,i,p] = f2
     
-            FxA1[r,i,p] = fx
+            FxA[r,i,p] = fx
     
     
 for r in range(len(Temp)-1):
     for i in range(len(theta)):
-        QFI_tA1[r,i] = max(FxA1[r,i,:])
+        QFI_tA[r,i] = max(FxA[r,i,:])
 
 for r in range(len(Temp)-1):
-        QFIA1[r] = max(QFI_tA1[r,:])
+        QFIA[r] = max(QFI_tA[r,:])
             
 
 ###############################################################################
@@ -456,7 +358,7 @@ for r in range(len(Temp)-1):
     FthSca[r] = (1/(nthermo[r+1]*(nthermo[r+1]+1)*(2*nthermo[r+1]+1)**2))*((nthermo[r+1]-nthermo[r])/dTemp)**2
 
 ###############################################################################
-Write_Outfile(ddTemp, QFIA1[:,-1], f'./Results/QFI_all_g{g:.1f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(ddTemp, QFIA[:,-1], f'./Results/QFI_all_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
 
 
 

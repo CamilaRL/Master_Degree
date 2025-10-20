@@ -64,8 +64,8 @@ def Quantum_Fisher_Information(rho_list, temp_list, dimensao):
                 
                 bra_drho_ket = (bra * Qobj(drho_list[t], dims=dimensao) * ket)
 
-                QFI = QFI + 2*(abs(bra_drho_ket)**2)/(abs(autoval[n]) + abs(autoval[m]))
-                
+                QFI = QFI + (2*abs(bra_drho_ket)**2)/(abs(autoval[n]) + abs(autoval[m]))
+        
         QFI_T.append(QFI.real)
         
     return temp_list[:-1], QFI_T
@@ -94,7 +94,7 @@ Omega4 = 1.0
 Omega5 = 1.0
 Omega6 = 1.0
 
-g = 1.5  # Sistema-Campo
+g = 0.45  # Sistema-Campo
 J = 2.0       # Sistema-sistema
 
 ## temperature
@@ -104,18 +104,11 @@ TempMin = 0.005
 TempMax = 2.0
 Temp = linspace(TempMin,TempMax,tT) # Temperature
 
-dtT = tT - 1
-ddTemp = linspace(TempMin,TempMax,dtT) # Temperature
-
-dTemp = Temp[1] - Temp[0]
-
 
 ## time
 
 tSEmax = 10*J
 tSE = np.arange(0.001, tSEmax, 0.001) # Time S-E
-
-dtSE = tSE[1]-tSE[0]
 
 
 n = 30
@@ -192,7 +185,7 @@ Sz5 = tensor(qeye(2),qeye(2),qeye(2),qeye(2),sigmaz())
 ###############################################################################
 ###################################  Hamiltonian ##############################
 
-HP4A = -J * (Sz1* Sz2 + Sz2* Sz3+ Sz3* Sz4 + Sz4* Sz5)
+HP4A = -J * (Sz1* Sz2 + Sz2* Sz3 + Sz3* Sz4 + Sz4* Sz5)
 HP4B = -g * (Sx1 + Sx2 + Sx3 + Sx4 + Sz5)
 
 H = HP4A + HP4B
@@ -295,12 +288,12 @@ temp_5, QFI_5 = Quantum_Fisher_Information(rhof5, Temp, [[2],[2]])
 
 
 ###############################################################################
-Write_Outfile(temp_all, QFI_all, f'./Results/QFI_all_g{g:.1f}_ttherm{tSEmax:.3f}.txt')
-Write_Outfile(temp_1, QFI_1, f'./Results/QFI_1_g{g:.1f}_ttherm{tSEmax:.3f}.txt')
-Write_Outfile(temp_2, QFI_2, f'./Results/QFI_2_g{g:.1f}_ttherm{tSEmax:.3f}.txt')
-Write_Outfile(temp_3, QFI_3, f'./Results/QFI_3_g{g:.1f}_ttherm{tSEmax:.3f}.txt')
-Write_Outfile(temp_4, QFI_4, f'./Results/QFI_4_g{g:.1f}_ttherm{tSEmax:.3f}.txt')
-Write_Outfile(temp_5, QFI_5, f'./Results/QFI_5_g{g:.1f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(temp_all, QFI_all, f'./Results/QFI_all_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(temp_1, QFI_1, f'./Results/QFI_1_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(temp_2, QFI_2, f'./Results/QFI_2_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(temp_3, QFI_3, f'./Results/QFI_3_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(temp_4, QFI_4, f'./Results/QFI_4_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(temp_5, QFI_5, f'./Results/QFI_5_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
 
 
 tend = time.time()    # tempo final de processamento
