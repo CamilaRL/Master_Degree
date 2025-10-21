@@ -44,13 +44,9 @@ J = 1.0       # Sistema-sistema
 
 ## temperature
 
-tT = 100
-TempMin = 0.005
+TempMin = 0.01
 TempMax = 2.0
-Temp = linspace(TempMin,TempMax,tT) # Temperature
-
-dtT = tT - 1
-ddTemp = linspace(TempMin,TempMax,dtT) # Temperature
+Temp = linspace(TempMin,TempMax,250) # Temperature
 
 dTemp = Temp[1] - Temp[0]
 
@@ -58,7 +54,7 @@ dTemp = Temp[1] - Temp[0]
 ## time
 
 tSEmax = 10*J
-tSE = np.arange(0.001, tSEmax, 0.001) # Time S-E
+tSE = np.arange(0.005, tSEmax, 0.1) # Time S-E
 
 
 dtSE = tSE[1]-tSE[0]
@@ -106,9 +102,7 @@ QFI_tA = np.zeros((len(Temp)-1,len(theta)))
 
 QFIA = np.zeros((len(Temp)-1,len(range(0, n))))
 
-
-QFI_Therm =  np.zeros((len(Temp)))
-
+QFI_Therm = np.zeros((len(Temp)))
 
 ###############################################################################
 #################################  Operadores  ################################
@@ -129,8 +123,6 @@ Sp1 = tensor(sigmam(),qeye(2),qeye(2),qeye(2),qeye(2))
 Sx1 = tensor(sigmax(),qeye(2),qeye(2),qeye(2),qeye(2))
 Sy1 = tensor(sigmay(),qeye(2),qeye(2),qeye(2),qeye(2))
 Sz1 = tensor(sigmaz(),qeye(2),qeye(2),qeye(2),qeye(2))
-
-# print(Sp.ptrace(0))
 
 # qubit 2:
 Sm2 = tensor(qeye(2),sigmap(),qeye(2),qeye(2),qeye(2))
@@ -175,12 +167,6 @@ E = basis(2,1) # base: ground state
 
 A1 = G*G.dag()
 A2 = E*E.dag()
-
-S01 = tensor(A1,qeye(2),qeye(2),qeye(2),qeye(2))
-S02 = tensor(qeye(2),A1,qeye(2),qeye(2),qeye(2))
-S03 = tensor(qeye(2),qeye(2),A1,qeye(2),qeye(2))
-S04 = tensor(qeye(2),qeye(2),qeye(2),A1,qeye(2))
-S05 = tensor(qeye(2),qeye(2),qeye(2),qeye(2),A1)
 
 S01 = tensor(A1,qeye(2),qeye(2),qeye(2),qeye(2))
 S02 = tensor(qeye(2),A1,qeye(2),qeye(2),qeye(2))
@@ -294,12 +280,12 @@ for T in Temp:
             P1a = mat1*mat1.dag()
             P1 = tensor(P1a,P1a,P1a,P1a,P1a)
             
-
+            
             mat2 = Qobj([[exp(-1j*phi[p])*sin(theta[i])],[-cos(theta[i])]])
             P2a = mat2*mat2.dag()
             P2 = tensor(P2a,P2a,P2a,P2a,P2a)
-
-
+            
+            
             p1A = (P1*rhof).tr()
 
             R1A = P1*rhof
@@ -323,8 +309,8 @@ for r in range(len(Temp)-1):
     for i in range(len(theta)):
                 # print(i)
         for p in range(len(phi)):
-            derP1A[r,i,p] = (p1lndA[r+1,i,p] - p1lndA[r,i,p])/dtSE
-            derP2A[r,i,p] = (p2lndA[r+1,i,p] - p2lndA[r,i,p])/dtSE
+            derP1A[r,i,p] = (p1lndA[r+1,i,p] - p1lndA[r,i,p])/dTemp
+            derP2A[r,i,p] = (p2lndA[r+1,i,p] - p2lndA[r,i,p])/dTemp
     
     
 for r in range(len(Temp)-1): 
@@ -352,13 +338,7 @@ for r in range(len(Temp)-1):
             
 
 ###############################################################################
-FthSca = np.zeros((len(Temp)-1))
-for r in range(len(Temp)-1):
-    
-    FthSca[r] = (1/(nthermo[r+1]*(nthermo[r+1]+1)*(2*nthermo[r+1]+1)**2))*((nthermo[r+1]-nthermo[r])/dTemp)**2
-
-###############################################################################
-Write_Outfile(ddTemp, QFIA[:,-1], f'./Results/QFI_all_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(Temp[:-1], QFIA[:,-1], f'./Results/QFI_all_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
 
 
 

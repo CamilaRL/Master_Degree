@@ -43,13 +43,9 @@ J = 1.0       # Sistema-sistema
 
 ## temperature
 
-tT = 100
-TempMin = 0.005
+TempMin = 0.01
 TempMax = 2.0
-Temp = linspace(TempMin,TempMax,tT) # Temperature
-
-dtT = tT - 1
-ddTemp = linspace(TempMin,TempMax,dtT) # Temperature
+Temp = linspace(TempMin,TempMax,250) # Temperature
 
 dTemp = Temp[1] - Temp[0]
 
@@ -57,7 +53,7 @@ dTemp = Temp[1] - Temp[0]
 
 
 tSEmax = 10*J
-tSE = np.arange(0.001, tSEmax, 0.001) # Time S-E
+tSE = np.arange(0.005, tSEmax, 0.01) # Time S-E
 
 dtSE = tSE[1]-tSE[0]
 
@@ -86,6 +82,16 @@ nthermo = np.zeros((len(Temp)))
 FthGab = np.zeros((len(Temp)))
 
 
+p1dA = np.zeros((len(Temp),len(theta),len(phi)))
+p2dA = np.zeros((len(Temp),len(theta),len(phi)))
+
+p1lndA = np.zeros((len(Temp),len(theta),len(phi)))
+p2lndA = np.zeros((len(Temp),len(theta),len(phi)))
+
+derP1A = np.zeros((len(Temp)-1,len(theta),len(phi)))
+derP2A = np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+#################
 p1dA1 = np.zeros((len(Temp),len(theta),len(phi)))
 p2dA1 = np.zeros((len(Temp),len(theta),len(phi)))
 
@@ -134,6 +140,21 @@ p2lndA5 = np.zeros((len(Temp),len(theta),len(phi)))
 
 derP1A5 = np.zeros((len(Temp)-1,len(theta),len(phi)))
 derP2A5 = np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+
+
+#################
+F1A =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+F2A =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+FxA =  np.zeros((len(Temp)-1,len(theta),len(phi)))
+
+QFI_tA = np.zeros((len(Temp)-1,len(theta)))
+
+
+QFIA = np.zeros((len(Temp)-1,len(range(0, n))))
+
+QFI_Therm = np.zeros((len(Temp)))
 
 #################
 F1A1 =  np.zeros((len(Temp)-1,len(theta),len(phi)))
@@ -349,12 +370,8 @@ for T in Temp:
 
 
             p1A1 = (P1a*Rhof1).tr() # probabilidade
-            R1A1 = P1a*Rhof1
-
-
-
+            
             p2A1 = (P2a*Rhof1).tr()
-            R2A1 = P2a*Rhof1
 
         
             p1dA1[r,q,z] = real(p1A1)
@@ -378,19 +395,13 @@ for T in Temp:
             mat1 = Qobj([[cos(theta[i])], [exp(1j*phi[p])*sin(theta[i])]])
             P1a = mat1*mat1.dag()
 
-        
-
             mat2 = Qobj([[exp(-1j*phi[p])*sin(theta[i])],[-cos(theta[i])]])
             P2a = mat2*mat2.dag()
 
-
             p1A2 = (P1a*Rhof2).tr()
-            R1A2 = P1a*Rhof2
 
             p2A2 = (P2a*Rhof2).tr()
-            R2A2 = P2a*Rhof2
             
-        
             p1dA2[r,q,z] = real(p1A2)
             p2dA2[r,q,z] = real(p2A2)
         
@@ -411,19 +422,13 @@ for T in Temp:
 
             mat1 = Qobj([[cos(theta[i])], [exp(1j*phi[p])*sin(theta[i])]])
             P1a = mat1*mat1.dag()
-
-        
-
+            
             mat2 = Qobj([[exp(-1j*phi[p])*sin(theta[i])],[-cos(theta[i])]])
             P2a = mat2*mat2.dag()
 
-
             p1A3 = (P1a*Rhof3).tr()
-            R1A3 = P1a*Rhof3
 
             p2A3 = (P2a*Rhof3).tr()
-            R2A3 = P2a*Rhof3
-           
         
             p1dA3[r,q,z] = real(p1A3)
             p2dA3[r,q,z] = real(p2A3)
@@ -452,11 +457,8 @@ for T in Temp:
             P2a = mat2*mat2.dag()
         
             p1A4 = (P1a*Rhof4).tr()
-            R1A4 = P1a*Rhof4
            
             p2A4 = (P2a*Rhof4).tr()
-            R2A4 = P2a*Rhof4
-            
             
             p1dA4[r,q,z] = real(p1A4)
             p2dA4[r,q,z] = real(p2A4)
@@ -485,10 +487,8 @@ for T in Temp:
             P2a = mat2*mat2.dag()
         
             p1A5 = (P1a*Rhof5).tr()
-            R1A5 = P1a*Rhof5
            
             p2A5 = (P2a*Rhof5).tr()
-            R2A5 = P2a*Rhof5
             
             
             p1dA5[r,q,z] = real(p1A5)
@@ -500,6 +500,44 @@ for T in Temp:
             
             p1lndA5[r,q,z] = real(p1lnA5)
             p2lndA5[r,q,z] = real(p2lnA5)
+            
+            
+            
+###############################################################################    
+###############################   POVM   ############################  
+    q = -1
+    for i in range(len(theta)):
+        q = q + 1
+        z = -1
+        for p in range(len(phi)):
+            z = z + 1
+
+            mat1 = Qobj([[cos(theta[i])], [exp(1j*phi[p])*sin(theta[i])]])
+            P1a = mat1*mat1.dag()
+            P1 = tensor(P1a,P1a,P1a,P1a,P1a)
+            
+
+            mat2 = Qobj([[exp(-1j*phi[p])*sin(theta[i])],[-cos(theta[i])]])
+            P2a = mat2*mat2.dag()
+            P2 = tensor(P2a,P2a,P2a,P2a,P2a)
+
+
+            p1A = (P1*rhof).tr()
+
+            p2A = (P2*rhof).tr()
+        
+            p1dA[r,q,z] = real(p1A)
+            p2dA[r,q,z] = real(p2A)
+        
+            p1lnA = np.log(p1A)
+            p2lnA = np.log(p2A)
+            
+            p1lndA[r,q,z] = real(p1lnA)
+            p2lndA[r,q,z] = real(p2lnA)
+            
+            
+            
+            
                 
 ###############################################################################
 ##################################   Ancilla 1  ###############################
@@ -507,8 +545,8 @@ for r in range(len(Temp)-1):
     for i in range(len(theta)):
 
         for p in range(len(phi)):
-            derP1A1[r,i,p] = (p1lndA1[r+1,i,p] - p1lndA1[r,i,p])/dtSE
-            derP2A1[r,i,p] = (p2lndA1[r+1,i,p] - p2lndA1[r,i,p])/dtSE
+            derP1A1[r,i,p] = (p1lndA1[r+1,i,p] - p1lndA1[r,i,p])/dTemp
+            derP2A1[r,i,p] = (p2lndA1[r+1,i,p] - p2lndA1[r,i,p])/dTemp
     
     
 for r in range(len(Temp)-1): 
@@ -541,8 +579,8 @@ for r in range(len(Temp)-1):
     for i in range(len(theta)):
 
         for p in range(len(phi)):
-            derP1A2[r,i,p] = (p1lndA2[r+1,i,p] - p1lndA2[r,i,p])/dtSE
-            derP2A2[r,i,p] = (p2lndA2[r+1,i,p] - p2lndA2[r,i,p])/dtSE
+            derP1A2[r,i,p] = (p1lndA2[r+1,i,p] - p1lndA2[r,i,p])/dTemp
+            derP2A2[r,i,p] = (p2lndA2[r+1,i,p] - p2lndA2[r,i,p])/dTemp
     
     
 for r in range(len(Temp)-1): 
@@ -577,8 +615,8 @@ for r in range(len(Temp)-1):
     for i in range(len(theta)):
 
         for p in range(len(phi)):
-            derP1A3[r,i,p] = (p1lndA3[r+1,i,p] - p1lndA3[r,i,p])/dtSE
-            derP2A3[r,i,p] = (p2lndA3[r+1,i,p] - p2lndA3[r,i,p])/dtSE
+            derP1A3[r,i,p] = (p1lndA3[r+1,i,p] - p1lndA3[r,i,p])/dTemp
+            derP2A3[r,i,p] = (p2lndA3[r+1,i,p] - p2lndA3[r,i,p])/dTemp
     
     
 for r in range(len(Temp)-1): 
@@ -612,8 +650,8 @@ for r in range(len(Temp)-1):
     for i in range(len(theta)):
 
         for p in range(len(phi)):
-            derP1A4[r,i,p] = (p1lndA4[r+1,i,p] - p1lndA4[r,i,p])/dtSE
-            derP2A4[r,i,p] = (p2lndA4[r+1,i,p] - p2lndA4[r,i,p])/dtSE
+            derP1A4[r,i,p] = (p1lndA4[r+1,i,p] - p1lndA4[r,i,p])/dTemp
+            derP2A4[r,i,p] = (p2lndA4[r+1,i,p] - p2lndA4[r,i,p])/dTemp
     
     
 for r in range(len(Temp)-1): 
@@ -648,8 +686,8 @@ for r in range(len(Temp)-1):
     for i in range(len(theta)):
 
         for p in range(len(phi)):
-            derP1A5[r,i,p] = (p1lndA5[r+1,i,p] - p1lndA5[r,i,p])/dtSE
-            derP2A5[r,i,p] = (p2lndA5[r+1,i,p] - p2lndA5[r,i,p])/dtSE
+            derP1A5[r,i,p] = (p1lndA5[r+1,i,p] - p1lndA5[r,i,p])/dTemp
+            derP2A5[r,i,p] = (p2lndA5[r+1,i,p] - p2lndA5[r,i,p])/dTemp
     
     
 for r in range(len(Temp)-1): 
@@ -678,20 +716,49 @@ for r in range(len(Temp)-1):
     QFIA5[r] = max(QFI_tA5[r,:])
 
 
-
 ###############################################################################
-FthSca = np.zeros((len(Temp)-1))
+##################################   Fisher Total  ###############################
 for r in range(len(Temp)-1):
+    for i in range(len(theta)):
+                # print(i)
+        for p in range(len(phi)):
+            derP1A[r,i,p] = (p1lndA[r+1,i,p] - p1lndA[r,i,p])/dTemp
+            derP2A[r,i,p] = (p2lndA[r+1,i,p] - p2lndA[r,i,p])/dTemp
     
-    FthSca[r] = (1/(nthermo[r+1]*(nthermo[r+1]+1)*(2*nthermo[r+1]+1)**2))*((nthermo[r+1]-nthermo[r])/dTemp)**2
+    
+for r in range(len(Temp)-1): 
+    for i in range(len(theta)):
+                # print(i)
+        for p in range(len(phi)):
+            f1 = p1dA[r,i,p]*(derP1A[r,i,p])**2
+            f2 = p2dA[r,i,p]*(derP2A[r,i,p])**2
+                    # print(f1)
+            fx = f1+f2
+                    # FI = max(fx)
+    
+            F1A[r,i,p] = f1
+            F2A[r,i,p] = f2
+    
+            FxA[r,i,p] = fx
+    
+    
+for r in range(len(Temp)-1):
+    for i in range(len(theta)):
+        QFI_tA[r,i] = max(FxA[r,i,:])
+
+for r in range(len(Temp)-1):
+    QFIA[r] = max(QFI_tA[r,:])
+            
+
 
 ###############################################################################
 
-Write_Outfile(ddTemp, QFIA1[:,-1], f'./Results/QFI_q1_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
-Write_Outfile(ddTemp, QFIA2[:,-1], f'./Results/QFI_q2_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
-Write_Outfile(ddTemp, QFIA3[:,-1], f'./Results/QFI_q3_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
-Write_Outfile(ddTemp, QFIA4[:,-1], f'./Results/QFI_q4_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
-Write_Outfile(ddTemp, QFIA5[:,-1], f'./Results/QFI_q5_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(Temp[:-1], QFIA[:,-1], f'./Results/QFI_all_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(Temp[:-1], QFIA1[:,-1], f'./Results/QFI_q1_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(Temp[:-1], QFIA2[:,-1], f'./Results/QFI_q2_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(Temp[:-1], QFIA3[:,-1], f'./Results/QFI_q3_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(Temp[:-1], QFIA4[:,-1], f'./Results/QFI_q4_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
+Write_Outfile(Temp[:-1], QFIA5[:,-1], f'./Results/QFI_q5_g{g:.2f}_ttherm{tSEmax:.3f}.txt')
 
 ###############################################################################
 ###############################################################################
