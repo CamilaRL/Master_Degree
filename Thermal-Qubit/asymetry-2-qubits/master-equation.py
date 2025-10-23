@@ -39,6 +39,9 @@ def Coherences(w0, beta_1, beta_2, Z1, Z2):
     return alpha_list
 
 
+
+######################## MAIN ########################
+
 ## parameters
 
 w0 = 1
@@ -85,9 +88,9 @@ v01 = tensor(G, E)
 v10 = tensor(E, G)
 v11 = tensor(E, E)
 
-coherences_matrix = alpha_list[0] * v01 * v10.dag() + alpha_list[0].conjugate() * v10 * v01.dag()
+#coherences_matrix = alpha_list[0] * v01 * v10.dag() + alpha_list[0].conjugate() * v10 * v01.dag()
 
-rho0 = tensor(rho0_q1, rho0_q2) + coherences_matrix
+rho0 = tensor(rho0_q1, rho0_q2) #+ coherences_matrix
 
 
 ## collapse operators
@@ -96,26 +99,24 @@ L_operators = []
 
 evals, evecs = H_S.eigenstates()
 
-for n, valn in enumerate(evals):
-    for m, valm in enumerate(evals):
+for n, valn in enumerate(reversed(evals)):
+    for m, valm in enumerate(reversed(evals)):
         
-        dmn = valm - valn
-        
-        if dmn < 0 : ## absortion
+        if m < n:
             
-            f = Distribution('bose', beta_R, -dmn)
+            dmn = valm - valn
             
-            C_abs = gamma * np.sqrt(1 + f) * (evecs[n] * evecs[m].dag())
-
-            L_operators.append(C_abs)
-
-        elif dmn > 0: ## emission
-            
-            f = Distribution('bose', beta_R, dmn)
+            if dmn != 0:
                 
-            C_emi = gamma * np.sqrt(f) * (evecs[m] * evecs[n].dag())
+                f = Distribution('bose', beta_R, dmn)
+                
+                C_abs = gamma * np.sqrt(1 + f) * (evecs[n] * evecs[m].dag())
+                
+                L_operators.append(C_abs)
+                
+                C_emi = gamma * np.sqrt(f) * (evecs[m] * evecs[n].dag())
 
-            L_operators.append(C_emi)
+                L_operators.append(C_emi)
             
 
 ## solve master equation
@@ -124,11 +125,12 @@ dataME = mesolve(H_S, rho0, tlist, L_operators, [])
 
 rhof = dataME.states
 
+
 ## write rho in output filess
 
 for t, rhot in enumerate(rhof):
 
-    f = open(f'./DensityMatrices/rhof_t{t}.txt', 'w')
+    f = open(f'./DensityMatrices_c0/rhof_t{t}.txt', 'w')
 
     for i in range(4):
         for j in range(4):
