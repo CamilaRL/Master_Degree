@@ -3,17 +3,17 @@ import matplotlib.pyplot as plt
 
 
 
-g = 1.5
+g = 0.45
 J = 1.0
 tSEmax = 10*J
 
-temp, QFI_all = np.loadtxt(f'./Results/QFI_all_g{g:.1f}_ttherm{tSEmax:.3f}.txt', unpack=True)
+temp, QFI_all = np.loadtxt(f'./Results/QFI_all_g{g:.2f}_ttherm{tSEmax:.3f}.txt', unpack=True)
 
-temp1, QFI_q1 = np.loadtxt(f'./Results/QFI_1_g{g:.1f}_ttherm{tSEmax:.3f}.txt', unpack=True)
-temp2, QFI_q2 = np.loadtxt(f'./Results/QFI_2_g{g:.1f}_ttherm{tSEmax:.3f}.txt', unpack=True)
-temp3, QFI_q3 = np.loadtxt(f'./Results/QFI_3_g{g:.1f}_ttherm{tSEmax:.3f}.txt', unpack=True)
-temp4, QFI_q4 = np.loadtxt(f'./Results/QFI_4_g{g:.1f}_ttherm{tSEmax:.3f}.txt', unpack=True)
-temp5, QFI_q5 = np.loadtxt(f'./Results/QFI_5_g{g:.1f}_ttherm{tSEmax:.3f}.txt', unpack=True)
+temp1, QFI_q1 = np.loadtxt(f'./Results/QFI_1_g{g:.2f}_ttherm{tSEmax:.3f}.txt', unpack=True)
+temp2, QFI_q2 = np.loadtxt(f'./Results/QFI_2_g{g:.2f}_ttherm{tSEmax:.3f}.txt', unpack=True)
+temp3, QFI_q3 = np.loadtxt(f'./Results/QFI_3_g{g:.2f}_ttherm{tSEmax:.3f}.txt', unpack=True)
+temp4, QFI_q4 = np.loadtxt(f'./Results/QFI_4_g{g:.2f}_ttherm{tSEmax:.3f}.txt', unpack=True)
+temp5, QFI_q5 = np.loadtxt(f'./Results/QFI_5_g{g:.2f}_ttherm{tSEmax:.3f}.txt', unpack=True)
 
 plt.plot(temp1, QFI_all, color='black', label='Total QFI')
 

@@ -301,8 +301,8 @@ for T in Temp:
 ###############################################################################
 #################################  Initial State  #############################
 
-    G = basis(2,0) # base: excited state
-    E = basis(2,1) # base: ground state
+    G = basis(2,0) # base: ground state
+    E = basis(2,1) # base: excited state
 
 
 #######  Ancilla 1
@@ -504,7 +504,7 @@ for T in Temp:
             
             
 ###############################################################################    
-###############################   POVM   ############################  
+###############################   POVM  para todos os qubits ############################  
     q = -1
     for i in range(len(theta)):
         q = q + 1
@@ -512,14 +512,16 @@ for T in Temp:
         for p in range(len(phi)):
             z = z + 1
 
-            mat1 = Qobj([[cos(theta[i])], [exp(1j*phi[p])*sin(theta[i])]])
-            P1a = mat1*mat1.dag()
-            P1 = tensor(P1a,P1a,P1a,P1a,P1a)
+            ket_0 = tensor(G,G,G,G,G)
+            ket_1 = tensor(E,E,E,E,E)
             
-
-            mat2 = Qobj([[exp(-1j*phi[p])*sin(theta[i])],[-cos(theta[i])]])
-            P2a = mat2*mat2.dag()
-            P2 = tensor(P2a,P2a,P2a,P2a,P2a)
+            psi1 = Qobj( cos(theta[i]) * ket_0 + exp(1j*phi[p])*sin(theta[i]) * ket_1 )
+            
+            P1 = psi1*psi1.dag()
+            
+            psi2 = Qobj( exp(-1j*phi[p])*sin(theta[i]) * ket_0 + -cos(theta[i]) * ket_1 )
+            
+            P2 = psi2*psi2.dag()
 
 
             p1A = (P1*rhof).tr()
