@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import os
+
 
 
 def Integracao(ydata, xdata):
@@ -33,16 +35,35 @@ def WriteOutput(tlist, velocity, position, completion, i):
 
 ### MAIN ###
 
-tot = 13
+modo = 'Aquecer'
+cmod = []
+curvas = []
+
+for arquivo in os.listdir(f'./FisherInformation_{modo}/'):
+
+    path_to_file = os.path.join(f'./FisherInformation_{modo}/', arquivo)
+    
+    if os.path.isfile(path_to_file) and 'c_curva_' in arquivo:
+    
+        curvas.append(int(arquivo.replace('c_curva_', '').replace('.txt', '')))
+        
+        cList = np.loadtxt(path_to_file, unpack=True, ndmin=1, dtype='complex')
+        
+        cmod.append(abs(cList[0]))
+
+cmod, curvas = (list(t) for t in zip(*sorted(zip(cmod, curvas))))
+
+
+tot = len(cmod)
 
 
 cmap = plt.get_cmap('rainbow')
 colors = iter(cmap(np.linspace(0.1, 1, tot)))
-fig = plt.figure(figsize=(10,5))
+fig = plt.figure(figsize=(12,5))
 
-for i in range(1,tot):
+for i, curva in enumerate(curvas):
     
-    curve_path = f'./FisherInformation_Aquecer/curva_{i}.txt'
+    curve_path = f'./FisherInformation_{modo}/curva_{curva}.txt'
     
     
     tlist, QFI = np.loadtxt(curve_path, unpack=True)
@@ -60,23 +81,23 @@ for i in range(1,tot):
     degree_completion = Llist/Llist[-1]
     
     plt.subplot(131)
-    plt.scatter(tlist, vlist, color=cor, s=1, label=f'Curva {i}')
+    plt.scatter(tlist, vlist, color=cor, s=1, label=f'|c| {cmod[i]:.2e}')
     plt.xlabel('Time')
     plt.ylabel('Velocity')
     
     plt.subplot(132)
-    plt.scatter(tlist, Llist, color=cor, s=1, label=f'Curva {i}')
+    plt.scatter(tlist, Llist, color=cor, s=1, label=f'|c| {cmod[i]:.2e}')
     plt.xlabel('Time')
     plt.ylabel('Position')
 
     plt.subplot(133)
-    plt.plot(tlist, degree_completion, color=cor, label=f'Curva {i}')
+    plt.plot(tlist, degree_completion, color=cor, label=f'|c| {cmod[i]:.2e}')
     plt.xlabel('Time')
     plt.ylabel('Degree of Completion')
     
     WriteOutput(tlist, vlist, Llist, degree_completion, i)
 
-plt.legend(loc='best', bbox_to_anchor=(1., 0.5, 0.5, 0.5))
+plt.legend(loc='best', bbox_to_anchor=(1., 0.25, 0.25, 0.6))
 plt.tight_layout()
 plt.show()
 

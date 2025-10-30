@@ -153,9 +153,9 @@ def FileWrite(path, QFI, tlist, classe, curva):
 
 ### MAIN ###
 
-Tbanho = 10
+Tbanho = 2
 w = 2
-Tqubit = 2
+Tqubit = 10
 w0 = 2
 p = np.exp(w0/(2*Tqubit))/(2*np.cosh(w0/(2*Tqubit)))
 g = complex(0.1, 0.1)
