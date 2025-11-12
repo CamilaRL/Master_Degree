@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import brentq
+from qutip import *
 import os
 
 
@@ -27,13 +28,14 @@ cmod = np.loadtxt(f'./DensityMatrices/cmod_{modo}.txt', unpack=True)
 
 cmod_extremes = [min(cmod), max(cmod)]
 
-tlist = np.arange(0.005, 2, 0.001)
+tlist = np.arange(0.005, 5, 0.001)
 
 
 for c in cmod_extremes:
 
     Tt = []
     coherence = []
+    timestep = []
 
     path = f'./DensityMatrices/{modo}/c_{c}/'
 
@@ -42,22 +44,33 @@ for c in cmod_extremes:
     for arquivo in os.listdir(path):
     
         if rhoname in arquivo:
+           
+           timestep.append(int(arquivo.replace(rhoname, '').replace('.txt', '')))
             
-            rhot = np.loadtxt(path + arquivo, unpack=True, dtype='complex')
+    timestep.sort()
+    
+    for t in timestep:
+    
+        rhot = np.loadtxt(path + rhoname + f'{t}.txt', unpack=True, dtype='complex')
+            
+        #print(Qobj(rhot).tr(), Qobj(rhot).isherm)
         
-            Tt.append( Interseccao_Temperatura(rhot[0][0].real) )
+        T = Interseccao_Temperatura(rhot[0][0].real)
             
-            coherence.append( abs(rhot[0][1])/2 )
+        Tt.append(T)
             
-            
-    plt.scatter(tlist, Tt, s=2)
-    plt.title(f'|c| = {c}')
-    plt.ylabel('Temperature')
-    plt.xlabel('Time')
-    plt.show()
+        #coherence.append( abs(rhot[0][1]) )
+                        
+    plt.plot(tlist, Tt, label=f'|c| = {c:.6f}')
+        
 
-    plt.plot(tlist, coherence)
-    plt.title(f'|c| = {c}')
-    plt.ylabel('Coherence')
-    plt.xlabel('Time')
-    plt.show()
+plt.ylabel('Temperature')
+plt.xlabel('Time')
+plt.legend()
+plt.show()
+
+'''plt.plot(tlist, coherence)
+plt.title(f'|c| = {c}')
+plt.ylabel('Coherence')
+plt.xlabel('Time')
+plt.show()'''
