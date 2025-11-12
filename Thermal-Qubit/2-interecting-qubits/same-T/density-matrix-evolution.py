@@ -13,7 +13,7 @@ def Interseccao_Temperatura(p):
     
     find_T = lambda T: pFunc(T, w0=2) - p
         
-    T = brentq(find_T, 0.1, 50)  # busca em todo o range de T
+    T = brentq(find_T, 0.01, 50)  # busca em todo o range de T
     
     return T
 
@@ -27,7 +27,7 @@ cmod = np.loadtxt(f'./DensityMatrices/cmod_{modo}.txt', unpack=True)
 
 cmod_extremes = [min(cmod), max(cmod)]
 
-tlist = np.arange(0.005, 5, 0.001)
+tlist = np.arange(0.005, 2, 0.001)
 
 
 for c in cmod_extremes:
