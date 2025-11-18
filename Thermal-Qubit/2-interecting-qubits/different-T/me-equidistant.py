@@ -85,8 +85,8 @@ def Coherences(w0, beta_1, beta_2):
     alpha_list = []
     mod_list = []
 
-    Z1 = 2*np.cosh(beta_1*w0)
-    Z2 = 2*np.cosh(beta_2*w0)
+    Z1 = 2*np.cosh(beta_1*w0/2)
+    Z2 = 2*np.cosh(beta_2*w0/2)
 
     alpha = np.exp(-w0*(beta_1 + beta_2)/2)/(Z1*Z2)
     
@@ -110,11 +110,11 @@ def Master_Equation(w0, beta_1, beta_2, tlist, L_operators, alpha):
 
     ## density matrices
 
-    Z1 = 2*np.cosh(beta_1*w0)
-    Z2 = 2*np.cosh(beta_2*w0)
+    Z1 = 2*np.cosh(beta_1*w0/2)
+    Z2 = 2*np.cosh(beta_2*w0/2)
 
-    p1 = np.exp(beta_1*w0)/Z1
-    p2 = np.exp(beta_2*w0)/Z2
+    p1 = np.exp(beta_1*w0/2)/Z1
+    p2 = np.exp(beta_2*w0/2)/Z2
 
     rho0_q1 = Qobj([[p1, 0],[0, 1-p1]])
 
@@ -135,7 +135,7 @@ def Master_Equation(w0, beta_1, beta_2, tlist, L_operators, alpha):
 
     ## solve master equation
 
-    dataME = mesolve(H_S, rho0, tlist, L_operators, [])
+    dataME = mesolve(H_S, rho0, tlist, c_ops=L_operators, e_ops=[])
 
     rhof = dataME.states
     
@@ -193,11 +193,11 @@ def Write_Density_Matrices(rhof, rhof_q1, rhof_q2, path):
 w0 = 2
 gamma = 1
 
-tlist = np.arange(0.005, 10, 0.001)
+tlist = np.arange(0.005, 20, 0.005)
 
 p_final = 0.9
 
-Sr_inicial = 0.01
+Sr_inicial = 0.1
 
 
 ## hamiltonians
@@ -208,7 +208,7 @@ H_q2 = w0*sigmaz()/2
 
 H_int = tensor(sigmap(), sigmam()) + tensor(sigmam(), sigmap())
 
-H_S = tensor(H_q1, qeye(2)) + tensor(qeye(2), H_q2) + H_int
+H_S = tensor(H_q1, qeye(2)) + tensor(qeye(2), H_q2) + 3*H_int
 
 
 ## temperaturas equidistantes

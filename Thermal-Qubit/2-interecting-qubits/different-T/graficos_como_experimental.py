@@ -40,8 +40,8 @@ for i in range(len(cList)):
     tlist_r, completion_r = Read_Completion(cList[i], modoList[0])
     tlist_a, completion_a = Read_Completion(cList[i], modoList[1])
     
-    plt.plot(tlist_r, completion_r, color='blue', label='Cooling')
-    plt.plot(tlist_a, completion_a, color='red', label='Heating')
+    plt.plot(tlist_a, completion_a, color='red', label='Qubit 1')
+    plt.plot(tlist_r, completion_r, color='blue', label='Qubit 2')
     plt.xlabel('Time')
     plt.ylabel('Degree of completion')
     plt.title(f'|c| = {cList[i]:.6f}')
@@ -53,8 +53,8 @@ for i in range(len(cList)):
     tlist_r, velocidade_r = Read_Velocidade(cList[i], modoList[0])
     tlist_a, velocidade_a = Read_Velocidade(cList[i], modoList[1])
     
-    plt.plot(tlist_r, velocidade_r, color='blue', label='Cooling')
-    plt.plot(tlist_a, velocidade_a, color='red', label='Heating')
+    plt.plot(tlist_a, velocidade_a, color='red', label='Qubit 1')
+    plt.plot(tlist_r, velocidade_r, color='blue', label='Qubit 2')
     plt.xlabel('Time')
     plt.ylabel('Velocity')
     plt.title(f'|c| = {cList[i]:.6f}')

@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-qubit = '1'
-modo = 'Heating'
+qubit = '2'
+modo = 'Cooling'
 
 cmod = np.loadtxt(f'./DensityMatrices/cmod.txt', unpack=True)
 

@@ -24,8 +24,8 @@ def Read_Velocidade(c, modo):
 ### MAIN ###
 
 
-modo = 'Heating'
-cor = 'red'
+modo = 'Cooling'
+cor = 'blue'
 
 cList = []
 
@@ -41,7 +41,7 @@ for c in cmod:
         
     initial_completion.append(completion[0])
 
-plt.scatter(cmod, initial_completion, color=cor, label=modo)
+plt.scatter(cmod, initial_completion, color=cor, label='Qubit 2')
 plt.plot(cmod, initial_completion, color=cor)
 
 plt.legend()
