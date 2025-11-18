@@ -43,7 +43,7 @@ def Quantum_Fisher_Information(rho_list, temp_list, dimensao):
                 
                 bra_drho_ket = bra * Qobj(drho_list[t], dims=dimensao) * ket
                 
-                QFI = QFI + (2*(bra_drho_ket.norm())**2)/(abs(autoval[n]) + abs(autoval[m]))
+                QFI = QFI + (2*(abs(bra_drho_ket))**2)/(abs(autoval[n]) + abs(autoval[m]))
                 
         QFI_T.append(QFI.real)
         
@@ -55,11 +55,11 @@ def Quantum_Fisher_Information(rho_list, temp_list, dimensao):
 
 qubit = 'q1'
 rho_name = f'rhof_{qubit}_t'
-modo = 'Cooling'
+modo = 'Heating'
 
 os.mkdir(f'./FisherInformation/{modo}')
 
-tempo_real = np.arange(0.005, 2, 0.001)
+tempo_real = np.arange(0.005, 20, 0.005)
 
 
 ## reading coherences

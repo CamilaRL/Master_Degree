@@ -24,8 +24,8 @@ def Read_Velocidade(c, modo):
 ### MAIN ###
 
 
-modo = 'Cooling'
-cor = 'blue'
+modo = 'Heating'
+cor = 'red'
 
 cList = []
 

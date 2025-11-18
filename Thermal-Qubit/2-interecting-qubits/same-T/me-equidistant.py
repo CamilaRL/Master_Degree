@@ -193,11 +193,11 @@ def Write_Density_Matrices(rhof, rhof_q1, rhof_q2, path):
 w0 = 2
 gamma = 1
 
-tlist = np.arange(0.005, 5, 0.001)
+tlist = np.arange(0.005, 20, 0.005)
 
 p_final = 0.9
 
-Sr_inicial = 0.01
+Sr_inicial = 0.1
 
 
 ## hamiltonians
