@@ -3,133 +3,206 @@ import matplotlib.pyplot as plt
 from scipy.optimize import brentq
 
 
-def f(w0, beta):
+def Distribution(dist, beta_R, dmn):
+
+    if dist == 'bose':
+        f = 1/(np.exp(beta_R * dmn) - 1)
+
+    elif dist == 'fermi':
+        f = 1/(np.exp(beta_R * dmn) + 1)
+        
+    return f
+
+
+def Delta_Beta(w, beta_i, beta, gamma, t):
+
+    fi = Distribution('bose', beta_i, w)
     
-    return 1/(np.exp(w0 * beta) - 1)
-
-
-def Statistical_Velocity(w0, beta_i, beta_f, gamma, t):
-
-    return np.sqrt(2) * (-gamma * np.exp(-gamma*t) * (f(w0, beta_i) - f(w0, beta_f)))/(np.exp(-gamma*t) * (f(w0, beta_i) - f(w0, beta_f)) - f(w0, beta_f))
+    ff = Distribution('bose', beta, w)
     
+    delta_beta = (fi - ff) * np.exp(-gamma*t) + ff
     
-def Statistical_Length(w0, beta_i, beta_f, gamma, t):
+    d_delta_beta = -gamma * (fi - ff) * np.exp(-gamma*t)
     
-    return np.sqrt(2) * abs(np.log((np.exp(-gamma*t) * (f(w0, beta_i) - f(w0, beta_f)) + f(w0, beta_f))/f(w0, beta_i)))
+    return delta_beta, d_delta_beta
+    
+
+def Wigner_Fisher_Info(w, beta_i, beta_f, gamma, t):
+
+    delta_beta, d_delta_beta = Delta_Beta(w, beta_i, beta_f, gamma, t)
+    
+    return 2 * (d_delta_beta/delta_beta)**2
+    
+
+def Velocity(Iw):
+
+    return np.sqrt(Iw)
+    
+
+def Distance(w, beta_i, beta_f, gamma, t):
+
+    fi = Distribution('bose', beta_i, w)
+    
+    ff = Distribution('bose', beta_f, w)
+
+    L = np.sqrt(2) * np.log(abs(((fi - ff) * np.exp(-gamma*t) + ff) / fi))
+    
+    return L
 
 
-def Degree_of_Completion(Lt, Lf):
-    
-    return Lt/Lf
+def ThermalKinematics(beta_i, beta_f, w, gamma, tlist):
 
-
-def ThermalKinematics(w0, gamma, tlist, beta_i, beta_f):
-    
-    vlist = []
-    Llist = []
+    Iw = []
+    Vw = []
+    Lw = []
+    Kevol = []
 
     for t in tlist:
+
+        Iwt = Wigner_Fisher_Info(w, beta_i, beta_f, gamma, t)
+
+        Vwt = Velocity(Iwt)
         
-        vt = Statistical_Velocity(w0, beta_i, beta_f, gamma, t)
+        Lwt = Distance(w, beta_i, beta_f, gamma, t)
+
+        Kevol.append(RelativeEntropy(beta_i, beta_f, w, gamma, t))
+
+        Iw.append(Iwt)
+        Vw.append(Vwt)
+        Lw.append(Lwt)
         
-        Lt = Statistical_Length(w0, beta_i, beta_f, gamma, t)
 
-        vlist.append(vt)
-        Llist.append(Lt)
+    completion = []
 
-    philist = []
+    for i in range(len(Lw)):
 
-    for Lt in Llist:
+        completion.append(Lw[i]/Lw[-1])
         
-        philist.append(Degree_of_Completion(Lt, Llist[-1]))
-
-    plt.plot(tlist, vlist)
-    plt.ylabel('Velocity')
-    plt.xlabel('Time')
-    plt.show()
-    
-    plt.plot(tlist, Llist)
-    plt.ylabel('Position')
-    plt.xlabel('Time')
-    plt.show()
-    
-    plt.plot(tlist, philist)
-    plt.ylabel('Degree of Completion')
-    plt.xlabel('Time')
-    plt.show()
+    return Iw, Vw, Lw, completion, Kevol
     
 
-def Entropia_Relativa(w0, beta_i, beta_f):
+def RelativeEntropy(beta_i, beta_f, w, gamma, t):
 
-    delta_beta_i = f(w0, beta_i)
-    delta_beta_f = f(w0, beta_f)
-
-    return -1 + 0.5*(2*delta_beta_i/delta_beta_f + np.log((delta_beta_f**2)/(delta_beta_i**2)))
-
-
-def Equidistant_States(w0, beta_f, beta_list, Sr_init):
+    delta_i, d_delta_i = Delta_Beta(w, beta_i, beta_f, gamma, t)
+    delta_f, d_delta_f = Delta_Beta(w, beta_f, beta_f, gamma, t)
     
-    f_diff =  lambda beta: Entropia_Relativa(w0, beta, beta_f) - Sr_init
+    return -1 + (delta_i/delta_f) + 0.5 * np.log((delta_f**2)/(delta_i**2))
+
+
+def EquidistantInitial(Kinit, beta_eq, w, gamma, beta_list):
+
+    K_diff = lambda beta_i: RelativeEntropy(beta_i, beta_eq, w, gamma, 0) - Kinit
+
+    K_diff_list = []
+    for beta in beta_list:
     
-    Sr_diff = f_diff(np.array(beta_list))
-    
+        K_diff_list.append(K_diff(beta))
+
     ## hot
-    for i in range(0, np.argmin(Sr_diff), 1):
+    for i in range(0, np.argmin(K_diff_list), 1):
 
-        if Sr_diff[i] * Sr_diff[i+1] < 0:  # houve cruzamento
+        if K_diff_list[i] * K_diff_list[i+1] < 0:  # houve cruzamento
 
-            beta_1 = brentq(f_diff, beta_list[i], beta_list[i+1])  # raiz exata
-            Sr1 = Entropia_Relativa(w0, beta_1, beta_f)
+            beta_1 = brentq(K_diff, beta_list[i], beta_list[i+1])  # raiz exata
+            K1 = RelativeEntropy(beta_1, beta_eq, w, gamma, 0)
 
     ## cold
-    for i in range(np.argmin(Sr_diff), len(beta_list) - 1, 1):
+    for i in range(np.argmin(K_diff_list), len(beta_list) - 1, 1):
 
-        if Sr_diff[i] * Sr_diff[i+1] < 0:  # houve cruzamento
+        if K_diff_list[i] * K_diff_list[i+1] < 0:  # houve cruzamento
 
-            beta_2 = brentq(f_diff, beta_list[i], beta_list[i+1])  # raiz exata
-            Sr2 = Entropia_Relativa(w0, beta_2, beta_f)
+            beta_2 = brentq(K_diff, beta_list[i], beta_list[i+1])  # raiz exata
+            K2 = RelativeEntropy(beta_2, beta_eq, w, gamma, 0)
     
     
-    return beta_1, 1/beta_1, Sr1, beta_2, 1/beta_2, Sr2
+    ## plot
+    
+    K = [RelativeEntropy(beta_i, beta_eq, w, gamma, 0) for beta_i in beta_list]
+    
+    plt.plot(beta_list, K, color='orange')
+    plt.scatter([beta_eq], [RelativeEntropy(beta_eq, beta_eq, w, gamma, 0)], color='orange', label=f'Tw = {1/beta_eq:.3f}')
+    plt.scatter([beta_2], [K2], color='blue', label=f'Tc = {1/beta_2:.3f}')
+    plt.scatter([beta_1], [K1], color='red', label=f'Th = {1/beta_1:.3f}')
+    plt.hlines(y=Kinit, xmin=min(beta_list), xmax=max(beta_list), color='black', label='Initial Relative Entropy')
+    plt.xlabel(r'$\beta$')
+    plt.ylabel('Relative Entropy')
+    plt.legend()
+    plt.show()
+    
+    
+    return beta_1, 1/beta_1, K1, beta_2, 1/beta_2, K2
+        
+        
 
 
 
 
 
+########### MAIN ###########
 
-### MAIN ###
 
-w0 = 1
+## Parameters
+
+w = 1
 gamma = 0.1
-Tf = 2
-beta_f = 1/Tf
-Sr_init = 0.5
+
+Kinit = 1
+
+Teq = 2
+beta_eq = 1/Teq
+
+beta_list = np.arange(0.1, 5, 0.01)
+
+beta_hot, Thot, Khot, beta_cold, Tcold, Kcold = EquidistantInitial(Kinit, beta_eq, w, gamma, beta_list)
 
 tlist = np.arange(0, 20, 0.1)
 
 
-## Equidistant
+## Thermal Kinematics
 
-beta_list = np.arange(0.2, 2, 0.01)
+Iw_heating, Vw_heating, Lw_heating, completion_heating, Kevol_heating = ThermalKinematics(beta_cold, beta_eq, w, gamma, tlist)
+Iw_cooling, Vw_cooling, Lw_cooling, completion_cooling, Kevol_cooling = ThermalKinematics(beta_hot, beta_eq, w, gamma, tlist)
+    
+    
+## Plots
 
-Sr = [Entropia_Relativa(w0, beta_i, beta_f) for beta_i in beta_list]
+plt.plot(tlist, Iw_heating, color='red', label='Heating')
+plt.plot(tlist, Iw_cooling, color='blue', label='Cooling')
+plt.ylabel('Wigner Fisher Information')
+plt.xlabel('Time')
+plt.legend()
+plt.show()
 
-beta_h, Th, Srh, beta_c, Tc, Src = Equidistant_States(w0, beta_f, beta_list, Sr_init)
+plt.plot(tlist, Vw_heating, color='red', label='Heating')
+plt.plot(tlist, Vw_cooling, color='blue', label='Cooling')
+plt.ylabel('Statistical Velocity')
+plt.xlabel('Time')
+plt.legend()
+plt.show()
 
+plt.plot(tlist, Lw_heating, color='red', label='Heating')
+plt.plot(tlist, Lw_cooling, color='blue', label='Cooling')
+plt.ylabel('Statistical Distance')
+plt.xlabel('Time')
+plt.legend()
+plt.show()
 
-plt.plot(beta_list, Sr, color='orange')
-plt.scatter([beta_f], [0], color='orange', label=f'Tw = {Tf:.3f}')
-plt.scatter([beta_c], [Src], color='blue', label=f'Tc = {Tc:.3f}')
-plt.scatter([beta_h], [Srh], color='red', label=f'Th = {Th:.3f}')
-plt.hlines(y=Sr_init, xmin=min(beta_list), xmax=max(beta_list), color='black', label='Initial Relative Entropy')
-plt.xlabel(r'$\beta$')
-plt.ylabel('Relative Entropy')
+plt.plot(tlist, completion_heating, color='red', label='Heating')
+plt.plot(tlist, completion_cooling, color='blue', label='Cooling')
+plt.ylabel('Degree of Completion')
+plt.xlabel('Time')
 plt.legend()
 plt.show()
 
 
-## Heating
-ThermalKinematics(w0, gamma, tlist, beta_c, beta_f)
 
-## Cooling
-ThermalKinematics(w0, gamma, tlist, beta_h, beta_f)
+
+
+
+
+
+
+
+
+
+
