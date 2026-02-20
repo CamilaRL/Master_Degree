@@ -4,21 +4,37 @@ from qutip import *
 import os
 
 
-
-def Trace_Distance(rho):
-
-    D = []
-
-    for t in range(len(rho)):
+def vonNeumann_Entropy(rho):
     
-        drho = rho[t] - rho[-1]
-
-        modrho = (drho.dag() * drho).sqrtm()
+    S = []
+    
+    for rhot in rho:
         
-        D.append(modrho.tr())
+        St = 0
+        
+        evals = Qobj(rhot).eigenenergies()
 
-    return D
+        for ev in evals:
+            St = St - ev * np.log(ev)
+        
+        S.append(St)
 
+    return S
+    
+
+def MutualInformation(rho1, rho2, rho12):
+
+    S1 = vonNeumann_Entropy(rho1)
+    S2 = vonNeumann_Entropy(rho2)
+    S12 = vonNeumann_Entropy(rho12)
+
+    MI = []
+    
+    for t in range(len(S1)):
+        
+        MI.append(S1[t] + S2[t] - S12[t])
+
+    return MI
 
 
 ## parameters
@@ -35,6 +51,7 @@ tempo_real = np.arange(0, 20, 0.01)
 
 ## reading coherences
 cmod = np.loadtxt(f'./DensityMatrices/cmod.txt', unpack=True)
+cmod.sort()
 
 
 ## reading time
@@ -70,21 +87,16 @@ for c in cmod:
         rho_total_t_list.append(Qobj(rho_total_t))
         
     
-    D_q1 = Trace_Distance(rho_q1_t_list)
-    D_q2 = Trace_Distance(rho_q2_t_list)
-    D_total = Trace_Distance(rho_total_t_list)
+    MI = MutualInformation(rho_q1_t_list, rho_q2_t_list, rho_total_t_list)
 
 
-    plt.plot(tempo_real, D_total, color='black', label='Total')
-    plt.plot(tempo_real, D_q1, color='red', label=modo1)
-    plt.plot(tempo_real, D_q2, color='blue', label=modo2)
+    plt.plot(tempo_real, MI, label=f'|c| = {c:.3f}')
+
     
-    plt.xlabel('Time')
-    plt.ylabel('Trace Distance')
-    plt.title(f'|c| = {c:.3f}')
-    plt.xscale('log')
-    plt.legend()
-    plt.show()
-
+plt.xlabel('Time')
+plt.ylabel('Mutual Information')
+plt.xscale('log')
+plt.legend()
+plt.show()
 
 

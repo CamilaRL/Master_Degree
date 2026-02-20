@@ -198,12 +198,12 @@ def Write_Density_Matrices(rhof, rhof_q1, rhof_q2, path):
 
 w0 = 1
 gamma = 0.1
-g = 0
+g = 0 #0.8
 
 tlist = np.arange(0, 20, 0.01)
 
 Tf_banho = 1.0
-Tf_qubit = 1.0
+Tf_qubit = 1.0 #1542306681364478
 
 p_final = pFunc(Tf_qubit, w0)
 
@@ -233,15 +233,18 @@ ph, Srh, Th, Sr1, pList1 = Temperaturas_e_Populacoes(1, w0, Th_list, p_final, Sr
 print(Tc, Tf_qubit, Th)
 
 
-plt.plot(pList0, Sr0, color='orange', label=f'pf = {p_final:.3f}')
-plt.plot(pList1, Sr1, color='orange')
 plt.scatter([p_final], [0], color='orange', label=f'Tw = {Tf_qubit:.3f}')
 plt.scatter([pc], [Src], color='blue', label=f'Tc = {Tc:.3f}')
 plt.scatter([ph], [Srh], color='red', label=f'Th = {Th:.3f}')
+plt.plot(pList0, Sr0, color='orange')
+plt.plot(pList1, Sr1, color='orange')
 plt.hlines(y=Sr_inicial, xmin=min(pList1), xmax=max(pList0), color='black', label='Initial Relative Entropy')
-plt.xlabel('Populations')
-plt.ylabel('Relative Entropy')
-plt.legend()
+plt.xlabel('Populations', fontsize=12)
+plt.ylabel('Relative Entropy', fontsize=12)
+plt.title(f'g = {g}', fontsize=14)
+plt.yticks(fontsize=12)
+plt.xticks(fontsize=12)
+plt.legend(fontsize=12)
 plt.show()
 
 

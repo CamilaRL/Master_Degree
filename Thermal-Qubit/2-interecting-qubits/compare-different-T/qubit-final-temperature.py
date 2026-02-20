@@ -84,10 +84,14 @@ for g in glist:
     Tlist.append(Tq)
     
 
-plt.plot(glist, Tlist)
-plt.xlabel('g')
-plt.ylabel('Temperature')
-plt.title('Qubits final temperature')
+plt.plot(glist, Tlist, linewidth=2, label=r'$T_{1}^{f} = T_{2}^{f}$')
+plt.hlines(y=1.0, xmin=min(glist), xmax=max(glist), color='black', linestyle='--', label=r'$T_{w}$')
+plt.xlabel('g', fontsize=12)
+plt.ylabel('Temperature', fontsize=12)
+plt.title('Qubits Final Temperature', fontsize=14)
+plt.yticks(fontsize=12)
+plt.xticks(fontsize=12)
+plt.legend(fontsize=12)
 plt.show()
 
 
