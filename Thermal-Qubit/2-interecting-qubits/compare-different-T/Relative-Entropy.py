@@ -5,6 +5,21 @@ from qutip import *
 import os
 
 
+def Read_Density_Matrices(filename, dim):
+
+    rhoTList = np.loadtxt(filename, dtype='complex')
+
+    tlist = []
+    rhot = []
+    
+    for t, rho in enumerate(rhoTList):
+        
+        tlist.append(t)
+        rhot.append(Qobj(rho.reshape((dim, dim))))
+    
+    return tlist, rhot
+
+
 def pFunc(T, w0):
 
     return np.exp(w0/(2*T))/(2*np.cosh(w0/(2*T)))
@@ -34,75 +49,79 @@ def Derivada(xlist, ylist):
 
 ######### MAIN #########
 
-g = 0
 w0 = 1
-Tf_qubit = 1.0 #1.1542306681364487
-Sr_inicial = 0.05
 
+Tf_qubit, Th, Tc = np.loadtxt('./DensityMatrices/temperature_qubit.txt', unpack=True, usecols=(1,2,3))
 
-cmod = np.loadtxt(f'./g-{g}/DensityMatrices/cmod.txt', unpack=True)
+gList = [0, 0.8]
+cList = ['min', 'max']
 
-cmod_extremes = [min(cmod), max(cmod)]
+tlist = np.arange(0, 30, 0.01)
 
-tlist = np.arange(0, 20, 0.01)
-timestep = np.arange(0, len(tlist), 1)
+for i, g in enumerate(gList):
+    
+    p_final = pFunc(Tf_qubit[i], w0)
+    
+    for c in cList:
+    
+        Sc1 = []
+        Sc2 = []
+    
+        tempo_index, rhof_q1 = Read_Density_Matrices(f'./DensityMatrices/rhof_q1_c{c}_g{g}.txt', 2)
+        tempo_index, rhof_q2 = Read_Density_Matrices(f'./DensityMatrices/rhof_q2_c{c}_g{g}.txt', 2)
+        
+        for t in tempo_index:
+        
+            p1 = rhof_q1[t].full()[0][0]
+            p2 = rhof_q2[t].full()[0][0]
+            
+            Sc1.append( Entropia_Relativa_Populacoes(p1, p_final) )
+            Sc2.append( Entropia_Relativa_Populacoes(p2, p_final) )
+        
+        
+        dtlist1, dSc1 = Derivada(tlist, Sc1)
+        dtlist2, dSc2 = Derivada(tlist, Sc2)
+        
+        
+        for j in range(len(dSc1)):
+            
+            dSc1[j] = - dSc1[j]
+            dSc2[j] = - dSc2[j]
+    
+        ## save data    
+    
+        fSc1 = open(f'./Thermodynamics/Sr_q1_c{c}_g{g}.txt', 'w')
+        fSc2 = open(f'./Thermodynamics/Sr_q2_c{c}_g{g}.txt', 'w')
+        fdSc1 = open(f'./Thermodynamics/dSr_q1_c{c}_g{g}.txt', 'w')
+        fdSc2 = open(f'./Thermodynamics/dSr_q2_c{c}_g{g}.txt', 'w')
+        
+        for t in range(len(tlist)):
+            
+            fSc1.write(f'{tlist[t]} {Sc1[t]}\n')
+            fSc2.write(f'{tlist[t]} {Sc2[t]}\n')
+            
+        for t in range(len(dtlist1)):
+            
+            fdSc1.write(f'{dtlist1[t]} {dSc1[t]}\n')
+            fdSc2.write(f'{dtlist2[t]} {dSc2[t]}\n')
+    
+        ## plot data
+    
+        plt.plot(tlist, Sc1, color='red', label='Qubit 1')
+        plt.plot(tlist, Sc2, color='blue', label='Qubit 2')
+        plt.ylabel('Relative Entropy')
+        plt.xlabel('Time')
+        plt.title(f'c{c} | g = {g}')
+        plt.legend()
+        plt.show()
+        
+        plt.plot(dtlist1, dSc1, color='red', label='Qubit 1')
+        plt.plot(dtlist2, dSc2, color='blue', label='Qubit 2')
+        plt.ylabel('Local Entropy Production Rate')
+        plt.xlabel('Time')
+        plt.title(f'c{c} | g = {g}')
+        plt.legend()
+        plt.show()
 
-for c in cmod_extremes:
-    
-    path = f'./g-{g}/DensityMatrices/'
-    
-    Sc1 = []
-    Sc2 = []
-    
-    for t in timestep:
-        
-        rhot1 = np.loadtxt(path + f'c_{c}/rhof_q1_t{t}.txt', unpack=True, dtype='complex')
-        rhot2 = np.loadtxt(path + f'c_{c}/rhof_q2_t{t}.txt', unpack=True, dtype='complex')
-        
-        p1 = rhot1[0][0].real
-        p2 = rhot2[0][0].real
-        
-        Sc1.append( Entropia_Relativa_Populacoes(p1, pFunc(Tf_qubit, w0)) )
-        Sc2.append( Entropia_Relativa_Populacoes(p2, pFunc(Tf_qubit, w0)) )
-        
-    dtlist1, dSc1 = Derivada(tlist, Sc1)
-    dtlist2, dSc2 = Derivada(tlist, Sc2)
     
     
-    for i in range(len(dSc1)):
-        
-        dSc1[i] = - dSc1[i]
-        dSc2[i] = - dSc2[i]
-    
-    
-    plt.plot(tlist, Sc1, label='Qubit 1')
-    plt.plot(tlist, Sc2, label='Qubit 2')
-    plt.ylabel('Relative Entropy')
-    plt.xlabel('Time')
-    plt.title(f'|c| = {c:.3f}')
-    plt.legend()
-    plt.show()
-    
-    plt.plot(dtlist1, dSc1, label='Qubit 1')
-    plt.plot(dtlist2, dSc2, label='Qubit 2')
-    plt.ylabel('Local Entropy Production Rate')
-    plt.xlabel('Time')
-    plt.title(f'|c| = {c:.3f}')
-    plt.legend()
-    plt.show()
-
-    
-    fSc1 = open(path + f'Sr_q1_c{c}.txt', 'w')
-    fSc2 = open(path + f'Sr_q2_c{c}.txt', 'w')
-    fdSc1 = open(path + f'dSr_q1_c{c}.txt', 'w')
-    fdSc2 = open(path + f'dSr_q2_c{c}.txt', 'w')
-    
-    for t in range(len(tlist)):
-        
-        fSc1.write(f'{tlist[t]} {Sc1[t]}\n')
-        fSc2.write(f'{tlist[t]} {Sc2[t]}\n')
-        
-    for t in range(len(dtlist1)):
-        
-        fdSc1.write(f'{dtlist1[t]} {dSc1[t]}\n')
-        fdSc2.write(f'{dtlist2[t]} {dSc2[t]}\n')

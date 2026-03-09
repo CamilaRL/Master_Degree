@@ -4,6 +4,21 @@ from qutip import *
 import os
 
 
+def Read_Density_Matrices(filename, dim):
+
+    rhoTList = np.loadtxt(filename, dtype='complex')
+
+    tlist = []
+    rhot = []
+    
+    for t, rho in enumerate(rhoTList):
+        
+        tlist.append(t)
+        rhot.append(Qobj(rho.reshape((dim, dim))))
+    
+    return tlist, rhot
+
+
 def Quantum_Fisher_Information(rho_list, temp_list, dimensao):
 
     
@@ -53,61 +68,43 @@ def Quantum_Fisher_Information(rho_list, temp_list, dimensao):
   
 ## parameters
 
-qubit = 'q1'
-rho_name = f'rhof_{qubit}_t'
-modo = 'Heating'
+qubit = 'q2'
+modo = 'Cooling'
 
 os.mkdir(f'./FisherInformation/{modo}')
 
-tempo_real = np.arange(0, 20, 0.01)
+tempo_real = np.arange(0, 30, 0.01)
 
 
 ## reading coherences
-cmod = np.loadtxt(f'./DensityMatrices/cmod.txt', unpack=True)
+gList = [0, 0.8]
 
 
-## reading time
-tempo_index = []
-
-for arquivo in os.listdir(f'./DensityMatrices/c_{cmod[0]}'):
-
-    if rho_name in arquivo:
-    
-        tempo_index.append(int(arquivo.replace(rho_name, '').replace('.txt', '')))
-
-tempo_index.sort()
-
-
-for c in cmod:
-
-    print(c)
-
-    rhot_list = []
+for g in gList:
 
     ## reading rho(t)
     
-    for t in tempo_index:
-
-        rhot = np.loadtxt(f'./DensityMatrices/c_{c}/{rho_name}{t}.txt', dtype='complex', unpack=True)
-    
-        rhot_list.append(Qobj(rhot))
+    tempo_index, rhof_q_min = Read_Density_Matrices(f'./DensityMatrices/rhof_{qubit}_cmin_g{g}.txt', 2)
+    tempo_index, rhof_q_max = Read_Density_Matrices(f'./DensityMatrices/rhof_{qubit}_cmax_g{g}.txt', 2)
 
 
     ## Compute QFI
 
-    tempo_QFI, QFI = Quantum_Fisher_Information(rhot_list, tempo_real, [[2],[2]])
-
+    tempo_QFI, QFI_min = Quantum_Fisher_Information(rhof_q_min, tempo_real, [[2],[2]])
+    tempo_QFI, QFI_max = Quantum_Fisher_Information(rhof_q_max, tempo_real, [[2],[2]])
 
     ## save QFI in file
 
-    f = open(f'./FisherInformation/{modo}/QFI_{qubit}_c{c}.txt', 'w')
+    fmin = open(f'./FisherInformation/{modo}/QFI_{qubit}_cmin_g{g}.txt', 'w')
+    fmax = open(f'./FisherInformation/{modo}/QFI_{qubit}_cmax_g{g}.txt', 'w')
 
     for t in range(len(tempo_QFI)):
 
-        f.write(f'{tempo_QFI[t]} {QFI[t]}\n')
+        fmin.write(f'{tempo_QFI[t]} {QFI_min[t]}\n')
+        fmax.write(f'{tempo_QFI[t]} {QFI_max[t]}\n')
         
-        
-    f.close()
+    fmin.close()
+    fmax.close()
 
 
 

@@ -13,14 +13,14 @@ def Integracao(ydata, xdata):
     return L
 
 
-def WriteOutput(tlist, velocity, position, completion, c, modo):
+def WriteOutput(tlist, velocity, position, completion, c, g, modo):
     
     
     path = f'./ThermalKinematics/{modo}/'
     
-    velocity_file = open(path + f'velocity_{c}.txt', 'w')
-    position_file = open(path + f'position_{c}.txt', 'w')
-    completion_file = open(path + f'completion_{c}.txt', 'w')
+    velocity_file = open(path + f'velocity_c{c}_g{g}.txt', 'w')
+    position_file = open(path + f'position_c{c}_g{g}.txt', 'w')
+    completion_file = open(path + f'completion_c{c}_g{g}.txt', 'w')
     
     for t in range(len(tlist)):
     
@@ -36,60 +36,54 @@ def WriteOutput(tlist, velocity, position, completion, c, modo):
 
 ### MAIN ###
 
-qubit = 'q1'
-modo = 'Heating'
+qubit = 'q2'
+modo = 'Cooling'
 
 os.mkdir(f'./ThermalKinematics/{modo}')
 
 
-## reading coherences
-cmod = np.loadtxt(f'./DensityMatrices/cmod.txt', unpack=True)
+gList = [0, 0.8]
 
-
-cmap = plt.get_cmap('rainbow')
-colors = iter(cmap(np.linspace(0.1, 1, len(cmod))))
+cList = ['min', 'max']
 
 fig = plt.figure(figsize=(12,5))
 
-for i, c in enumerate(cmod):
-    
-    print(i)
-    
-    curve_path = f'./FisherInformation/{modo}/QFI_{qubit}_c{c}.txt'
-    
-    tlist, QFI = np.loadtxt(curve_path, unpack=True)
-    
-    vlist = []
-    
-    for qfi in QFI:
-        
-        vlist.append(np.sqrt(qfi))
-    
-    cor = next(colors)
-    
-    Llist = Integracao(vlist, tlist)
-    
-    degree_completion = Llist/Llist[-1]
-    
-    plt.subplot(131)
-    plt.scatter(tlist, vlist, color=cor, s=1, label=f'|c| = {c}')
-    plt.xlabel('Time')
-    plt.ylabel('Velocity')
-    plt.xscale('log')
-    
-    plt.subplot(132)
-    plt.scatter(tlist, Llist, color=cor, s=1, label=f'|c| = {c}')
-    plt.xlabel('Time')
-    plt.ylabel('Position')
-    plt.xscale('log')
+for c in cList:
 
-    plt.subplot(133)
-    plt.plot(tlist, degree_completion, color=cor, label=f'|c| = {c}')
-    plt.xlabel('Time')
-    plt.ylabel('Degree of Completion')
-    plt.xscale('log')
+    for g in gList:
     
-    WriteOutput(tlist, vlist, Llist, degree_completion, c, modo)
+        tlist, QFI = np.loadtxt(f'./FisherInformation/{modo}/QFI_{qubit}_c{c}_g{g}.txt', unpack=True)
+    
+        vlist = []
+    
+        for qfi in QFI:
+        
+            vlist.append(np.sqrt(qfi))
+        
+        Llist = Integracao(vlist, tlist)
+        
+        degree_completion = Llist/Llist[-1]
+        
+        plt.subplot(131)
+        plt.plot(tlist, vlist, label=f'c{c} | g = {g}')
+        plt.xlabel('Time')
+        plt.ylabel('Velocity')
+        plt.xscale('log')
+        
+        plt.subplot(132)
+        plt.plot(tlist, Llist, label=f'c{c} | g = {g}')
+        plt.xlabel('Time')
+        plt.ylabel('Position')
+        plt.xscale('log')
+
+        plt.subplot(133)
+        plt.plot(tlist, degree_completion, label=f'c{c} | g = {g}')
+        plt.xlabel('Time')
+        plt.ylabel('Degree of Completion')
+        plt.xscale('log')
+        
+        WriteOutput(tlist, vlist, Llist, degree_completion, c, g, modo)
+
 
 plt.legend(loc='best', bbox_to_anchor=(1., 0.5, 0.5, 0.5))
 plt.suptitle(modo)

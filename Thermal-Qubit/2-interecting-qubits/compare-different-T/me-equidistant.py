@@ -86,7 +86,7 @@ def Coherences(w0, beta_1, beta_2):
     Z1 = 2*np.cosh(beta_1*w0/2)
     Z2 = 2*np.cosh(beta_2*w0/2)
 
-    alpha = np.exp(-w0*(beta_1 + beta_2)/2)/(Z1*Z2)
+    alpha = 1/(Z1*Z2)
     
     num = np.linspace(0, alpha, 3)
     
@@ -102,6 +102,36 @@ def Coherences(w0, beta_1, beta_2):
                 mod_list.append(a_abs)
     
     return alpha_list, mod_list
+
+
+def Collapse_Operators(beta_R, H_S, gamma):
+
+    ## collapse operators
+
+    L_operators = []
+
+    evals, evecs = H_S.eigenstates()
+
+    for n, valn in enumerate(evals):
+        for m, valm in enumerate(evals):
+            
+            dmn = valm.real - valn.real
+
+            if dmn > 1e-9:
+                 
+                f = Distribution('bose', beta_R, dmn)
+                    
+                C_emi = np.sqrt(gamma * (1 + f)) * (evecs[n] * evecs[m].dag())
+                    
+                L_operators.append(C_emi)
+                
+                if f > 0:
+                    C_abs = np.sqrt(gamma * f) * (evecs[m] * evecs[n].dag())
+
+                    L_operators.append(C_abs)
+    
+    return L_operators
+
 
 
 def Master_Equation(w0, beta_1, beta_2, tlist, L_operators, alpha):
@@ -141,7 +171,7 @@ def Master_Equation(w0, beta_1, beta_2, tlist, L_operators, alpha):
 
     ## solve master equation
 
-    dataME = mesolve(H_S, rho0, tlist, L_operators, [])
+    dataME = mesolve(H_S, rho0, tlist, c_ops=L_operators, e_ops=[])
 
     rhof = dataME.states
     
@@ -156,38 +186,35 @@ def Master_Equation(w0, beta_1, beta_2, tlist, L_operators, alpha):
     return rhof, rhof_q1, rhof_q2
 
 
-def Write_Density_Matrices(rhof, rhof_q1, rhof_q2, path):
+def Write_Density_Matrices(rhof, rhof_q1, rhof_q2, c, g):
 
     ## write rho in output filess
 
-    for t, rhot in enumerate(rhof):
+    file_rhof = open(f'./DensityMatrices/rhof_c{c}_g{g}.txt', 'w')
+    file_rhof_q1 = open(f'./DensityMatrices/rhof_q1_c{c}_g{g}.txt', 'w')
+    file_rhof_q2 = open(f'./DensityMatrices/rhof_q2_c{c}_g{g}.txt', 'w')
+
+    for t in range(len(rhof)):
         
-        rhot_q1 = rhof_q1[t]
-        rhot_q2 = rhof_q2[t]
-
-        f = open(f'./{path}/rhof_t{t}.txt', 'w')
-        f1 = open(f'./{path}/rhof_q1_t{t}.txt', 'w')
-        f2 = open(f'./{path}/rhof_q2_t{t}.txt', 'w')
-
         for i in range(4):
             for j in range(4):
-            
-                f.write(f'{rhot.full()[i][j]} ')
+        
+                file_rhof.write(f'{rhof[t].full()[i][j]} ')
                 
-            f.write('\n')
+        file_rhof.write('\n')
         
         for i in range(2):
             for j in range(2):
-            
-                f1.write(f'{rhot_q1.full()[i][j]} ')
-                f2.write(f'{rhot_q2.full()[i][j]} ')
-
-            f1.write('\n')
-            f2.write('\n')
+        
+                file_rhof_q1.write(f'{rhof_q1[t].full()[i][j]} ')
+                file_rhof_q2.write(f'{rhof_q2[t].full()[i][j]} ')
                 
-    f.close()
-    f1.close()
-    f2.close()
+        file_rhof_q1.write('\n')
+        file_rhof_q2.write('\n')
+        
+    file_rhof.close()
+    file_rhof_q1.close()
+    file_rhof_q2.close()
 
     
 
@@ -198,14 +225,12 @@ def Write_Density_Matrices(rhof, rhof_q1, rhof_q2, path):
 
 w0 = 1
 gamma = 0.1
-g = 0 #0.8
+g = 0.8
 
-tlist = np.arange(0, 20, 0.01)
+tlist = np.arange(0, 30, 0.01)
 
 Tf_banho = 1.0
-Tf_qubit = 1.0 #1542306681364478
-
-p_final = pFunc(Tf_qubit, w0)
+beta_R = 1/Tf_banho
 
 Sr_inicial = 0.05
 
@@ -220,6 +245,21 @@ H_int = tensor(sigmap(), sigmam()) + tensor(sigmam(), sigmap())
 
 H_S = tensor(H_q1, qeye(2)) + tensor(qeye(2), H_q2) + g*H_int
 
+
+## qubits final temperature
+
+L_operators = Collapse_Operators(beta_R, H_S, gamma)
+
+rho_ss = steadystate(H_S, L_operators)
+
+qubit = rho_ss.ptrace(0)
+
+p0 = qubit.full()[0][0].real
+p1 = qubit.full()[1][1].real
+
+Tf_qubit = (w0/np.log(p0/p1))
+
+p_final = pFunc(Tf_qubit, w0)
 
 ## temperaturas equidistantes
 
@@ -250,52 +290,28 @@ plt.show()
 
 beta_c = 1/Tc
 beta_h = 1/Th
-beta_R = 1/Tf_banho
 
-
-## collapse operators
-
-L_operators = []
-
-evals, evecs = H_S.eigenstates()
-
-for n, valn in enumerate(evals):
-    for m, valm in enumerate(evals):
-        
-        dmn = valm.real - valn.real
-
-        if dmn > 1e-9:
-             
-            f = Distribution('bose', beta_R, dmn)
-                
-            C_emi = np.sqrt(gamma * (1 + f)) * (evecs[n] * evecs[m].dag())
-                
-            L_operators.append(C_emi)
-            
-            if f > 0:
-                C_abs = np.sqrt(gamma * f) * (evecs[m] * evecs[n].dag())
-
-                L_operators.append(C_abs)
-
+fT = open('./DensityMatrices/temperature_qubit.txt', 'a')
+fT.write(f'{g} {Tf_qubit} {Th} {Tc}\n')
+fT.close()
 
 ## master equation solver + write output file
-
-os.mkdir(f'./DensityMatrices')
 
 
 ## Heating qubit 1 and Cooling qubit 2
 
-f_alpha = open(f'./DensityMatrices/cmod.txt', 'w')
-
 alpha_list, mod_list = Coherences(w0, beta_c, beta_h)
 
-print(mod_list)
+alpha_min_max = [min(mod_list), max(mod_list)]
+alphaName = ['min', 'max']
 
-for a, alpha in enumerate(alpha_list):
+falpha = open('./DensityMatrices/coherences.txt', 'a')
+falpha.write(f'{g} {alpha_min_max[0]} {alpha_min_max[1]}\n')
+falpha.close()
+
+for n, alpha in enumerate(alpha_min_max):
     
-    f_alpha.write(f'{mod_list[a]}\n')
-    
-    print('Heating 1 and Cooling 2', mod_list[a])
+    print('Heating 1 and Cooling 2', alpha)
 
     ## master equation solver
 
@@ -303,10 +319,10 @@ for a, alpha in enumerate(alpha_list):
 
     ## write output file
     
-    path = f'./DensityMatrices/c_{mod_list[a]}'
+    Write_Density_Matrices(rhof, rhof_q1, rhof_q2, alphaName[n], g)
     
-    os.mkdir(path)
-    
-    Write_Density_Matrices(rhof, rhof_q1, rhof_q2, path)
 
-f_alpha.close()
+    
+    
+    
+    
