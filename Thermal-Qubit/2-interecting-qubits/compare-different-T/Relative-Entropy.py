@@ -53,7 +53,7 @@ w0 = 1
 
 Tf_qubit, Th, Tc = np.loadtxt('./DensityMatrices/temperature_qubit.txt', unpack=True, usecols=(1,2,3))
 
-gList = [0, 0.8]
+gList = [0.0, 0.8]
 cList = ['min', 'max']
 
 tlist = np.arange(0, 30, 0.01)
@@ -72,8 +72,8 @@ for i, g in enumerate(gList):
         
         for t in tempo_index:
         
-            p1 = rhof_q1[t].full()[0][0]
-            p2 = rhof_q2[t].full()[0][0]
+            p1 = rhof_q1[t].full()[0][0].real
+            p2 = rhof_q2[t].full()[0][0].real
             
             Sc1.append( Entropia_Relativa_Populacoes(p1, p_final) )
             Sc2.append( Entropia_Relativa_Populacoes(p2, p_final) )
