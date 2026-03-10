@@ -1,7 +1,21 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from qutip import *
-import os
+
+
+def Read_Density_Matrices(filename, dim):
+
+    rhoTList = np.loadtxt(filename, dtype='complex')
+
+    tlist = []
+    rhot = []
+    
+    for t, rho in enumerate(rhoTList):
+        
+        tlist.append(t)
+        rhot.append(Qobj(rho.reshape((dim, dim))))
+    
+    return tlist, rhot
 
 
 def vonNeumann_Entropy(rho):
@@ -13,9 +27,10 @@ def vonNeumann_Entropy(rho):
         St = 0
         
         evals = Qobj(rhot).eigenenergies()
-
+        
         for ev in evals:
-            St = St - ev * np.log(ev)
+            if ev > 0:
+                St = St - ev * np.log(ev)
         
         S.append(St)
 
@@ -39,58 +54,29 @@ def MutualInformation(rho1, rho2, rho12):
 
 ## parameters
 
-rho1_name = f'rhof_q1_t'
-modo1 = 'Heating'
 
-rho2_name = f'rhof_q2_t'
-modo2 = 'Cooling'
+tempo_real = np.arange(0, 30, 0.01)
 
+cnameList = ['min', 'max']
 
-tempo_real = np.arange(0, 20, 0.01)
+gList, cmin, cmax = np.loadtxt(f'./DensityMatrices/coherences.txt', unpack=True)
 
+cList = [cmin, cmax]
 
-## reading coherences
-cmod = np.loadtxt(f'./DensityMatrices/cmod.txt', unpack=True)
-cmod.sort()
+for i, c in enumerate(cnameList):
+    for j, g in enumerate(gList):
 
-
-## reading time
-tempo_index = []
-
-for arquivo in os.listdir(f'./DensityMatrices/c_{cmod[0]}'):
-
-    if rho1_name in arquivo:
-    
-        tempo_index.append(int(arquivo.replace(rho1_name, '').replace('.txt', '')))
-
-tempo_index.sort()
-
-
-for c in cmod:
-
-    print(c)
-
-    rho_q1_t_list = []
-    rho_q2_t_list = []
-    rho_total_t_list = []
-
-    ## reading rho(t)
-    
-    for t in tempo_index:
-
-        rho_q1_t = np.loadtxt(f'./DensityMatrices/c_{c}/{rho1_name}{t}.txt', dtype='complex', unpack=True)
-        rho_q2_t = np.loadtxt(f'./DensityMatrices/c_{c}/{rho2_name}{t}.txt', dtype='complex', unpack=True)
-        rho_total_t = np.loadtxt(f'./DensityMatrices/c_{c}/rhof_t{t}.txt', dtype='complex', unpack=True)
-    
-        rho_q1_t_list.append(Qobj(rho_q1_t))
-        rho_q2_t_list.append(Qobj(rho_q2_t))
-        rho_total_t_list.append(Qobj(rho_total_t))
+        ## reading rho(t)
         
-    
-    MI = MutualInformation(rho_q1_t_list, rho_q2_t_list, rho_total_t_list)
+        tempo_index, rho_q1_t = Read_Density_Matrices(f'./DensityMatrices/rhof_q1_c{c}_g{g}.txt', 2)
+        tempo_index, rho_q2_t = Read_Density_Matrices(f'./DensityMatrices/rhof_q2_c{c}_g{g}.txt', 2)
+        tempo_index, rho_total_t = Read_Density_Matrices(f'./DensityMatrices/rhof_c{c}_g{g}.txt', 4)
+        
+        
+        MI = MutualInformation(rho_q1_t, rho_q2_t, rho_total_t)
 
 
-    plt.plot(tempo_real, MI, label=f'|c| = {c:.3f}')
+        plt.plot(tempo_real, MI, label=f'|c| = {cList[i][j]:.3f} \n g = {g}')
 
     
 plt.xlabel('Time')

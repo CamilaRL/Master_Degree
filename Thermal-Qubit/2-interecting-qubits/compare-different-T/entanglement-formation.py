@@ -5,6 +5,20 @@ import os
 import math
 
 
+def Read_Density_Matrices(filename, dim):
+
+    rhoTList = np.loadtxt(filename, dtype='complex')
+
+    tlist = []
+    rhot = []
+    
+    for t, rho in enumerate(rhoTList):
+        
+        tlist.append(t)
+        rhot.append(Qobj(rho.reshape((dim, dim))))
+    
+    return tlist, rhot
+
 
 def EoF(rho):
 
@@ -12,7 +26,7 @@ def EoF(rho):
 
     for t in range(len(rho)):
         
-        C = concurrence(rho[t])
+        C = concurrence(Qobj(rho[t], dims=[[2, 2], [2, 2]]))
         
         x = 0.5*(1 + np.sqrt(1 - C**2))
 
@@ -30,52 +44,23 @@ def EoF(rho):
 
 ## parameters
 
-rho1_name = f'rhof_q1_t'
-modo1 = 'Heating'
+tempo_real = np.arange(0, 30, 0.01)
 
-rho2_name = f'rhof_q2_t'
-modo2 = 'Cooling'
+cnameList = ['min', 'max']
 
+gList, cmin, cmax = np.loadtxt(f'./DensityMatrices/coherences.txt', unpack=True)
 
-tempo_real = np.arange(0, 20, 0.01)
+cList = [cmin, cmax]
 
-
-## reading coherences
-cmod = np.loadtxt(f'./DensityMatrices/cmod.txt', unpack=True)
-cmod.sort()
-
-
-## reading time
-tempo_index = []
-
-for arquivo in os.listdir(f'./DensityMatrices/c_{cmod[0]}'):
-
-    if rho1_name in arquivo:
+for i, c in enumerate(cnameList):
+    for j, g in enumerate(gList):
     
-        tempo_index.append(int(arquivo.replace(rho1_name, '').replace('.txt', '')))
+        ## reading rho(t)
+        tempo_index, rho_total_t = Read_Density_Matrices(f'./DensityMatrices/rhof_c{c}_g{g}.txt', 4)
 
-tempo_index.sort()
+        E = EoF(rho_total_t)
 
-
-for c in cmod:
-
-    print(c)
-
-    rho_total_t_list = []
-
-    ## reading rho(t)
-    
-    for t in tempo_index:
-
-        rho_total_t = np.loadtxt(f'./DensityMatrices/c_{c}/rhof_t{t}.txt', dtype='complex', unpack=True)
-    
-        rho_total_t_list.append(Qobj(rho_total_t, dims=[[2, 2], [2, 2]]))
-        
-    
-    E = EoF(rho_total_t_list)
-
-
-    plt.plot(tempo_real, E, label=f'|c| = {c:.3f}')
+        plt.plot(tempo_real, E, label=f'|c| = {cList[i][j]:.3f} \n g = {g}')
 
     
 plt.xlabel('Time')
