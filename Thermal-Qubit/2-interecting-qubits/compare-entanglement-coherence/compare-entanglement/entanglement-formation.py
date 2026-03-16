@@ -24,10 +24,29 @@ def EoF(rho):
 
     E = []
 
-    for t in range(len(rho)):
+    for t in [0]:#range(len(rho)):
+        rhot = rho[t]
         
-        C = concurrence(Qobj(rho[t], dims=[[2, 2], [2, 2]]))
+        lambda1 = abs(rhot[2][1]) - np.sqrt(rhot[0][0]*rhot[3][3])
+        lambda2 = abs(rhot[3][0]) - rhot[1][1]
+        print(lambda1, lambda2)
+        '''rhot = Qobj(rho[t], dims=[[2, 2], [2, 2]])
+        
+        sysy = tensor(sigmay(), sigmay())
 
+        rho_tilde = (rhot * sysy) * (rhot.conj() * sysy)
+
+        evals = rho_tilde.eigenenergies()
+        print(evals)
+        # abs to avoid problems with sqrt for very small negative numbers
+        evals = abs(np.sort(np.real(evals)))
+        print(evals)
+        lsum = np.sqrt(evals[3]) - np.sqrt(evals[2]) - np.sqrt(evals[1]) - np.sqrt(evals[0])
+
+        print(max(0, lsum))
+        
+        #C = concurrence(rhot)
+        #print(C)
         x = 0.5*(1 + np.sqrt(1 - C**2))
 
         if x == 0 or x == 1:
@@ -38,7 +57,7 @@ def EoF(rho):
         
         E.append(h)
         
-    return E
+    return E'''
         
     
 
@@ -60,7 +79,7 @@ for i, c in enumerate(cnameList):
 
         E = EoF(rho_total_t)
 
-        plt.plot(tempo_real, E, label=f'|c| = {cList[i][j]:.3f} \n g = {g}')
+        '''plt.plot(tempo_real, E, label=f'|c| = {cList[i][j]:.3f} \n g = {g}')
 
     
 plt.xlabel('Time')
@@ -68,4 +87,4 @@ plt.ylabel('Entanglement of Formation')
 plt.xscale('log')
 plt.legend()
 plt.show()
-
+'''
