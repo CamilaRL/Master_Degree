@@ -134,7 +134,7 @@ plt.show()
 
 ### Completion
 
-plt.figure(figsize=(10,5))
+'''plt.figure(figsize=(10,5))
 
 for i in range(len(muList)):
     
@@ -162,13 +162,13 @@ plt.legend(fontsize=12)
 plt.xlim(left=25, right=30)
 
 plt.tight_layout()
-plt.show()
+plt.show()'''
 
-plt.figure(figsize=(10,8))
+plt.figure(figsize=(15,5))
 
 for i in range(len(muList)):
     
-    num = 221 + i
+    num = 141 + i
     
     plt.subplot(num)
     plt.plot(tlist, completion_list[i][0], color='red', linestyle=symbols[i], label='Heating')

@@ -61,7 +61,7 @@ for k, mu in enumerate(muList):
 ### Wigner Fisher Information
 
 ##### Heating
-
+'''
 plt.figure(figsize=(10,8))
 
 for i in range(len(muList)):
@@ -161,17 +161,17 @@ for i in range(len(muList)):
     
 plt.suptitle('Cooling', fontsize=14)
 plt.tight_layout()
-plt.show()
+plt.show()'''
 
 ### Entropy Production
 
 ##### Heating
 
-plt.figure(figsize=(10,8))
+plt.figure(figsize=(15,5))
 
 for i in range(len(muList)):
     
-    num = 221 + i
+    num = 141 + i
     
     plt.subplot(num)
     plt.plot(tlist, Sprod_list[i][0], color='red', linestyle=symbols[0], label='Total')
@@ -192,11 +192,11 @@ plt.show()
 
 ##### Cooling
 
-plt.figure(figsize=(10,8))
+plt.figure(figsize=(15,5))
 
 for i in range(len(muList)):
     
-    num = 221 + i
+    num = 141 + i
     
     plt.subplot(num)
     plt.plot(tlist, Sprod_list[i][1], color='blue', linestyle=symbols[0], label='Total')

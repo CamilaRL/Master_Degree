@@ -36,7 +36,7 @@ def Wigner_Fisher_Info(w, beta_i, beta_f, gamma, t):
 
 def Velocity(Iw):
 
-    return np.sqrt(Iw)
+    return 0.5 * np.sqrt(Iw)
     
 
 def Distance(w, beta_i, beta_f, gamma, t):
@@ -45,7 +45,7 @@ def Distance(w, beta_i, beta_f, gamma, t):
     
     ff = Distribution('bose', beta_f, w)
 
-    L = np.sqrt(2) * abs(np.log(((fi - ff) * np.exp(-gamma*t) + ff) / fi))
+    L = abs(np.log(((fi - ff) * np.exp(-gamma*t) + ff) / fi))
     
     return L
     
@@ -169,6 +169,7 @@ beta_list = np.arange(0.1, 5, 0.01)
 
 beta_hot, Thot, Khot, beta_cold, Tcold, Kcold = EquidistantInitial(Kinit, beta_eq, w, gamma, beta_list)
 
+
 tlist = np.arange(0, 80, 0.1)
 
 
@@ -239,6 +240,7 @@ plt.plot(tlist, completion_heating, color='red', label='Heating')
 plt.plot(tlist, completion_cooling, color='blue', label='Cooling')
 plt.ylabel('Degree of Completion', fontsize=12)
 plt.xlabel('Time', fontsize=12)
+plt.xscale('log')
 plt.legend(fontsize=12)
 plt.show()
 
