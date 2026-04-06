@@ -153,7 +153,7 @@ def WriteOutput(mu, processo, tlist, Iw_p, Iw_e, Kevol_p, Kevol_e, Sprod_p, Spro
 
 w = 1
 gamma = 0.1
-mu = 0.5
+mu = 2
 
 Kinit = 1
 
