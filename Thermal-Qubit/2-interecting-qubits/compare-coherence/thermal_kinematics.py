@@ -36,8 +36,8 @@ def WriteOutput(tlist, velocity, position, completion, c, g, modo):
 
 ### MAIN ###
 
-qubit = 'q1'
-modo = 'Heating'
+qubit = 'q2'
+modo = 'Cooling'
 
 os.mkdir(f'./ThermalKinematics/{modo}')
 

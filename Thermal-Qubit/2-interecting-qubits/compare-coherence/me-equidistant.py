@@ -88,20 +88,7 @@ def Coherences(w0, beta_1, beta_2):
 
     alpha = 1/(Z1*Z2)
     
-    num = np.linspace(0, alpha, 3)
-    
-    for i in num:
-        for j in num:
-        
-            a = complex(i,j)
-            a_abs = abs(a)
-            
-            if (a_abs <= alpha) and (a_abs not in mod_list):
-            
-                alpha_list.append(a)
-                mod_list.append(a_abs)
-    
-    return alpha_list, mod_list
+    return alpha
 
 
 def Collapse_Operators(beta_R, H_S, gamma):
@@ -300,9 +287,9 @@ fT.close()
 
 ## Heating qubit 1 and Cooling qubit 2
 
-alpha_list, mod_list = Coherences(w0, beta_c, beta_h)
+alpha = Coherences(w0, beta_c, beta_h)
 
-alpha_min_max = [min(mod_list), max(mod_list)]
+alpha_min_max = [0, alpha]
 alphaName = ['min', 'max']
 
 falpha = open('./DensityMatrices/coherences.txt', 'a')

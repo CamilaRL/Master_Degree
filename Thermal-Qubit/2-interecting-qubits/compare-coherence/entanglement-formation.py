@@ -48,6 +48,10 @@ tempo_real = np.arange(0, 30, 0.01)
 
 cnameList = ['min', 'max']
 
+colors_coherence = ['teal', 'purple']
+
+lines_coupling = ['--', '-']
+
 gList, cmin, cmax = np.loadtxt(f'./DensityMatrices/coherences.txt', unpack=True)
 
 cList = [cmin, cmax]
@@ -60,7 +64,7 @@ for i, c in enumerate(cnameList):
 
         E = EoF(rho_total_t)
 
-        plt.plot(tempo_real, E, label=f'|c| = {cList[i][j]:.3f} \n g = {g}')
+        plt.plot(tempo_real, E, color=colors_coherence[i], linestyle=lines_coupling[j], label=f'|c| = {cList[i][j]:.3f} \n g = {g}')
 
     
 plt.xlabel('Time')

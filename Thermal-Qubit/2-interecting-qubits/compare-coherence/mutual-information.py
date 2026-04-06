@@ -59,13 +59,17 @@ tempo_real = np.arange(0, 30, 0.01)
 
 cnameList = ['min', 'max']
 
+colors_coherence = ['teal', 'purple']
+
+lines_coupling = ['--', '-']
+
 gList, cmin, cmax = np.loadtxt(f'./DensityMatrices/coherences.txt', unpack=True)
 
 cList = [cmin, cmax]
 
 for i, c in enumerate(cnameList):
     for j, g in enumerate(gList):
-
+        
         ## reading rho(t)
         
         tempo_index, rho_q1_t = Read_Density_Matrices(f'./DensityMatrices/rhof_q1_c{c}_g{g}.txt', 2)
@@ -76,7 +80,7 @@ for i, c in enumerate(cnameList):
         MI = MutualInformation(rho_q1_t, rho_q2_t, rho_total_t)
 
 
-        plt.plot(tempo_real, MI, label=f'|c| = {cList[i][j]:.3f} \n g = {g}')
+        plt.plot(tempo_real, MI, color=colors_coherence[i], linestyle=lines_coupling[j], label=f'|c| = {cList[i][j]:.3f} \n g = {g}')
 
     
 plt.xlabel('Time')
