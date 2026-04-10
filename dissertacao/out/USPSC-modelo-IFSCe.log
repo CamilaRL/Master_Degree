@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.1)  2 APR 2026 15:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.1)  10 APR 2026 11:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/camilaraupp/Documents/dissertacao/USPSC-modelo-IFSCe.tex
-(c:/Users/camilaraupp/Documents/dissertacao/USPSC-modelo-IFSCe.tex
+**c:/Users/camilaraupp/Documents/GitHub/Master_Degree/dissertacao/USPSC-modelo-IFSCe.tex
+(c:/Users/camilaraupp/Documents/GitHub/Master_Degree/dissertacao/USPSC-modelo-IFSCe.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
 (USPSC-classe/USPSC.cls
@@ -1385,7 +1385,22 @@ Package: ABNT6023-2013
 
 LaTeX Warning: \include should only be used after \begin{document} on input line 166.
 
-(USPSC-pre-textual-IFSC.tex)
+(USPSC-pre-textual-IFSC.tex
+
+USPSC-pre-textual-IFSC.tex:51: LaTeX Error: Command \coorientadorname already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.51 \newcommand{\coorientadorname}{Coorientador:}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+)
 Package hyperref Info: Option `colorlinks' set `true' on input line 195.
 \USPSC-modelo-IFSCe@idxfile=\write6
 \openout6 = `USPSC-modelo-IFSCe.idx'.
@@ -1459,10 +1474,7 @@ Package chemmacros Info: Using float defining method `float'.
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 216.
  (C:\Users\camilaraupp\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-modelo-IFSCe.aux
-Package babel Info: 'brazil' activates 'portuges' shorthands.
-(babel)             Reported on input line 35.
- (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-Errata.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-Dedicatoria.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-Agradecimentos.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-Epigrafe.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-Abstract.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-Resumo.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-AbreviaturasSiglas.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-Simbolos.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-Textual/USPSC-Cap1-Introducao.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-Textual/USPSC-Cap2-Desenvolvimento.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-Textual/USPSC-Cap3-Conclusao.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PosTextual/USPSC-Apendices.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PosTextual/USPSC-Anexos.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-IndicesRemissivos.aux))
+) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-modelo-IFSCe.aux)
 \openout1 = `USPSC-modelo-IFSCe.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 216.
@@ -1503,6 +1515,8 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package hyperref Info: Link coloring ON on input line 216.
+Package babel Info: 'brazil' activates 'portuges' shorthands.
+(babel)             Reported on input line 216.
 LaTeX Info: Redefining \degres on input line 216.
 \myptabbox=\box158
 \myptabboxwidth=\skip287
@@ -1544,40 +1558,40 @@ Package chemmacros Warning: You haven't loaded any package for upright Greek
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 242.
  (C:\Users\camilaraupp\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 242.
- (C:\Users\camilaraupp\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
-File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 242.
- (C:\Users\camilaraupp\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
-File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 242.
- (C:\Users\camilaraupp\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
-File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 242.
- (C:\Users\camilaraupp\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
-File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <17.28> on input line 242.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 242.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 242.
- [1
+) [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
 
 {C:/Users/camilaraupp/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}] [2
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
-[]\T1/lmr/m/n/12 Advisor: Profa. Dra. Elisa Gon�alves
+Underfull \hbox (badness 3657) in paragraph at lines 258--258
+[]\T1/lmr/m/n/12 Dissertation presented to the Graduate
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 258--258
+[]\T1/lmr/m/n/12 Concentration area: Theoretical and
+ []
+
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 258.
+(C:\Users\camilaraupp\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 258.
+ (C:\Users\camilaraupp\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 258.
+ (C:\Users\camilaraupp\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 258.
+ (C:\Users\camilaraupp\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 258.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 258.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1629,20 +1643,26 @@ Package pdftex.def Info: USPSC-TA-PreTextual/USPSC-fichacatalografica.pdf , page
 \openout2 = `USPSC-TA-PreTextual/USPSC-Errata.aux'.
 
  (USPSC-TA-PreTextual/USPSC-Errata.tex
+
+LaTeX Warning: Citation `nbr14724' on page 3 undefined on input line 4.
+
+
+LaTeX Warning: Reference `LastPage' on page 3 undefined on input line 11.
+
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 25.
- [3
+[3
 
 
 ] [4
 
 ])
-<USPSC-TA-PreTextual/USPSC-folhadeaprovacao.pdf, id=54, 597.55246pt x 845.07718pt>
+<USPSC-TA-PreTextual/USPSC-folhadeaprovacao.pdf, id=49, 597.55246pt x 845.07718pt>
 File: USPSC-TA-PreTextual/USPSC-folhadeaprovacao.pdf Graphic file (type pdf)
 <use USPSC-TA-PreTextual/USPSC-folhadeaprovacao.pdf>
 Package pdftex.def Info: USPSC-TA-PreTextual/USPSC-folhadeaprovacao.pdf  used on input line 293.
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
-<USPSC-TA-PreTextual/USPSC-folhadeaprovacao.pdf, id=56, page=1, 597.55246pt x 845.07718pt>
+<USPSC-TA-PreTextual/USPSC-folhadeaprovacao.pdf, id=51, page=1, 597.55246pt x 845.07718pt>
 File: USPSC-TA-PreTextual/USPSC-folhadeaprovacao.pdf Graphic file (type pdf)
 <use USPSC-TA-PreTextual/USPSC-folhadeaprovacao.pdf, page 1>
 Package pdftex.def Info: USPSC-TA-PreTextual/USPSC-folhadeaprovacao.pdf , page1 used on input line 293.
@@ -1668,12 +1688,12 @@ Package pdftex.def Info: USPSC-TA-PreTextual/USPSC-folhadeaprovacao.pdf , page1 
 
 
  <./USPSC-TA-PreTextual/USPSC-folhadeaprovacao.pdf>]
-<USPSC-TA-PreTextual/USPSC-PaginaEmBranco.pdf, id=68, 597.55246pt x 845.07718pt>
+<USPSC-TA-PreTextual/USPSC-PaginaEmBranco.pdf, id=63, 597.55246pt x 845.07718pt>
 File: USPSC-TA-PreTextual/USPSC-PaginaEmBranco.pdf Graphic file (type pdf)
 <use USPSC-TA-PreTextual/USPSC-PaginaEmBranco.pdf>
 Package pdftex.def Info: USPSC-TA-PreTextual/USPSC-PaginaEmBranco.pdf  used on input line 298.
 (pdftex.def)             Requested size: 597.551pt x 845.07512pt.
-<USPSC-TA-PreTextual/USPSC-PaginaEmBranco.pdf, id=70, page=1, 597.55246pt x 845.07718pt>
+<USPSC-TA-PreTextual/USPSC-PaginaEmBranco.pdf, id=65, page=1, 597.55246pt x 845.07718pt>
 File: USPSC-TA-PreTextual/USPSC-PaginaEmBranco.pdf Graphic file (type pdf)
 <use USPSC-TA-PreTextual/USPSC-PaginaEmBranco.pdf, page 1>
 Package pdftex.def Info: USPSC-TA-PreTextual/USPSC-PaginaEmBranco.pdf , page1 used on input line 298.
@@ -1725,7 +1745,11 @@ Package pdftex.def Info: USPSC-TA-PreTextual/USPSC-PaginaEmBranco.pdf , page1 us
 ])
 \openout2 = `USPSC-TA-PreTextual/USPSC-Abstract.aux'.
 
- (USPSC-TA-PreTextual/USPSC-Abstract.tex [13
+ (USPSC-TA-PreTextual/USPSC-Abstract.tex
+
+LaTeX Warning: Reference `LastPage' on page 13 undefined on input line 7.
+
+[13
 
 
 
@@ -1734,20 +1758,31 @@ Package pdftex.def Info: USPSC-TA-PreTextual/USPSC-PaginaEmBranco.pdf , page1 us
 ])
 \openout2 = `USPSC-TA-PreTextual/USPSC-Resumo.aux'.
 
- (USPSC-TA-PreTextual/USPSC-Resumo.tex [15
+ (USPSC-TA-PreTextual/USPSC-Resumo.tex
+
+LaTeX Warning: Reference `LastPage' on page 15 undefined on input line 7.
+
+
+LaTeX Warning: Citation `nbr6028' on page 15 undefined on input line 15.
+
+[15
 
 
 
 ] [16
 
-]) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-modelo-IFSCe.lof) [17
+])
+No file USPSC-modelo-IFSCe.lof.
+[17
 
 
 ] [18
 
-] (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-modelo-IFSCe.lot) [19] [20
+]
+No file USPSC-modelo-IFSCe.lot.
+[19] [20
 
-] (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-modelo-IFSCe.loq) [21] [22
+] (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-modelo-IFSCe.loq) [21] [22
 
 ]
 \openout2 = `USPSC-TA-PreTextual/USPSC-AbreviaturasSiglas.aux'.
@@ -1767,94 +1802,93 @@ Package pdftex.def Info: USPSC-TA-PreTextual/USPSC-PaginaEmBranco.pdf , page1 us
 
 {C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}] [26
 
-]) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-modelo-IFSCe.toc
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 38.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 38.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [27
+])
+No file USPSC-modelo-IFSCe.toc.
+[27
 
 
-]) [28]
+] [28
+
+]
 \openout2 = `USPSC-TA-Textual/USPSC-Cap1-Introducao.aux'.
 
  (USPSC-TA-Textual/USPSC-Cap1-Introducao.tex
 Chapter 1.
-) [29
 
+LaTeX Warning: Citation `aguia2020' on page 29 undefined on input line 10.
+
+) [29
 
 
 ]
 \openout2 = `USPSC-TA-Textual/USPSC-Cap2-Desenvolvimento.aux'.
 
- (USPSC-TA-Textual/USPSC-Cap2-Desenvolvimento.tex [30
 
-
-
-
-]
-Chapter 2.
-[31
-pdfTeX warning (ext4): destination with the same identifier (name{table.2.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.50 \newpage
-             ]
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
-[]|\T1/lmr/bx/n/12 Sistemas
- []
-
-
-Overfull \hbox (8.01372pt too wide) in paragraph at lines 60--60
-[]|\T1/lmr/m/n/12 Epistemologia| 
- []
-
-
-Underfull \hbox (badness 2205) in paragraph at lines 63--63
-[]|\T1/lmr/m/n/12 N�vel do ob-
- []
-
-[32
-pdfTeX warning (ext4): destination with the same identifier (name{quadro.2.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.126 \subsection
-                 {Divisões do documento: subseção}\label{sec-divisoes-sub...
-pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.126 \subsection
-                 {Divisões do documento: subseção}\label{sec-divisoes-sub...]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 133.
- (C:\Users\camilaraupp\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [33]) [34]
+No file USPSC-TA-Textual/USPSC-Cap2-Desenvolvimento.tex.
 \openout2 = `USPSC-TA-Textual/USPSC-Cap3-Conclusao.aux'.
 
- (USPSC-TA-Textual/USPSC-Cap3-Conclusao.tex
-Chapter 3.
-) [35
+No file USPSC-TA-Textual/USPSC-Cap3-Conclusao.tex.
+(c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-modelo-IFSCe.bbl)
+\openout2 = `USPSC-TA-PosTextual/USPSC-Apendices.aux'.
+
+ (USPSC-TA-PosTextual/USPSC-Apendices.tex [30
 
 
 
 
-] (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-modelo-IFSCe.bbl [36
+
+
+
 
 
 
 ]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\uppercase' on input line 3.
+(hyperref)                removing `\uppercase' on input line 9.
 
-bibitemlist
-) [37]
-\openout2 = `USPSC-TA-PosTextual/USPSC-Apendices.aux'.
+[31
 
- (USPSC-TA-PosTextual/USPSC-Apendices.tex [38
+] [32]
+APPENDIX A.
+
+LaTeX Warning: Citation `nbr14724' on page 33 undefined on input line 10.
+
+
+LaTeX Warning: Citation `aguia2020' on page 33 undefined on input line 12.
+
+[33
+
+] [34
+
+]
+APPENDIX B.
+
+LaTeX Warning: Reference `tab-centralizada' on page 35 undefined on input line 15.
+
+[35
+pdfTeX warning (ext4): destination with the same identifier (name{table.B.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.36 \chapter
+             {Exemplo de tabela com grade}] [36
+
+]
+APPENDIX C.
+
+LaTeX Warning: Reference `tab-grade' on page 37 undefined on input line 37.
+
+) [37
+pdfTeX warning (ext4): destination with the same identifier (name{table.C.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.417 ...lude{USPSC-TA-PosTextual/USPSC-Apendices}
+                                                  ]
+\openout2 = `USPSC-TA-PosTextual/USPSC-Anexos.aux'.
+
+ (USPSC-TA-PosTextual/USPSC-Anexos.tex [38
+
+
 
 
 ]
@@ -1865,72 +1899,34 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 [39
 
 ] [40]
-APPENDIX A.
+ANNEX A.
+
+LaTeX Warning: Citation `nbr14724' on page 41 undefined on input line 13.
+
 [41
 
 ] [42
 
 ]
-APPENDIX B.
-[43
-pdfTeX warning (ext4): destination with the same identifier (name{table.B.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.36 \chapter
-             {Exemplo de tabela com grade}] [44
-
-]
-APPENDIX C.
-) [45
-pdfTeX warning (ext4): destination with the same identifier (name{table.C.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.417 ...lude{USPSC-TA-PosTextual/USPSC-Apendices}
-                                                  ]
-\openout2 = `USPSC-TA-PosTextual/USPSC-Anexos.aux'.
-
- (USPSC-TA-PosTextual/USPSC-Anexos.tex [46
-
-
-
-
-]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\uppercase' on input line 9.
-
-[47
-
-] [48]
-ANNEX A.
-[49
-
-] [50
-
-]
 ANNEX B.
-<USPSC-img/USPSC-AcentuacaoLaTeX.png, id=405, 225.84375pt x 353.06906pt>
+<USPSC-img/USPSC-AcentuacaoLaTeX.png, id=269, 225.84375pt x 353.06906pt>
 File: USPSC-img/USPSC-AcentuacaoLaTeX.png Graphic file (type png)
 <use USPSC-img/USPSC-AcentuacaoLaTeX.png>
 Package pdftex.def Info: USPSC-img/USPSC-AcentuacaoLaTeX.png  used on input line 21.
 (pdftex.def)             Requested size: 225.84319pt x 353.06819pt.
-) [51
-pdfTeX warning (ext4): destination with the same identifier (name{figure.anexochapback.2.2}) has been already used, duplicate ignored
+
+LaTeX Warning: Citation `comandos' on page 43 undefined on input line 23.
+
+) [43
+pdfTeX warning (ext4): destination with the same identifier (name{figure.anexochapback.2.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.422 \include{USPSC-TA-PosTextual/USPSC-Anexos}
                                                  <./USPSC-img/USPSC-AcentuacaoLaTeX.png>]
 \openout2 = `USPSC-IndicesRemissivos.aux'.
 
- (USPSC-IndicesRemissivos.tex) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-modelo-IFSCe.ind [52
-
-
-
-
-] [53
-
-
-])
+ (USPSC-IndicesRemissivos.tex)
+No file USPSC-modelo-IFSCe.ind.
 \tf@lof=\write7
 \openout7 = `USPSC-modelo-IFSCe.lof'.
 
@@ -1943,26 +1939,36 @@ l.422 \include{USPSC-TA-PosTextual/USPSC-Anexos}
 \tf@toc=\write10
 \openout10 = `USPSC-modelo-IFSCe.toc'.
 
- 
+
 enddocument/afterlastpage (AED): lastpage setting LastPage.
-(c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-modelo-IFSCe.aux (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-Errata.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-Dedicatoria.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-Agradecimentos.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-Epigrafe.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-Abstract.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-Resumo.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-AbreviaturasSiglas.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PreTextual/USPSC-Simbolos.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-Textual/USPSC-Cap1-Introducao.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-Textual/USPSC-Cap2-Desenvolvimento.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-Textual/USPSC-Cap3-Conclusao.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PosTextual/USPSC-Apendices.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-TA-PosTextual/USPSC-Anexos.aux) (c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-IndicesRemissivos.aux))
+(c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-modelo-IFSCe.aux (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-TA-PreTextual/USPSC-Errata.aux) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-TA-PreTextual/USPSC-Dedicatoria.aux) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-TA-PreTextual/USPSC-Agradecimentos.aux) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-TA-PreTextual/USPSC-Epigrafe.aux) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-TA-PreTextual/USPSC-Abstract.aux) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-TA-PreTextual/USPSC-Resumo.aux) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-TA-PreTextual/USPSC-AbreviaturasSiglas.aux) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-TA-PreTextual/USPSC-Simbolos.aux) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-TA-Textual/USPSC-Cap1-Introducao.aux) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-TA-Textual/USPSC-Cap2-Desenvolvimento.aux) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-TA-Textual/USPSC-Cap3-Conclusao.aux) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-TA-PosTextual/USPSC-Apendices.aux) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-TA-PosTextual/USPSC-Anexos.aux) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-IndicesRemissivos.aux))
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package lastpage Warning: Rerun to get the references right on input line 431.
+
  ) 
 Here is how much of TeX's memory you used:
- 42386 strings out of 467871
- 935250 string characters out of 5415473
- 1411922 words of memory out of 5000000
- 70316 multiletter control sequences out of 15000+600000
- 729159 words of font info for 107 fonts, out of 8000000 for 9000
+ 42123 strings out of 467871
+ 929564 string characters out of 5415473
+ 1373851 words of memory out of 5000000
+ 70151 multiletter control sequences out of 15000+600000
+ 697206 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,17n,108p,2722b,1405s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/latxfont/line10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
-Output written on c:\Users\camilaraupp\Documents\dissertacao\out\USPSC-modelo-IFSCe.pdf (55 pages, 600199 bytes).
+ 99i,17n,108p,854b,1338s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb>
+Output written on c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-modelo-IFSCe.pdf (45 pages, 499530 bytes).
 PDF statistics:
- 635 PDF objects out of 1000 (max. 8388607)
- 138 named destinations out of 1000 (max. 500000)
- 375 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 413 PDF objects out of 1000 (max. 8388607)
+ 90 named destinations out of 1000 (max. 500000)
+ 231 words of extra memory for PDF output out of 10000 (max. 10000000)
 
