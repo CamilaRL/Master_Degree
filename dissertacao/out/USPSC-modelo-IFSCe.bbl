@@ -1,0 +1,15 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem{medina-2024}
+\abntrefinfo{Medina \textit{et al.}}{MEDINA \textit{et al.}}{2024}
+{MEDINA, I. \textit{et al.} Variational-quantum-eigensolver–inspired
+  optimization for spin-chain work extraction.
+\textbf{Phys. Rev. A}, American Physical Society, v.~110, p. 012443, Jul 2024.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevA.110.012443}.}
+
+\end{thebibliography}

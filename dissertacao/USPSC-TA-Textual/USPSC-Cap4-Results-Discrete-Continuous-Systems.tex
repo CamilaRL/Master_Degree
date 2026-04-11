@@ -1,29 +1,37 @@
 
 \chapter{From discrete to continuous quantum systems}\label{cap:results}
 
+Nature has a diversity of physical phenomena, being some better described by discrete models while others are better described by coninuous models. Quantum mechanics was formulated in both discrete and continuous regimes as the Heisenberg and Schrödinger frameworks, which, despite of having fundamentaly different mathematical resources, complements each other when explaining experimental results. Finding the same phenomena in different regimes not only brings to light fundamental aspects of nature but also increases the possiblity of technological applications. For this reason, this chapter explores the thermal relaxation asymmetry for discrete and continuous-variable quantum systems.
 
-
-
-Quantum mechanics reveals nature in two seemingly different yet deeply connected forms: systems with a finite set of distinct states, and systems described by a continuous range of possibilities. In the simplest cases—such as spin systems or qubits—the structure is discrete, with states that can be counted and represented within finite-dimensional spaces. Yet many of the most fundamental physical systems, including particles moving in space or modes of electromagnetic fields, require a continuous description, where variables such as position and momentum take values across an unbroken spectrum.
-
-Historically, the development of quantum theory began with the striking discovery that certain physical quantities, such as the energy levels of atoms, are quantized. These early successes naturally led to models built on discrete states. However, as the theory matured, it became clear that a complete description of quantum phenomena must also incorporate continuous degrees of freedom, captured by wavefunctions and operators acting on infinite-dimensional spaces. This shift did not merely extend the formalism—it reshaped the conceptual and mathematical framework of the theory.
-
-The contrast between these two regimes can be illustrated by comparing a two-level system to a quantum particle in one dimension. While the former can be fully described by a small set of amplitudes, the latter requires a function defined over all space, encoding a superposition of infinitely many possible outcomes. Moving between these perspectives involves more than increasing complexity; it demands new tools, replacing finite vectors with functions, matrices with operators, and sums with integrals.
-
-Understanding this transition is essential for engaging with a wide range of physical systems, from quantum optics to field theory. At the same time, it introduces subtle challenges, including the proper handling of normalization, the interpretation of measurements in continuous spectra, and the rigorous treatment of infinite-dimensional spaces.
-
-This chapter explores how the principles established for discrete quantum systems extend to the continuous domain. How does one generalize familiar concepts such as states, observables, and measurements when the set of possibilities is no longer countable? And what new insights emerge when we move from isolated points to continuous structures? By addressing these questions, we build a bridge between two foundational perspectives of quantum theory.
-
-
-This chapter discuss the thermal relaxation asymmetry for discrete and continuous-variable quantum systems models.
-
-Therefore, studying both discrete and continuous systems enables the exploration of different physical and mathematical resources, as well as the construction of bridges between models that expand both the theoretical understanding and experimental possibilities of quantum theory.
+Given that this work aims to understand how quantum resources affect the heating and cooling asymemtry, we examine specific models that have these resources. Among a variety of possible discrete models, we chose the two interacting qubits in contact with the same bosonic bath. This model allow us to analyse the effects of quantum correlations and non-Markovianity in the thermal relaxation. While for continuous-variables models, the natural choice was Gaussian states for its simplicity and experimental accessibility. For this case, the quantum resources we explore are displacement and squeezing of thermal states.
 
 %%%%%%
 
 \section{Two Interacting Qubits}\label{sec:qubits}
 
+The interaction between N qubits can be described by a family of Hamiltoninans
 
+\begin{equation}
+    H = -h \sum_{j=1}^{N} \sigma_{j}^{z} - J \sum_{j=1}^{N-1} [(1+\gamma) \sigma_{j}^{x} \sigma_{j+1}^{x} + (1-\gamma) \sigma_{j}^{y} \sigma_{j+1}^{y} + \Delta \sigma_{j}^{z} \sigma_{j+1}^{z} ]
+\end{equation}
+
+\noindent where $\sigma_{k}^{x}$, $\sigma_{k}^{y}$, and $\sigma_{k}^{z}$ are the Pauli matrices for the k-th qubit. The parameter $h$ is the energy difference of the two-level system, $J$ is the coupling parameter between the qubits, while $\gamma$ and $\Delta$ creates anisotropries to the system. Depending on the values of the anisotropic paramters, we can distinguish different models \cite{medina-2024}
+
+
+
+
+
+
+
+
+Lets consider two qubits interacting with each other and coupled to the same bosonic bath, as shown in Figure \ref{fig:model-2-qubits}. Both qubits have the same frequency $\omega_0$, but one is going to heat up from a temperature $T_c$ while the other is going to cool down from a temperature $T_h$. The bath is at an intermediate temperature, being $T_c < T_w < T_h$. The qubits can interact by exchanging energy with a strength given by the parameter $g$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Images/Qubits/model-2-qubits.png}
+    \caption{Model for two interacting qubits with a global bath.}
+    \label{fig:model-2-qubits}
+\end{figure}
 
 \begin{equation}
     H_S = -\frac{\omega_0}{2} \sigma_{1}^{z} - \frac{\omega_0}{2} \sigma_{2}^{z} + g (\sigma_{1}^{+} \sigma_{2}^{-} + \sigma_{1}^{-} \sigma_{2}^{+}),
