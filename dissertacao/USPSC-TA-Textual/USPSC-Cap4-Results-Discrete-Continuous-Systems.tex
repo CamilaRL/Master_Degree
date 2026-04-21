@@ -9,22 +9,38 @@ Given that this work aims to understand how quantum resources affect the heating
 
 \section{Two Interacting Qubits}\label{sec:qubits}
 
-The interaction between N qubits can be described by a family of Hamiltoninans
+The interaction between N qubits with the same energy difference ($h$) can be described by a family of Hamiltoninans
 
 \begin{equation}
-    H = -h \sum_{j=1}^{N} \sigma_{j}^{z} - J \sum_{j=1}^{N-1} [(1+\gamma) \sigma_{j}^{x} \sigma_{j+1}^{x} + (1-\gamma) \sigma_{j}^{y} \sigma_{j+1}^{y} + \Delta \sigma_{j}^{z} \sigma_{j+1}^{z} ]
+    H_S = - h \sum_{j=1}^{N} \sigma_{j}^{z} - J \sum_{j=1}^{N-1} [(1+\gamma) \sigma_{j}^{x} \sigma_{j+1}^{x} + (1-\gamma) \sigma_{j}^{y} \sigma_{j+1}^{y} + \Delta \sigma_{j}^{z} \sigma_{j+1}^{z} ]
 \end{equation}
 
-\noindent where $\sigma_{k}^{x}$, $\sigma_{k}^{y}$, and $\sigma_{k}^{z}$ are the Pauli matrices for the k-th qubit. The parameter $h$ is the energy difference of the two-level system, $J$ is the coupling parameter between the qubits, while $\gamma$ and $\Delta$ creates anisotropries to the system. Depending on the values of the anisotropic paramters, we can distinguish different models \cite{medina-2024}
+\noindent where $\sigma_{k}^{x}$, $\sigma_{k}^{y}$, and $\sigma_{k}^{z}$ are the Pauli matrices for the k-th qubit. $J$ is the coupling parameter between the qubits, while $\gamma$ and $\Delta$ creates anisotropries to the system. Depending on the values of the anisotropic paramters, we can distinguish different models \cite{medina-2024} as shown in Table \ref{tab:heisenberg}.
+
+\begin{table}[H]
+    \centering
+    \caption{Model's Parameters}
+    \label{tab:heisenberg}
+    \begin{tabular}{lc}
+        \hline
+        Parameters & Models\\
+        \hline
+        $\Delta = 1$, $\gamma = 0$ & XXX\\
+        $\Delta \neq 0$, $\gamma = 0$ & XXZ\\
+        $\Delta \neq 0$, $-1 < \gamma < 1$ & XYZ\\
+        $\Delta = 0$, $\gamma = 0$ & XX\\
+        $\Delta = 0$, $-1 < \gamma < 1$ & XY\\
+        $\Delta = 0$, $\gamma = \pm 1$ & Transverse Field Ising (TFI)\\
+        \hline
+    \end{tabular}
+\end{table}
+
+What matters for us about this models is that the different interaction cases will lead to different correlations between the qubits. These correlations will be measured by the mutual information and entanglement of formation, defined in Section \ref{sec:correlations}. Note that not all of these models can create entanglement, which we will discuss later in this section.
 
 
+\subsection{Thermal Relaxation of Two Interacting Qubits}\label{sec:result-qubits}
 
-
-
-
-
-
-Lets consider two qubits interacting with each other and coupled to the same bosonic bath, as shown in Figure \ref{fig:model-2-qubits}. Both qubits have the same frequency $\omega_0$, but one is going to heat up from a temperature $T_c$ while the other is going to cool down from a temperature $T_h$. The bath is at an intermediate temperature, being $T_c < T_w < T_h$. The qubits can interact by exchanging energy with a strength given by the parameter $g$.
+Lets start considering two qubits coupled to the same bosonic bath, as shown in Figure \ref{fig:model-2-qubits}. In this first analysis, the qubits has an energy gap of $\frac{\omega_0}{2}$ and exchange energy according to the model XX (with  $\Delta = 0$ and $\gamma = 0$), where the interaction strength is given by $J$. One qubit will heat up from the temperature $T_c$ while the other will cool down from the temperature $T_h$, being the bath at an intermediate temperature $T_w$ ($T_c < T_w < T_h$). 
 
 \begin{figure}[H]
     \centering
@@ -33,13 +49,12 @@ Lets consider two qubits interacting with each other and coupled to the same bos
     \label{fig:model-2-qubits}
 \end{figure}
 
-\begin{equation}
-    H_S = -\frac{\omega_0}{2} \sigma_{1}^{z} - \frac{\omega_0}{2} \sigma_{2}^{z} + g (\sigma_{1}^{+} \sigma_{2}^{-} + \sigma_{1}^{-} \sigma_{2}^{+}),
-    \label{eq:HS-2qubits}
-\end{equation}
+Depending on the initial state of the system, the relaxation process will differ. In our case, the only variable to characterize the qubit's initial state is the temperature. We could add coherences to the qubits, but this would make the terms 'heating' (or 'cooling') inaccurate due to the inexistence of thermal states. So, we will keep the qubits locally thermal while adding global correlations if desired.
+
+To make a fair comparison between heating and cooling, we need to find statistically equivalent initial states with different temperatures. Because the asymemtry appears only for relaxation of nonequilibrium states, it is natural to distinguish them according to how far from equilibrium it is. Thereby, the relative entropy, which is related to the nonequilibrium free energy, seems the most approprieate choice of distinguishability measure. That said, statistically equivalent initial states must have the same initial relative entropy from the steady state of the dynamics.
 
 
-\subsection{Thermal Relaxation of Two Interacting Qubits}\label{sec:result-qubits}
+
 
 
 %%%%%%
