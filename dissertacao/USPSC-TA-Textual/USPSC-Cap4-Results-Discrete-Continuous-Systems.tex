@@ -13,6 +13,7 @@ The interaction between N qubits with the same energy difference ($h$) can be de
 
 \begin{equation}
     H_S = - h \sum_{j=1}^{N} \sigma_{j}^{z} - J \sum_{j=1}^{N-1} [(1+\gamma) \sigma_{j}^{x} \sigma_{j+1}^{x} + (1-\gamma) \sigma_{j}^{y} \sigma_{j+1}^{y} + \Delta \sigma_{j}^{z} \sigma_{j+1}^{z} ]
+    \label{eq:HS-qubit}
 \end{equation}
 
 \noindent where $\sigma_{k}^{x}$, $\sigma_{k}^{y}$, and $\sigma_{k}^{z}$ are the Pauli matrices for the k-th qubit. $J$ is the coupling parameter between the qubits, while $\gamma$ and $\Delta$ creates anisotropries to the system. Depending on the values of the anisotropic paramters, we can distinguish different models \cite{medina-2024} as shown in Table \ref{tab:heisenberg}.
@@ -51,10 +52,97 @@ Lets start considering two qubits coupled to the same bosonic bath, as shown in 
 
 Depending on the initial state of the system, the relaxation process will differ. In our case, the only variable to characterize the qubit's initial state is the temperature. We could add coherences to the qubits, but this would make the terms 'heating' (or 'cooling') inaccurate due to the inexistence of thermal states. So, we will keep the qubits locally thermal while adding global correlations if desired.
 
-To make a fair comparison between heating and cooling, we need to find statistically equivalent initial states with different temperatures. Because the asymemtry appears only for relaxation of nonequilibrium states, it is natural to distinguish them according to how far from equilibrium it is. Thereby, the relative entropy, which is related to the nonequilibrium free energy, seems the most approprieate choice of distinguishability measure. That said, statistically equivalent initial states must have the same initial relative entropy from the steady state of the dynamics.
+To make a fair comparison between heating and cooling, we need to find statistically equivalent initial states with different temperatures. Because the asymemtry appears only for relaxation of nonequilibrium states, it is natural to distinguish them according to how far from equilibrium it is. Thereby, the relative entropy, which is related to the nonequilibrium free energy, seems the most approprieate choice of distinguishability measure. That said, statistically equivalent initial states for each qubit must have the same initial relative entropy from the local steady state of the dynamics (Equation \ref{eq:same-K-qubit}). However, to find the appropriate initial temperature, first, we must find the local steady state ($\rho_{ss}^{qubit}$).
+
+\begin{equation}
+    K[\rho_c || \rho_{ss}^{qubit}] = K[\rho_h || \rho_{ss}^{qubit}]
+    \label{eq:same-K-qubit}
+\end{equation}
+
+According to its definition, a steady state do not change in time, which mathematically can be found by solving $\mathcal{L}( \rho_{ss}) = 0$, where $\rho_{ss}$ is the global steady state. Despite this being the most traditional approach, there is another simpler way. First, we know that the steady state of a Davies Map is always a Gibbs state, which allow us to assume that
+
+\begin{equation}
+    \rho_{ss} = \frac{e^{-\beta_w H_S}}{\mathcal{Z}},
+\end{equation}
+
+\noindent where $\beta_w$ is the inverse temperature of the bath and $H_S$ is the total system hamiltonian \ref{eq:HS-qubit}. Then, we can trace out one of the qubits\footnote{It does not matter which one, because both equilibrate to the same temperature} and write the expression in terms of $H_S$ eigenvalues and eigenvectors to obtain
+
+\begin{equation}
+    \rho_{qubit} = 
+    \begin{bmatrix}
+        e^{\beta_w \omega_0} + \cosh (\beta_w J) & 0\\
+        0 & e^{-\beta_w \omega_0} + \cosh (\beta_w J)
+    \end{bmatrix}.
+\end{equation}
+
+Because every two-level system in a Gibbs state has the same format, we can generally isolate the qubit's temperature, resulting in
+
+\begin{equation}
+    \beta_{qubit}^{f} = \frac{1}{\omega_0} \ln \left( \frac{e^{\beta_w \omega_0} + \cosh (\beta_w J)}{e^{-\beta_w \omega_0} + \cosh (\beta_w J)} \right).
+\end{equation}
+
+Note that, even though the global system thermalizes to the bath's temperature, the qubits' local thermal state correspond to a different temperature. This happens because the interaction between the qubtis generates correlations that are erased by the partial trace. Now, we can solve Equation \ref{eq:same-K-qubit} and find the initial temperatures.
+
+Because we want to understand how quantum correlations may affect the thermal relaxation asymmetry, the next step is to find out what is the maximum correlation possible for our initial state. Lets assume the initial global state has the form of an X-state,
+
+\begin{equation}
+    \rho = \rho_{c} \otimes \rho_{h} + \chi = 
+    \begin{bmatrix}
+        a & 0 & 0 & f\\
+        0 & b & e & 0\\
+        0 & e^* & c & 0\\
+        f^* & 0 & 0 & d
+    \end{bmatrix},
+\end{equation}
+
+\noindent where the diagonal elements are
+
+\begin{equation}
+    a = \frac{e^{\omega_0 (\beta_c + \beta_h)/2}}{\mathcal{Z}_c \mathcal{Z}_h}
+\end{equation}
+
+\begin{equation}
+    b = \frac{e^{\omega_0 (\beta_c - \beta_h)/2}}{\mathcal{Z}_c \mathcal{Z}_h}
+\end{equation}
+
+\begin{equation}
+    c = \frac{e^{-\omega_0 (\beta_c - \beta_h)/2}}{\mathcal{Z}_c \mathcal{Z}_h}
+\end{equation}
+
+\begin{equation}
+    d = \frac{e^{-\omega_0 (\beta_c + \beta_h)/2}}{\mathcal{Z}_c \mathcal{Z}_h}
+\end{equation}
+
+\noindent where $\mathcal{Z}_c = 2 \cosh(\omega_0 \beta_c / 2)$, $\mathcal{Z}_h = 2 \cosh(\omega_0 \beta_h / 2)$ and the off-diagonal elements are
+
+\begin{equation}
+    \chi = e \ket{01}\bra{10} + e^* \ket{10}\bra{01} + f \ket{00}\bra{11} + f^* \ket{11}\bra{00}.
+\end{equation}
+
+For $\rho$ to be considered a proper density matrix it must satisfy all the properties: (1) hermiticity, (2) unit trace and (3) positive semi-definite. So, we must choose $e$ and $f$ values that preserve property (3) of $\rho$, which means that all eigenvalues of $\rho$ must be non-negative ($\lambda_i \geq 0$ for all $i$). When diagolizing $\rho$, we get two identical quadratic equations of the form
+
+\begin{equation}
+    \lambda = \frac{x + y \pm \sqrt{x^2 + y^2 - 2xy + 4z}}{2} \geq 0
+\end{equation}
+
+\noindent where the variables can be $x = (b, a)$, $y = (c, d)$, $z = (|e|^2 , |f|^2)$. Because the postive sign will always satisfy the inequality, we will analyse the restriction this inequality brings when choosing the negative sign. Manipulating the expression, we find $z \leq xy$ that means
+
+\begin{align}
+    |e| \leq \frac{1}{\mathcal{Z}_c \mathcal{Z}_h}\\
+    |f| \leq \frac{1}{\mathcal{Z}_c \mathcal{Z}_h}.
+\end{align}
+
+Now that we know the initial temperatures and maximum initial correlations, we can solve the Lindblad master equation to obtain the density matrices for the global system and each individual qubit as a function of time. After computing the Quantum Fisher Information, we solve the thermal kinematic's variables as described in Section \ref{sec:thermal-kinematics}.
+
+The comparison between the degree of completion of the heating qubit (red) and the cooling qubit (blue) is shown in Figure \ref{fig:completion-xx}, where the dashed lines represent the case with no interaction between the qubits and the continuous lines represent the interacting case. Note that in our results, heating is always faster than cooling, because the red degree of completion is above the correspondent blue lines. Another result we can extract is that, when qubits can interact between themselves, they relaxate faster. Furthermore, the presence of initial correlations seems to delay the dynamics when we compare the continuous lines of both graphs.
 
 
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Images/Qubits/XX/completion-xx.png}
+    \caption{Degree of completion for XX-model. }
+    \label{fig:completion-xx}
+\end{figure}
 
 
 %%%%%%
