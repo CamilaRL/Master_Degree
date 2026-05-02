@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.1)  24 APR 2026 17:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.1)  30 APR 2026 09:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1746,7 +1746,17 @@ LaTeX Warning: Citation `nbr6028' on page 15 undefined on input line 15.
 
 ] [16
 
-]) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-modelo-IFSCe.lof) [17
+]) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-modelo-IFSCe.lof
+Overfull \hbox (0.30606pt too wide) in paragraph at lines 5--5
+ [][] [][][]\T1/lmr/m/n/12 Statistical ve-loc-ity for XX-model. Each line cor-re-spond to cool-ing (blue) 
+ []
+
+
+Overfull \hbox (0.30606pt too wide) in paragraph at lines 6--6
+ [][] [][][]\T1/lmr/m/n/12 Statistical ve-loc-ity for XX-model. Each line cor-re-spond to cool-ing (blue) 
+ []
+
+) [17
 
 
 ] [18
@@ -1829,11 +1839,11 @@ Chapter 4.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [35{C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}]
-<Images/Qubits/model-2-qubits.png, id=311, 429.85594pt x 291.33844pt>
+<Images/Qubits/model-2-qubits.png, id=321, 591.71063pt x 400.49625pt>
 File: Images/Qubits/model-2-qubits.png Graphic file (type png)
 <use Images/Qubits/model-2-qubits.png>
 Package pdftex.def Info: Images/Qubits/model-2-qubits.png  used on input line 48.
-(pdftex.def)             Requested size: 181.99722pt x 123.35265pt.
+(pdftex.def)             Requested size: 181.99722pt x 123.1809pt.
  [36
 pdfTeX warning (ext4): destination with the same identifier (name{table.4.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
@@ -1849,27 +1859,54 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 68
  (C:\Users\camilaraupp\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [37{C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}] [38]
-<Images/Qubits/XX/completion-xx.png, id=347, 1020.06094pt x 377.91188pt>
+<Images/Qubits/XX/completion-xx.png, id=357, 1192.455pt x 447.17062pt>
 File: Images/Qubits/XX/completion-xx.png Graphic file (type png)
 <use Images/Qubits/XX/completion-xx.png>
 Package pdftex.def Info: Images/Qubits/XX/completion-xx.png  used on input line 142.
-(pdftex.def)             Requested size: 455.0pt x 168.57101pt.
-) [39
+(pdftex.def)             Requested size: 455.0pt x 170.62257pt.
+<Images/Qubits/XX/velocity-xx.png, id=359, 1192.455pt x 447.17062pt>
+File: Images/Qubits/XX/velocity-xx.png Graphic file (type png)
+<use Images/Qubits/XX/velocity-xx.png>
+Package pdftex.def Info: Images/Qubits/XX/velocity-xx.png  used on input line 151.
+(pdftex.def)             Requested size: 455.0pt x 170.62257pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [39
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
+l.155 
+       <./Images/Qubits/XX/completion-xx.png (PNG copy)>]
+<Images/Qubits/XX/Sprod-xx.png, id=366, 1151.80313pt x 429.85594pt>
+File: Images/Qubits/XX/Sprod-xx.png Graphic file (type png)
+<use Images/Qubits/XX/Sprod-xx.png>
+Package pdftex.def Info: Images/Qubits/XX/Sprod-xx.png  used on input line 160.
+(pdftex.def)             Requested size: 455.0pt x 169.80763pt.
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [40
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
 l.393 ...Cap4-Results-Discrete-Continuous-Systems}
-                                                   <./Images/Qubits/XX/completion-xx.png (PNG copy)>]
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.393 ...Cap4-Results-Discrete-Continuous-Systems}
+                                                   <./Images/Qubits/XX/velocity-xx.png (PNG copy)> <./Images/Qubits/XX/Sprod-xx.png (PNG copy)>] [41]
 \openout2 = `USPSC-TA-Textual/USPSC-Cap5-Conclusion.aux'.
 
- (USPSC-TA-Textual/USPSC-Cap5-Conclusion.tex [40
+ (USPSC-TA-Textual/USPSC-Cap5-Conclusion.tex [42
 
 
 
 
 ]
 Chapter 5.
-) [41] (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-modelo-IFSCe.bbl [42
+) [43] (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-modelo-IFSCe.bbl [44
 
 
 
@@ -1879,10 +1916,10 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\uppercase' on input line 3.
 
 bibitemlist
-) [43]
+) [45]
 \openout2 = `USPSC-TA-PosTextual/USPSC-Apendices.aux'.
 
- (USPSC-TA-PosTextual/USPSC-Apendices.tex [44
+ (USPSC-TA-PosTextual/USPSC-Apendices.tex [46
 
 
 ]
@@ -1890,32 +1927,32 @@ bibitemlist
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\uppercase' on input line 9.
 
-[45
-
-] [46]
-APPENDIX A.
-
-LaTeX Warning: Citation `nbr14724' on page 47 undefined on input line 10.
-
-
-LaTeX Warning: Citation `aguia2020' on page 47 undefined on input line 12.
-
 [47
 
-] [48
+] [48]
+APPENDIX A.
+
+LaTeX Warning: Citation `nbr14724' on page 49 undefined on input line 10.
+
+
+LaTeX Warning: Citation `aguia2020' on page 49 undefined on input line 12.
+
+[49
+
+] [50
 
 ]
 APPENDIX B.
-[49
+[51
 pdfTeX warning (ext4): destination with the same identifier (name{table.B.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.36 \chapter
-             {Exemplo de tabela com grade}] [50
+             {Exemplo de tabela com grade}] [52
 
 ]
 APPENDIX C.
-) [51
+) [53
 pdfTeX warning (ext4): destination with the same identifier (name{table.C.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -1923,7 +1960,7 @@ l.423 ...lude{USPSC-TA-PosTextual/USPSC-Apendices}
                                                   ]
 \openout2 = `USPSC-TA-PosTextual/USPSC-Anexos.aux'.
 
- (USPSC-TA-PosTextual/USPSC-Anexos.tex [52
+ (USPSC-TA-PosTextual/USPSC-Anexos.tex [54
 
 
 
@@ -1933,41 +1970,41 @@ l.423 ...lude{USPSC-TA-PosTextual/USPSC-Apendices}
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\uppercase' on input line 9.
 
-[53
-
-] [54]
-ANNEX A.
-
-LaTeX Warning: Citation `nbr14724' on page 55 undefined on input line 13.
-
 [55
 
-] [56
+] [56]
+ANNEX A.
+
+LaTeX Warning: Citation `nbr14724' on page 57 undefined on input line 13.
+
+[57
+
+] [58
 
 ]
 ANNEX B.
-<USPSC-img/USPSC-AcentuacaoLaTeX.png, id=430, 225.84375pt x 353.06906pt>
+<USPSC-img/USPSC-AcentuacaoLaTeX.png, id=456, 225.84375pt x 353.06906pt>
 File: USPSC-img/USPSC-AcentuacaoLaTeX.png Graphic file (type png)
 <use USPSC-img/USPSC-AcentuacaoLaTeX.png>
 Package pdftex.def Info: USPSC-img/USPSC-AcentuacaoLaTeX.png  used on input line 21.
 (pdftex.def)             Requested size: 225.84319pt x 353.06819pt.
 
-LaTeX Warning: Citation `comandos' on page 57 undefined on input line 23.
+LaTeX Warning: Citation `comandos' on page 59 undefined on input line 23.
 
-) [57
-pdfTeX warning (ext4): destination with the same identifier (name{figure.anexochapback.2.3}) has been already used, duplicate ignored
+) [59
+pdfTeX warning (ext4): destination with the same identifier (name{figure.anexochapback.2.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.428 \include{USPSC-TA-PosTextual/USPSC-Anexos}
                                                  <./USPSC-img/USPSC-AcentuacaoLaTeX.png>]
 \openout2 = `USPSC-IndicesRemissivos.aux'.
 
- (USPSC-IndicesRemissivos.tex) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-modelo-IFSCe.ind [58
+ (USPSC-IndicesRemissivos.tex) (c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-modelo-IFSCe.ind [60
 
 
 
 
-] [59
+] [61
 
 
 ])
@@ -1996,17 +2033,17 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 42552 strings out of 467871
- 944150 string characters out of 5415473
- 1406133 words of memory out of 5000000
- 70448 multiletter control sequences out of 15000+600000
+ 42578 strings out of 467871
+ 944830 string characters out of 5415473
+ 1406796 words of memory out of 5000000
+ 70468 multiletter control sequences out of 15000+600000
  723965 words of font info for 108 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,17n,108p,933b,1405s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb>
-Output written on c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-modelo-IFSCe.pdf (61 pages, 798276 bytes).
+Output written on c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-modelo-IFSCe.pdf (63 pages, 1105532 bytes).
 PDF statistics:
- 678 PDF objects out of 1000 (max. 8388607)
- 147 named destinations out of 1000 (max. 500000)
- 385 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 705 PDF objects out of 1000 (max. 8388607)
+ 153 named destinations out of 1000 (max. 500000)
+ 395 words of extra memory for PDF output out of 10000 (max. 10000000)
 

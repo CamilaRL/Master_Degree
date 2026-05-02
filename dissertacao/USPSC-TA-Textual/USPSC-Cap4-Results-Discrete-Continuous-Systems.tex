@@ -134,14 +134,32 @@ For $\rho$ to be considered a proper density matrix it must satisfy all the prop
 
 Now that we know the initial temperatures and maximum initial correlations, we can solve the Lindblad master equation to obtain the density matrices for the global system and each individual qubit as a function of time. After computing the Quantum Fisher Information, we solve the thermal kinematic's variables as described in Section \ref{sec:thermal-kinematics}.
 
-The comparison between the degree of completion of the heating qubit (red) and the cooling qubit (blue) is shown in Figure \ref{fig:completion-xx}, where the dashed lines represent the case with no interaction between the qubits and the continuous lines represent the interacting case. Note that in our results, heating is always faster than cooling, because the red degree of completion is above the correspondent blue lines. Another result we can extract is that, when qubits can interact between themselves, they relaxate faster. Furthermore, the presence of initial correlations seems to delay the dynamics when we compare the continuous lines of both graphs.
+The comparison between the degree of completion of the heating qubit (red) and the cooling qubit (blue) is shown in Figure \ref{fig:completion-xx}, where the dashed lines represent the case with no interaction between the qubits and the solid lines represent the interacting case. Note that in our results, heating is always faster than cooling, because the red degree of completion is above the correspondent blue lines. Another result we can extract is that, when qubits can interact between themselves, they relaxate faster. Furthermore, the presence of initial correlations seems to delay the dynamics when we compare the continuous lines of both graphs.
 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{Images/Qubits/XX/completion-xx.png}
-    \caption{Degree of completion for XX-model. }
+    \caption{Degree of completion for XX-model. Each line correspond to cooling (blue) or heating (red) processes with (solid) or without (dashed) interaction between qubits.}
     \label{fig:completion-xx}
+\end{figure}
+
+This same observations can be obtained from the statistical velocity shown in Figure \ref{fig:velocity-xx}. Additionally to this analysis, note that, when the velocity is zero, plateaus appears in the degree of completion given its oscilatory behaviour. A possible interpretation of the oscillations is that the system almost relax to an intermediate state, but something interfere and reestart the relaxation from that intermediate state.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Images/Qubits/XX/velocity-xx.png}
+    \caption{Statistical velocity for XX-model. Each line correspond to cooling (blue) or heating (red) processes with (solid) or without (dashed) interaction between qubits.}
+    \label{fig:velocity-xx}
+\end{figure}
+
+Figure \ref{fig:sprod-xx} show the entropy production rate for each of the studied cases. The hypothesis that heating is faster than cooling because it is more efficient in entropy production \cite{ibanez-2024} can be verified by observing that the red curves presents higher inital entropy production. Also note that the interaction case have negative entropy production for some time intervals. This is a  
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Images/Qubits/XX/Sprod-xx.png}
+    \caption{Statistical velocity for XX-model. Each line correspond to cooling (blue) or heating (red) processes with (solid) or without (dashed) interaction between qubits.}
+    \label{fig:sprod-xx}
 \end{figure}
 
 
