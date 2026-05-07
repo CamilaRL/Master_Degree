@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.1)  30 APR 2026 09:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.1)  4 MAY 2026 10:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1839,11 +1839,11 @@ Chapter 4.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [35{C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}]
-<Images/Qubits/model-2-qubits.png, id=321, 591.71063pt x 400.49625pt>
+<Images/Qubits/model-2-qubits.png, id=321, 591.71063pt x 425.33907pt>
 File: Images/Qubits/model-2-qubits.png Graphic file (type png)
 <use Images/Qubits/model-2-qubits.png>
 Package pdftex.def Info: Images/Qubits/model-2-qubits.png  used on input line 48.
-(pdftex.def)             Requested size: 181.99722pt x 123.1809pt.
+(pdftex.def)             Requested size: 227.5pt x 163.53212pt.
  [36
 pdfTeX warning (ext4): destination with the same identifier (name{table.4.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
@@ -2035,13 +2035,13 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  42578 strings out of 467871
  944830 string characters out of 5415473
- 1406796 words of memory out of 5000000
+ 1407796 words of memory out of 5000000
  70468 multiletter control sequences out of 15000+600000
  723965 words of font info for 108 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,17n,108p,933b,1405s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/camilaraupp/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb>
-Output written on c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-modelo-IFSCe.pdf (63 pages, 1105532 bytes).
+Output written on c:\Users\camilaraupp\Documents\GitHub\Master_Degree\dissertacao\out\USPSC-modelo-IFSCe.pdf (63 pages, 1105026 bytes).
 PDF statistics:
  705 PDF objects out of 1000 (max. 8388607)
  153 named destinations out of 1000 (max. 500000)

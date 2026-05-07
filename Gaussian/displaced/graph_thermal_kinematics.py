@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-muList = [0.1, 0.5, 1, 2]
+muList = [0.1, 0.5, 1.0, 2.0]
 symbols = ['-', '--', '-.', ':']
 
 ## Leitura Arquivos
@@ -82,7 +82,7 @@ for i in range(len(muList)):
     plt.plot(tlist, Vw_list[i][1], color='blue', linestyle=symbols[i], label=r'$\mu$ = '+f'{muList[i]}')
 
 plt.subplot(121)
-#plt.xscale('log')
+plt.xscale('log')
 plt.ylabel('Statistical Velocity', fontsize=12)
 plt.xlabel('Time', fontsize=12)
 plt.title('Heating', fontsize=12)
@@ -91,7 +91,7 @@ plt.yticks(fontsize=12)
 plt.legend(fontsize=12)
 
 plt.subplot(122)
-#plt.xscale('log')
+plt.xscale('log')
 plt.xlabel('Time', fontsize=12)
 plt.title('Cooling', fontsize=12)
 plt.xticks(fontsize=12)
@@ -134,38 +134,6 @@ plt.show()
 
 ### Completion
 
-'''plt.figure(figsize=(10,5))
-
-for i in range(len(muList)):
-    
-    plt.subplot(121)
-    plt.plot(tlist[250:300], completion_list[i][0][250:300], color='red', linestyle=symbols[i], label=r'$\mu$ = '+f'{muList[i]}')
-    
-    plt.subplot(122)
-    plt.plot(tlist[250:300], completion_list[i][1][250:300], color='blue', linestyle=symbols[i], label=r'$\mu$ = '+f'{muList[i]}')
-
-plt.subplot(121)
-plt.ylabel('Degree of Completion', fontsize=12)
-plt.xlabel('Time', fontsize=12)
-plt.title('Heating', fontsize=12)
-plt.xticks(fontsize=12)
-plt.yticks(fontsize=12)
-plt.legend(fontsize=12)
-plt.xlim(left=25, right=30)
-
-plt.subplot(122)
-plt.xlabel('Time', fontsize=12)
-plt.title('Cooling', fontsize=12)
-plt.xticks(fontsize=12)
-plt.yticks(fontsize=12)
-plt.legend(fontsize=12)
-plt.xlim(left=25, right=30)
-
-plt.tight_layout()
-plt.show()'''
-
-plt.figure(figsize=(15,5))
-
 for i in range(len(muList)):
     
     num = 141 + i
@@ -177,6 +145,7 @@ for i in range(len(muList)):
     plt.title(r'$\mu$ = '+f'{muList[i]}', fontsize=12)
     plt.ylabel('Degree of Completion', fontsize=12)
     plt.xlabel('Time', fontsize=12)
+    plt.xscale('log')
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
     plt.legend(fontsize=12)

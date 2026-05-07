@@ -36,7 +36,7 @@ def Wigner_Fisher_Info(mu, w, beta_i, beta_f, gamma, t):
 
 def Velocity(Iw):
 
-    return np.sqrt(Iw)
+    return np.sqrt(Iw/2)
     
 
 def Distance(vList, dt):
@@ -160,7 +160,7 @@ def WriteOutput(mu, processo, tlist, Iw, Vw, Lw, completion, Kevol, Sprod):
 
 w = 1
 gamma = 0.1
-mu = 0.1
+mu = 2.0
 
 Kinit = 1
 

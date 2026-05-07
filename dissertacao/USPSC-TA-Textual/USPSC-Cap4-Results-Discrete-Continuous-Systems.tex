@@ -1,7 +1,7 @@
 
 \chapter{From discrete to continuous quantum systems}\label{cap:results}
 
-Nature has a diversity of physical phenomena, being some better described by discrete models while others are better described by coninuous models. Quantum mechanics was formulated in both discrete and continuous regimes as the Heisenberg and Schrödinger frameworks, which, despite of having fundamentaly different mathematical resources, complements each other when explaining experimental results. Finding the same phenomena in different regimes not only brings to light fundamental aspects of nature but also increases the possiblity of technological applications. For this reason, this chapter explores the thermal relaxation asymmetry for discrete and continuous-variable quantum systems.
+Nature has a diversity of physical phenomena, being some better described by discrete-variable models while others are better described by coninuous-variable models. Quantum mechanics was formulated in both discrete and continuous regimes as the Heisenberg and Schrödinger frameworks, which, despite of having fundamentaly different mathematical resources, complements each other when explaining experimental results. Finding the same phenomena in different regimes not only brings to light fundamental aspects of nature but also increases the possiblity of technological applications. For these reasons, this chapter explores the thermal relaxation asymmetry for discrete and continuous-variable quantum systems.
 
 Given that this work aims to understand how quantum resources affect the heating and cooling asymemtry, we examine specific models that have these resources. Among a variety of possible discrete models, we chose the two interacting qubits in contact with the same bosonic bath. This model allow us to analyse the effects of quantum correlations and non-Markovianity in the thermal relaxation. While for continuous-variables models, the natural choice was Gaussian states for its simplicity and experimental accessibility. For this case, the quantum resources we explore are displacement and squeezing of thermal states.
 
@@ -16,7 +16,7 @@ The interaction between N qubits with the same energy difference ($h$) can be de
     \label{eq:HS-qubit}
 \end{equation}
 
-\noindent where $\sigma_{k}^{x}$, $\sigma_{k}^{y}$, and $\sigma_{k}^{z}$ are the Pauli matrices for the k-th qubit. $J$ is the coupling parameter between the qubits, while $\gamma$ and $\Delta$ creates anisotropries to the system. Depending on the values of the anisotropic paramters, we can distinguish different models \cite{medina-2024} as shown in Table \ref{tab:heisenberg}.
+\noindent where $\sigma_{k}^{x}$, $\sigma_{k}^{y}$, and $\sigma_{k}^{z}$ are the Pauli matrices for the k-th qubit. $J$ is the coupling parameter between the qubits, while $\gamma$ and $\Delta$ creates anisotropries in the system. Depending on the values of the anisotropic parameters, we can distinguish different models \cite{medina-2024} as shown in Table \ref{tab:heisenberg}.
 
 \begin{table}[H]
     \centering
@@ -41,16 +41,16 @@ What matters for us about this models is that the different interaction cases wi
 
 \subsection{Thermal Relaxation of Two Interacting Qubits}\label{sec:result-qubits}
 
-Lets start considering two qubits coupled to the same bosonic bath, as shown in Figure \ref{fig:model-2-qubits}. In this first analysis, the qubits has an energy gap of $\frac{\omega_0}{2}$ and exchange energy according to the model XX (with  $\Delta = 0$ and $\gamma = 0$), where the interaction strength is given by $J$. One qubit will heat up from the temperature $T_c$ while the other will cool down from the temperature $T_h$, being the bath at an intermediate temperature $T_w$ ($T_c < T_w < T_h$). 
+Lets start considering two qubits coupled to the same bosonic bath, as shown in Figure \ref{fig:model-2-qubits}. In this first analysis, the qubits has an energy gap of $\frac{\omega_0}{2}$ and exchange energy according to the model XX (with  $\Delta = 0$ and $\gamma = 0$), meaning it is isotropic. One qubit will heat up from the temperature $T_c$ while the other will cool down from the temperature $T_h$, being the bath at an intermediate temperature $T_w$. 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\linewidth]{Images/Qubits/model-2-qubits.png}
+    \includegraphics[width=0.5\linewidth]{Images/Qubits/model-2-qubits.png}
     \caption{Model for two interacting qubits with a global bath.}
     \label{fig:model-2-qubits}
 \end{figure}
 
-Depending on the initial state of the system, the relaxation process will differ. In our case, the only variable to characterize the qubit's initial state is the temperature. We could add coherences to the qubits, but this would make the terms 'heating' (or 'cooling') inaccurate due to the inexistence of thermal states. So, we will keep the qubits locally thermal while adding global correlations if desired.
+Depending on the initial state of the system, the relaxation process will be different. In our case, we consider the same qubit's energy gap ($\omega_0$) and decaying rate ($\Gamma$) respecting the weak coupling regime ($\Gamma << \omega_0$). Thus, the only variable that characterized the qubit's initial state is the temperature.  We could add coherences to the qubits, but this would make the terms 'heating' (or 'cooling') inaccurate due to the inexistence of thermal states. Therefore, we will keep the qubits locally thermal while adding global correlations if desired.
 
 To make a fair comparison between heating and cooling, we need to find statistically equivalent initial states with different temperatures. Because the asymemtry appears only for relaxation of nonequilibrium states, it is natural to distinguish them according to how far from equilibrium it is. Thereby, the relative entropy, which is related to the nonequilibrium free energy, seems the most approprieate choice of distinguishability measure. That said, statistically equivalent initial states for each qubit must have the same initial relative entropy from the local steady state of the dynamics (Equation \ref{eq:same-K-qubit}). However, to find the appropriate initial temperature, first, we must find the local steady state ($\rho_{ss}^{qubit}$).
 
@@ -168,6 +168,8 @@ Figure \ref{fig:sprod-xx} show the entropy production rate for each of the studi
 \section{Gaussian States}\label{sec:gaussian}
 
 \subsection{Thermal Relaxation of Gaussian States}\label{sec:result-gaussian}
+
+
 
 \subsubsection{Asymmetry for Thermal States}\label{sec:result-thermal}
 
