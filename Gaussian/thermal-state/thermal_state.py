@@ -36,7 +36,7 @@ def Wigner_Fisher_Info(w, beta_i, beta_f, gamma, t):
 
 def Velocity(Iw):
 
-    return 0.5 * np.sqrt(Iw)
+    return np.sqrt(Iw/2)
     
 
 def Distance(w, beta_i, beta_f, gamma, t):
@@ -56,7 +56,7 @@ def EntropyProduction(w, beta_i, beta_f, gamma, t):
     
     delta_beta, d_delta_beta = Delta_Beta(w, beta_i, beta_f, gamma, t)
     
-    Sprod = - (d_delta_beta/ff) + (d_delta_beta/delta_beta)
+    Sprod = (d_delta_beta/delta_beta) - (d_delta_beta/ff)
     
     return Sprod
 
@@ -240,7 +240,6 @@ plt.plot(tlist, completion_heating, color='red', label='Heating')
 plt.plot(tlist, completion_cooling, color='blue', label='Cooling')
 plt.ylabel('Degree of Completion', fontsize=12)
 plt.xlabel('Time', fontsize=12)
-plt.xscale('log')
 plt.legend(fontsize=12)
 plt.show()
 
