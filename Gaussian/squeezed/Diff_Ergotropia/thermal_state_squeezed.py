@@ -33,28 +33,24 @@ def F_Beta_t(fi, ff, delta_beta, d_delta_beta, r, gamma, t):
     
 
 def d_Wigner_Entropy(fb, dfb):
-    
+
     dSw = dfb/fb
     
     return dSw
 
 
-def d_Rt(com_derivada, fi, fb, dfb, delta_beta, d_delta_beta, r, gamma, t):
+def d_Rt(fi, fb, dfb, delta_beta, d_delta_beta, r, gamma, t):
 
     x = (delta_beta + 2*fi*np.exp(-gamma*t)*np.sinh(r)**2)/fb
     
     rt = 0.5*np.arccosh(x)
     
-    if com_derivada:
-        dx = ((d_delta_beta - 2*gamma*np.exp(-gamma*t)*fi*np.sinh(r)**2)*fb - (delta_beta + 2*np.exp(-gamma*t)*fi*np.sinh(r)**2)*dfb)/(fb**2)
+    dx = ((d_delta_beta - 2*gamma*np.exp(-gamma*t)*fi*np.sinh(r)**2)*fb - (delta_beta + 2*np.exp(-gamma*t)*fi*np.sinh(r)**2)*dfb)/(fb**2)
+
+    drt = 0.5*dx/np.sqrt((x**2) - 1)
         
-        drt = -0.5*dx/np.sqrt(1 - x**2)
-    
-        return rt, drt
-    
-    else:
-        return rt
-    
+    return rt, drt
+
 
 def EntropyProduction(ff, fb, dfb, rt, drt, dSw):
     
@@ -71,7 +67,7 @@ def RelativeEntropy(fi, ff, r, gamma, t):
     
     fb, dfb = F_Beta_t(fi, ff, delta_beta, d_delta_beta, r, gamma, t)
     
-    rt = d_Rt(False, fi, fb, dfb, delta_beta, d_delta_beta, r, gamma, t)
+    rt, drt = d_Rt(fi, fb, dfb, delta_beta, d_delta_beta, r, gamma, t)
     
     return -1 + (fb/ff)*np.cosh(2*rt) + np.log(ff/fb)
     
@@ -79,8 +75,8 @@ def RelativeEntropy(fi, ff, r, gamma, t):
 def Wigner_Fisher_Info(rt, drt, w, dSw):
     
     dphi = -2*w
-    
-    return 2*(dSw**2) + 8*drt**2 + 2*dphi*np.sinh(2*rt)**2
+
+    return 2*(dSw**2) + 8*drt**2 + 2*(dphi*np.sinh(2*rt))**2
     
 
 def Velocity(Iw):
@@ -111,8 +107,8 @@ def ThermalKinematics(r, beta_i, beta_f, w, gamma, tlist):
         
         fb, dfb = F_Beta_t(fi, ff, delta_beta, d_delta_beta, r, gamma, t)
 
-        rt, drt = d_Rt(True, fi, fb, dfb, delta_beta, d_delta_beta, r, gamma, t)
-        
+        rt, drt = d_Rt(fi, fb, dfb, delta_beta, d_delta_beta, r, gamma, t)
+
         dSw = d_Wigner_Entropy(fb, dfb)
     
     
@@ -138,11 +134,11 @@ def ThermalKinematics(r, beta_i, beta_f, w, gamma, tlist):
     return Iw, Vw, Lw, completion, Kevol, Sprod
     
 
-def EquidistantInitial(Kinit, beta_eq, w, gamma, beta_list):
+def EquidistantInitial(Kinit, beta_eq, r, w, gamma, beta_list):
 
     ff = Distribution('bose', beta_eq, w)
 
-    K_diff = lambda fi: RelativeEntropy(fi, ff, 0, gamma, 0) - Kinit
+    K_diff = lambda fi: RelativeEntropy(fi, ff, r, gamma, 0) - Kinit
 
     K_diff_list = []
     fi_list = []
@@ -151,34 +147,34 @@ def EquidistantInitial(Kinit, beta_eq, w, gamma, beta_list):
         fi = Distribution('bose', beta_i, w)
         fi_list.append(fi)
         K_diff_list.append(K_diff(fi))
-
+    
     ## hot
     for i in range(0, np.argmin(K_diff_list), 1):
-
+        
         if K_diff_list[i] * K_diff_list[i+1] < 0:  # houve cruzamento
 
-            beta_1 = brentq(K_diff, beta_list[i], beta_list[i+1])  # raiz exata
-            f1 = Distribution('bose', beta_1, w)
-            K1 = RelativeEntropy(f1, ff, 0, gamma, 0)
+            f1 = brentq(K_diff, fi_list[i], fi_list[i+1])  # raiz exata
+            K1 = RelativeEntropy(f1, ff, r, gamma, 0)
+            beta_1 = np.log((1/f1) + 1)/w
 
     ## cold
     for i in range(np.argmin(K_diff_list), len(beta_list) - 1, 1):
 
         if K_diff_list[i] * K_diff_list[i+1] < 0:  # houve cruzamento
 
-            beta_2 = brentq(K_diff, beta_list[i], beta_list[i+1])  # raiz exata
-            f2 = Distribution('bose', beta_2, w)
-            K2 = RelativeEntropy(f2, ff, 0, gamma, 0)
+            f2 = brentq(K_diff, fi_list[i], fi_list[i+1])  # raiz exata
+            K2 = RelativeEntropy(f2, ff, r, gamma, 0)
+            beta_2 = np.log((1/f2) + 1)/w
     
     
     ## plot
-    
-    K = [RelativeEntropy(fi, ff, 0, gamma, 0) for fi in fi_list]
+    print(beta_1, beta_2)
+    K = [RelativeEntropy(fi, ff, r, gamma, 0) for fi in fi_list]
     
     plt.plot(beta_list, K, color='orange')
-    plt.scatter([beta_eq], [RelativeEntropy(ff, ff, 0, gamma, 0)], color='orange', label=f'Tw = {1/beta_eq:.3f}')
-    #plt.scatter([beta_2], [K2], color='blue', label=f'Tc = {1/beta_2:.3f}')
-    #plt.scatter([beta_1], [K1], color='red', label=f'Th = {1/beta_1:.3f}')
+    plt.scatter([beta_eq], [RelativeEntropy(ff, ff, r, gamma, 0)], color='orange', label=f'Tw = {1/beta_eq:.3f}')
+    plt.scatter([beta_2], [K2], color='blue', label=f'Tc = {1/beta_2:.3f}')
+    plt.scatter([beta_1], [K1], color='red', label=f'Th = {1/beta_1:.3f}')
     plt.hlines(y=Kinit, xmin=min(beta_list), xmax=max(beta_list), color='black', label='Initial Relative Entropy')
     plt.xlabel(r'$\beta$')
     plt.ylabel('Relative Entropy')
@@ -209,16 +205,23 @@ def WriteOutput(r, processo, tlist, Iw, Vw, Lw, completion, Kevol, Sprod):
 
 w = 1
 gamma = 0.1
-r = 1
+r = 0.5
 
-Kinit = 1
+Kinit = 2
 
 Teq = 2
 beta_eq = 1/Teq
 
 beta_list = np.arange(0.1, 10, 0.01)
 
-beta_hot, Thot, Khot, beta_cold, Tcold, Kcold = EquidistantInitial(Kinit, beta_eq, w, gamma, beta_list)
+beta_hot, Thot, Khot, beta_cold, Tcold, Kcold = EquidistantInitial(Kinit, beta_eq, r, w, gamma, beta_list)
+
+file_init = open('./ThermalKinematics/initial_temperatures.txt', 'a')
+
+file_init.write(f'{r} {beta_cold} {beta_hot}\n')
+
+file_init.close()
+
 
 tlist = np.arange(0, 100, 0.1)
 
