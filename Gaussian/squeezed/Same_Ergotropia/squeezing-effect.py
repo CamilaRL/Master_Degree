@@ -32,13 +32,20 @@ def d_Wigner_Entropy(fb, dfb):
     
     return dSw
     
-def Contributions(dS, f_beta_t, ff, fi, ri):
+def Contributions(gamma, ff, fi, ri, t):
+    
+    delta_beta, d_delta_beta = Delta_Beta(fi, ff, gamma, t)
+        
+    f_beta_t, df_beta_t = F_Beta_t(fi, ff, delta_beta, d_delta_beta, ri, gamma, t)
+        
+    dS = d_Wigner_Entropy(f_beta_t, df_beta_t)        
     
     cosh_2rt = (delta_beta + 2*fi*np.exp(-gamma*t)*np.sinh(ri)**2)/f_beta_t
     
     pi = dS * (1- (f_beta_t/ff))
-    ergo = w*f_beta_t*(cosh_2rt - 1)
-    Rt = ergo/pi
+    E_pi = w*f_beta_t
+    ergo = E_pi*(cosh_2rt - 1)
+    Rt = ergo/E_pi
     
     return pi, ergo, Rt
 
@@ -52,83 +59,80 @@ Teq = 2
 beta_eq = 1/Teq
 ff = Distribution(beta_eq, w)
 
-tlist = np.arange(0, 100, 0.1)
+tlist = np.arange(0, 40, 0.1)
 
-rlist_cooling, beta_list_cooling, rlist_heating, beta_list_heating = np.loadtxt('./ThermalKinematics/initial_temperatures.txt', unpack=True)
+rlist_hot, beta_list_hot, rlist_cool, beta_list_cool = np.loadtxt('./ThermalKinematics/initial_temperatures.txt', unpack=True)
 
-f = plt.figure(figsize=(5,9))
+f = plt.figure(figsize=(12,5))
 symbols = ['-', '--']
 
-for i in range(2)
+for i in range(2):
 
-    fc = Distribution(beta_list_heating[i], w)
-    fh = Distribution(beta_list_cooling[i], w)
+    fc = Distribution(beta_list_cool[i], w)
+    fh = Distribution(beta_list_hot[i], w)
     
+    rc = rlist_cool[i]
+    rh = rlist_hot[i]
+
     # ergotropia
-    ergo_c = []
-    ergo_h = []
+    ergo_c_list = []
+    ergo_h_list = []
     
-    # passivo
-    pi_c = []
-    pi_h = []
+    # producao entropia passivo
+    pi_c_list = []
+    pi_h_list = []
     
-    # razao ergotropia / passivo
-    Rt_c = []
-    Rt_h = []
+    # razao ergotropia / energia passivo
+    Rt_c_list = []
+    Rt_h_list = []
     
     for t in tlist:
-    
-        delta_beta_c, d_delta_beta_c = Delta_Beta(fc, ff, gamma, t)
-        delta_beta_h, d_delta_beta_h = Delta_Beta(fh, ff, gamma, t)
         
-        f_beta_t_c, df_beta_t_c = F_Beta_t(fc, ff, delta_beta_c, d_delta_beta_c, rlist_heating[i], gamma, t)
-        f_beta_t_h, df_beta_t_h = F_Beta_t(fh, ff, delta_beta_h, d_delta_beta_h, rlist_cooling[i], gamma, t)
-        
-        dSc = d_Wigner_Entropy(f_beta_t_c, df_beta_t_c)
-        dSh = d_Wigner_Entropy(f_beta_t_h, df_beta_t_h)
+        pi_c, ergo_c, Rt_c = Contributions(gamma, ff, fc, rc, t)
+        pi_h, ergo_h, Rt_h = Contributions(gamma, ff, fh, rh, t)
 
-        pi_c.append()
-        pi_h.append(dSh * (1- (f_beta_t_h/ff)))
+        pi_c_list.append(pi_c)
+        pi_h_list.append(pi_h)
         
-        ergo_c.append()
-        ergo_h.append(w*f_beta_t_h*(cosh_2rt_h - 1))
+        ergo_c_list.append(ergo_c)
+        ergo_h_list.append(ergo_h)
         
-        Rt_c.append(cosh_2rt_c - 1)
-        Rt_h.append(cosh_2rt_h - 1)
+        Rt_c_list.append(Rt_c)
+        Rt_h_list.append(Rt_h)
    
-    plt.subplot(311)
-    plt.plot(tlist, pi_c, color='red', linestyle=symbols[i], label=f'Heating - r = {r}')
-    plt.plot(tlist, pi_h, color='blue', linestyle=symbols[i], label=f'Cooling - r = {r}')
+    plt.subplot(131)
+    plt.plot(tlist[:200], pi_c_list[:200], color='red', linestyle=symbols[i], linewidth=2, label=f'Heating - r = {rc:.2f}')
+    plt.plot(tlist[:200], pi_h_list[:200], color='blue', linestyle=symbols[i], linewidth=2, label=f'Cooling - r = {rh:.2f}')
     
-    plt.subplot(312)
-    plt.plot(tlist, ergo_c, color='red', linestyle=symbols[i], label=f'Heating - r = {r}')
-    plt.plot(tlist, ergo_h, color='blue', linestyle=symbols[i], label=f'Cooling - r = {r}')
+    plt.subplot(132)
+    plt.plot(tlist, ergo_c_list, color='red', linestyle=symbols[i], linewidth=2, label=f'Heating - r = {rc:.2f}')
+    plt.plot(tlist, ergo_h_list, color='blue', linestyle=symbols[i], linewidth=2, label=f'Cooling - r = {rh:.2f}')
    
-    plt.subplot(313)
-    plt.plot(tlist, Rt_c, color='red', linestyle=symbols[i], label=f'Heating - r = {r}')
-    plt.plot(tlist, Rt_h, color='blue', linestyle=symbols[i], label=f'Cooling - r = {r}')
+    fig3 = plt.subplot(133)
+    plt.plot(tlist, Rt_c_list, color='red', linestyle=symbols[i], linewidth=2, label=f'Heating - r = {rc:.2f}')
+    plt.plot(tlist, Rt_h_list, color='blue', linestyle=symbols[i], linewidth=2, label=f'Cooling - r = {rh:.2f}')
 
 
-plt.subplot(311)
-plt.xlabel('Time')
-plt.ylabel(r'$E_{\pi}$')
-plt.legend()
-plt.title('Passive State Energy')
+plt.subplot(131)
+plt.xlabel('Time', fontsize=12)
+plt.ylabel(r'$\Pi_{W_\pi}$', fontsize=12)
+plt.title('Passive State Entropy Production Rate', fontsize=14)
 
-plt.subplot(312)
-plt.xlabel('Time')
-plt.ylabel(r'$\mathcal{E}$')
-plt.legend()
-plt.title('Ergotropy')
+plt.subplot(132)
+plt.xlabel('Time', fontsize=12)
+plt.ylabel(r'$\mathcal{E}$', fontsize=12)
+plt.title('Ergotropy', fontsize=14)
 
-plt.subplot(313)
-plt.xlabel('Time')
-plt.ylabel(r'$R = \frac{\mathcal{E}}{E_{\pi}}$')
-plt.legend()
-plt.title('Ratio between Ergotropy and Passive State Energy')
+plt.subplot(133)
+plt.xlabel('Time', fontsize=12)
+plt.ylabel(r'$R = \frac{\mathcal{E}}{E_{\pi}}$', fontsize=12)
+plt.title(f'Ratio between Ergotropy and \nPassive State Energy', fontsize=14)
 
+handles, labels = fig3.get_legend_handles_labels()
 
 plt.tight_layout()
+plt.legend(handles, labels, loc='lower center', ncol=2, frameon=False, bbox_to_anchor=(-0.75, -0.35), fontsize=12)
+plt.subplots_adjust(bottom=0.25)
 plt.show()
 
 
