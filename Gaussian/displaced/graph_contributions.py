@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 
 muList = [0.1, 0.5, 1.0, 2.0]
 symbols = ['-', '--', ':']
+labels = ['Total', 'Passive Contribution', 'Ergotropic Contribution']
 
 ## Leitura Arquivos
 
@@ -46,7 +47,7 @@ for k, mu in enumerate(muList):
     
 
 ## Plots
-
+'''
 ### Wigner Fisher Information
 
 ##### Heating
@@ -58,9 +59,9 @@ for i in range(len(muList)):
     num = 141 + i
     
     plt.subplot(num)
-    plt.plot(tlist, Iw_list[i][0], color='red', linestyle=symbols[0], label='Total')
-    plt.plot(tlist, Iw_p_list[i][0], color='red', linestyle=symbols[1], label='Passive Contribution')
-    plt.plot(tlist, Iw_e_list[i][0], color='red', linestyle=symbols[2], label='Ergotropic Contribution')
+    plt.plot(tlist, Iw_list[i][0], color='red', linestyle=symbols[0], linewidth=2)
+    plt.plot(tlist, Iw_p_list[i][0], color='red', linestyle=symbols[1], linewidth=2)
+    plt.plot(tlist, Iw_e_list[i][0], color='red', linestyle=symbols[2], linewidth=2)
     
     plt.xscale('log')
     plt.title(r'$\mu$ = '+f'{muList[i]}', fontsize=12)
@@ -89,9 +90,9 @@ for i in range(len(muList)):
     num = 141 + i
     
     plt.subplot(num)
-    plt.plot(tlist, Iw_list[i][1], color='blue', linestyle=symbols[0], label='Total')
-    plt.plot(tlist, Iw_p_list[i][1], color='blue', linestyle=symbols[1], label='Passive Contribution')
-    plt.plot(tlist, Iw_e_list[i][1], color='blue', linestyle=symbols[2], label='Ergotropic Contribution')
+    plt.plot(tlist, Iw_list[i][1], color='blue', linestyle=symbols[0], linewidth=2)
+    plt.plot(tlist, Iw_p_list[i][1], color='blue', linestyle=symbols[1], linewidth=2)
+    plt.plot(tlist, Iw_e_list[i][1], color='blue', linestyle=symbols[2], linewidth=2)
     
     plt.xscale('log')
     plt.title(r'$\mu$ = '+f'{muList[i]}', fontsize=12)
@@ -112,18 +113,18 @@ plt.show()
 
 ### Entropy Production
 
-##### Heating
 
-plt.figure(figsize=(15,5))
+plt.figure(figsize=(15,10))
 
 for i in range(len(muList)):
     
-    num = 141 + i
+    ##### Heating
+    num_h = 241 + i
     
     plt.subplot(num)
-    plt.plot(tlist, Sprod_list[i][0], color='red', linestyle=symbols[0], label='Total')
-    plt.plot(tlist, Sprod_p_list[i][0], color='red', linestyle=symbols[1], label='Passive Contribution')
-    plt.plot(tlist, Sprod_e_list[i][0], color='red', linestyle=symbols[2], label='Ergotropic Contribution')
+    plt.plot(tlist, Sprod_list[i][0], color='red', linestyle=symbols[0], linewidth=2, label='Total')
+    plt.plot(tlist, Sprod_p_list[i][0], color='red', linestyle=symbols[1], linewidth=2, label='Passive Contribution')
+    plt.plot(tlist, Sprod_e_list[i][0], color='red', linestyle=symbols[2], linewidth=2, label='Ergotropic Contribution')
     
     plt.xscale('log')
     plt.title(r'$\mu$ = '+f'{muList[i]}', fontsize=12)
@@ -133,26 +134,14 @@ for i in range(len(muList)):
     
     if i == 0:
         plt.ylabel('Entropy Production Rate', fontsize=12)
-    if i == len(muList)-1:
-        plt.legend(fontsize=12, loc='center left', bbox_to_anchor=(1, 0.5))
     
-plt.suptitle('Heating', fontsize=14)
-plt.tight_layout()
-plt.subplots_adjust(right=0.8)
-plt.show()
-
-##### Cooling
-
-plt.figure(figsize=(15,5))
-
-for i in range(len(muList)):
-    
-    num = 141 + i
+    ##### Cooling
+    num_c = 244 + i
     
     plt.subplot(num)
-    plt.plot(tlist, Sprod_list[i][1], color='blue', linestyle=symbols[0], label='Total')
-    plt.plot(tlist, Sprod_p_list[i][1], color='blue', linestyle=symbols[1], label='Passive Contribution')
-    plt.plot(tlist, Sprod_e_list[i][1], color='blue', linestyle=symbols[2], label='Ergotropic Contribution')
+    plt.plot(tlist, Sprod_list[i][1], color='blue', linestyle=symbols[0], linewidth=2, label='Total')
+    plt.plot(tlist, Sprod_p_list[i][1], color='blue', linestyle=symbols[1], linewidth=2, label='Passive Contribution')
+    plt.plot(tlist, Sprod_e_list[i][1], color='blue', linestyle=symbols[2], linewidth=2, label='Ergotropic Contribution')
     
     plt.xscale('log')
     plt.title(r'$\mu$ = '+f'{muList[i]}', fontsize=12)
@@ -162,11 +151,78 @@ for i in range(len(muList)):
     
     if i == 0:
         plt.ylabel('Entropy Production Rate', fontsize=12)
-    if i == len(muList)-1:
-        plt.legend(fontsize=12, loc='center left', bbox_to_anchor=(1, 0.5))
     
-plt.suptitle('Cooling', fontsize=14)
+#plt.suptitle('Cooling', fontsize=14)
+#plt.suptitle('Heating', fontsize=14)
 plt.tight_layout()
 plt.subplots_adjust(right=0.8)
-plt.show()
+plt.show()'''
 
+fig = plt.figure(figsize=(15, 10)) # Aumentei um pouco a altura para caber a legenda
+
+for i in range(len(muList)):
+    
+    ##### HEATING
+    ax_h = plt.subplot(2, 4, i + 1) # 2 linhas, 4 colunas, posição 5 a 8
+    
+    line_h1 = plt.plot(tlist, Sprod_list[i][0], color='red', linestyle=symbols[0], linewidth=2)
+    line_h2 = plt.plot(tlist, Sprod_p_list[i][0], color='red', linestyle=symbols[1], linewidth=2)
+    line_h3 = plt.plot(tlist, Sprod_e_list[i][0], color='red', linestyle=symbols[2], linewidth=2)
+    
+    plt.xscale('log')
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.title(r'$\mu$ = ' + f'{muList[i]}', fontsize=12)
+
+    if i == 0:
+        plt.ylabel('Entropy Production Rate', fontsize=12)
+
+    if i == 0:
+        handles_red = [line_h1[0], line_h2[0], line_h3[0]]
+        
+    
+    ##### COOLING
+    ax_c = plt.subplot(2, 4, i + 5) # 2 linhas, 4 colunas, posição 1 a 4
+
+    line_c1 = plt.plot(tlist, Sprod_list[i][1], color='blue', linestyle=symbols[0], linewidth=2)
+    line_c2 = plt.plot(tlist, Sprod_p_list[i][1], color='blue', linestyle=symbols[1], linewidth=2)
+    line_c3 = plt.plot(tlist, Sprod_e_list[i][1], color='blue', linestyle=symbols[2], linewidth=2)
+    
+    plt.xscale('log')
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.title(r'$\mu$ = ' + f'{muList[i]}', fontsize=12)
+    plt.xlabel('Time', fontsize=12)
+    
+    if i == 0:
+        plt.ylabel('Entropy Production Rate', fontsize=12)
+    
+    if i == 0:
+        handles_blue = [line_c1[0], line_c2[0], line_c3[0]]
+
+
+# Legenda Heating (Vermelha) - Superior
+leg_h = fig.legend(handles_red, labels, 
+                   loc='lower center', 
+                   ncol=3, 
+                   title="Heating", 
+                   title_fontproperties={'weight':'bold', 'size':12},
+                   fontsize=12,
+                   bbox_to_anchor=(0.5, 0.08), 
+                   frameon=False)
+
+# Legenda Cooling (Azul) - Inferior
+leg_c = fig.legend(handles_blue, labels, 
+                   loc='lower center', 
+                   ncol=3, 
+                   title="Cooling", 
+                   title_fontproperties={'weight':'bold', 'size':12},
+                   fontsize=12,
+                   bbox_to_anchor=(0.5, 0.01), 
+                   frameon=False)
+
+# Ajusta o layout para os gráficos não baterem na legenda
+plt.tight_layout()
+plt.subplots_adjust(bottom=0.20) # Abre espaço no fundo para as duas legendas
+
+plt.show()

@@ -44,10 +44,10 @@ plt.figure(figsize=(10,5))
 for i in range(len(muList)):
     
     plt.subplot(121)
-    plt.plot(tlist, Iw_list[i][0], color='red', linestyle=symbols[i], label=r'$\mu$ = '+f'{muList[i]}')
+    plt.plot(tlist, Iw_list[i][0], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]}')
     
     plt.subplot(122)
-    plt.plot(tlist, Iw_list[i][1], color='blue', linestyle=symbols[i], label=r'$\mu$ = '+f'{muList[i]}')
+    plt.plot(tlist, Iw_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]}')
 
 plt.subplot(121)
 plt.xscale('log')
@@ -76,10 +76,10 @@ plt.figure(figsize=(10,5))
 for i in range(len(muList)):
     
     plt.subplot(121)
-    plt.plot(tlist, Vw_list[i][0], color='red', linestyle=symbols[i], label=r'$\mu$ = '+f'{muList[i]}')
+    plt.plot(tlist, Vw_list[i][0], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]}')
     
     plt.subplot(122)
-    plt.plot(tlist, Vw_list[i][1], color='blue', linestyle=symbols[i], label=r'$\mu$ = '+f'{muList[i]}')
+    plt.plot(tlist, Vw_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]}')
 
 plt.subplot(121)
 plt.xscale('log')
@@ -96,7 +96,7 @@ plt.xlabel('Time', fontsize=12)
 plt.title('Cooling', fontsize=12)
 plt.xticks(fontsize=12)
 plt.yticks(fontsize=12)
-plt.legend(fontsize=12)
+plt.legend(fontsize=12, loc='upper right')
 
 plt.tight_layout()
 plt.show()
@@ -108,10 +108,10 @@ plt.figure(figsize=(10,5))
 for i in range(len(muList)):
     
     plt.subplot(121)
-    plt.plot(tlist, Lw_list[i][0], color='red', linestyle=symbols[i], label=r'$\mu$ = '+f'{muList[i]}')
+    plt.plot(tlist, Lw_list[i][0], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]}')
     
     plt.subplot(122)
-    plt.plot(tlist, Lw_list[i][1], color='blue', linestyle=symbols[i], label=r'$\mu$ = '+f'{muList[i]}')
+    plt.plot(tlist, Lw_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]}')
 
 plt.subplot(121)
 plt.ylabel('Statistical Distance', fontsize=12)
@@ -134,21 +134,25 @@ plt.show()
 
 ### Completion
 
+plt.figure(figsize=(15,5))
+
 for i in range(len(muList)):
     
     num = 141 + i
     
     plt.subplot(num)
-    plt.plot(tlist, completion_list[i][0], color='red', linestyle=symbols[i], label='Heating')
-    plt.plot(tlist, completion_list[i][1], color='blue', linestyle=symbols[i], label='Cooling')
+    plt.plot(tlist, completion_list[i][0], color='red', linestyle=symbols[i], linewidth=2, label='Heating')
+    plt.plot(tlist, completion_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label='Cooling')
     
     plt.title(r'$\mu$ = '+f'{muList[i]}', fontsize=12)
-    plt.ylabel('Degree of Completion', fontsize=12)
     plt.xlabel('Time', fontsize=12)
     plt.xscale('log')
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
     plt.legend(fontsize=12)
+    
+    if i == 0:
+        plt.ylabel('Degree of Completion', fontsize=12)
 
 plt.tight_layout()
 plt.show()
@@ -160,10 +164,10 @@ plt.figure(figsize=(10,5))
 for i in range(len(muList)):
     
     plt.subplot(121)
-    plt.plot(tlist, Kevol_list[i][0], color='red', linestyle=symbols[i], label=r'$\mu$ = '+f'{muList[i]}')
+    plt.plot(tlist, Kevol_list[i][0], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]}')
     
     plt.subplot(122)
-    plt.plot(tlist, Kevol_list[i][1], color='blue', linestyle=symbols[i], label=r'$\mu$ = '+f'{muList[i]}')
+    plt.plot(tlist, Kevol_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]}')
 
 plt.subplot(121)
 plt.xscale('log')
@@ -192,10 +196,10 @@ plt.figure(figsize=(10,5))
 for i in range(len(muList)):
     
     plt.subplot(121)
-    plt.plot(tlist, Sprod_list[i][0], color='red', linestyle=symbols[i], label=r'$\mu$ = '+f'{muList[i]}')
+    plt.plot(tlist, Sprod_list[i][0], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]}')
     
     plt.subplot(122)
-    plt.plot(tlist, Sprod_list[i][1], color='blue', linestyle=symbols[i], label=r'$\mu$ = '+f'{muList[i]}')
+    plt.plot(tlist, Sprod_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]}')
 
 plt.subplot(121)
 plt.xscale('log')
