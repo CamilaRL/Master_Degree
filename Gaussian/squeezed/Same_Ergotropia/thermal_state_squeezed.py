@@ -201,17 +201,7 @@ def EquidistantInitial(Kinit, beta_eq, rh, w, gamma, beta_list):
     
     
     return beta_h, 1/beta_h, Kh, beta_c, 1/beta_c, Kc, rc
-    
 
-def SameErgotropy(beta_c, beta_h, rh):
-    
-    fc = Distribution('bose', beta_c, w)
-    fh = Distribution('bose', beta_h, w)
-    
-    rc = 0.5 * np.arccosh((fh/fc) * (np.cosh(2*rh) - 1) + 1)
-    
-    return rc
-        
 
 def WriteOutput(r, processo, tlist, Iw, Vw, Lw, completion, Kevol, Sprod):        
 
