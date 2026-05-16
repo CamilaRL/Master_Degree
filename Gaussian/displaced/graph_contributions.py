@@ -176,8 +176,6 @@ for i in range(len(muList)):
 
     if i == 0:
         plt.ylabel('Entropy Production Rate', fontsize=12)
-
-    if i == 0:
         handles_red = [line_h1[0], line_h2[0], line_h3[0]]
         
     
