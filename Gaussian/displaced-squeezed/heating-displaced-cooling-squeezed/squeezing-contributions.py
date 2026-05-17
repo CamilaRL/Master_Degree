@@ -32,7 +32,7 @@ def d_Wigner_Entropy(fb, dfb):
     
     return dSw
     
-def Contributions(gamma, ff, fi, ri, t):
+def Contributions_Squeezing(gamma, ff, fi, ri, t):
     
     ## delta beta
     delta_beta, d_delta_beta = Delta_Beta(fi, ff, gamma, t)
@@ -61,67 +61,80 @@ def Contributions(gamma, ff, fi, ri, t):
     return pi, ergo
 
 
+def Contributions_Displacement(gamma, ff, fi, mu, w, t):
+    
+    ## delta beta
+    delta_beta, d_delta_beta = Delta_Beta(fi, ff, gamma, t)
+    
+    Sprod_p = d_delta_beta/delta_beta - d_delta_beta/ff
+    
+    ergo = -(-gamma*(abs(mu)**2)*np.exp(-gamma*t))/(w*ff)
+    
+    return Sprod_p, ergo
+
+
 ## Parameters
 
 w = 1
 gamma = 0.1
 
-Teq = 2
+#Teq = 2# para Kinit = 2
+Teq = 4# para Kinit = 7
 beta_eq = 1/Teq
 ff = Distribution(beta_eq, w)
 
-tlist = np.arange(0, 40, 0.1)
+tlist = np.arange(0, 100, 0.1)
 
-rlist_hot, beta_list_hot, rlist_cool, beta_list_cool = np.loadtxt('./ThermalKinematics/initial_temperatures.txt', unpack=True)
+rList, beta_hot_list, muList, beta_cold_list = np.loadtxt('./ThermalKinematics/initial_temperatures.txt', unpack=True)
 
 symbols = ['-', '--', ':']
 labels = ['Total', 'Passive Contribution', 'Ergotropic Contribution']
 
 for i in range(2):
-
-    fc = Distribution(beta_list_cool[i], w)
-    fh = Distribution(beta_list_hot[i], w)
     
-    rc = rlist_cool[i]
-    rh = rlist_hot[i]
+    # hot = cooling = displacement || cold = heating = squeezing
+    
+    fh = Distribution(beta_hot_list[i], w)
+    fc = Distribution(beta_cold_list[i], w)
+    
+    r = rList[i]
+    mu = muList[i]
 
     # ergotropia
-    ergo_c_list = []
-    ergo_h_list = []
+    ergo_cooling_list = []
+    ergo_heating_list = []
     
     # producao entropia passivo
-    pi_c_list = []
-    pi_h_list = []
+    pi_cooling_list = []
+    pi_heating_list = []
     
     for t in tlist:
         
-        pi_c, ergo_c = Contributions(gamma, ff, fc, rc, t)
-        pi_h, ergo_h = Contributions(gamma, ff, fh, rh, t)
+        pi_cooling, ergo_cooling = Contributions_Squeezing(gamma, ff, fh, r, t)
+        pi_heating, ergo_heating = Contributions_Displacement(gamma, ff, fc, mu, w, t)
 
-        pi_c_list.append(pi_c)
-        pi_h_list.append(pi_h)
+        pi_cooling_list.append(pi_cooling)
+        pi_heating_list.append(pi_heating)
         
-        ergo_c_list.append(ergo_c)
-        ergo_h_list.append(ergo_h)
+        ergo_cooling_list.append(ergo_cooling)
+        ergo_heating_list.append(ergo_heating)
         
-    print(rh, ergo_c_list[0], ergo_h_list[0])
-        
-    '''
-    Sprod_c = np.loadtxt(f'./ThermalKinematics/r{rc}-heating.txt', unpack=True, usecols=(6))
-    Sprod_h = np.loadtxt(f'./ThermalKinematics/r{rh}-cooling.txt', unpack=True, usecols=(6))
+    
+    Sprod_cooling = np.loadtxt(f'./ThermalKinematics/s{r}-cooling.txt', unpack=True, usecols=(6))
+    Sprod_heating = np.loadtxt(f'./ThermalKinematics/d{mu}-heating.txt', unpack=True, usecols=(6))
     
     
     fig = plt.figure(figsize=(12,6))
 
     fig_heating = plt.subplot(1, 2, 1)
     
-    line_ht = plt.plot(tlist, Sprod_c[:400], color='red', linestyle=symbols[0], linewidth=2)
-    line_hp = plt.plot(tlist, pi_c_list, color='red', linestyle=symbols[1], linewidth=2)
-    line_he = plt.plot(tlist, ergo_c_list, color='red', linestyle=symbols[2], linewidth=2)
+    line_ht = plt.plot(tlist, Sprod_heating, color='red', linestyle=symbols[0], linewidth=2)
+    line_hp = plt.plot(tlist, pi_heating_list, color='red', linestyle=symbols[1], linewidth=2)
+    line_he = plt.plot(tlist, ergo_heating_list, color='red', linestyle=symbols[2], linewidth=2)
     
     plt.xscale('log')
     plt.xlim(left=0.1)
-    plt.title(f'r = {rc:.2f}', fontsize=14)
+    plt.title(r'$\mu$ = '+f'{muList[i]:.2f}', fontsize=14)
     plt.xlabel('Time', fontsize=12)
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
@@ -132,13 +145,13 @@ for i in range(2):
     
     fig_cooling = plt.subplot(1, 2, 2)
 
-    line_ct = plt.plot(tlist, Sprod_h[:400], color='blue', linestyle=symbols[0], linewidth=2)
-    line_cp = plt.plot(tlist, pi_h_list, color='blue', linestyle=symbols[1], linewidth=2)
-    line_ce = plt.plot(tlist, ergo_h_list, color='blue', linestyle=symbols[2], linewidth=2)
+    line_ct = plt.plot(tlist, Sprod_cooling, color='blue', linestyle=symbols[0], linewidth=2)
+    line_cp = plt.plot(tlist, pi_cooling_list, color='blue', linestyle=symbols[1], linewidth=2)
+    line_ce = plt.plot(tlist, ergo_cooling_list, color='blue', linestyle=symbols[2], linewidth=2)
 
     plt.xscale('log')
     plt.xlim(left=0.1)
-    plt.title(f'r = {rh:.2f}', fontsize=14)
+    plt.title(r'$r$ = '+f'{rList[i]:.2f}', fontsize=14)
     plt.xlabel('Time', fontsize=12)
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
@@ -150,7 +163,7 @@ for i in range(2):
     leg_h = fig.legend(handles_red, labels, 
                        loc='lower center', 
                        ncol=3, 
-                       title="Heating", 
+                       title="Heating with Displacement", 
                        title_fontproperties={'weight':'bold', 'size':12},
                        fontsize=12,
                        bbox_to_anchor=(0.5, 0.1), 
@@ -160,7 +173,7 @@ for i in range(2):
     leg_c = fig.legend(handles_blue, labels, 
                        loc='lower center', 
                        ncol=3, 
-                       title="Cooling", 
+                       title="Cooling with Squeezing", 
                        title_fontproperties={'weight':'bold', 'size':12},
                        fontsize=12,
                        bbox_to_anchor=(0.5, 0.01), 
@@ -186,9 +199,4 @@ for i in range(2):
 
 
 
-
-
-
-
-'''
 
