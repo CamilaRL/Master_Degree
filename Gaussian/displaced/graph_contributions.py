@@ -158,7 +158,7 @@ plt.tight_layout()
 plt.subplots_adjust(right=0.8)
 plt.show()'''
 
-fig = plt.figure(figsize=(15, 10)) # Aumentei um pouco a altura para caber a legenda
+fig = plt.figure(figsize=(12, 8)) # Aumentei um pouco a altura para caber a legenda
 
 for i in range(len(muList)):
     
@@ -221,6 +221,6 @@ leg_c = fig.legend(handles_blue, labels,
 
 # Ajusta o layout para os gráficos não baterem na legenda
 plt.tight_layout()
-plt.subplots_adjust(bottom=0.20) # Abre espaço no fundo para as duas legendas
+plt.subplots_adjust(bottom=0.25) # Abre espaço no fundo para as duas legendas
 
 plt.show()

@@ -16,7 +16,7 @@ Sprod_list = []
 
 for k in range(len(rList)):
     
-    tlist, Iw, Vw, Lw, completion, Kevol, Sprod = np.loadtxt(f'./ThermalKinematics/s{rList[k]}-cooling.txt', unpack=True)
+    tlist, Iw, Vw, Lw, completion, Kevol, Sprod = np.loadtxt(f'./ThermalKinematics/d{muList[k]}-heating.txt', unpack=True)
     
     Iw_list.append([Iw])
     Vw_list.append([Vw])
@@ -24,9 +24,9 @@ for k in range(len(rList)):
     completion_list.append([completion])
     Kevol_list.append([Kevol])
     Sprod_list.append([Sprod])
+
     
-    
-    tlist, Iw, Vw, Lw, completion, Kevol, Sprod = np.loadtxt(f'./ThermalKinematics/d{muList[k]}-heating.txt', unpack=True)
+    tlist, Iw, Vw, Lw, completion, Kevol, Sprod = np.loadtxt(f'./ThermalKinematics/s{rList[k]}-cooling.txt', unpack=True)
     
     Iw_list[k].append(Iw)
     Vw_list[k].append(Vw)
@@ -35,6 +35,7 @@ for k in range(len(rList)):
     Kevol_list[k].append(Kevol)
     Sprod_list[k].append(Sprod)
 
+    
 
 ## Plots
 
@@ -45,10 +46,10 @@ plt.figure(figsize=(10,5))
 for i in range(2):
     
     plt.subplot(121)
-    plt.plot(tlist, Iw_list[i][1], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]:.2f}')
+    plt.plot(tlist, Iw_list[i][0], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]:.2f}')
     
     plt.subplot(122)
-    plt.plot(tlist, Iw_list[i][0], color='blue', linestyle=symbols[i], linewidth=2, label=r'$r$ = '+f'{rList[i]:.2f}')
+    plt.plot(tlist, Iw_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label=r'$r$ = '+f'{rList[i]:.2f}')
 
 plt.subplot(121)
 plt.xscale('log')
@@ -77,10 +78,10 @@ plt.figure(figsize=(10,5))
 for i in range(2):
     
     plt.subplot(121)
-    plt.plot(tlist, Vw_list[i][1], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]:.2f}')
+    plt.plot(tlist, Vw_list[i][0], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]:.2f}')
     
     plt.subplot(122)
-    plt.plot(tlist, Vw_list[i][0], color='blue', linestyle=symbols[i], linewidth=2, label=r'$r$ = '+f'{rList[i]:.2f}')
+    plt.plot(tlist, Vw_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label=r'$r$ = '+f'{rList[i]:.2f}')
 
 plt.subplot(121)
 plt.xscale('log')
@@ -109,10 +110,10 @@ plt.figure(figsize=(10,5))
 for i in range(2):
     
     plt.subplot(121)
-    plt.plot(tlist, Lw_list[i][1], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]:.2f}')
+    plt.plot(tlist, Lw_list[i][0], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]:.2f}')
     
     plt.subplot(122)
-    plt.plot(tlist, Lw_list[i][0], color='blue', linestyle=symbols[i], linewidth=2, label=r'$r$ = '+f'{rList[i]:.2f}')
+    plt.plot(tlist, Lw_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label=r'$r$ = '+f'{rList[i]:.2f}')
 
 plt.subplot(121)
 plt.ylabel('Statistical Distance', fontsize=12)
@@ -143,8 +144,8 @@ for i in range(2):
     num = 121 + i #221 + i
     
     plt.subplot(num)
-    plt.plot(tlist, completion_list[i][1], color='red', linestyle=symbols[i], linewidth=2, label='Heating - '+r'$\mu$ = '+f'{muList[i]:.2f}')
-    plt.plot(tlist, completion_list[i][0], color='blue', linestyle=symbols[i], linewidth=2, label='Cooling - '+r'$r$ = '+f'{rList[i]:.2f}')
+    plt.plot(tlist, completion_list[i][0], color='red', linestyle=symbols[i], linewidth=2, label='Heating - '+r'$\mu$ = '+f'{muList[i]:.2f}')
+    plt.plot(tlist, completion_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label='Cooling - '+r'$r$ = '+f'{rList[i]:.2f}')
     
     if i == 0:
         plt.ylabel('Degree of Completion', fontsize=12)
@@ -164,10 +165,10 @@ plt.figure(figsize=(10,5))
 for i in range(2):
     
     plt.subplot(121)
-    plt.plot(tlist, Kevol_list[i][1], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]:.2f}')
+    plt.plot(tlist, Kevol_list[i][0], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]:.2f}')
     
     plt.subplot(122)
-    plt.plot(tlist, Kevol_list[i][0], color='blue', linestyle=symbols[i], linewidth=2, label=r'$r$ = '+f'{rList[i]:.2f}')
+    plt.plot(tlist, Kevol_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label=r'$r$ = '+f'{rList[i]:.2f}')
 
 plt.subplot(121)
 plt.ylabel('Relative Entropy', fontsize=12)
@@ -194,10 +195,10 @@ plt.figure(figsize=(10,5))
 for i in range(2):
     
     plt.subplot(121)
-    plt.plot(tlist, Sprod_list[i][1], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]:.2f}')
+    plt.plot(tlist, Sprod_list[i][0], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]:.2f}')
     
     plt.subplot(122)
-    plt.plot(tlist, Sprod_list[i][0], color='blue', linestyle=symbols[i], linewidth=2, label=r'$r$ = '+f'{rList[i]:.2f}')
+    plt.plot(tlist, Sprod_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label=r'$r$ = '+f'{rList[i]:.2f}')
 
 plt.subplot(121)
 plt.xscale('log')
@@ -218,8 +219,6 @@ plt.legend(fontsize=12)
 
 plt.tight_layout()
 plt.show()
-
-
 
 
 

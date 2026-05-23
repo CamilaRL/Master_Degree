@@ -53,7 +53,7 @@ w0 = 1
 
 Tf_qubit, Th, Tc = np.loadtxt('./DensityMatrices/temperature_qubit.txt', unpack=True, usecols=(1,2,3))
 
-gList = [0.0, 0.5]
+gList = [0.0, 1.0]
 cList = ['min', 'max']
 
 tlist = np.arange(0, 30, 0.01)

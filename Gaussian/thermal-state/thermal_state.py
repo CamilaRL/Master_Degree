@@ -3,36 +3,34 @@ import matplotlib.pyplot as plt
 from scipy.optimize import brentq
 
 
-def Distribution(dist, beta_R, dmn):
+def Distribution(beta_R, dmn):
 
-    if dist == 'bose':
-        f = 1/(np.exp(beta_R * dmn) - 1)
-
-    elif dist == 'fermi':
-        f = 1/(np.exp(beta_R * dmn) + 1)
+    n = 1/(np.exp(beta_R * dmn) - 1)
+    
+    f = n + 0.5
         
     return f
 
 
 def Delta_Beta(w, beta_i, beta, gamma, t):
 
-    fi = Distribution('bose', beta_i, w)
+    fi = Distribution(beta_i, w)
     
-    ff = Distribution('bose', beta, w)
+    ff = Distribution(beta, w)
     
     delta_beta = (fi - ff) * np.exp(-gamma*t) + ff
     
     d_delta_beta = -gamma * (fi - ff) * np.exp(-gamma*t)
     
     return delta_beta, d_delta_beta
-    
+
 
 def Wigner_Fisher_Info(w, beta_i, beta_f, gamma, t):
 
     delta_beta, d_delta_beta = Delta_Beta(w, beta_i, beta_f, gamma, t)
     
     return 2 * (d_delta_beta/delta_beta)**2
-    
+
 
 def Velocity(Iw):
 
@@ -41,9 +39,9 @@ def Velocity(Iw):
 
 def Distance(w, beta_i, beta_f, gamma, t):
 
-    fi = Distribution('bose', beta_i, w)
+    fi = Distribution(beta_i, w)
     
-    ff = Distribution('bose', beta_f, w)
+    ff = Distribution(beta_f, w)
 
     L = abs(np.log(((fi - ff) * np.exp(-gamma*t) + ff) / fi))
     
@@ -52,7 +50,7 @@ def Distance(w, beta_i, beta_f, gamma, t):
 
 def EntropyProduction(w, beta_i, beta_f, gamma, t):
     
-    ff = Distribution('bose', beta_f, w)
+    ff = Distribution(beta_f, w)
     
     delta_beta, d_delta_beta = Delta_Beta(w, beta_i, beta_f, gamma, t)
     
@@ -98,7 +96,7 @@ def ThermalKinematics(beta_i, beta_f, w, gamma, tlist):
 def RelativeEntropy(beta_i, beta_f, w, gamma, t):
 
     delta_i, d_delta_i = Delta_Beta(w, beta_i, beta_f, gamma, t)
-    ff = Distribution('bose', beta_f, w)
+    ff = Distribution(beta_f, w)
     
     return -1 + (delta_i/ff) + np.log(ff/delta_i)
 
@@ -160,7 +158,7 @@ def EquidistantInitial(Kinit, beta_eq, w, gamma, beta_list):
 w = 1
 gamma = 0.1
 
-Kinit = 1
+Kinit = 0.5
 
 Teq = 2
 beta_eq = 1/Teq

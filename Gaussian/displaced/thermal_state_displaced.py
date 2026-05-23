@@ -3,22 +3,20 @@ import matplotlib.pyplot as plt
 from scipy.optimize import brentq
 
 
-def Distribution(dist, beta_R, dmn):
+def Distribution(beta_R, dmn):
 
-    if dist == 'bose':
-        f = 1/(np.exp(beta_R * dmn) - 1)
-
-    elif dist == 'fermi':
-        f = 1/(np.exp(beta_R * dmn) + 1)
-        
+    n = 1/(np.exp(beta_R * dmn) - 1)
+    
+    f = n + 0.5
+    
     return f
 
 
 def Delta_Beta(w, beta_i, beta, gamma, t):
 
-    fi = Distribution('bose', beta_i, w)
+    fi = Distribution(beta_i, w)
     
-    ff = Distribution('bose', beta, w)
+    ff = Distribution(beta, w)
     
     delta_beta = (fi - ff) * np.exp(-gamma*t) + ff
     
@@ -48,7 +46,7 @@ def Distance(vList, dt):
 
 def EntropyProduction(mu, w, beta_i, beta_f, gamma, t):
     
-    ff = Distribution('bose', beta_f, w)
+    ff = Distribution(beta_f, w)
     
     delta_beta, d_delta_beta = Delta_Beta(w, beta_i, beta_f, gamma, t)
     
@@ -91,7 +89,7 @@ def ThermalKinematics(mu, beta_i, beta_f, w, gamma, tlist):
 def RelativeEntropy(mu, beta_i, beta_f, w, gamma, t):
 
     delta_t, d_delta_t = Delta_Beta(w, beta_i, beta_f, gamma, t)
-    ff = Distribution('bose', beta_f, w)
+    ff = Distribution(beta_f, w)
     
     return -1 + (abs(mu)**2)*np.exp(-gamma*t)/ff + delta_t/ff + np.log(ff/delta_t)
 
@@ -99,7 +97,7 @@ def RelativeEntropy(mu, beta_i, beta_f, w, gamma, t):
 def EquidistantInitial(Kinit, beta_eq, w, gamma, beta_list):
 
     K_diff = lambda beta_i: RelativeEntropy(0, beta_i, beta_eq, w, gamma, 0) - Kinit
-    print(RelativeEntropy(0, beta_eq, beta_eq, w, gamma, 0))
+
     K_diff_list = []
     for beta in beta_list:
     
@@ -162,7 +160,7 @@ w = 1
 gamma = 0.1
 mu = 2.0
 
-Kinit = 1
+Kinit = 0.5
 
 Teq = 2
 beta_eq = 1/Teq

@@ -233,7 +233,7 @@ tlist = np.arange(0, 30, 0.01)
 Tf_banho = 1.0
 beta_R = 1/Tf_banho
 
-Sr_inicial = 0.05
+Sr_inicial = 0.03
 
 
 ## hamiltonians
@@ -242,7 +242,7 @@ H_q1 = -w0*sigmaz()/2
 
 H_q2 = -w0*sigmaz()/2
 
-H_int = tensor(sigmap(), sigmam()) + tensor(sigmam(), sigmap())
+H_int = tensor(sigmax(), sigmax()) + tensor(sigmay(), sigmay())
 
 H_S = tensor(H_q1, qeye(2)) + tensor(qeye(2), H_q2) + g*H_int
 
@@ -282,7 +282,7 @@ plt.plot(pList1, Sr1, color='orange')
 plt.hlines(y=Sr_inicial, xmin=min(pList1), xmax=max(pList0), color='black', label='Initial Relative Entropy')
 plt.xlabel('Populations', fontsize=12)
 plt.ylabel('Relative Entropy', fontsize=12)
-plt.title(f'g = {g}', fontsize=14)
+plt.title(f'XX model', fontsize=14)
 plt.yticks(fontsize=12)
 plt.xticks(fontsize=12)
 plt.legend(fontsize=12)

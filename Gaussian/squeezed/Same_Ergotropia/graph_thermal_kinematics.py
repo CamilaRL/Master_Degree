@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 rcList, rhList = np.loadtxt('./ThermalKinematics/initial_temperatures.txt', unpack=True, usecols=(0, 2))
 symbols = ['-', '--', '-.', ':']
-print(rhList)
+
 ## Leitura Arquivos
 
 Iw_list = []

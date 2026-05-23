@@ -3,7 +3,9 @@ import matplotlib.pyplot as plt
 
 def Distribution(beta, dmn):
 
-    f = 1/(np.exp(beta * dmn) - 1)
+    n = 1/(np.exp(beta * dmn) - 1)
+
+    f = n + 0.5
 
     return f
 
@@ -78,7 +80,7 @@ def Contributions_Displacement(gamma, ff, fi, mu, w, t):
 w = 1
 gamma = 0.1
 
-Teq = 2
+Teq = 4
 beta_eq = 1/Teq
 ff = Distribution(beta_eq, w)
 

@@ -226,7 +226,7 @@ def Write_Density_Matrices(rhof, rhof_q1, rhof_q2, c, g):
 
 w0 = 1
 gamma = 0.1
-J = 0.5
+J = -0.4
 gaminha = 0
 delta = 1
 
@@ -235,7 +235,7 @@ tlist = np.arange(0, 30, 0.01)
 Tf_banho = 1.0
 beta_R = 1/Tf_banho
 
-Sr_inicial = 0.05
+Sr_inicial = 0.03
 
 
 ## hamiltonians
@@ -285,7 +285,7 @@ plt.plot(pList1, Sr1, color='orange')
 plt.hlines(y=Sr_inicial, xmin=min(pList1), xmax=max(pList0), color='black', label='Initial Relative Entropy')
 plt.xlabel('Populations', fontsize=12)
 plt.ylabel('Relative Entropy', fontsize=12)
-plt.title(f'XXX Model\nJ = {J}', fontsize=14)
+plt.title(f'XXX Model', fontsize=14)
 plt.yticks(fontsize=12)
 plt.xticks(fontsize=12)
 plt.legend(fontsize=12)

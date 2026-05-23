@@ -3,13 +3,11 @@ import matplotlib.pyplot as plt
 from scipy.optimize import brentq
 
 
-def Distribution(dist, beta_R, dmn):
+def Distribution(beta_R, dmn):
 
-    if dist == 'bose':
-        f = 1/(np.exp(beta_R * dmn) - 1)
-
-    elif dist == 'fermi':
-        f = 1/(np.exp(beta_R * dmn) + 1)
+    n = 1/(np.exp(beta_R * dmn) - 1)
+    
+    f = n + 0.5
         
     return f
 
@@ -119,8 +117,8 @@ def ThermalKinematics(recurso, param, beta_i, beta_f, w, gamma, tlist):
     Kevol = []
     Sprod = []
 
-    fi = Distribution('bose', beta_i, w)
-    ff = Distribution('bose', beta_f, w)
+    fi = Distribution(beta_i, w)
+    ff = Distribution(beta_f, w)
 
     if recurso == 's':
 
@@ -177,7 +175,7 @@ def ThermalKinematics(recurso, param, beta_i, beta_f, w, gamma, tlist):
 
 def EquidistantInitial(Kinit, beta_eq, r, w, gamma, beta_list):
 
-    ff = Distribution('bose', beta_eq, w)
+    ff = Distribution(beta_eq, w)
     
     Ks_func = lambda fi: RelativeEntropy_Squeezing(r, fi, ff, gamma, 0) - Kinit
     
@@ -185,20 +183,20 @@ def EquidistantInitial(Kinit, beta_eq, r, w, gamma, beta_list):
     fi_list = []
     
     for beta_i in beta_list:
-        fi = Distribution('bose', beta_i, w)
+        fi = Distribution(beta_i, w)
         fi_list.append(fi)
         Ks_list.append(Ks_func(fi))
     
-    ## displacement = cooling
+    ## squeezing = cooling
     for i in range(0, np.argmin(Ks_list), 1):
         
         if Ks_list[i] * Ks_list[i+1] < 0:  # houve cruzamento
 
             fs = brentq(Ks_func, fi_list[i], fi_list[i+1])  # raiz exata
             Ks = RelativeEntropy_Squeezing(r, fs, ff, gamma, 0)
-            beta_s = np.log((1/fs) + 1)/w
+            beta_s = np.log((1/(fs -0.5)) + 1)/w
     
-    ## squeezing = heating
+    ## displacement = heating
     Kd_func = lambda fi: fi - fs + ff*np.log(fs/fi)
     
     Kd_list = []
@@ -214,7 +212,7 @@ def EquidistantInitial(Kinit, beta_eq, r, w, gamma, beta_list):
             mu = np.sqrt(fs * (np.cosh(2*r) - 1))
             
             Kd = RelativeEntropy_Displacement(mu, fd, ff, gamma, 0)
-            beta_d = np.log((1/fd) + 1)/w
+            beta_d = np.log((1/(fd - 0.5)) + 1)/w
     
     
     ## plot
@@ -223,13 +221,13 @@ def EquidistantInitial(Kinit, beta_eq, r, w, gamma, beta_list):
     plt.scatter([beta_eq], [RelativeEntropy_Displacement(0, ff, ff, gamma, 0)], color='black', label=f'Tw = {1/beta_eq:.3f}')
 
     Kd_curve = [RelativeEntropy_Displacement(mu, fi, ff, gamma, 0) for fi in fi_list]
-    plt.plot(beta_list, Kd_curve, color='red')
+    plt.plot(beta_list, Kd_curve, color='blue')
     
     Ks_curve = [RelativeEntropy_Squeezing(r, fi, ff, gamma, 0) for fi in fi_list]
-    plt.plot(beta_list, Ks_curve, color='blue')
+    plt.plot(beta_list, Ks_curve, color='red')
     
-    plt.scatter([beta_d], [Kd], color='red', label=f'Td = {1/beta_d:.3f}')
-    plt.scatter([beta_s], [Ks], color='blue', label=f'Ts = {1/beta_s:.3f}')
+    plt.scatter([beta_d], [Kd], color='blue', label=f'Td = {1/beta_d:.3f}')
+    plt.scatter([beta_s], [Ks], color='red', label=f'Ts = {1/beta_s:.3f}')
     plt.xlabel(r'$\beta$')
     plt.ylabel('Relative Entropy')
     plt.legend()
@@ -259,17 +257,17 @@ def WriteOutput(filename, tlist, Iw, Vw, Lw, completion, Kevol, Sprod):
 
 w = 1
 gamma = 0.1
-r = 1.0
+r = 0.5
 
-Kinit = 7
+Kinit = 1#7
 
-Teq = 4
+Teq = 4#4
 beta_eq = 1/Teq
 
 beta_list = np.arange(0.01, 10, 0.01)
 
 beta_cold, Tcold, Kcold, beta_hot, Thot, Khot, mu = EquidistantInitial(Kinit, beta_eq, r, w, gamma, beta_list)
-# hot = cooling = displacement || cold = heating = squeezing
+# hot = cooling = squeezing || cold = heating = displacement
 
 file_init = open('./ThermalKinematics/initial_temperatures.txt', 'a')
 
@@ -278,7 +276,7 @@ file_init.write(f'{r} {beta_hot} {mu} {beta_cold}\n')
 file_init.close()
 
 
-tlist = np.arange(0, 100, 0.1)
+tlist = np.arange(0, 110, 0.1)
 
 
 ## Thermal Kinematics

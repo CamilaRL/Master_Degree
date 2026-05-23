@@ -3,13 +3,11 @@ import matplotlib.pyplot as plt
 from scipy.optimize import brentq
 
 
-def Distribution(dist, beta_R, dmn):
+def Distribution(beta_R, dmn):
 
-    if dist == 'bose':
-        f = 1/(np.exp(beta_R * dmn) - 1)
-
-    elif dist == 'fermi':
-        f = 1/(np.exp(beta_R * dmn) + 1)
+    n = 1/(np.exp(beta_R * dmn) - 1)
+    
+    f = n + 0.5
         
     return f
 
@@ -102,8 +100,8 @@ def ThermalKinematics(r, beta_i, beta_f, w, gamma, tlist):
     Kevol = []
     Sprod = []
 
-    fi = Distribution('bose', beta_i, w)
-    ff = Distribution('bose', beta_f, w)
+    fi = Distribution(beta_i, w)
+    ff = Distribution(beta_f, w)
 
     for t in tlist:
         
@@ -140,7 +138,7 @@ def ThermalKinematics(r, beta_i, beta_f, w, gamma, tlist):
 
 def EquidistantInitial(Kinit, beta_eq, rh, w, gamma, beta_list):
 
-    ff = Distribution('bose', beta_eq, w)
+    ff = Distribution(beta_eq, w)
 
     K_hot = lambda fi: RelativeEntropy(fi, ff, rh, gamma, 0) - Kinit
 
@@ -148,7 +146,7 @@ def EquidistantInitial(Kinit, beta_eq, rh, w, gamma, beta_list):
     fi_list = []
     
     for beta_i in beta_list:
-        fi = Distribution('bose', beta_i, w)
+        fi = Distribution(beta_i, w)
         fi_list.append(fi)
         K_hot_list.append(K_hot(fi))
     
@@ -159,9 +157,10 @@ def EquidistantInitial(Kinit, beta_eq, rh, w, gamma, beta_list):
 
             fh = brentq(K_hot, fi_list[i], fi_list[i+1])  # raiz exata
             Kh = RelativeEntropy(fh, ff, rh, gamma, 0)
-            beta_h = np.log((1/fh) + 1)/w
+            beta_h = np.log((1/(fh - 0.5)) + 1)/w
+            print(i, beta_h, K_hot_list[i], K_hot_list[i+1])
     
-    K_cold = lambda fi: (fi/ff) + np.log(fh/fi) - (fh/ff)
+    K_cold = lambda fi: fi - fh + ff * np.log(fh/fi)
     
     K_cold_list = []
     for fi in fi_list:
@@ -177,11 +176,11 @@ def EquidistantInitial(Kinit, beta_eq, rh, w, gamma, beta_list):
             rc = 0.5 * np.arccosh((fh/fc) * (np.cosh(2*rh) - 1) + 1)
             
             Kc = RelativeEntropy(fc, ff, rc, gamma, 0)
-            beta_c = np.log((1/fc) + 1)/w
+            beta_c = np.log((1/(fc - 0.5)) + 1)/w
     
     
     ## plot
-    print(beta_h, beta_c, rc)
+    #print(beta_h, beta_c, rc)
     
     plt.hlines(y=Kinit, xmin=min(beta_list), xmax=max(beta_list), color='grey', label='Initial Relative Entropy')
     plt.scatter([beta_eq], [RelativeEntropy(ff, ff, 0, gamma, 0)], color='black', label=f'Tw = {1/beta_eq:.3f}')
@@ -223,14 +222,14 @@ def WriteOutput(r, processo, tlist, Iw, Vw, Lw, completion, Kevol, Sprod):
 
 w = 1
 gamma = 0.1
-rh = 0.5
+rh = 0.1
 
-Kinit = 2
+Kinit = 1
 
-Teq = 2
+Teq = 4
 beta_eq = 1/Teq
 
-beta_list = np.arange(0.1, 10, 0.01)
+beta_list = np.arange(0.05, 6, 0.001)
 
 beta_hot, Thot, Khot, beta_cold, Tcold, Kcold, rc = EquidistantInitial(Kinit, beta_eq, rh, w, gamma, beta_list)
 

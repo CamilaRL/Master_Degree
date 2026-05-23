@@ -80,13 +80,15 @@ for i, c in enumerate(cnameList):
         MI = MutualInformation(rho_q1_t, rho_q2_t, rho_total_t)
 
 
-        plt.plot(tempo_real, MI, color=colors_coherence[i], linestyle=lines_coupling[j], label=f'|c| = {cList[i][j]:.3f} \n J = {g}')
+        plt.plot(tempo_real, MI, color=colors_coherence[i], linestyle=lines_coupling[j], linewidth=2, label=f'|c| = {cList[i][j]:.3f} \n J = {g}')
 
     
-plt.xlabel('Time')
-plt.ylabel('Mutual Information')
+plt.xlabel('Time', fontsize=12)
+plt.ylabel('Mutual Information', fontsize=12)
 #plt.xscale('log')
-plt.legend()
+plt.yticks(fontsize=12)
+plt.xticks(fontsize=12)
+plt.legend(loc='lower right', fontsize=12)
 plt.show()
 
 

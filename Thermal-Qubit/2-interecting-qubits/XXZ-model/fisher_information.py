@@ -68,8 +68,8 @@ def Quantum_Fisher_Information(rho_list, temp_list, dimensao):
   
 ## parameters
 
-qubit = 'q1'
-modo = 'Heating'
+qubit = 'q2'
+modo = 'Cooling'
 
 os.mkdir(f'./FisherInformation/{modo}')
 
@@ -77,7 +77,7 @@ tempo_real = np.arange(0, 30, 0.01)
 
 
 ## reading coherences
-gList = [0.0, 0.5]
+gList = [0.0, 1.0]
 
 
 for g in gList:

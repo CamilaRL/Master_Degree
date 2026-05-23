@@ -1,9 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def Distribution(beta, dmn):
 
-    f = 1/(np.exp(beta * dmn) - 1)
+    n = 1/(np.exp(beta * dmn) - 1)
+
+    f = n + 0.5
 
     return f
 
@@ -78,12 +81,12 @@ def Contributions_Displacement(gamma, ff, fi, mu, w, t):
 w = 1
 gamma = 0.1
 
-#Teq = 2# para Kinit = 2
-Teq = 4# para Kinit = 7
+Teq = 4
+
 beta_eq = 1/Teq
 ff = Distribution(beta_eq, w)
 
-tlist = np.arange(0, 100, 0.1)
+tlist = np.arange(0, 110, 0.1)
 
 rList, beta_hot_list, muList, beta_cold_list = np.loadtxt('./ThermalKinematics/initial_temperatures.txt', unpack=True)
 
@@ -92,10 +95,10 @@ labels = ['Total', 'Passive Contribution', 'Ergotropic Contribution']
 
 for i in range(2):
     
-    # hot = cooling = displacement || cold = heating = squeezing
+    # hot = cooling = squeezing || cold = heating = displacement
     
-    fh = Distribution(beta_hot_list[i], w)
-    fc = Distribution(beta_cold_list[i], w)
+    fhot = Distribution(beta_hot_list[i], w)
+    fcold = Distribution(beta_cold_list[i], w)
     
     r = rList[i]
     mu = muList[i]
@@ -110,8 +113,8 @@ for i in range(2):
     
     for t in tlist:
         
-        pi_cooling, ergo_cooling = Contributions_Squeezing(gamma, ff, fh, r, t)
-        pi_heating, ergo_heating = Contributions_Displacement(gamma, ff, fc, mu, w, t)
+        pi_cooling, ergo_cooling = Contributions_Squeezing(gamma, ff, fhot, r, t)
+        pi_heating, ergo_heating = Contributions_Displacement(gamma, ff, fcold, mu, w, t)
 
         pi_cooling_list.append(pi_cooling)
         pi_heating_list.append(pi_heating)

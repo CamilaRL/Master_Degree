@@ -88,7 +88,7 @@ plt.ylabel('Mutual Information', fontsize=12)
 plt.yticks(fontsize=12)
 plt.xticks(fontsize=12)
 plt.xlim(right=20)
-plt.legend(fontsize=12)
+plt.legend(loc='lower right', fontsize=12)
 plt.show()
 
 
