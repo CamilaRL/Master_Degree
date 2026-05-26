@@ -143,8 +143,9 @@ for i in range(2):
     num = 121 + i #221 + i
     
     plt.subplot(num)
-    plt.plot(tlist, completion_list[i][0], color='red', linestyle=symbols[i], label='Heating - '+r'$r$ = '+f'{rhList[i]:.2f} ')
-    plt.plot(tlist, completion_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label='Cooling - '+r'$r$ = '+f'{rcList[i]:.2f} ')
+    plt.plot(tlist, completion_list[i][0], color='red', linestyle=symbols[i], label=r'$W_c$ - $r$ = '+f'{rhList[i]:.2f} ')
+    plt.plot(tlist, completion_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label=r'$W_h$ - $r$ = '+f'{rcList[i]:.2f} ')
+    plt.legend(fontsize=12)
     
     if i == 0:
         plt.ylabel('Degree of Completion', fontsize=12)
@@ -152,7 +153,6 @@ for i in range(2):
     plt.xlabel('Time', fontsize=12)
     plt.xticks(fontsize=12)
     plt.yticks(fontsize=12)
-    plt.legend(fontsize=12)
 
 plt.tight_layout()
 plt.show()
