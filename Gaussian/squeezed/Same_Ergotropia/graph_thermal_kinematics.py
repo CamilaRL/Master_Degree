@@ -157,6 +157,14 @@ for i in range(2):
 plt.tight_layout()
 plt.show()
 
+
+plt.plot(tlist, completion_list[0][0], color='red', linestyle=symbols[0], label=r'$W_c$ - $r$ = '+f'{rhList[0]:.2f} ')
+plt.plot(tlist, completion_list[0][1], color='blue', linestyle=symbols[0], linewidth=2, label=r'$W_h$ - $r$ = '+f'{rcList[0]:.2f} ')
+plt.plot(tlist, completion_list[1][0], color='red', linestyle=symbols[1], label=r'$W_c$ - $r$ = '+f'{rhList[1]:.2f} ')
+plt.plot(tlist, completion_list[1][1], color='blue', linestyle=symbols[1], linewidth=2, label=r'$W_h$ - $r$ = '+f'{rcList[1]:.2f} ')
+
+plt.show()
+
 ### Relative Entropy
 
 plt.figure(figsize=(10,5))

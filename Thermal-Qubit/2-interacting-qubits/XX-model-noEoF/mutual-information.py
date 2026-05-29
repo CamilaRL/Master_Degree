@@ -65,9 +65,14 @@ lines_coupling = ['--', '-']
 
 gList, cmin, cmax = np.loadtxt(f'./DensityMatrices/correlations.txt', unpack=True)
 
+titulo = ['Zero Initial Coherence', 'Maximum Initial Coherence']
+
 cList = [cmin, cmax]
 
+handles = []
+fig = plt.figure()
 for i, c in enumerate(cnameList):
+    color_handle = []
     for j, g in enumerate(gList):
 
         ## reading rho(t)
@@ -80,13 +85,39 @@ for i, c in enumerate(cnameList):
         MI = MutualInformation(rho_q1_t, rho_q2_t, rho_total_t)
 
 
-        plt.plot(tempo_real, MI, color=colors_coherence[i], linestyle=lines_coupling[j], label=f'|c| = {cList[i][j]:.3f} \n J = {g}')
+        mi_plot = plt.plot(tempo_real[:2000], MI[:2000], color=colors_coherence[i], linestyle=lines_coupling[j], linewidth=2, label=f'{titulo[i]} \n J = {g}')
+        color_handle.append(mi_plot[0])
+        
+    handles.append(color_handle) 
 
+labels = [f'J = {gList[0]:.1f}', f'J = {gList[1]:.1f}']
+
+# Legenda Heating (Vermelha) - Superior
+leg_h = fig.legend(handles[0], labels, 
+                   loc='lower center', 
+                   ncol=3, 
+                   title=f'{titulo[0]}', 
+                   title_fontproperties={'weight':'bold', 'size':12},
+                   fontsize=12,
+                   bbox_to_anchor=(0.5, 0.1), 
+                   frameon=False)
+
+# Legenda Cooling (Azul) - Inferior
+leg_c = fig.legend(handles[1], labels, 
+                   loc='lower center', 
+                   ncol=3, 
+                   title=f'{titulo[1]}', 
+                   title_fontproperties={'weight':'bold', 'size':12},
+                   fontsize=12,
+                   bbox_to_anchor=(0.5, 0.01), 
+                   frameon=False)
     
-plt.xlabel('Time')
-plt.ylabel('Mutual Information')
-#plt.xscale('log')
-plt.legend()
+plt.xlabel('Time', fontsize=12)
+plt.ylabel('Mutual Information', fontsize=12)
+plt.yticks(fontsize=12)
+plt.xticks(fontsize=12)
+plt.tight_layout()
+plt.subplots_adjust(bottom=0.35)
 plt.show()
 
 

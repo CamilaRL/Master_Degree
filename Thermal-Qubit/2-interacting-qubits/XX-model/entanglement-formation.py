@@ -54,6 +54,8 @@ lines_coupling = ['-', '--']
 
 gList, cmin, cmax = np.loadtxt(f'./DensityMatrices/correlations.txt', unpack=True)
 
+titulo = ['Zero Initial Coherence', 'Maximum Initial Coherence']
+
 cList = [cmin, cmax]
 
 for j, g in enumerate(gList):
@@ -72,10 +74,10 @@ for j, g in enumerate(gList):
         
         E = EoF(rho_total_t)
 
-        plt.plot(tempo_real, E, color=colors_coherence[i], linestyle=lines_coupling[i], linewidth=2, label=f'|c| = {cList[i][j]:.3f}')
+        plt.plot(tempo_real, E, color=colors_coherence[i], linestyle='-', linewidth=2, label=f'{titulo[i]}')
     
     
-    plt.title(f'J = {g}')
+    plt.title(f'J = {1.6}')
     plt.xlabel('Time', fontsize=12)
     plt.ylabel('Entanglement of Formation', fontsize=12)
     plt.yticks(fontsize=12)

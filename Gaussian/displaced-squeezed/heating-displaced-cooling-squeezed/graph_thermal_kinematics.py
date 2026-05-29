@@ -38,7 +38,7 @@ for k in range(len(rList)):
     
 
 ## Plots
-
+'''
 ### Wigner Fisher Information
 
 plt.figure(figsize=(10,5))
@@ -220,6 +220,20 @@ plt.legend(fontsize=12)
 plt.tight_layout()
 plt.show()
 
+'''
 
+for i in range(2):
+    
+    plt.plot(tlist, Sprod_list[i][0], color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]:.2f} - Heating')
+    plt.plot(tlist, Sprod_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label=r'$r$ = '+f'{rList[i]:.2f} - Cooling')
 
+plt.xscale('log')
+plt.ylabel('Entropy Production', fontsize=12)
+plt.xlabel('Time', fontsize=12)
+plt.title('Heating with Displacement', fontsize=12)
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.legend(fontsize=12)
+
+plt.show()
 
