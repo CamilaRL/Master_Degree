@@ -1,0 +1,130 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem{petruccione-book}
+\abntrefinfo{Breuer and Petruccione}{BREUER; PETRUCCIONE}{2002}
+{BREUER, H.-P.; PETRUCCIONE, F. \textbf{The theory of open quantum systems}.
+  [\textit{S.l.: s.n.}]: Oxford University Press, 2002.}
+
+\bibitem{scully-book}
+\abntrefinfo{Scully and Zubairy}{SCULLY; ZUBAIRY}{1997}
+{SCULLY, M.~O.; ZUBAIRY, M.~S. \textbf{Quantum Optics}. [\textit{S.l.: s.n.}]:
+  Cambridge University Press, 1997.}
+
+\bibitem{rivas-2010}
+\abntrefinfo{Rivas, Huelga and Plenio}{RIVAS; HUELGA; PLENIO}{2010}
+{RIVAS, A.; HUELGA, S.~F.; PLENIO, M.~B. Entanglement and non-markovianity of
+  quantum evolutions.
+\textbf{Phys. Rev. Lett.}, American Physical Society, v.~105, p. 050403, Jul
+  2010.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.105.050403}.}
+
+\bibitem{davies-1979}
+\abntrefinfo{Davies}{DAVIES}{1979}
+{DAVIES, E. Generators of dynamical semigroups.
+\textbf{Journal of Functional Analysis}, v.~34, n.~3, p. 421--432, 1979.
+ISSN 0022-1236.
+Available at:
+  \url{https://www.sciencedirect.com/science/article/pii/0022123679900855}.}
+
+\bibitem{brito-2015}
+\abntrefinfo{Brito and Werlang}{BRITO; WERLANG}{2015}
+{BRITO, F.; WERLANG, T. A knob for markovianity.
+\textbf{New Journal of Physics}, IOP Publishing, v.~17, n.~7, p. 072001, jul
+  2015.
+Available at: \url{https://doi.org/10.1088/1367-2630/17/7/072001}.}
+
+\bibitem{popovic-2018}
+\abntrefinfo{Popovic \textit{et al.}}{POPOVIC \textit{et al.}}{2018}
+{POPOVIC, M. \textit{et al.} Entropy production and correlations in a
+  controlled non-markovian setting.
+\textbf{Phys. Rev. A}, American Physical Society, v.~98, p. 012130, Jul 2018.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevA.98.012130}.}
+
+\bibitem{breuer-2015}
+\abntrefinfo{Breuer \textit{et al.}}{BREUER \textit{et al.}}{2016}
+{BREUER, H.-P. \textit{et al.} Colloquium: Non-markovian dynamics in open
+  quantum systems.
+\textbf{Rev. Mod. Phys.}, American Physical Society, v.~88, p. 021002, Apr
+  2016.
+Available at: \url{https://link.aps.org/doi/10.1103/RevModPhys.88.021002}.}
+
+\bibitem{marcantoni-2017}
+\abntrefinfo{Marcantoni \textit{et al.}}{MARCANTONI \textit{et al.}}{2017}
+{MARCANTONI, S. \textit{et al.} Entropy production and non-markovian dynamical
+  maps.
+\textbf{Scientific Reports}, v.~7, n.~1, p. 12447, Sep 2017.
+ISSN 2045-2322.
+Available at: \url{https://doi.org/10.1038/s41598-017-12595-x}.}
+
+\bibitem{spohn-1978}
+\abntrefinfo{Spohn}{SPOHN}{1978}
+{SPOHN, H. Entropy production for quantum dynamical semigroups.
+\textbf{Journal of Mathematical Physics}, v.~19, n.~5, p. 1227--1230, 05 1978.
+ISSN 0022-2488.
+Available at: \url{https://doi.org/10.1063/1.523789}.}
+
+\bibitem{medina-2024}
+\abntrefinfo{Medina \textit{et al.}}{MEDINA \textit{et al.}}{2024}
+{MEDINA, I. \textit{et al.} Variational-quantum-eigensolver–inspired
+  optimization for spin-chain work extraction.
+\textbf{Phys. Rev. A}, American Physical Society, v.~110, p. 012443, Jul 2024.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevA.110.012443}.}
+
+\bibitem{krissia-2024}
+\abntrefinfo{Moroder \textit{et al.}}{MORODER \textit{et al.}}{2024}
+{MORODER, M. \textit{et al.} Thermodynamics of the quantum mpemba effect.
+\textbf{Phys. Rev. Lett.}, American Physical Society, v.~133, p. 140404, Oct
+  2024.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.133.140404}.}
+
+\bibitem{ibanez-2024}
+\abntrefinfo{Ibáñez \textit{et al.}}{IBáñEZ \textit{et al.}}{2024}
+{IBáñEZ, M. \textit{et al.} Heating and cooling are fundamentally asymmetric
+  and evolve along distinct pathways.
+\textbf{Nature Physics}, v.~20, p. 135--141, Jan 2024.
+Available at: \url{https://doi.org/10.1038/s41567-023-02269-z}.}
+
+\bibitem{serafini-book}
+\abntrefinfo{Serafini}{SERAFINI}{2017}
+{SERAFINI, A. \textbf{Quantum Continuous Variables: A Primer of Theoretical
+  Methods}. CRC Press, Taylor \& Francis Group, 2017.
+ISBN 9781482246346. Available at:
+  \url{https://books.google.com.br/books?id=zHtgvgAACAAJ}.}
+
+\bibitem{gerardo-2014}
+\abntrefinfo{Adesso, Ragy and Lee}{ADESSO; RAGY; LEE}{2014}
+{ADESSO, G.; RAGY, S.; LEE, A.~R. Continuous variable quantum information:
+  Gaussian states and beyond.
+\textbf{Open Systems \& Information Dynamics}, v.~21, n. 01n02, p. 1440001,
+  2014.
+Available at: \url{https://doi.org/10.1142/S1230161214400010}.}
+
+\bibitem{huber-2016}
+\abntrefinfo{Brown, Friis and Huber}{BROWN; FRIIS; HUBER}{2016}
+{BROWN, E.~G.; FRIIS, N.; HUBER, M. Passivity and practical work extraction
+  using gaussian operations.
+\textbf{New Journal of Physics}, IOP Publishing, v.~18, n.~11, p. 113028, nov
+  2016.
+Available at: \url{https://doi.org/10.1088/1367-2630/18/11/113028}.}
+
+\bibitem{medina-2025}
+\abntrefinfo{Medina \textit{et al.}}{MEDINA \textit{et al.}}{2025}
+{MEDINA, I. \textit{et al.} Anomalous discharging of quantum batteries: The
+  ergotropic mpemba effect.
+\textbf{Phys. Rev. Lett.}, American Physical Society, v.~134, p. 220402, Jun
+  2025.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.134.220402}.}
+
+\bibitem{tejero-2025}
+\abntrefinfo{Tejero \textit{et al.}}{TEJERO \textit{et al.}}{2025}
+{TEJERO, A. \textit{et al.} Asymmetries of thermal processes in open quantum
+  systems.
+\textbf{Phys. Rev. Res.}, American Physical Society, v.~7, p. 023020, Apr 2025.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevResearch.7.023020}.}
+
+\end{thebibliography}

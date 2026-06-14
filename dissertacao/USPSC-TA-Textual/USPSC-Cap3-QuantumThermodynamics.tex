@@ -9,4 +9,17 @@
 
 \section{Relaxation, Entropy Production and Irreversibility} \label{sec:relaxation}
 
+\subsection{Non-Markovianity}
+%Non-Markovianity
+%   Definition
+%   Quantifying non-Markovianity
+%   Relation with entropy production
+
+Up to this point, we have discussed how to describe Markovian relaxation of open quantum systems. However, the Born-Markov approximation is not valid for many processes of open quantum systems, for example, with strong coupling \textcolor{red}{cite}, structured reservoirs \cite{brito-2015, popovic-2018}, or large initial system-environment correlations \textcolor{red}{cite}. In these cases, memory effects become relevant for the time evolution of the system, a phenomenon known as non-Markovian dynamics. There are a variety of ways to measure and witness non-Markovianity. For example, in information theory, integrating the trace distance in time can quantify the information backflow \cite{breuer-2015}. Another example is analysing the divisibility of the maps that generate the system's dynamics \cite{rivas-2010}. In this work, we are interested in a witness of non-Markovianity that connects the information and thermodynamic analysis: the entropy production \cite{popovic-2018, marcantoni-2017}. The entropy production rate is defined as
+\begin{equation}
+    \sigma(\hat{\rho}) = - \frac{d}{dt} D[\hat{\rho}(t) || \rho(0)],
+\end{equation}
+
+\noindent where $D$ is the relative entropy (also called Kullback-Leibler divergence) that measures the distinguishability of a state evolved in time $\rho(t)$ with its initial form $\rho(0)$ \cite{spohn-1978}. It is known from the Second Law of thermodynamics that entropy cannot be destroyed, meaning that $\sigma \geq 0$. For example, in a thermal relaxation process, the entropy production is always positive while being monotonically decreasing because less entropy is produced when approaching equilibrium. However, it was recently found that the entropy production of a non-Markovian system can become negative for some time intervals \cite{marcantoni-2017, popovic-2018}, meaning that entropy is being destroyed, which violates the Second Law. The missing piece of this interpretation is considering the environment. Using the interpretation that entropy is related to lack of information, when the environment is losing information to the system, its entropy must be increasing, compensating for the entropy decrease of the system while conserving the total entropy. This not only provides a satisfactory explanation but also indicates that a thermodynamic quantity, such as entropy production, can be used as a witness of non-Markovianity.
+
 \subsection{Thermal Kinematics} \label{sec:thermal-kinematics}
