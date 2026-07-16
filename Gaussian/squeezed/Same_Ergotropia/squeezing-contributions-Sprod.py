@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 def Distribution(beta, dmn):
 
@@ -79,7 +80,7 @@ rlist_hot, beta_list_hot, rlist_cool, beta_list_cool = np.loadtxt('./ThermalKine
 symbols = ['-', '--', ':']
 labels = ['Total', 'Passive Contribution', 'Ergotropic Contribution']
 
-for i in range(2):
+for i in range(0,2,1):
 
     fc = Distribution(beta_list_cool[i], w)
     fh = Distribution(beta_list_hot[i], w)
@@ -99,6 +100,11 @@ for i in range(2):
         
         pi_c, ergo_c = Contributions(gamma, ff, fc, rc, t)
         pi_h, ergo_h = Contributions(gamma, ff, fh, rh, t)
+        
+        '''if pi_c < 0:
+            print(f'Heating non-Markovian at time {t} - {rc}')
+        if pi_h < 0:
+            print(f'Cooling non-Markovian at time {t} - {rh}')'''
 
         pi_c_list.append(pi_c)
         pi_h_list.append(pi_h)
@@ -111,6 +117,65 @@ for i in range(2):
     Sprod_h = np.loadtxt(f'./ThermalKinematics/r{rh}-cooling.txt', unpack=True, usecols=(6))
     
     
+    # Legenda dentro
+    
+    fig = plt.figure(figsize=(12,5))
+
+    fig_heating = plt.subplot(1, 2, 1)
+    
+    plt.plot(tlist, Sprod_c[:400], color='red', linestyle=symbols[0], linewidth=2, label='Total')
+    plt.plot(tlist, pi_c_list, color='red', linestyle=symbols[1], linewidth=2, label='Passive')
+    plt.plot(tlist, ergo_c_list, color='red', linestyle=symbols[2], linewidth=2, label='Ergotropic')
+    
+    plt.xscale('log')
+    plt.xlim(left=0.1)
+    plt.title(f'r = {rc:.2f}', fontsize=14)
+    plt.xlabel('Time', fontsize=12)
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.ylabel('Entropy Production Rate', fontsize=12)  
+    
+    
+    if i == 1:
+        plt.legend(loc='best', bbox_to_anchor=(1, 0.4),fontsize=12)
+        
+        # Inset do passivo
+        ax_inset = inset_axes(fig_heating, width="40%", height="40%", loc="upper right", borderpad=2.5)
+        
+        ax_inset.plot(tlist, pi_c_list, color='red', linestyle=symbols[1], linewidth=2)
+
+        ax_inset.set_xscale('log')
+        ax_inset.set_xlim(left=3.5, right=14)
+        ax_inset.set_ylim(top=0.003, bottom=-0.001)
+
+        ax_inset.tick_params(axis='both', labelsize=9)
+    else:
+        plt.legend(fontsize=12)
+    
+    fig_cooling = plt.subplot(1, 2, 2)
+
+    plt.plot(tlist, Sprod_h[:400], color='blue', linestyle=symbols[0], linewidth=2, label='Total')
+    plt.plot(tlist, pi_h_list, color='blue', linestyle=symbols[1], linewidth=2, label='Passive')
+    plt.plot(tlist, ergo_h_list, color='blue', linestyle=symbols[2], linewidth=2, label='Ergotropic')
+
+    plt.xscale('log')
+    plt.xlim(left=0.1)
+    plt.title(f'r = {rh:.2f}', fontsize=14)
+    plt.xlabel('Time', fontsize=12)
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.legend(fontsize=12)
+    
+    plt.tight_layout()
+    plt.show()
+    
+    
+    
+    
+    
+    
+    
+    ''' LEGENDA FORA
     fig = plt.figure(figsize=(12,6))
 
     fig_heating = plt.subplot(1, 2, 1)
@@ -169,7 +234,7 @@ for i in range(2):
     plt.tight_layout()
     plt.subplots_adjust(bottom=0.35)
     plt.show()
-
+    '''
 
 
 

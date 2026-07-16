@@ -127,6 +127,69 @@ for i in range(2):
     Sprod_heating = np.loadtxt(f'./ThermalKinematics/d{mu}-heating.txt', unpack=True, usecols=(6))
     
     
+    
+    # Legenda dentro
+    
+    fig = plt.figure(figsize=(12,6))
+
+    fig_heating = plt.subplot(1, 2, 1)
+    
+    plt.plot(tlist, Sprod_heating, color='red', linestyle=symbols[0], linewidth=2, label='Total')
+    plt.plot(tlist, pi_heating_list, color='red', linestyle=symbols[1], linewidth=2, label='Passive')
+    plt.plot(tlist, ergo_heating_list, color='red', linestyle=symbols[2], linewidth=2, label='Ergotropic')
+    
+    plt.xscale('log')
+    plt.xlim(left=0.1)
+    plt.title(r'$\mu$ = '+f'{muList[i]:.2f}', fontsize=14)
+    plt.xlabel('Time', fontsize=12)
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.ylabel('Entropy Production Rate', fontsize=12)  
+    plt.legend(fontsize=12)
+    
+    
+    fig_cooling = plt.subplot(1, 2, 2)
+
+    plt.plot(tlist, Sprod_cooling, color='blue', linestyle=symbols[0], linewidth=2, label='Total')
+    plt.plot(tlist, pi_cooling_list, color='blue', linestyle=symbols[1], linewidth=2, label='Passive')
+    plt.plot(tlist, ergo_cooling_list, color='blue', linestyle=symbols[2], linewidth=2, label='Ergotropic')
+
+    plt.xscale('log')
+    plt.xlim(left=0.1)
+    plt.title(r'$r$ = '+f'{rList[i]:.2f}', fontsize=14)
+    plt.xlabel('Time', fontsize=12)
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.legend(fontsize=12)
+    
+    plt.tight_layout()
+    plt.show()
+    
+    
+    
+    # TODO MUNDO MISTURADOOO \o/
+
+    plt.plot(tlist, Sprod_heating, color='red', linestyle=symbols[0], linewidth=2, label='Total'+r' - $W_d$')
+    plt.plot(tlist, pi_heating_list, color='red', linestyle=symbols[1], linewidth=2, label='Passive'+r' - $W_d$')
+    plt.plot(tlist, ergo_heating_list, color='red', linestyle=symbols[2], linewidth=2, label='Ergotropic'+r' - $W_d$')
+    
+    plt.plot(tlist, Sprod_cooling, color='blue', linestyle=symbols[0], linewidth=2, label='Total'+r' - $W_s$')
+    plt.plot(tlist, pi_cooling_list, color='blue', linestyle=symbols[1], linewidth=2, label='Passive'+r' - $W_s$')
+    plt.plot(tlist, ergo_cooling_list, color='blue', linestyle=symbols[2], linewidth=2, label='Ergotropic'+r' - $W_s$')
+    
+    plt.xscale('log')
+    plt.xlim(left=0.1)
+    plt.xlabel('Time', fontsize=12)
+    plt.ylabel('Entropy Production Rate', fontsize=12)
+    plt.title(r'$r$ = '+f'{rList[i]:.2f} '+r'- $\mu$ = '+f'{muList[i]:.2f}', fontsize=14)
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.legend(fontsize=12)
+
+    plt.show()
+    
+    
+    ''' LEGENDA FORA
     fig = plt.figure(figsize=(12,6))
 
     fig_heating = plt.subplot(1, 2, 1)
@@ -185,7 +248,7 @@ for i in range(2):
     plt.tight_layout()
     plt.subplots_adjust(bottom=0.35)
     plt.show()
-
+    '''
 
 
 

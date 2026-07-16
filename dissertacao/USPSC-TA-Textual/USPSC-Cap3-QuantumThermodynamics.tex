@@ -1,25 +1,186 @@
+
+
 \chapter{Quantum Thermodynamics} \label{cap:thermo}
+% what is relaxation?
+% equilibrium vs nonequilibrium
+% irreversibility
+% entropy production as a indicator of irreversibility
+
+% why quantum thermodynamics is important?
+% how the classical thermodynamic laws emerge from similar quantum constructions
 
 
-\section{Quantum Correlations} \label{sec:correlations}
 
-\section{Thermodynamic variables in classical and quantum regime} \label{sec:thermo-variables}
+In the last chapter, we discussed how to describe the time evolution of quantum systems, with open quantum systems dynamics being the most interesting to us. The system evolves in time from a nonequilibrium state to a stationary state (which is a thermal state for Davies maps) through exchanges of energy and information with an environment. All of this was discussed through the lens of quantum mechanics, but it clearly has a strong connection with thermodynamics. In this chapter, we will explore how thermodynamics appears in the context of open quantum systems. The main question we will address in Sec. \ref{sec:thermo-variables} is how classical thermodynamic variables and laws emerge from the quantum theory. This is particularly important because thermodynamics is known as the theory that tells what nature is allowed to do in energy terms, so extending it to the quantum regime can bring new and deeper understanding. Additionally, in  Sec. \ref{sec:thermal-kinematics}, we will discuss how information theory and thermodynamics are connected using the geometric interpretation of relaxation processes, which originated the thermal kinematics.
 
-\section{Equilibrium and Nonequilibrium States} \label{sec:equilibrium}
+\section{Thermodynamic variables in the quantum regime} \label{sec:thermo-variables}
+% thermodynamic variables: heat, work, entropy
+% Why is it hard to have a single definition of these variables?
+% Ergotropy = work
 
-\section{Relaxation, Entropy Production and Irreversibility} \label{sec:relaxation}
+In a general sense, thermodynamics is a theory about how energy changes. According to the first law, energy can be transferred by heat and work. These concepts define heat as the energy exchanged for reconfiguration of the system's state and is uncontrollable, while work is the energy that can be exploited and controlled. In quantum mechanics, the  average energy of any system ${\rho}$ with Hamiltonian ${H}$ is defined as $E({\rho}) = \text{Tr}[{\rho} {H}]$, but its decomposition into heat and work is not unique \cite{dann-2023, tanja-2025, alipour-2016}. For this reason, in this work, we will use an alternative approach to study the thermodynamics of quantum systems. The entropic approach not only avoid the ambiguities of heat and work definitions, but also allows a connection with information theory.
 
-\subsection{Non-Markovianity}
-%Non-Markovianity
-%   Definition
-%   Quantifying non-Markovianity
-%   Relation with entropy production
+In Chap. \ref{cap:oqs}, we have already named some processes as reversible or irreversible, which can be explained and quantified by the second law of thermodynamics. This law states that the entropy of an isolated system can only increase (irreversible energy exchange) or be conserved (reversible energy exchange). However, there are many different definitions for entropy. In classical thermodynamics, entropy accounts for all the possible microstates $\Omega$ given some macroscopic constraints: $S = k_B \ln \Omega$, being $k_B$ the Boltzmann constant \cite{callen-book}. In other words, this entropy measures our lack of information about the system's microstate. In addition to that, information theory introduces a convenient interpretation of entropy. Consider a random variable $X$ with probability distribution $p_i$. To know how much information is contained in the random variable outcomes, we can use the Shannon entropy $H(X) = - \sum_i p_i \log_2 p_i$, bounded by zero when the outcome is absolutely certain (we have all information), and being maximum when all outcomes are equally likely (we have no information) \cite{chuang-book}. Despite thermodynamic and Shannon entropies measuring ``ignorance", they are not naturally equivalent, but Shannon entropy can be considered a thermodynamic entropy when the probabilities follow the Boltzmann distribution \cite{parrondo-2024, parrondo-2015}.
 
-Up to this point, we have discussed how to describe Markovian relaxation of open quantum systems. However, the Born-Markov approximation is not valid for many processes of open quantum systems, for example, with strong coupling \textcolor{red}{cite}, structured reservoirs \cite{brito-2015, popovic-2018}, or large initial system-environment correlations \textcolor{red}{cite}. In these cases, memory effects become relevant for the time evolution of the system, a phenomenon known as non-Markovian dynamics. There are a variety of ways to measure and witness non-Markovianity. For example, in information theory, integrating the trace distance in time can quantify the information backflow \cite{breuer-2015}. Another example is analysing the divisibility of the maps that generate the system's dynamics \cite{rivas-2010}. In this work, we are interested in a witness of non-Markovianity that connects the information and thermodynamic analysis: the entropy production \cite{popovic-2018, marcantoni-2017}. The entropy production rate is defined as
+In the quantum regime, we use density operators instead of probability distributions, which leads us to another quantity that is the von Neumann entropy \cite{chuang-book},
 \begin{equation}
-    \sigma(\hat{\rho}) = - \frac{d}{dt} D[\hat{\rho}(t) || \rho(0)],
+    S({\rho}) = - \text{Tr}[{\rho} \ln {\rho}].
 \end{equation}
 
-\noindent where $D$ is the relative entropy (also called Kullback-Leibler divergence) that measures the distinguishability of a state evolved in time $\rho(t)$ with its initial form $\rho(0)$ \cite{spohn-1978}. It is known from the Second Law of thermodynamics that entropy cannot be destroyed, meaning that $\sigma \geq 0$. For example, in a thermal relaxation process, the entropy production is always positive while being monotonically decreasing because less entropy is produced when approaching equilibrium. However, it was recently found that the entropy production of a non-Markovian system can become negative for some time intervals \cite{marcantoni-2017, popovic-2018}, meaning that entropy is being destroyed, which violates the Second Law. The missing piece of this interpretation is considering the environment. Using the interpretation that entropy is related to lack of information, when the environment is losing information to the system, its entropy must be increasing, compensating for the entropy decrease of the system while conserving the total entropy. This not only provides a satisfactory explanation but also indicates that a thermodynamic quantity, such as entropy production, can be used as a witness of non-Markovianity.
+\noindent The von Neumann entropy becomes equivalent to the Shannon entropy for diagonal states. Also, it is zero for pure states (because we know all of its information), and its maximum is $\log d$ for maximally mixed states, where $d$ is the dimension of the Hilbert space \cite{chuang-book}. More than characterising a state, the von Neumann entropy brings the second law into the quantum regime. In Chap. \ref{cap:oqs}, we discussed that unitary evolutions do not lose information, which allowed us to identify them as reversible. In other words, this means that unitary evolutions preserve the system's entropy. To show this, we can take the time derivative of the von Neumann entropy as
+\begin{equation}
+    \begin{split}
+        \frac{\partial S(\rho)}{\partial t} &= - \text{Tr}\left[\frac{\partial \rho}{\partial t} \ln {\rho} + \rho \frac{\partial}{\partial t} \ln \rho \right]\\
+        &= - \text{Tr}\left[\frac{\partial \rho}{\partial t} \ln {\rho} + \frac{\partial \rho}{\partial t} \right]\\
+        &= i \text{Tr}\left[[H, \rho] \ln {\rho} \right]\\
+        &= i \left(\text{Tr}[H \rho \ln {\rho}] - \text{Tr}[\rho H \ln {\rho}] \right)\\
+        &= 0,
+    \end{split}
+\end{equation}
 
-\subsection{Thermal Kinematics} \label{sec:thermal-kinematics}
+\noindent where we used that $\frac{\partial}{\partial t} \ln \rho = \rho^{-1} \frac{\partial \rho}{\partial t}$ and in the last line we used that $[\rho, \ln {\rho}] = 0$. However, this is not valid for open quantum systems, because information can be exchanged and lost. From the perspective of the system under a Markovian dynamics, its entropy can only increase respecting the second law of thermodynamics. To quantify how much entropy is produced in irreversible processes, we can separate the entropy variation into a flux between the system and the environment (that is connected with Clausius theorem) and an entropy production ($\Pi_\rho$) \cite{spohn-1978}. By assuming the environment is at temperature $\beta^{-1}$, the flux becomes $\beta \delta Q$, where $\delta Q = \text{Tr}[\dot{\rho} H]$ is the heat flow between system and environment \cite{spohn-1978}. As a consequence, the balance equation for the entropy becomes
+\begin{equation}
+    \frac{\partial S}{\partial t} = \beta \delta Q + \Pi_\rho,
+\end{equation}
+
+\noindent where $S$ is the von Neumann entropy. Given a thermal state $\rho_{th} = \exp(-\beta H)/\mathcal{Z}$, we have that $\ln \rho_{th} = -\beta H - \ln \mathcal{Z}$. By considering the equilibrium state is a thermal state, we can write that
+\begin{equation}
+    \begin{split}
+        \beta \delta Q &= - \text{Tr}[\dot{\rho} (\ln \rho_{\text{eq}} + \ln \mathcal{Z})]\\
+        &= - \frac{\partial}{\partial t}( \text{Tr}[\rho \ln \rho_{\text{eq}} + \rho \ln \mathcal{Z}] )\\
+        &= - \frac{\partial}{\partial t} \text{Tr}[\rho \ln \rho_{\text{eq}}],
+    \end{split}
+\end{equation}
+
+\noindent where we used that both $\rho_{\text{eq}}$ and $\ln \mathcal{Z}$ are constant in time. Then we can find that the entropy production becomes
+\begin{equation}
+    \begin{split}
+        \Pi_\rho &= \frac{\partial S}{\partial t} - \beta \delta Q \\
+        &= - \frac{\partial}{\partial t}(\text{Tr} [\rho \ln \rho] - \text{Tr}[\rho \ln \rho_{\text{eq}}])  \\
+        &=- \frac{\partial}{\partial t} D [{\rho} || \rho_{\text{eq}}]
+    \end{split}
+    \label{eq:sprod}
+\end{equation}
+
+\noindent where
+\begin{equation}
+    D [\rho || \sigma] = \text{Tr}[{\rho} (\ln {\rho} - \ln \sigma)],
+    \label{eq:relative-entropy}
+\end{equation}
+
+\noindent is the relative entropy, which measures the distinguishability between two states. An interesting interpretation of Eq. \eqref{eq:sprod} is that entropy production measures the speed that the system converges to equilibrium \cite{tejero-misc-2025}. So higher entropy production results in faster relaxation. Additionally, it is possible to show that the entropy production can only be greater than zero for irreversible processes, as stated by the second law of thermodynamics. In the context of Lindblad master equations, the relative entropy decreases monotonically as the system evolve in time \footnote{This only occurs for dynamics described by completely positive trace-preserving maps (CPTP), such as the Lindblad master equation. Otherwise, there is no guarantee for the positivity of entropy production \cite{giordano-2026}, as will be discussed in Sec. \ref{sec:asymmetry-qubit}.}, which explains the positivity of the entropy production \cite{giordano-2026}.
+
+Another important aspect about Eq. \eqref{eq:sprod} is that the relaxation process depends on how far from equilibrium the system is, because the relative entropy measures how distinguishable the system's state is from the equilibrium state. However, the relative entropy is not a proper measure of distance, because it is not symmetric ($D[P||Q] \neq D[Q||P]$) and do not satisfy triangle inequality, but it can be used to estimate how much useful energy is available in a nonequilibrium state. To see this, we can rewrite the average energy by introducing the equilibrium state $\rho_{eq} = \rho_{th}$ as
+\begin{equation}
+    \begin{split}
+        E({\rho}) &= \text{Tr}[{\rho} {H}] = -\beta^{-1} \text{Tr}[{\rho} \ln e^{-\beta {H}}]\\
+        &= -\beta^{-1} \text{Tr}\left[{\rho} \ln \frac{e^{-\beta {H}}}{\mathcal{Z}} + {\rho} \ln \mathcal{Z} \right]\\
+        &= -\beta^{-1} \text{Tr}\left[{\rho} \ln \rho_{\text{eq}} \right] -\beta^{-1} \ln \mathcal{Z} + \beta^{-1} S({\rho}) - \beta^{-1} S({\rho})\\
+        &= \beta^{-1} D[{\rho} || \rho_{\text{eq}}] + \beta^{-1} S({\rho}) + F_{\text{eq}},
+    \end{split}
+    \label{eq:energia-krissia}
+\end{equation}
+
+\noindent where $S(\rho)$ is the von Neumann entropy and $F_{\text{eq}} = -\beta^{-1} \ln \mathcal{Z}$ is the equilibrium free energy \cite{krissia-2024}. The free energy definition $F = E(\rho) - \beta^{-1} S(\rho)$ is an extension of the Helmholtz free energy \cite{parrondo-2015}, and can be used to find
+\begin{equation}
+    F_{\text{neq}} = \beta^{-1} D[{\rho} || \rho_{\text{eq}}] + F_{\text{eq}},
+    \label{eq:fneq}
+\end{equation}
+
+\noindent that is the nonequilibrium free energy. This expression shows that the relative entropy is directly related to the amount of energy a state has because it is far from equilibrium. It is interesting to observe that the nonequilibrium free energy is related to the entropy production as $\Pi_\rho = -\beta \frac{\partial}{\partial t} F_{\text{neq}}$. Also, this energetic interpretation can also be used to find that the maximum amount of energy that could be extracted from the system,
+\begin{equation}
+    W_{\text{max}} = \Delta F = F_{\text{neq}} - F_{\text{eq}}.
+\end{equation}
+
+\noindent However, this equality is only satisfied when the final state after work extraction is a thermal state, which is a consequence of thermal states having the minimum possible energy \cite{alicki-2013}. Thermal states are just one type of what we call passive states (represented as $\pi$), which are defined as states from which no work can be extracted via cyclic unitary operations: $\text{Tr}[{H} {\pi}] \leq \text{Tr}[{H} {U} {\pi} {U}^\dagger]$ \cite{campaioli-2024}. Is important to emphasise that the energy of any passive state is $E(\pi) \geq E(\rho_{th})$. From the definition of passivity, we can also define the maximum work extracted via cyclic unitary operations as
+\begin{equation}
+    \mathcal{E} ({\rho}) = E({\rho}) - E({\pi}),
+    \label{eq:ergotropia}
+\end{equation}
+
+\noindent where the energy of the passive state is $E({\pi}) = \text{min}_{{U}} \text{Tr} [{H} {U} {\rho} {U}^\dagger]$ \cite{medina-2025, allahverdyan-2004}. Because we are considering unitary operations, the von Neumann entropy is conserved ($S(\rho)=S(\pi)$) and we can use the extended Helmholtz free energy to rewrite $W_{\text{max}} = E(\rho) - E(\rho_{\text{eq}})$, where $\rho_{\text{eq}}$ is a thermal state. Now, the comparison of ergotropy with the maximum work becomes $\mathcal{E} ({\rho}) \leq W_{\text{max}}$, with equality for $\pi = \rho_{th}$ \cite{alicki-2013, campaioli-2024}.
+
+Ergotropy can also be used to understand entropy production. To see this, we can rewrite Eq. \eqref{eq:ergotropia} using the definition of energy in Eq. \eqref{eq:energia-krissia} as
+\begin{equation}
+    \begin{split}
+        \mathcal{E} ({\rho}) &= \beta^{-1} D[{\rho} || \rho_{eq}] + \beta^{-1} S({\rho}) + F_{\text{eq}} - \beta^{-1} D[\pi || \rho_{eq}] - \beta^{-1} S(\pi) - F_{\text{eq}}\\
+        &= \beta^{-1} (D[{\rho} || \rho_{eq}] - D[\pi || \rho_{eq}]).
+    \end{split}
+\end{equation}
+
+\noindent Now, by making the time derivative of this expression for ergotropy, we can find that
+\begin{equation}
+    \Pi_\rho = \Pi_\pi - \beta^{-1} \dot{\mathcal{E}}({\rho}),
+    \label{eq:sprod-passive-ergotropic}
+\end{equation}
+
+\noindent which means the entropy production can be separated into a passive contribution and an ergotropic contribution where $\dot{\mathcal{E}}({\rho})$ is called ergotropic loss rate. A better discussion of this separation is done in Sec. \ref{sec:thermo-gaussian}, where it will be useful for the heating-cooling asymmetry in Gaussian states.
+
+
+\section{Thermal Kinematics} \label{sec:thermal-kinematics}
+
+In previous sections of this chapter, we discussed how thermodynamic and informational quantities behave during relaxation processes. Furthermore, we can study relaxation processes through another approach that is a combination of stochastic thermodynamics and informational geometry, named thermal kinematics \cite{ibanez-2024}. In this approach, each physical state is represented as a point in a Riemann space, that is a curve surface also called manifold \cite{crooks-2007, ito-2018}. As a result, the time evolution of states become trajectories in this manifold, enabling the definition of quantities with analogous interpretation from kinematics, such as length and velocity \cite{ito-2018, dechant-2020}. Initially, thermal kinematics was originated to discuss far-from-equilibrium relaxation processes of classical systems \cite{ibanez-2024}, and later, it was extended to the quantum regime \cite{tejero-2025}.
+
+For convenience, we being with the discussion of the classical case. The central piece for connecting thermodynamics with information geometry is a quantity called Fisher information, that measures how much information we gain about a system by varying its parameters \cite{paris-2009, liu-2020}. Given that a classical system can be described by the probability distribution $P(x, \theta)$ of being in state $x$ with the parameter $\theta$, the classical Fisher information is
+\begin{equation}
+    \mathcal{I}_c(\theta) = \int_{-\infty}^{\infty} \frac{(d_\theta P(x, \theta))^2}{P(x, \theta)} dx,
+    \label{eq:classical-fisher}
+\end{equation}
+
+\noindent where $d_\theta$ is the derivative with respect to $\theta$. To give a geometrical interpretation for the Fisher information, we can use that each thermodynamic state associated with the $P(x, \theta)$ is a point in a statistical manifold. As a result, if we have distinguishable states, they are different points in this statistical space, enabling the definition of a statistical distance between them \cite{dechant-2020,crooks-2007}. As previously discussed in Sec. \ref{sec:thermo-variables}, one measure of distinguishability is the relative entropy, that in term of probability distributions have the form
+\begin{equation}
+    D[F(x)|| Q(x)] = \int dx F(x) \ln \left ( \frac{F(x)}{Q(x)} \right ).
+\end{equation}
+
+\noindent Consider an initial state with probability distributions $P(x, \theta)$ that evolve in an infinitesimal time $dt$ becoming $P(x, \theta+d\theta)$. Because they are distinct probability distributions, it means they are separated by a infinitesimal distance $ds$ in the statistical manifold. To distinguish the probabilities distributions, we can use the relative entropy and make a second order Taylor expansion of $P(x, \theta+d\theta)$ to obtain
+\begin{equation}
+    \begin{split}
+        D[P(x, \theta+d\theta) || P(x, \theta)] &= \int dx P(x, \theta+d\theta) \ln \left ( \frac{P(x, \theta+d\theta)}{P(x, \theta)} \right ) \\
+        &= \int dx [P(x, \theta) + \partial_\theta P(x, \theta) d\theta + \frac{1}{2} \partial_\theta^2 P(x, \theta) d\theta^2 + \mathcal{O}(d\theta^3)] \times\\
+        &\times \left[\frac{\partial_\theta P(x, \theta)}{P(x, \theta)} d\theta + \frac{1}{2}\frac{\partial_\theta^2 P(x, \theta)}{P(x, \theta)} d\theta^2 + \mathcal{O}(d\theta^3) \right] \\
+        &= \int dx \left[\partial_\theta P(x, \theta) d\theta + \frac{1}{2} \partial_\theta^2 P(x, \theta) d\theta^2 + \frac{(\partial_\theta P(x, \theta) d\theta)^2}{P(x, \theta)} + \mathcal{O}(d\theta^3) \right]\\
+        &= \int dx \frac{(\partial_\theta P(x, \theta) d\theta)^2}{P(x, \theta)} + \mathcal{O}(d\theta^3)\\
+        &= \mathcal{I}_c(\theta) d\theta^2 + \mathcal{O}(d\theta^3)
+    \end{split}
+\end{equation}
+
+\noindent where we used $\ln(1+x) = x + \mathcal{O}(x^2)$ in the second equality and $\int dx P(x, \theta) = 1$ in the fourth equality \cite{ibanez-2024}. From this, we identify the Chentsov's theorem as $ds^2 = \mathcal{I}_c(\theta) d\theta^2$, which means the Fisher information is the unique Riemannian metric in this statistical manifold \cite{crooks-2007, ito-2018, bettmann-2025}. In other words, the statistical line element depends on the Fisher information as $ds = \sqrt{\mathcal{I}(\theta)} d\theta$. In the context of thermodynamics, the parameter of interest in relaxation processes is time ($\theta = t$), which allow us to define the instantaneous speed (also called statistical velocity) of the relaxation process as
+\begin{equation}
+    v_{c}(t) = \sqrt{\mathcal{I}(t)},
+\end{equation}
+
+\noindent and the statistical length between the two states as
+\begin{equation}
+    \mathcal{L}_c(t) = \int_0^t v_c(\tau) d\tau = \int_0^t \sqrt{\mathcal{I}_c(\tau)} d\tau.
+\end{equation}
+
+\noindent Additionally, we can define another quantity that is the degree of completion, which measures how much of the total trajectory until time $t_f$ the system has completed at time $t_s$,
+\begin{equation}
+    \varphi_c (t_s) = \frac{\mathcal{L}_c(t_s)}{\mathcal{L}_c(t_f)},
+\end{equation}
+
+\noindent being $\varphi_c \in [0,1]$. These three quantities describes the thermal kinematic for classical systems, being a important to understand relaxation processes in terms of thermodynamic trajectories.
+
+However, quantum systems are described by density matrices instead of probability distributions, being necessary some adaptations in thermal kinematics derivation. First, we need to use the quantum Fisher information (QFI) instead of the definition in Eq. \ref{eq:classical-fisher}. The QFI can be defined as
+\begin{equation}
+    \mathcal{I}_Q ({\rho}(t)) = 2 \sum_{n,m} \frac{|\bra{\psi_n} \partial_t {\rho}(t) \ket{\psi_m}|^2}{\lambda_n + \lambda_m},
+    \label{eq:quantum-fisher}
+\end{equation}
+
+\noindent where $\lambda_k$ and $\ket{\psi_k}$ are, respectively, the $k$th eigenvalue and eigenvector of the density matrix $\rho(t)$ \cite{liu-2020,ullah-2026}. Nevertheless, this expression do not naturally appears from expanding the relative entropy, but it can be found using other distinguishability measure. The Bures distance measures the statistical distance between two density matrices,
+\begin{equation}
+    [D_B ({\rho}, {\sigma})]^2 = 2[1 - F({\rho}, {\sigma})],
+\end{equation}
+
+\noindent where $F({\rho}, {\sigma}) = \text{Tr}\sqrt{\sqrt{{\rho}} {\sigma} \sqrt{{\rho}}}$ is the fidelity, that measures how similar two density matrices are. Similar to the relative entropy case, we make a Taylor expansion of ${\rho}(t+dt)$ up to the second order and after some algebra we find \cite{liu-2020}
+\begin{equation}
+    ds^2 = [D_B (\rho(t), \rho(t+dt))]^2 = \frac{1}{4} \mathcal{I}_Q ({\rho}(t)) dt^2 + \mathcal{O}(dt^3).
+\end{equation}
+
+\noindent From this equation, we can redefine the thermal kinematics variables as
+\begin{align}
+    &v(t) = \frac{1}{2} \sqrt{\mathcal{I}_Q ({\rho}(t))} \label{eq:velocidade}\\
+    &\mathcal{L}(t) = \frac{1}{2} \int_0^{t} \sqrt{\mathcal{I}_Q ({\rho}(t))} \label{eq:comprimento}\\
+    &\varphi(t_s) = \frac{\mathcal{L}(t_s)}{\mathcal{L}(t_f)}. \label{eq:completion}
+\end{align}
+

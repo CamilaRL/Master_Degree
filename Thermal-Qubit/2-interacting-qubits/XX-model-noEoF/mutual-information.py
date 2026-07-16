@@ -1,7 +1,23 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from qutip import *
+import math
 
+
+def Derivada(xlist, ylist):
+    
+    ## https://www.youtube.com/watch?v=utRKIlOZbtw
+    
+    yprime = np.diff(ylist)/np.diff(xlist)
+    xprime = []
+    
+    for i in range(len(yprime)):
+        
+        xtemp = (xlist[i+1] + xlist[i])/2
+        xprime = np.append(xprime, xtemp)
+    
+    return xprime, yprime
+    
 
 def Read_Density_Matrices(filename, dim):
 
@@ -52,6 +68,23 @@ def MutualInformation(rho1, rho2, rho12):
     return MI
 
 
+def EntropyProduction_Compare(MI, c, g, tempo_real):
+    
+    t_sigma_a0, sigma_a0 = np.loadtxt(f'./Thermodynamics/dSr_q1_c{c}_g{g}.txt', unpack=True)
+    t_sigma_r0, sigma_r0 = np.loadtxt(f'./Thermodynamics/dSr_q2_c{c}_g{g}.txt', unpack=True)
+    
+    tempo, dMI = Derivada(tempo_real, MI)
+    
+    Sprod_total = []
+    
+    for i in range(len(tempo)):
+        
+        Sprod_total.append( sigma_a0[i] + sigma_r0[i] - dMI[i] )
+        
+    
+    return Sprod_total
+    
+
 ## parameters
 
 
@@ -69,6 +102,8 @@ titulo = ['Zero Initial Coherence', 'Maximum Initial Coherence']
 
 cList = [cmin, cmax]
 
+Sprod_casos = []
+
 handles = []
 fig = plt.figure()
 for i, c in enumerate(cnameList):
@@ -83,7 +118,8 @@ for i, c in enumerate(cnameList):
         
         
         MI = MutualInformation(rho_q1_t, rho_q2_t, rho_total_t)
-
+        
+        Sprod_casos.append(EntropyProduction_Compare(MI, c, g, tempo_real))
 
         mi_plot = plt.plot(tempo_real[:2000], MI[:2000], color=colors_coherence[i], linestyle=lines_coupling[j], linewidth=2, label=f'{titulo[i]} \n J = {g}')
         color_handle.append(mi_plot[0])
@@ -120,4 +156,10 @@ plt.tight_layout()
 plt.subplots_adjust(bottom=0.35)
 plt.show()
 
+for i in range(len(Sprod_casos)):
+    c = math.floor(i/2)
+    j = i%2
+    plt.plot(tempo_real[:-1], Sprod_casos[i], label=f'{cnameList[c]} - J = {gList[j]}')
 
+plt.legend()
+plt.show()

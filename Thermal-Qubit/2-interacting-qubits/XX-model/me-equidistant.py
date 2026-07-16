@@ -226,7 +226,7 @@ def Write_Density_Matrices(rhof, rhof_q1, rhof_q2, c, g):
 
 w0 = 1
 gamma = 0.1
-g = 0.8
+g = 0.8 # comparando com o no-EoF J = 2g
 
 tlist = np.arange(0, 30, 0.01)
 

@@ -4,60 +4,113 @@
 % ---
 
 \begin{apendicesenv}
-% Imprime uma página indicando o início dos apêndices
-\partapendices
-\chapter{apêndice(s)}
-Elemento opcional, que consiste em texto ou documento elaborado pelo autor, a fim de complementar sua argumentação, conforme a ABNT NBR 14724 \cite{nbr14724}.
 
-Os apêndices devem ser identificados por letras maiúsculas consecutivas, seguidas de hífen e pelos respectivos títulos. Excepcionalmente, utilizam-se letras maiúsculas dobradas na identificação dos apêndices, quando esgotadas as 26 letras do alfabeto. A paginação deve ser contínua, dando seguimento ao texto principal. \cite{aguia2020}
-% ----------------------------------------------------------
-\chapter{Exemplo de tabela centralizada verticalmente e horizontalmente}
-\index{tabelas}A \autoref{tab-centralizada} exemplifica como proceder para obter uma tabela centralizada verticalmente e horizontalmente.
-% utilize \usepackage{array} no PREAMBULO (ver em USPSC-modelo.tex) obter uma tabela centralizada verticalmente e horizontalmente
-\begin{table}[htb]
-\ABNTEXfontereduzida
-\caption[Exemplo de tabela centralizada verticalmente e horizontalmente]{Exemplo de tabela centralizada verticalmente e horizontalmente}
-\label{tab-centralizada}
+\chapter{Concurrence of an X-state}
+\label{apx:concurrence}
 
-\begin{tabular}{ >{\centering\arraybackslash}m{6cm}  >{\centering\arraybackslash}m{6cm} }
-\hline
- \centering \textbf{Coluna A} & \textbf{Coluna B}\\
-\hline
-  Coluna A, Linha 1 & Este é um texto bem maior para exemplificar como é centralizado verticalmente e horizontalmente na tabela. Segundo parágrafo para verificar como fica na tabela\\
-  Quando o texto da coluna A, linha 2 é bem maior do que o das demais colunas  & Coluna B, linha 2\\
-\hline
-\end{tabular}
-\begin{flushleft}
-		Fonte: Elaborada pelos autores.\
-\end{flushleft}
-\end{table}
+A general way to define an X-state is
+\begin{equation}
+    \rho = 
+    \begin{bmatrix}
+        a & 0 & 0 & f\\
+        0 & b & e & 0\\
+        0 & e^* & c & 0\\
+        f^* & 0 & 0 & d
+    \end{bmatrix}.
+\end{equation}
 
-% ----------------------------------------------------------
-\chapter{Exemplo de tabela com grade}
-\index{tabelas}A \autoref{tab-grade} exemplifica a inclusão de traços estruturadores de conteúdo para melhor compreensão do conteúdo da tabela, em conformidade com as normas de apresentação tabular do IBGE.
-% utilize \usepackage{array} no PREAMBULO (ver em USPSC-modelo.tex) obter uma tabela centralizada verticalmente e horizontalmente
-\begin{table}[htb]
-\ABNTEXfontereduzida
-\caption[Exemplo de tabelas com grade]{Exemplo de tabelas com grade}
-\label{tab-grade}
-\begin{tabular}{ >{\centering\arraybackslash}m{8cm} | >{\centering\arraybackslash}m{6cm} }
-\hline
- \centering \textbf{Coluna A} & \textbf{Coluna B}\\
-\hline
-  A1 & B1\\
-\hline
-  A2 & B2\\
-\hline
-  A3 & B3\\
-\hline
-  A4 & B4\\
-\hline
-\end{tabular}
-\begin{flushleft}
-		Fonte: Elaborada pelos autores.\
-\end{flushleft}
-\end{table}
+\noindent As we presented in Sec. \ref{sec:correlations}, the concurrence of two qubits is defined as
+\begin{equation}
+    C({\rho}) = \max\{ 0, \lambda_1 - \lambda_2 - \lambda_3 - \lambda_4 \},
+\end{equation}
 
+\noindent where $\lambda_i > \lambda_j$ for $i<j$ are the square root of the eigenvalues of the matrix $R = \rho \tilde{\rho}$ with $\tilde{\rho} = (\sigma_y \otimes \sigma_y) \rho^* (\sigma_y \otimes \sigma_y)$ and $\rho^*$ being the complex conjugate of the density matrix. To start computing the concurrence of an X-state, we first find that
+\begin{equation}
+    \rho^* = 
+    \begin{bmatrix}
+        a & 0 & 0 & f^*\\
+        0 & b & e^* & 0\\
+        0 & e & c & 0\\
+        f & 0 & 0 & d
+    \end{bmatrix}.
+\end{equation}
+
+\noindent Using that
+\begin{equation}
+    \sigma_y \otimes \sigma_y = 
+    \begin{bmatrix}
+        0 & -i\\
+        i & 0
+    \end{bmatrix} \otimes
+    \begin{bmatrix}
+        0 & -i\\
+        i & 0
+    \end{bmatrix} =
+    \begin{bmatrix}
+        0 & 0 & 0 & -1\\
+        0 & 0 & 1 & 0\\
+        0 & 1 & 0 & 0\\
+        -1 & 0 & 0 & 1
+    \end{bmatrix},
+\end{equation}
+
+\noindent it is possible to compute
+\begin{equation}
+    \begin{split}
+        \tilde{\rho} &= (\sigma_y \otimes \sigma_y) \rho^* (\sigma_y \otimes \sigma_y)\\
+        &= \begin{bmatrix}
+        0 & 0 & 0 & -1\\
+        0 & 0 & 1 & 0\\
+        0 & 1 & 0 & 0\\
+        -1 & 0 & 0 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        a & 0 & 0 & f^*\\
+        0 & b & e^* & 0\\
+        0 & e & c & 0\\
+        f & 0 & 0 & d
+    \end{bmatrix}
+    \begin{bmatrix}
+        0 & 0 & 0 & -1\\
+        0 & 0 & 1 & 0\\
+        0 & 1 & 0 & 0\\
+        -1 & 0 & 0 & 1
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+        d & 0 & 0 & f\\
+        0 & c & e & 0\\
+        0 & e^* & b & 0\\
+        f^* & 0 & 0 & a
+    \end{bmatrix}.
+    \end{split}
+\end{equation}
+
+\noindent As a result, we find
+\begin{equation}
+    \begin{split}
+        R &= \rho \tilde{\rho}\\
+        &= \begin{bmatrix}
+        a & 0 & 0 & f\\
+        0 & b & e & 0\\
+        0 & e^* & c & 0\\
+        f^* & 0 & 0 & d
+    \end{bmatrix}
+    \begin{bmatrix}
+        d & 0 & 0 & f\\
+        0 & c & e & 0\\
+        0 & e^* & b & 0\\
+        f^* & 0 & 0 & a
+    \end{bmatrix}\\
+    &= \begin{bmatrix}
+        ad+|f|^2 & 0 & 0 & 2af\\
+        0 & bc+|e|^2 & 2be & 0\\
+        0 & 2ce^* & bc+|e|^2 & 0\\
+        2df^* & 0 & 0 & ad+|f|^2
+    \end{bmatrix}.
+    \end{split}
+\end{equation}
+
+\noindent To obtain the concurrence, we must use the eigenvalues of $R$: $\lambda_1 = ad+|f|^2 (1 + 2\sqrt{ad})$, $\lambda_2 = ad+|f|^2 (1 - 2\sqrt{ad})$, $\lambda_3 =  bc+|e|^2(1 + 2\sqrt{bc})$, and $\lambda_4 =  bc+|e|^2(1 - 2\sqrt{bc})$. Without specifying the matrix elements of $\rho$, we cannot go further. But the next steps are taking the square root of each eigenvalue of $R$, organizing them in decreasing order and substituting in Eq. \eqref{eq:concurrence}.
 
 \end{apendicesenv}
 % ---

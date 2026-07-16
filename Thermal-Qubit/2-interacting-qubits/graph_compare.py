@@ -61,13 +61,13 @@ fig = plt.figure(figsize=(10,5))
 
 plt.subplot(121)
 
-a_J0_cmin = plt.plot(tlist_a_J0_cmin, completion_a_J0_cmin, color='red', linestyle=':', linewidth=2, label=f'J = {J[0]:.1f}')
-a_J1_cmin = plt.plot(tlist_a_J1_cmin, completion_a_J1_cmin, color='red', linestyle='--', linewidth=2, label=f'J = {J[1]:.1f}')
-aE_J2_cmin = plt.plot(tlist_aE_J2_cmin, completion_aE_J2_cmin, color='red', linestyle='-', linewidth=2, label=f'J = {J[2]:.1f}')
+a_J0_cmin = plt.plot(tlist_a_J0_cmin, completion_a_J0_cmin, color='red', linestyle='--', linewidth=2, label=f'J = {J[0]:.1f}')
+a_J1_cmin = plt.plot(tlist_a_J1_cmin, completion_a_J1_cmin, color='red', linestyle='-', linewidth=2, label=f'J = {J[1]:.1f}')
+aE_J2_cmin = plt.plot(tlist_aE_J2_cmin, completion_aE_J2_cmin, color='red', linestyle=':', linewidth=2, label=f'J = {J[2]:.1f}')
 
-r_J0_cmin = plt.plot(tlist_r_J0_cmin, completion_r_J0_cmin, color='blue', linestyle=':', linewidth=2, label=f'J = {J[0]:.1f}')
-r_J1_cmin = plt.plot(tlist_r_J1_cmin, completion_r_J1_cmin, color='blue', linestyle='--', linewidth=2, label=f'J = {J[1]:.1f}')
-rE_J2_cmin = plt.plot(tlist_rE_J2_cmin, completion_rE_J2_cmin, color='blue', linestyle='-', linewidth=2, label=f'J = {J[2]:.1f}')
+r_J0_cmin = plt.plot(tlist_r_J0_cmin, completion_r_J0_cmin, color='blue', linestyle='--', linewidth=2, label=f'J = {J[0]:.1f}')
+r_J1_cmin = plt.plot(tlist_r_J1_cmin, completion_r_J1_cmin, color='blue', linestyle='-', linewidth=2, label=f'J = {J[1]:.1f}')
+rE_J2_cmin = plt.plot(tlist_rE_J2_cmin, completion_rE_J2_cmin, color='blue', linestyle=':', linewidth=2, label=f'J = {J[2]:.1f}')
 
 plt.xlabel('Time', fontsize=12)
 plt.ylabel('Degree of Completion', fontsize=12)
@@ -80,13 +80,13 @@ plt.xlim(left=0.1)
 
 plt.subplot(122)
 
-a_J0_cmax = plt.plot(tlist_a_J0_cmax, completion_a_J0_cmax, color='red', linestyle=':', linewidth=2, label=f'J = {J[0]:.1f}')
-a_J1_cmax = plt.plot(tlist_a_J1_cmax, completion_a_J1_cmax, color='red', linestyle='--', linewidth=2, label=f'J = {J[1]:.1f}')
-aE_J2_cmax = plt.plot(tlist_aE_J2_cmax, completion_aE_J2_cmax, color='red', linestyle='-', linewidth=2, label=f'J = {J[2]:.1f}')
+a_J0_cmax = plt.plot(tlist_a_J0_cmax, completion_a_J0_cmax, color='red', linestyle='--', linewidth=2, label=f'J = {J[0]:.1f}')
+a_J1_cmax = plt.plot(tlist_a_J1_cmax, completion_a_J1_cmax, color='red', linestyle='-', linewidth=2, label=f'J = {J[1]:.1f}')
+aE_J2_cmax = plt.plot(tlist_aE_J2_cmax, completion_aE_J2_cmax, color='red', linestyle=':', linewidth=2, label=f'J = {J[2]:.1f}')
 
-r_J0_cmax = plt.plot(tlist_r_J0_cmax, completion_r_J0_cmax, color='blue', linestyle=':', linewidth=2, label=f'J = {J[0]:.1f}')
-r_J1_cmax = plt.plot(tlist_r_J1_cmax, completion_r_J1_cmax, color='blue', linestyle='--', linewidth=2, label=f'J = {J[1]:.1f}')
-rE_J2_cmax = plt.plot(tlist_rE_J2_cmax, completion_rE_J2_cmax, color='blue', linestyle='-', linewidth=2, label=f'J = {J[2]:.1f}')
+r_J0_cmax = plt.plot(tlist_r_J0_cmax, completion_r_J0_cmax, color='blue', linestyle='--', linewidth=2, label=f'J = {J[0]:.1f}')
+r_J1_cmax = plt.plot(tlist_r_J1_cmax, completion_r_J1_cmax, color='blue', linestyle='-', linewidth=2, label=f'J = {J[1]:.1f}')
+rE_J2_cmax = plt.plot(tlist_rE_J2_cmax, completion_rE_J2_cmax, color='blue', linestyle=':', linewidth=2, label=f'J = {J[2]:.1f}')
 
 plt.xlabel('Time', fontsize=12)
 plt.title(f'{titulo[1]}', fontsize=12)

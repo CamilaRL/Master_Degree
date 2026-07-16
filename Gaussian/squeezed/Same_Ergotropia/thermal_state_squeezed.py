@@ -99,6 +99,9 @@ def ThermalKinematics(r, beta_i, beta_f, w, gamma, tlist):
     Vw = []
     Kevol = []
     Sprod = []
+    
+    Ip = []
+    Vp = []
 
     fi = Distribution(beta_i, w)
     ff = Distribution(beta_f, w)
@@ -113,7 +116,7 @@ def ThermalKinematics(r, beta_i, beta_f, w, gamma, tlist):
 
         dSw = d_Wigner_Entropy(fb, dfb)
     
-    
+        ## TOTAL
         Iwt = Wigner_Fisher_Info(rt, drt, w, dSw)
 
         Vwt = Velocity(Iwt)
@@ -124,16 +127,31 @@ def ThermalKinematics(r, beta_i, beta_f, w, gamma, tlist):
         Kevol.append(RelativeEntropy(fi, ff, r, gamma, t))
         
         Sprod.append(EntropyProduction(ff, fb, dfb, rt, drt, dSw))
+        
+        ## PASSIVO
+        Ipt = 2*(dSw**2)
+        
+        Ip.append(Ipt)
+        
+        Vp.append(Velocity(Ipt))
+        
+        
     
     Lw = Distance(Vw, tlist[1]-tlist[0]) 
+    
+    Lp = Distance(Vp, tlist[1]-tlist[0])
 
     completion = []
+    
+    completion_p = []
 
     for i in range(len(Lw)):
 
         completion.append(Lw[i]/Lw[-1])
         
-    return Iw, Vw, Lw, completion, Kevol, Sprod
+        completion_p.append(Lp[i]/Lp[-1])
+        
+    return Iw, Vw, Lw, completion, Kevol, Sprod, Ip, Vp, Lp, completion_p
     
 
 def EquidistantInitial(Kinit, beta_eq, rh, w, gamma, beta_list):
@@ -183,34 +201,38 @@ def EquidistantInitial(Kinit, beta_eq, rh, w, gamma, beta_list):
     #print(beta_h, beta_c, rc)
     
     plt.hlines(y=Kinit, xmin=min(beta_list), xmax=max(beta_list), color='grey', label='Initial Relative Entropy')
-    plt.scatter([beta_eq], [RelativeEntropy(ff, ff, 0, gamma, 0)], color='black', label=f'Tw = {1/beta_eq:.3f}')
+    plt.scatter([beta_eq], [RelativeEntropy(ff, ff, 0, gamma, 0)], s=70, color='black', label=r'$T_w$ '+f'= {1/beta_eq:.3f}')
 
     K = [RelativeEntropy(fi, ff, rh, gamma, 0) for fi in fi_list]
-    plt.plot(beta_list, K, color='red')
+    plt.plot(beta_list, K, color='red', linewidth=2)
     
     K = [RelativeEntropy(fi, ff, rc, gamma, 0) for fi in fi_list]
-    plt.plot(beta_list, K, color='blue')
+    plt.plot(beta_list, K, color='blue', linewidth=2)
     
-    plt.scatter([beta_c], [Kc], color='blue', label=f'Tc = {1/beta_c:.3f}')
-    plt.scatter([beta_h], [Kh], color='red', label=f'Th = {1/beta_h:.3f}')
-    plt.xlabel(r'$\beta$')
-    plt.ylabel('Relative Entropy')
-    plt.legend()
+    plt.scatter([beta_c], [Kc], s=70, color='blue', label=r'$T_c$ '+f'= {1/beta_c:.3f}')
+    plt.scatter([beta_h], [Kh], s=70, color='red', label=r'$T_h$ '+f'= {1/beta_h:.3f}')
+    plt.xlabel(r'$\beta$', fontsize=12)
+    plt.ylabel('Relative Entropy', fontsize=12)
+    plt.title(r'$r_h =$'+f' {rh:.2f} - '+r'$r_c =$'+f' {rc:.2f}', fontsize=14)
+    plt.legend(fontsize=12)
     plt.show()
     
     
     return beta_h, 1/beta_h, Kh, beta_c, 1/beta_c, Kc, rc
 
 
-def WriteOutput(r, processo, tlist, Iw, Vw, Lw, completion, Kevol, Sprod):        
+def WriteOutput(r, processo, tlist, Iw, Vw, Lw, completion, Kevol, Sprod, Ip, Vp, Lp, completion_p):        
 
     f = open(f'./ThermalKinematics/r{r}-{processo}.txt', 'w')
+    fp = open(f'./ThermalKinematics/r{r}-{processo}-passive.txt', 'w')
     
     for i in range(len(tlist)):
     
         f.write(f'{tlist[i]} {Iw[i]} {Vw[i]} {Lw[i]} {completion[i]} {Kevol[i]} {Sprod[i]}\n')
+        fp.write(f'{tlist[i]} {Ip[i]} {Vp[i]} {Lp[i]} {completion_p[i]}\n')
     
     f.close()
+    fp.close()
 
 
 
@@ -222,17 +244,17 @@ def WriteOutput(r, processo, tlist, Iw, Vw, Lw, completion, Kevol, Sprod):
 
 w = 1
 gamma = 0.1
-rh = 0.1
+rh = 0.1 ## 0.1 e 0.5
 
 Kinit = 1
 
 Teq = 4
 beta_eq = 1/Teq
 
-beta_list = np.arange(0.05, 6, 0.001)
+beta_list = np.arange(0.05, 2, 0.001)
 
 beta_hot, Thot, Khot, beta_cold, Tcold, Kcold, rc = EquidistantInitial(Kinit, beta_eq, rh, w, gamma, beta_list)
-
+'''
 file_init = open('./ThermalKinematics/initial_temperatures.txt', 'a')
 
 file_init.write(f'{rh} {beta_hot} {rc} {beta_cold}\n')
@@ -245,19 +267,19 @@ tlist = np.arange(0, 100, 0.1)
 
 ## Thermal Kinematics
 
-Iw_heating, Vw_heating, Lw_heating, completion_heating, Kevol_heating, Sprod_heating = ThermalKinematics(rc, beta_cold, beta_eq, w, gamma, tlist)
-Iw_cooling, Vw_cooling, Lw_cooling, completion_cooling, Kevol_cooling, Sprod_cooling = ThermalKinematics(rh, beta_hot, beta_eq, w, gamma, tlist)
+Iw_heating, Vw_heating, Lw_heating, completion_heating, Kevol_heating, Sprod_heating, Ip_heating, Vp_heating, Lp_heating, completion_p_heating = ThermalKinematics(rc, beta_cold, beta_eq, w, gamma, tlist)
+Iw_cooling, Vw_cooling, Lw_cooling, completion_cooling, Kevol_cooling, Sprod_cooling, Ip_cooling, Vp_cooling, Lp_cooling, completion_p_cooling = ThermalKinematics(rh, beta_hot, beta_eq, w, gamma, tlist)
 
 
 ## Write Output Files
 
-WriteOutput(rc, 'heating', tlist, Iw_heating, Vw_heating, Lw_heating, completion_heating, Kevol_heating, Sprod_heating)
-WriteOutput(rh, 'cooling', tlist, Iw_cooling, Vw_cooling, Lw_cooling, completion_cooling, Kevol_cooling, Sprod_cooling)
+WriteOutput(rc, 'heating', tlist, Iw_heating, Vw_heating, Lw_heating, completion_heating, Kevol_heating, Sprod_heating, Ip_heating, Vp_heating, Lp_heating, completion_p_heating)
+WriteOutput(rh, 'cooling', tlist, Iw_cooling, Vw_cooling, Lw_cooling, completion_cooling, Kevol_cooling, Sprod_cooling, Ip_cooling, Vp_cooling, Lp_cooling, completion_p_cooling)
 
 
 
 
-
+'''
 
 
 

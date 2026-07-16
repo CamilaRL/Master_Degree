@@ -36,7 +36,7 @@ for k in range(2):
     Sprod_list[k].append(Sprod)
 
 
-## Plots
+## Plots TOTAL
 
 ### Wigner Fisher Information
 
@@ -158,10 +158,18 @@ plt.tight_layout()
 plt.show()
 
 
-plt.plot(tlist, completion_list[0][0], color='red', linestyle=symbols[0], label=r'$W_c$ - $r$ = '+f'{rhList[0]:.2f} ')
-plt.plot(tlist, completion_list[0][1], color='blue', linestyle=symbols[0], linewidth=2, label=r'$W_h$ - $r$ = '+f'{rcList[0]:.2f} ')
-plt.plot(tlist, completion_list[1][0], color='red', linestyle=symbols[1], label=r'$W_c$ - $r$ = '+f'{rhList[1]:.2f} ')
-plt.plot(tlist, completion_list[1][1], color='blue', linestyle=symbols[1], linewidth=2, label=r'$W_h$ - $r$ = '+f'{rcList[1]:.2f} ')
+plt.plot(tlist, completion_list[0][0], color='red', linestyle=symbols[0], label=r'$r_c$ = '+f'{rhList[0]:.2f} ')
+plt.plot(tlist, completion_list[0][1], color='blue', linestyle=symbols[0], linewidth=2, label=r'$r_h$ = '+f'{rcList[0]:.2f} ')
+plt.plot(tlist, completion_list[1][0], color='red', linestyle=symbols[1], label=r'$r_c$ = '+f'{rhList[1]:.2f} ')
+plt.plot(tlist, completion_list[1][1], color='blue', linestyle=symbols[1], linewidth=2, label=r'$r_h$ = '+f'{rcList[1]:.2f} ')
+
+plt.ylabel('Degree of Completion', fontsize=12)
+plt.xlabel('Time', fontsize=12)
+plt.title('Total State', fontsize=14)
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.legend(fontsize=12)
+plt.xlim(right=80)
 
 plt.show()
 

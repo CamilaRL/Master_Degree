@@ -5,6 +5,160 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.7 }
 
+\bibitem{goold-2016}
+\abntrefinfo{Goold \textit{et al.}}{GOOLD \textit{et al.}}{2016}
+{GOOLD, J. \textit{et al.} The role of quantum information in
+  thermodynamics—a topical review.
+\textbf{Journal of Physics A: Mathematical and Theoretical}, IOP Publishing,
+  v.~49, n.~14, p. 143001, feb 2016.
+Available at: \url{https://doi.org/10.1088/1751-8113/49/14/143001}.}
+
+\bibitem{vinjanampathy-2016}
+\abntrefinfo{Vinjanampathy and Anders}{VINJANAMPATHY; ANDERS}{2016}
+{VINJANAMPATHY, S.; ANDERS, J. Quantum thermodynamics.
+\textbf{Contemporary Physics}, Taylor \& Francis, v.~57, n.~4, p. 545--579,
+  2016.
+Available at: \url{https://doi.org/10.1080/00107514.2016.1201896}.}
+
+\bibitem{parrondo-2015}
+\abntrefinfo{Parrondo, Horowitz and Sagawa}{PARRONDO; HOROWITZ; SAGAWA}{2015}
+{PARRONDO, J. M.~R.; HOROWITZ, J.~M.; SAGAWA, T. Thermodynamics of information.
+\textbf{Nature Physics}, v.~11, n.~2, p. 131--139, 2015.
+Available at: \url{https://doi.org/10.1038/nphys3230}.}
+
+\bibitem{deffner-2019}
+\abntrefinfo{Deffner and Campbell}{DEFFNER; CAMPBELL}{2019}
+{DEFFNER, S.; CAMPBELL, S. \textbf{Quantum Thermodynamics: An introduction to
+  the thermodynamics of quantum information}. 2019.
+Available at: \url{https://arxiv.org/abs/1907.01596}.}
+
+\bibitem{lapolla-2020}
+\abntrefinfo{Lapolla and Godec}{LAPOLLA; GODEC}{2020}
+{LAPOLLA, A.; GODEC, A. c.~v. Faster uphill relaxation in thermodynamically
+  equidistant temperature quenches.
+\textbf{Phys. Rev. Lett.}, American Physical Society, v.~125, p. 110602, Sep
+  2020.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.125.110602}.}
+
+\bibitem{mpemba-1969}
+\abntrefinfo{Mpemba and Osborne}{MPEMBA; OSBORNE}{1969}
+{MPEMBA, E.~B.; OSBORNE, D.~G. Cool?
+\textbf{Physics Education}, v.~4, n.~3, p.~172, may 1969.
+Available at: \url{https://dx.doi.org/10.1088/0031-9120/4/3/312}.}
+
+\bibitem{teza-2026}
+\abntrefinfo{Teza \textit{et al.}}{TEZA \textit{et al.}}{2026}
+{TEZA, G. \textit{et al.} Speedups in nonequilibrium thermal relaxation: Mpemba
+  and related effects.
+\textbf{Physics Reports}, v.~1164, p. 1--97, 2026.
+ISSN 0370-1573.
+Speedups in nonequilibrium thermal relaxation: Mpemba and related effects.
+Available at:
+  \url{https://www.sciencedirect.com/science/article/pii/S0370157325002984}.}
+
+\bibitem{krissia-2024}
+\abntrefinfo{Moroder \textit{et al.}}{MORODER \textit{et al.}}{2024}
+{MORODER, M. \textit{et al.} Thermodynamics of the quantum mpemba effect.
+\textbf{Phys. Rev. Lett.}, American Physical Society, v.~133, p. 140404, Oct
+  2024.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.133.140404}.}
+
+\bibitem{medina-2025}
+\abntrefinfo{Medina \textit{et al.}}{MEDINA \textit{et al.}}{2025}
+{MEDINA, I. \textit{et al.} Anomalous discharging of quantum batteries: The
+  ergotropic mpemba effect.
+\textbf{Phys. Rev. Lett.}, American Physical Society, v.~134, p. 220402, Jun
+  2025.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.134.220402}.}
+
+\bibitem{ibanez-2024}
+\abntrefinfo{Ibáñez \textit{et al.}}{IBáñEZ \textit{et al.}}{2024}
+{IBáñEZ, M. \textit{et al.} Heating and cooling are fundamentally asymmetric
+  and evolve along distinct pathways.
+\textbf{Nature Physics}, v.~20, p. 135--141, Jan 2024.
+Available at: \url{https://doi.org/10.1038/s41567-023-02269-z}.}
+
+\bibitem{dieball-2023}
+\abntrefinfo{Dieball, Wellecke and Godec}{DIEBALL; WELLECKE; GODEC}{2023}
+{DIEBALL, C.; WELLECKE, G.; GODEC, A. c.~v. Asymmetric thermal relaxation in
+  driven systems: Rotations go opposite ways.
+\textbf{Phys. Rev. Res.}, American Physical Society, v.~5, p. L042030, Nov
+  2023.
+Available at:
+  \url{https://link.aps.org/doi/10.1103/PhysRevResearch.5.L042030}.}
+
+\bibitem{tejero-2025}
+\abntrefinfo{Tejero \textit{et al.}}{TEJERO \textit{et al.}}{2025}
+{TEJERO, A. \textit{et al.} Asymmetries of thermal processes in open quantum
+  systems.
+\textbf{Phys. Rev. Res.}, American Physical Society, v.~7, p. 023020, Apr 2025.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevResearch.7.023020}.}
+
+\bibitem{manikandan-2021}
+\abntrefinfo{Manikandan}{MANIKANDAN}{2021}
+{MANIKANDAN, S.~K. Equidistant quenches in few-level quantum systems.
+\textbf{Phys. Rev. Res.}, American Physical Society, v.~3, p. 043108, Nov 2021.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevResearch.3.043108}.}
+
+\bibitem{vu-2021}
+\abntrefinfo{Vu and Hasegawa}{VU; HASEGAWA}{2021}
+{VU, T. V.; HASEGAWA, Y. Toward relaxation asymmetry: Heating is faster than
+  cooling.
+\textbf{Phys. Rev. Res.}, American Physical Society, v.~3, p. 043160, Dec 2021.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevResearch.3.043160}.}
+
+\bibitem{bravetti-2025}
+\abntrefinfo{Bravetti, Ariza and Padilla}{BRAVETTI; ARIZA; PADILLA}{2025}
+{BRAVETTI, A.; ARIZA, M.~�. G.; PADILLA, P. Asymmetric relaxations through the
+  lens of information geometry.
+\textbf{Journal of Physics A: Mathematical and Theoretical}, IOP Publishing,
+  v.~58, n.~12, p. 125004, mar 2025.
+Available at: \url{https://doi.org/10.1088/1751-8121/adc0d0}.}
+
+\bibitem{ito-2018}
+\abntrefinfo{Ito}{ITO}{2018}
+{ITO, S. Stochastic thermodynamic interpretation of information geometry.
+\textbf{Phys. Rev. Lett.}, American Physical Society, v.~121, p. 030605, Jul
+  2018.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.121.030605}.}
+
+\bibitem{dechant-2020}
+\abntrefinfo{Ito and Dechant}{ITO; DECHANT}{2020}
+{ITO, S.; DECHANT, A. Stochastic time evolution, information geometry, and the
+  cram\'er-rao bound.
+\textbf{Phys. Rev. X}, American Physical Society, v.~10, p. 021056, Jun 2020.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevX.10.021056}.}
+
+\bibitem{tejero-misc-2025}
+\abntrefinfo{Tejero}{TEJERO}{2025}
+{TEJERO Álvaro. \textbf{The role of entropy production and thermodynamic
+  uncertainty relations in the asymmetric thermalization of open quantum
+  systems}. 2025.
+Available at: \url{https://arxiv.org/abs/2510.05072}.}
+
+\bibitem{amikam-2020}
+\abntrefinfo{Levy and Lostaglio}{LEVY; LOSTAGLIO}{2020}
+{LEVY, A.; LOSTAGLIO, M. Quasiprobability distribution for heat fluctuations in
+  the quantum regime.
+\textbf{PRX Quantum}, American Physical Society, v.~1, p. 010309, Sep 2020.
+Available at: \url{https://link.aps.org/doi/10.1103/PRXQuantum.1.010309}.}
+
+\bibitem{paternostro-2020}
+\abntrefinfo{Díaz, Guarnieri and Paternostro}{DíAZ; GUARNIERI;
+  PATERNOSTRO}{2020}
+{DíAZ, M.~G.; GUARNIERI, G.; PATERNOSTRO, M. Quantum work statistics with
+  initial coherence.
+\textbf{Entropy}, v.~22, n.~11, 2020.
+ISSN 1099-4300.
+Available at: \url{https://www.mdpi.com/1099-4300/22/11/1223}.}
+
+\bibitem{campaioli-2024}
+\abntrefinfo{Campaioli \textit{et al.}}{CAMPAIOLI \textit{et al.}}{2024}
+{CAMPAIOLI, F. \textit{et al.} Colloquium: Quantum batteries.
+\textbf{Rev. Mod. Phys.}, American Physical Society, v.~96, p. 031001, Jul
+  2024.
+Available at: \url{https://link.aps.org/doi/10.1103/RevModPhys.96.031001}.}
+
 \bibitem{petruccione-book}
 \abntrefinfo{Breuer and Petruccione}{BREUER; PETRUCCIONE}{2002}
 {BREUER, H.-P.; PETRUCCIONE, F. \textbf{The theory of open quantum systems}.
@@ -15,13 +169,29 @@
 {SCULLY, M.~O.; ZUBAIRY, M.~S. \textbf{Quantum Optics}. [\textit{S.l.: s.n.}]:
   Cambridge University Press, 1997.}
 
-\bibitem{rivas-2010}
-\abntrefinfo{Rivas, Huelga and Plenio}{RIVAS; HUELGA; PLENIO}{2010}
-{RIVAS, A.; HUELGA, S.~F.; PLENIO, M.~B. Entanglement and non-markovianity of
-  quantum evolutions.
-\textbf{Phys. Rev. Lett.}, American Physical Society, v.~105, p. 050403, Jul
-  2010.
-Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.105.050403}.}
+\bibitem{plenio-2010}
+\abntrefinfo{Rivas \textit{et al.}}{RIVAS \textit{et al.}}{2010}
+{RIVAS, �. \textit{et al.} Markovian master equations: a critical study.
+\textbf{New Journal of Physics}, v.~12, n.~11, p. 113032, nov 2010.
+Available at: \url{https://doi.org/10.1088/1367-2630/12/11/113032}.}
+
+\bibitem{sakurai-1994}
+\abntrefinfo{Sakurai}{SAKURAI}{1994}
+{SAKURAI, J.~J. \textbf{Modern Quantum Mechanics}. Revised. Reading, MA:
+  Addison-Wesley, 1994.
+ISBN 0-201-53929-2.}
+
+\bibitem{stefanini-2026}
+\abntrefinfo{Stefanini \textit{et al.}}{STEFANINI \textit{et al.}}{2026}
+{STEFANINI, M. \textit{et al.} Is lindblad for me?
+\textbf{SciPost Phys. Lect. Notes}, SciPost, p.~129, 2026.
+Available at: \url{https://scipost.org/10.21468/SciPostPhysLectNotes.129}.}
+
+\bibitem{lidar-2020}
+\abntrefinfo{Lidar}{LIDAR}{2020}
+{LIDAR, D.~A. \textbf{Lecture Notes on the Theory of Open Quantum Systems}.
+  2020.
+Available at: \url{https://arxiv.org/abs/1902.00967}.}
 
 \bibitem{davies-1979}
 \abntrefinfo{Davies}{DAVIES}{1979}
@@ -31,19 +201,178 @@ ISSN 0022-1236.
 Available at:
   \url{https://www.sciencedirect.com/science/article/pii/0022123679900855}.}
 
-\bibitem{brito-2015}
-\abntrefinfo{Brito and Werlang}{BRITO; WERLANG}{2015}
-{BRITO, F.; WERLANG, T. A knob for markovianity.
-\textbf{New Journal of Physics}, IOP Publishing, v.~17, n.~7, p. 072001, jul
-  2015.
-Available at: \url{https://doi.org/10.1088/1367-2630/17/7/072001}.}
+\bibitem{dann-2023}
+\abntrefinfo{Dann and Kosloff}{DANN; KOSLOFF}{2023}
+{DANN, R.; KOSLOFF, R. Unification of the first law of quantum thermodynamics.
+\textbf{New Journal of Physics}, IOP Publishing, v.~25, n.~4, p. 043019, apr
+  2023.
+Available at: \url{https://doi.org/10.1088/1367-2630/acc967}.}
 
-\bibitem{popovic-2018}
-\abntrefinfo{Popovic \textit{et al.}}{POPOVIC \textit{et al.}}{2018}
-{POPOVIC, M. \textit{et al.} Entropy production and correlations in a
-  controlled non-markovian setting.
-\textbf{Phys. Rev. A}, American Physical Society, v.~98, p. 012130, Jul 2018.
-Available at: \url{https://link.aps.org/doi/10.1103/PhysRevA.98.012130}.}
+\bibitem{tanja-2025}
+\abntrefinfo{Seegebrecht and Schilling}{SEEGEBRECHT; SCHILLING}{2024}
+{SEEGEBRECHT, A.; SCHILLING, T. Work, heat and internal energy in open quantum
+  systems: A comparison of four approaches from the autonomous system
+  framework.
+\textbf{Journal of Statistical Physics}, v.~191, n.~3, p.~34, 2024.
+Available at: \url{https://doi.org/10.1007/s10955-024-03249-0}.}
+
+\bibitem{alipour-2016}
+\abntrefinfo{Alipour \textit{et al.}}{ALIPOUR \textit{et al.}}{2016}
+{ALIPOUR, S. \textit{et al.} Correlations in quantum thermodynamics: Heat,
+  work, and entropy production.
+\textbf{Scientific Reports}, v.~6, n.~1, p. 35568, 2016.
+Available at: \url{https://doi.org/10.1038/srep35568}.}
+
+\bibitem{callen-book}
+\abntrefinfo{Callen}{CALLEN}{1985}
+{CALLEN, H.~B. \textbf{Thermodynamics and an introduction to thermostatistics}.
+  [\textit{S.l.: s.n.}]: John Wiley and Sons, 1985.}
+
+\bibitem{chuang-book}
+\abntrefinfo{Nielsen and Chuang}{NIELSEN; CHUANG}{2010}
+{NIELSEN, M.~A.; CHUANG, I.~L. \textbf{Quantum Computation and Quantum
+  Information: 10th Anniversary Edition}. [\textit{S.l.: s.n.}]: Cambridge
+  University Press, 2010.}
+
+\bibitem{parrondo-2024}
+\abntrefinfo{Parrondo}{PARRONDO}{2024}
+{PARRONDO, J.~M. Thermodynamics of information. \textit{In}:  CHAKRABORTY, T.
+  (ed.). \textbf{Encyclopedia of Condensed Matter Physics (Second Edition)}.
+  Second edition. Oxford: Academic Press, 2024. p. 522--535.
+ISBN 978-0-323-91408-6.
+Available at:
+  \url{https://www.sciencedirect.com/science/article/pii/B9780323908009001748}.}
+
+\bibitem{spohn-1978}
+\abntrefinfo{Spohn}{SPOHN}{1978}
+{SPOHN, H. Entropy production for quantum dynamical semigroups.
+\textbf{Journal of Mathematical Physics}, v.~19, n.~5, p. 1227--1230, 05 1978.
+ISSN 0022-2488.
+Available at: \url{https://doi.org/10.1063/1.523789}.}
+
+\bibitem{giordano-2026}
+\abntrefinfo{Giordano \textit{et al.}}{GIORDANO \textit{et al.}}{2026}
+{GIORDANO, S. \textit{et al.} Boltzmann to lindblad: classical and quantum
+  approaches to out-of-equilibrium statistical mechanics.
+\textbf{Journal of Statistical Mechanics: Theory and Experiment}, IOP
+  Publishing, v.~2026, n.~3, p. 033101, mar 2026.
+Available at: \url{https://doi.org/10.1088/1742-5468/ae4968}.}
+
+\bibitem{alicki-2013}
+\abntrefinfo{Alicki and Fannes}{ALICKI; FANNES}{2013}
+{ALICKI, R.; FANNES, M. Entanglement boost for extractable work from ensembles
+  of quantum batteries.
+\textbf{Phys. Rev. E}, American Physical Society, v.~87, p. 042123, Apr 2013.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevE.87.042123}.}
+
+\bibitem{allahverdyan-2004}
+\abntrefinfo{Allahverdyan, Balian and Nieuwenhuizen}{ALLAHVERDYAN; BALIAN;
+  NIEUWENHUIZEN}{2004}
+{ALLAHVERDYAN, A.~E.; BALIAN, R.; NIEUWENHUIZEN, T.~M. Maximal work extraction
+  from finite quantum systems.
+\textbf{Europhysics Letters}, v.~67, n.~4, p.~565, aug 2004.
+Available at: \url{https://doi.org/10.1209/epl/i2004-10101-2}.}
+
+\bibitem{crooks-2007}
+\abntrefinfo{Crooks}{CROOKS}{2007}
+{CROOKS, G.~E. Measuring thermodynamic length.
+\textbf{Phys. Rev. Lett.}, American Physical Society, v.~99, p. 100602, Sep
+  2007.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.99.100602}.}
+
+\bibitem{paris-2009}
+\abntrefinfo{PARIS}{PARIS}{2009}
+{PARIS, M. G.~A. Quantum estimation for quantum technology.
+\textbf{International Journal of Quantum Information}, v.~07, n. supp01, p.
+  125--137, 2009.
+Available at: \url{https://doi.org/10.1142/S0219749909004839}.}
+
+\bibitem{liu-2020}
+\abntrefinfo{Liu \textit{et al.}}{LIU \textit{et al.}}{2019}
+{LIU, J. \textit{et al.} Quantum fisher information matrix and multiparameter
+  estimation.
+\textbf{Journal of Physics A: Mathematical and Theoretical}, IOP Publishing,
+  v.~53, n.~2, p. 023001, dec 2019.
+Available at: \url{https://doi.org/10.1088/1751-8121/ab5d4d}.}
+
+\bibitem{bettmann-2025}
+\abntrefinfo{Bettmann and Goold}{BETTMANN; GOOLD}{2025}
+{BETTMANN, L.~P.; GOOLD, J. Information geometry approach to quantum stochastic
+  thermodynamics.
+\textbf{Phys. Rev. E}, American Physical Society, v.~111, p. 014133, Jan 2025.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevE.111.014133}.}
+
+\bibitem{ullah-2026}
+\abntrefinfo{Ullah, Müstecaplıoğlu and Paris}{ULLAH; MüSTECAPLıOğLU;
+  PARIS}{2026}
+{ULLAH, A.; MüSTECAPLıOğLU, �.~E.; PARIS, M. G.~A. Configuration-dependent
+  precision in magnetometry and thermometry using multiqubit quantum sensors.
+\textbf{Phys. Rev. A}, American Physical Society, v.~113, p. 012408, Jan 2026.
+Available at: \url{https://link.aps.org/doi/10.1103/zn5v-rcgd}.}
+
+\bibitem{streltsov-2017}
+\abntrefinfo{Streltsov, Adesso and Plenio}{STRELTSOV; ADESSO; PLENIO}{2017}
+{STRELTSOV, A.; ADESSO, G.; PLENIO, M.~B. Colloquium: Quantum coherence as a
+  resource.
+\textbf{Rev. Mod. Phys.}, American Physical Society, v.~89, p. 041003, Oct
+  2017.
+Available at: \url{https://link.aps.org/doi/10.1103/RevModPhys.89.041003}.}
+
+\bibitem{baumgratz-2014}
+\abntrefinfo{Baumgratz, Cramer and Plenio}{BAUMGRATZ; CRAMER; PLENIO}{2014}
+{BAUMGRATZ, T.; CRAMER, M.; PLENIO, M.~B. Quantifying coherence.
+\textbf{Phys. Rev. Lett.}, American Physical Society, v.~113, p. 140401, Sep
+  2014.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.113.140401}.}
+
+\bibitem{francica-2020}
+\abntrefinfo{Francica \textit{et al.}}{FRANCICA \textit{et al.}}{2020}
+{FRANCICA, G. \textit{et al.} Quantum coherence and ergotropy.
+\textbf{Phys. Rev. Lett.}, American Physical Society, v.~125, p. 180603, Oct
+  2020.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.125.180603}.}
+
+\bibitem{adesso-2016}
+\abntrefinfo{Adesso, Bromley and Cianciaruso}{ADESSO; BROMLEY;
+  CIANCIARUSO}{2016}
+{ADESSO, G.; BROMLEY, T.~R.; CIANCIARUSO, M. Measures and applications of
+  quantum correlations.
+\textbf{Journal of Physics A: Mathematical and Theoretical}, IOP Publishing,
+  v.~49, n.~47, p. 473001, nov 2016.
+Available at: \url{https://doi.org/10.1088/1751-8113/49/47/473001}.}
+
+\bibitem{rigolin-2010}
+\abntrefinfo{Werlang and Rigolin}{WERLANG; RIGOLIN}{2010}
+{WERLANG, T.; RIGOLIN, G. Thermal and magnetic quantum discord in heisenberg
+  models.
+\textbf{Phys. Rev. A}, American Physical Society, v.~81, p. 044101, Apr 2010.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevA.81.044101}.}
+
+\bibitem{chitambar-2019}
+\abntrefinfo{Chitambar and Gour}{CHITAMBAR; GOUR}{2019}
+{CHITAMBAR, E.; GOUR, G. Quantum resource theories.
+\textbf{Rev. Mod. Phys.}, American Physical Society, v.~91, p. 025001, Apr
+  2019.
+Available at: \url{https://link.aps.org/doi/10.1103/RevModPhys.91.025001}.}
+
+\bibitem{alba-2026}
+\abntrefinfo{Alba \textit{et al.}}{ALBA \textit{et al.}}{2026}
+{ALBA, J. \textit{et al.} \textbf{Quantifying entanglement in quantum
+  thermodynamics via separability constraints}. 2026.
+Available at: \url{https://arxiv.org/abs/2603.17078}.}
+
+\bibitem{medina-2024}
+\abntrefinfo{Medina \textit{et al.}}{MEDINA \textit{et al.}}{2024}
+{MEDINA, I. \textit{et al.} Variational-quantum-eigensolver–inspired
+  optimization for spin-chain work extraction.
+\textbf{Phys. Rev. A}, American Physical Society, v.~110, p. 012443, Jul 2024.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevA.110.012443}.}
+
+\bibitem{ali-2010}
+\abntrefinfo{Ali, Rau and Alber}{ALI; RAU; ALBER}{2010}
+{ALI, M.; RAU, A. R.~P.; ALBER, G. Quantum discord for two-qubit $x$ states.
+\textbf{Phys. Rev. A}, American Physical Society, v.~81, p. 042105, Apr 2010.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevA.81.042105}.}
 
 \bibitem{breuer-2015}
 \abntrefinfo{Breuer \textit{et al.}}{BREUER \textit{et al.}}{2016}
@@ -53,6 +382,13 @@ Available at: \url{https://link.aps.org/doi/10.1103/PhysRevA.98.012130}.}
   2016.
 Available at: \url{https://link.aps.org/doi/10.1103/RevModPhys.88.021002}.}
 
+\bibitem{popovic-2018}
+\abntrefinfo{Popovic, Vacchini and Campbell}{POPOVIC; VACCHINI; CAMPBELL}{2018}
+{POPOVIC, M.; VACCHINI, B.; CAMPBELL, S. Entropy production and correlations in
+  a controlled non-markovian setting.
+\textbf{Phys. Rev. A}, American Physical Society, v.~98, p. 012130, Jul 2018.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevA.98.012130}.}
+
 \bibitem{marcantoni-2017}
 \abntrefinfo{Marcantoni \textit{et al.}}{MARCANTONI \textit{et al.}}{2017}
 {MARCANTONI, S. \textit{et al.} Entropy production and non-markovian dynamical
@@ -60,34 +396,6 @@ Available at: \url{https://link.aps.org/doi/10.1103/RevModPhys.88.021002}.}
 \textbf{Scientific Reports}, v.~7, n.~1, p. 12447, Sep 2017.
 ISSN 2045-2322.
 Available at: \url{https://doi.org/10.1038/s41598-017-12595-x}.}
-
-\bibitem{spohn-1978}
-\abntrefinfo{Spohn}{SPOHN}{1978}
-{SPOHN, H. Entropy production for quantum dynamical semigroups.
-\textbf{Journal of Mathematical Physics}, v.~19, n.~5, p. 1227--1230, 05 1978.
-ISSN 0022-2488.
-Available at: \url{https://doi.org/10.1063/1.523789}.}
-
-\bibitem{medina-2024}
-\abntrefinfo{Medina \textit{et al.}}{MEDINA \textit{et al.}}{2024}
-{MEDINA, I. \textit{et al.} Variational-quantum-eigensolver–inspired
-  optimization for spin-chain work extraction.
-\textbf{Phys. Rev. A}, American Physical Society, v.~110, p. 012443, Jul 2024.
-Available at: \url{https://link.aps.org/doi/10.1103/PhysRevA.110.012443}.}
-
-\bibitem{krissia-2024}
-\abntrefinfo{Moroder \textit{et al.}}{MORODER \textit{et al.}}{2024}
-{MORODER, M. \textit{et al.} Thermodynamics of the quantum mpemba effect.
-\textbf{Phys. Rev. Lett.}, American Physical Society, v.~133, p. 140404, Oct
-  2024.
-Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.133.140404}.}
-
-\bibitem{ibanez-2024}
-\abntrefinfo{Ibáñez \textit{et al.}}{IBáñEZ \textit{et al.}}{2024}
-{IBáñEZ, M. \textit{et al.} Heating and cooling are fundamentally asymmetric
-  and evolve along distinct pathways.
-\textbf{Nature Physics}, v.~20, p. 135--141, Jan 2024.
-Available at: \url{https://doi.org/10.1038/s41567-023-02269-z}.}
 
 \bibitem{serafini-book}
 \abntrefinfo{Serafini}{SERAFINI}{2017}
@@ -112,19 +420,11 @@ Available at: \url{https://doi.org/10.1142/S1230161214400010}.}
   2016.
 Available at: \url{https://doi.org/10.1088/1367-2630/18/11/113028}.}
 
-\bibitem{medina-2025}
-\abntrefinfo{Medina \textit{et al.}}{MEDINA \textit{et al.}}{2025}
-{MEDINA, I. \textit{et al.} Anomalous discharging of quantum batteries: The
-  ergotropic mpemba effect.
-\textbf{Phys. Rev. Lett.}, American Physical Society, v.~134, p. 220402, Jun
-  2025.
-Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.134.220402}.}
-
-\bibitem{tejero-2025}
-\abntrefinfo{Tejero \textit{et al.}}{TEJERO \textit{et al.}}{2025}
-{TEJERO, A. \textit{et al.} Asymmetries of thermal processes in open quantum
-  systems.
-\textbf{Phys. Rev. Res.}, American Physical Society, v.~7, p. 023020, Apr 2025.
-Available at: \url{https://link.aps.org/doi/10.1103/PhysRevResearch.7.023020}.}
+\bibitem{landi-2020}
+\abntrefinfo{Salazar and Landi}{SALAZAR; LANDI}{2020}
+{SALAZAR, D. S.~P.; LANDI, G.~T. Nonlinear onsager relations for gaussian
+  quantum maps.
+\textbf{Phys. Rev. Res.}, American Physical Society, v.~2, p. 033090, Jul 2020.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevResearch.2.033090}.}
 
 \end{thebibliography}

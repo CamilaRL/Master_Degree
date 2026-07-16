@@ -46,8 +46,8 @@ for i in range(len(cList)):
     plt.plot(tlist_a0, completion_a0, color='red', linestyle='--', linewidth=2, label='J = 0 - Heating')
     plt.plot(tlist_r0, completion_r0, color='blue', linestyle='--', linewidth=2, label='J = 0 - Cooling')
     
-    plt.plot(tlist_a1, completion_a1, color='red', linewidth=2, label='J = 0.8 - Heating')
-    plt.plot(tlist_r1, completion_r1, color='blue', linewidth=2, label='J = 0.8 - Cooling')
+    plt.plot(tlist_a1, completion_a1, color='red', linewidth=2, label='J = 1.6 - Heating')
+    plt.plot(tlist_r1, completion_r1, color='blue', linewidth=2, label='J = 1.6 - Cooling')
     
     plt.xlabel('Time', fontsize=12)
     plt.ylabel('Degree of Completion', fontsize=12)
@@ -68,8 +68,8 @@ for i in range(len(cList)):
     plt.plot(tlist_a0, velocidade_a0, color='red', linestyle='--', linewidth=2, label='J = 0 - Heating')
     plt.plot(tlist_r0, velocidade_r0, color='blue', linestyle='--', linewidth=2, label='J = 0 - Cooling')
     
-    plt.plot(tlist_a1, velocidade_a1, color='red', linewidth=2, label='J = 0.8 - Heating')
-    plt.plot(tlist_r1, velocidade_r1, color='blue', linewidth=2, label='J = 0.8 - Cooling')
+    plt.plot(tlist_a1, velocidade_a1, color='red', linewidth=2, label='J = 1.6 - Heating')
+    plt.plot(tlist_r1, velocidade_r1, color='blue', linewidth=2, label='J = 1.6 - Cooling')
     
     plt.xlabel('Time', fontsize=12)
     plt.ylabel('Velocity', fontsize=12)
@@ -92,8 +92,8 @@ for i in range(len(cList)):
     plt.plot(t_sigma_a0, sigma_a0, color='red', linestyle='--', linewidth=2, label='J = 0 - Heating')
     plt.plot(t_sigma_r0, sigma_r0, color='blue', linestyle='--', linewidth=2, label='J = 0 - Cooling')
     
-    plt.plot(t_sigma_am, sigma_am, color='red', linewidth=2, label='J = 0.8 - Heating')
-    plt.plot(t_sigma_rm, sigma_rm, color='blue', linewidth=2, label='J = 0.8 - Cooling')
+    plt.plot(t_sigma_am, sigma_am, color='red', linewidth=2, label='J = 1.6 - Heating')
+    plt.plot(t_sigma_rm, sigma_rm, color='blue', linewidth=2, label='J = 1.6 - Cooling')
     
     plt.xlabel('Time', fontsize=12)
     plt.ylabel('Local Entropy Production Rate', fontsize=12)
