@@ -158,6 +158,41 @@ plt.tight_layout()
 plt.subplots_adjust(right=0.8)
 plt.show()'''
 
+fig = plt.figure(figsize=(10, 5))
+
+plt.subplot(121)
+plt.plot(tlist, Sprod_list[-1][0], color='red', linestyle=symbols[0], linewidth=2, label=f'Total')
+plt.plot(tlist, Sprod_p_list[-1][0], color='red', linestyle=symbols[1], linewidth=2, label=f'Passive')
+plt.plot(tlist, Sprod_e_list[-1][0], color='red', linestyle=symbols[2], linewidth=2, label=f'Ergotropic')
+
+plt.ylabel('Entropy Production Rate', fontsize=12)
+plt.xlabel('Time', fontsize=12)
+plt.xscale('log')
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.title(r'Heating - $\mu$ = ' + f'{muList[-1]}', fontsize=14)
+plt.legend()
+
+plt.subplot(122)
+plt.plot(tlist, Sprod_list[-1][1], color='blue', linestyle=symbols[0], linewidth=2, label=f'Total')
+plt.plot(tlist, Sprod_p_list[-1][1], color='blue', linestyle=symbols[1], linewidth=2, label=f'Passive')
+plt.plot(tlist, Sprod_e_list[-1][1], color='blue', linestyle=symbols[2], linewidth=2, label=f'Ergotropic')
+
+plt.xlabel('Time', fontsize=12)
+plt.xscale('log')
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.title(r'Cooling - $\mu$ = ' + f'{muList[-1]}', fontsize=14)
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+
+
+
+
+
+
 fig = plt.figure(figsize=(12, 8)) # Aumentei um pouco a altura para caber a legenda
 
 for i in range(len(muList)):

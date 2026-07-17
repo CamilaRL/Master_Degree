@@ -19,7 +19,7 @@ def vonNeumann_Entropy(rho):
     
 
 w0 = 1
-Jlist = np.arange(0, 2, 0.01)
+Jlist = np.arange(0, 10, 0.01)
 beta_R = 1
 
 Clist = []
