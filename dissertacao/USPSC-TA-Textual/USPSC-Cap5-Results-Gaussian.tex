@@ -259,7 +259,7 @@ However, instead of assuming the arbitrary thermal state is equal to the passive
 Now that we briefly redefined some thermodynamic quantities for Gaussian states, we will discuss how the thermal kinematics change in this regime. As discussed in Sec. \ref{sec:thermal-kinematics}, Fisher information is the essential quantity for the thermal kinematics approach of heating-cooling asymmetry. To find a Fisher information for Gaussian states, we will follow the same procedure of Sec. \ref{sec:thermal-kinematics} and make a second order Taylor expansion in a parameter $\theta$ of the Wigner relative entropy (Eq. \eqref{eq:wigner-relative-entropy}) as
 \begin{equation}
     \begin{split}
-        K[W(\mathbf{x}, \theta+d\theta) || P(\mathbf{x}, \theta)] &= \int W(\mathbf{x}, \theta+d\theta) \ln \left ( \frac{W(\mathbf{x}, \theta+d\theta)}{W(\mathbf{x}, \theta)} \right ) d^2 \mathbf{x} \\
+        K[W(\mathbf{x}, \theta+d\theta) || W(\mathbf{x}, \theta)] &= \int W(\mathbf{x}, \theta+d\theta) \ln \left ( \frac{W(\mathbf{x}, \theta+d\theta)}{W(\mathbf{x}, \theta)} \right ) d^2 \mathbf{x} \\
         &= \int [W(\mathbf{x}, \theta) + \partial_\theta W(\mathbf{x}, \theta) d\theta + \frac{1}{2} \partial_\theta^2 W(\mathbf{x}, \theta) d\theta^2 + \mathcal{O}(d\theta^3)] \times\\
         &\times \left[\frac{\partial_\theta W(\mathbf{x}, \theta)}{W(\mathbf{x}, \theta)} d\theta + \frac{1}{2}\frac{\partial_\theta^2 W(\mathbf{x}, \theta)}{W(\mathbf{x}, \theta)} d\theta^2 + \mathcal{O}(d\theta^3) \right] d^2 \mathbf{x} \\
         &= \int \frac{(\partial_\theta W(\mathbf{x}, \theta) d\theta)^2}{W(\mathbf{x}, \theta)} d^2 \mathbf{x} + \mathcal{O}(d\theta^3)\\
@@ -383,7 +383,7 @@ Now, we can analyse what happens to the asymmetry when we displace a thermal sta
 
 \noindent The term containing the displacement parameter ($\mu$) is independent of the system's initial temperature, which means that, regardless of the initial temperature, applying a displacement operator to any thermal state results in the same shift in their Wigner relative entropy. Thus, for simplicity, we chose two equidistant thermal states and then applied the same amount of work on both (which is equivalent to using the same $\mu$). However, because displacement also adds ergotropy to the state, it is important to use initial states with the same ergotropy. The ergotropy for a displaced state is $\mathcal{E}_d= |\mu|^2 e^{-\Gamma t}$, which means that using the same $\mu$ is enough to guarantee different states have the same ergotropy. As we did before, we could try to analytically calculate the thermal kinematics variables, but the Wigner-Fisher information for a displaced state is
 \begin{equation}
-    I_{W_d} (t) = \frac{2}{\Delta_\beta} \left[ \frac{\dot{\Delta}_\beta^2}{\Delta_\beta} + \left(\omega^2 + \frac{\Gamma^2}{4} \right)|\mu|^2 e^{-\Gamma t} \right],
+    \mathcal{I}_{W_d} (t) = \frac{2}{\Delta_\beta} \left[ \frac{\dot{\Delta}_\beta^2}{\Delta_\beta} + \left(\omega^2 + \frac{\Gamma^2}{4} \right)|\mu|^2 e^{-\Gamma t} \right],
     \label{eq:WFI-displaced}
 \end{equation}
 
@@ -476,7 +476,7 @@ In this section, we study the thermal relaxation asymmetry of squeezed thermal s
 
 The Wigner-Fisher information of a squeezed thermal state is
 \begin{equation}
-    I_{W_s} (t) = 2 \dot{S}_{W_s}^2 + 8 \dot{r}_t^2 + 2 \dot{\phi}_t^2 \sinh^2 (2r_t),
+    \mathcal{I}_{W_s} (t) = 2 \dot{S}_{W_s}^2 + 8 \dot{r}_t^2 + 2 \dot{\phi}_t^2 \sinh^2 (2r_t),
     \label{eq:Iw-squeezing}
 \end{equation}
 
