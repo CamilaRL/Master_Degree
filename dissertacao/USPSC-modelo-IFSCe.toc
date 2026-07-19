@@ -5,38 +5,38 @@
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase []{Introduction}}{17}{chapter.1}%
+\contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase []{Introduction}}{12}{chapter.1}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase []{Quantum Systems Dynamics}}{21}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Dynamics of Close Quantum Systems}{21}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Dynamics of Open Quantum Systems}{22}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Davies Maps}{26}{subsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.1.1}Example: one qubit coupled to a thermal bath}{28}{subsubsection.2.2.1.1}%
-\contentsline {subsubsection}{\numberline {2.2.1.2}Example: single-mode harmonic oscillator coupled to a thermal bath}{28}{subsubsection.2.2.1.2}%
+\contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase []{Quantum Systems Dynamics}}{15}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Dynamics of Close Quantum Systems}{15}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Dynamics of Open Quantum Systems}{16}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Davies Maps}{20}{subsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.1.1}Example: one qubit coupled to a thermal bath}{22}{subsubsection.2.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.2.1.2}Example: single-mode harmonic oscillator coupled to a thermal bath}{22}{subsubsection.2.2.1.2}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase []{Quantum Thermodynamics}}{31}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Thermodynamic variables in the quantum regime}{31}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Thermal Kinematics}{35}{section.3.2}%
+\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase []{Quantum Thermodynamics}}{24}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Thermodynamic variables in the quantum regime}{24}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Thermal Kinematics}{28}{section.3.2}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase []{Heating-Cooling Asymmetry: Discrete Case}}{39}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Quantum Coherence and Entanglement}{39}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Thermal Relaxation of Two Interacting Qubits}{41}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Asymmetry for Two Interacting Qubits}{45}{section.4.3}%
+\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase []{Heating-Cooling Asymmetry: Discrete Case}}{31}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Quantum Coherence and Entanglement}{31}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Thermal Relaxation of Two Interacting Qubits}{33}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Asymmetry for Two Interacting Qubits}{37}{section.4.3}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase []{Heating-Cooling Asymmetry: Continuous-Variable Case}}{49}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Gaussian States}{49}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Thermal Relaxation of Gaussian States}{52}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Asymmetry for Thermal States}{57}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Asymmetry for Displaced States}{59}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Asymmetry for Squeezed States}{62}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Asymmetry Inversion for Gaussian States}{67}{section.5.6}%
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase []{Heating-Cooling Asymmetry: Continuous-Variable Case}}{41}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Gaussian States}{41}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Thermal Relaxation of Gaussian States}{44}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Asymmetry for Thermal States}{49}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Asymmetry for Displaced States}{51}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Asymmetry for Squeezed States}{54}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Asymmetry Inversion for Gaussian States}{59}{section.5.6}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase []{Conclusion}}{71}{chapter.6}%
+\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase []{Conclusion}}{62}{chapter.6}%
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\uppercase {References}}{75}{section*.14}%
+\contentsline {chapter}{\uppercase {References}}{65}{section*.14}%
 \renewcommand *{\cftappendixname }{APPENDIX \space }
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \cftinsert {A}
-\contentsline {appendix}{\chapternumberline {A}\MakeTextUppercase []{Concurrence of an X-state}}{81}{appendix.A}%
+\contentsline {appendix}{\chapternumberline {A}\MakeTextUppercase []{Concurrence of an X-state}}{70}{appendix.A}%

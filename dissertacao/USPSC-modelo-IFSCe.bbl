@@ -36,8 +36,8 @@ Available at: \url{https://arxiv.org/abs/1907.01596}.}
 \abntrefinfo{Lapolla and Godec}{LAPOLLA; GODEC}{2020}
 {LAPOLLA, A.; GODEC, A. c.~v. Faster uphill relaxation in thermodynamically
   equidistant temperature quenches.
-\textbf{Phys. Rev. Lett.}, American Physical Society, v.~125, p. 110602, Sep
-  2020.
+\textbf{Physical Review Letters}, American Physical Society, v.~125, p. 110602,
+  Sep 2020.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.125.110602}.}
 
 \bibitem{mpemba-1969}
@@ -59,16 +59,16 @@ Available at:
 \bibitem{krissia-2024}
 \abntrefinfo{Moroder \textit{et al.}}{MORODER \textit{et al.}}{2024}
 {MORODER, M. \textit{et al.} Thermodynamics of the quantum mpemba effect.
-\textbf{Phys. Rev. Lett.}, American Physical Society, v.~133, p. 140404, Oct
-  2024.
+\textbf{Physical Review Letters}, American Physical Society, v.~133, p. 140404,
+  Oct 2024.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.133.140404}.}
 
 \bibitem{medina-2025}
 \abntrefinfo{Medina \textit{et al.}}{MEDINA \textit{et al.}}{2025}
 {MEDINA, I. \textit{et al.} Anomalous discharging of quantum batteries: The
   ergotropic mpemba effect.
-\textbf{Phys. Rev. Lett.}, American Physical Society, v.~134, p. 220402, Jun
-  2025.
+\textbf{Physical Review Letters}, American Physical Society, v.~134, p. 220402,
+  Jun 2025.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.134.220402}.}
 
 \bibitem{ibanez-2024}
@@ -82,8 +82,8 @@ Available at: \url{https://doi.org/10.1038/s41567-023-02269-z}.}
 \abntrefinfo{Dieball, Wellecke and Godec}{DIEBALL; WELLECKE; GODEC}{2023}
 {DIEBALL, C.; WELLECKE, G.; GODEC, A. c.~v. Asymmetric thermal relaxation in
   driven systems: Rotations go opposite ways.
-\textbf{Phys. Rev. Res.}, American Physical Society, v.~5, p. L042030, Nov
-  2023.
+\textbf{Physical Review Research}, American Physical Society, v.~5, p. L042030,
+  Nov 2023.
 Available at:
   \url{https://link.aps.org/doi/10.1103/PhysRevResearch.5.L042030}.}
 
@@ -91,20 +91,23 @@ Available at:
 \abntrefinfo{Tejero \textit{et al.}}{TEJERO \textit{et al.}}{2025}
 {TEJERO, A. \textit{et al.} Asymmetries of thermal processes in open quantum
   systems.
-\textbf{Phys. Rev. Res.}, American Physical Society, v.~7, p. 023020, Apr 2025.
+\textbf{Physical Review Research}, American Physical Society, v.~7, p. 023020,
+  Apr 2025.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevResearch.7.023020}.}
 
 \bibitem{manikandan-2021}
 \abntrefinfo{Manikandan}{MANIKANDAN}{2021}
 {MANIKANDAN, S.~K. Equidistant quenches in few-level quantum systems.
-\textbf{Phys. Rev. Res.}, American Physical Society, v.~3, p. 043108, Nov 2021.
+\textbf{Physical Review Research}, American Physical Society, v.~3, p. 043108,
+  Nov 2021.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevResearch.3.043108}.}
 
 \bibitem{vu-2021}
 \abntrefinfo{Vu and Hasegawa}{VU; HASEGAWA}{2021}
 {VU, T. V.; HASEGAWA, Y. Toward relaxation asymmetry: Heating is faster than
   cooling.
-\textbf{Phys. Rev. Res.}, American Physical Society, v.~3, p. 043160, Dec 2021.
+\textbf{Physical Review Research}, American Physical Society, v.~3, p. 043160,
+  Dec 2021.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevResearch.3.043160}.}
 
 \bibitem{bravetti-2025}
@@ -118,15 +121,16 @@ Available at: \url{https://doi.org/10.1088/1751-8121/adc0d0}.}
 \bibitem{ito-2018}
 \abntrefinfo{Ito}{ITO}{2018}
 {ITO, S. Stochastic thermodynamic interpretation of information geometry.
-\textbf{Phys. Rev. Lett.}, American Physical Society, v.~121, p. 030605, Jul
-  2018.
+\textbf{Physical Review Letters}, American Physical Society, v.~121, p. 030605,
+  Jul 2018.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.121.030605}.}
 
 \bibitem{dechant-2020}
 \abntrefinfo{Ito and Dechant}{ITO; DECHANT}{2020}
 {ITO, S.; DECHANT, A. Stochastic time evolution, information geometry, and the
   cram\'er-rao bound.
-\textbf{Phys. Rev. X}, American Physical Society, v.~10, p. 021056, Jun 2020.
+\textbf{Physical Review X}, American Physical Society, v.~10, p. 021056, Jun
+  2020.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevX.10.021056}.}
 
 \bibitem{tejero-misc-2025}
@@ -155,19 +159,19 @@ Available at: \url{https://www.mdpi.com/1099-4300/22/11/1223}.}
 \bibitem{campaioli-2024}
 \abntrefinfo{Campaioli \textit{et al.}}{CAMPAIOLI \textit{et al.}}{2024}
 {CAMPAIOLI, F. \textit{et al.} Colloquium: Quantum batteries.
-\textbf{Rev. Mod. Phys.}, American Physical Society, v.~96, p. 031001, Jul
-  2024.
+\textbf{Review Modern Physics}, American Physical Society, v.~96, p. 031001,
+  Jul 2024.
 Available at: \url{https://link.aps.org/doi/10.1103/RevModPhys.96.031001}.}
 
 \bibitem{petruccione-book}
 \abntrefinfo{Breuer and Petruccione}{BREUER; PETRUCCIONE}{2002}
 {BREUER, H.-P.; PETRUCCIONE, F. \textbf{The theory of open quantum systems}.
-  [\textit{S.l.: s.n.}]: Oxford University Press, 2002.}
+  Oxford: Oxford University Press, 2002.}
 
 \bibitem{scully-book}
 \abntrefinfo{Scully and Zubairy}{SCULLY; ZUBAIRY}{1997}
-{SCULLY, M.~O.; ZUBAIRY, M.~S. \textbf{Quantum Optics}. [\textit{S.l.: s.n.}]:
-  Cambridge University Press, 1997.}
+{SCULLY, M.~O.; ZUBAIRY, M.~S. \textbf{Quantum Optics}. Cambridge: Cambridge
+  University Press, 1997.}
 
 \bibitem{plenio-2010}
 \abntrefinfo{Rivas \textit{et al.}}{RIVAS \textit{et al.}}{2010}
@@ -226,13 +230,13 @@ Available at: \url{https://doi.org/10.1038/srep35568}.}
 \bibitem{callen-book}
 \abntrefinfo{Callen}{CALLEN}{1985}
 {CALLEN, H.~B. \textbf{Thermodynamics and an introduction to thermostatistics}.
-  [\textit{S.l.: s.n.}]: John Wiley and Sons, 1985.}
+  New York: John Wiley and Sons, 1985.}
 
 \bibitem{chuang-book}
 \abntrefinfo{Nielsen and Chuang}{NIELSEN; CHUANG}{2010}
 {NIELSEN, M.~A.; CHUANG, I.~L. \textbf{Quantum Computation and Quantum
-  Information: 10th Anniversary Edition}. [\textit{S.l.: s.n.}]: Cambridge
-  University Press, 2010.}
+  Information: 10th Anniversary Edition}. Cambridge: Cambridge University
+  Press, 2010.}
 
 \bibitem{parrondo-2024}
 \abntrefinfo{Parrondo}{PARRONDO}{2024}
@@ -262,7 +266,8 @@ Available at: \url{https://doi.org/10.1088/1742-5468/ae4968}.}
 \abntrefinfo{Alicki and Fannes}{ALICKI; FANNES}{2013}
 {ALICKI, R.; FANNES, M. Entanglement boost for extractable work from ensembles
   of quantum batteries.
-\textbf{Phys. Rev. E}, American Physical Society, v.~87, p. 042123, Apr 2013.
+\textbf{Physical Review E}, American Physical Society, v.~87, p. 042123, Apr
+  2013.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevE.87.042123}.}
 
 \bibitem{allahverdyan-2004}
@@ -276,8 +281,8 @@ Available at: \url{https://doi.org/10.1209/epl/i2004-10101-2}.}
 \bibitem{crooks-2007}
 \abntrefinfo{Crooks}{CROOKS}{2007}
 {CROOKS, G.~E. Measuring thermodynamic length.
-\textbf{Phys. Rev. Lett.}, American Physical Society, v.~99, p. 100602, Sep
-  2007.
+\textbf{Physical Review Letters}, American Physical Society, v.~99, p. 100602,
+  Sep 2007.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.99.100602}.}
 
 \bibitem{paris-2009}
@@ -299,7 +304,8 @@ Available at: \url{https://doi.org/10.1088/1751-8121/ab5d4d}.}
 \abntrefinfo{Bettmann and Goold}{BETTMANN; GOOLD}{2025}
 {BETTMANN, L.~P.; GOOLD, J. Information geometry approach to quantum stochastic
   thermodynamics.
-\textbf{Phys. Rev. E}, American Physical Society, v.~111, p. 014133, Jan 2025.
+\textbf{Physical Review E}, American Physical Society, v.~111, p. 014133, Jan
+  2025.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevE.111.014133}.}
 
 \bibitem{ullah-2026}
@@ -307,29 +313,30 @@ Available at: \url{https://link.aps.org/doi/10.1103/PhysRevE.111.014133}.}
   PARIS}{2026}
 {ULLAH, A.; MüSTECAPLıOğLU, �.~E.; PARIS, M. G.~A. Configuration-dependent
   precision in magnetometry and thermometry using multiqubit quantum sensors.
-\textbf{Phys. Rev. A}, American Physical Society, v.~113, p. 012408, Jan 2026.
+\textbf{Physical Review A}, American Physical Society, v.~113, p. 012408, Jan
+  2026.
 Available at: \url{https://link.aps.org/doi/10.1103/zn5v-rcgd}.}
 
 \bibitem{streltsov-2017}
 \abntrefinfo{Streltsov, Adesso and Plenio}{STRELTSOV; ADESSO; PLENIO}{2017}
 {STRELTSOV, A.; ADESSO, G.; PLENIO, M.~B. Colloquium: Quantum coherence as a
   resource.
-\textbf{Rev. Mod. Phys.}, American Physical Society, v.~89, p. 041003, Oct
-  2017.
+\textbf{Review Modern Physics}, American Physical Society, v.~89, p. 041003,
+  Oct 2017.
 Available at: \url{https://link.aps.org/doi/10.1103/RevModPhys.89.041003}.}
 
 \bibitem{baumgratz-2014}
 \abntrefinfo{Baumgratz, Cramer and Plenio}{BAUMGRATZ; CRAMER; PLENIO}{2014}
 {BAUMGRATZ, T.; CRAMER, M.; PLENIO, M.~B. Quantifying coherence.
-\textbf{Phys. Rev. Lett.}, American Physical Society, v.~113, p. 140401, Sep
-  2014.
+\textbf{Physical Review Letters}, American Physical Society, v.~113, p. 140401,
+  Sep 2014.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.113.140401}.}
 
 \bibitem{francica-2020}
 \abntrefinfo{Francica \textit{et al.}}{FRANCICA \textit{et al.}}{2020}
 {FRANCICA, G. \textit{et al.} Quantum coherence and ergotropy.
-\textbf{Phys. Rev. Lett.}, American Physical Society, v.~125, p. 180603, Oct
-  2020.
+\textbf{Physical Review Letters}, American Physical Society, v.~125, p. 180603,
+  Oct 2020.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.125.180603}.}
 
 \bibitem{adesso-2016}
@@ -345,14 +352,15 @@ Available at: \url{https://doi.org/10.1088/1751-8113/49/47/473001}.}
 \abntrefinfo{Werlang and Rigolin}{WERLANG; RIGOLIN}{2010}
 {WERLANG, T.; RIGOLIN, G. Thermal and magnetic quantum discord in heisenberg
   models.
-\textbf{Phys. Rev. A}, American Physical Society, v.~81, p. 044101, Apr 2010.
+\textbf{Physical Review A}, American Physical Society, v.~81, p. 044101, Apr
+  2010.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevA.81.044101}.}
 
 \bibitem{chitambar-2019}
 \abntrefinfo{Chitambar and Gour}{CHITAMBAR; GOUR}{2019}
 {CHITAMBAR, E.; GOUR, G. Quantum resource theories.
-\textbf{Rev. Mod. Phys.}, American Physical Society, v.~91, p. 025001, Apr
-  2019.
+\textbf{Review Modern Physics}, American Physical Society, v.~91, p. 025001,
+  Apr 2019.
 Available at: \url{https://link.aps.org/doi/10.1103/RevModPhys.91.025001}.}
 
 \bibitem{alba-2026}
@@ -365,28 +373,31 @@ Available at: \url{https://arxiv.org/abs/2603.17078}.}
 \abntrefinfo{Medina \textit{et al.}}{MEDINA \textit{et al.}}{2024}
 {MEDINA, I. \textit{et al.} Variational-quantum-eigensolver–inspired
   optimization for spin-chain work extraction.
-\textbf{Phys. Rev. A}, American Physical Society, v.~110, p. 012443, Jul 2024.
+\textbf{Physical Review A}, American Physical Society, v.~110, p. 012443, Jul
+  2024.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevA.110.012443}.}
 
 \bibitem{ali-2010}
 \abntrefinfo{Ali, Rau and Alber}{ALI; RAU; ALBER}{2010}
 {ALI, M.; RAU, A. R.~P.; ALBER, G. Quantum discord for two-qubit $x$ states.
-\textbf{Phys. Rev. A}, American Physical Society, v.~81, p. 042105, Apr 2010.
+\textbf{Physical Review A}, American Physical Society, v.~81, p. 042105, Apr
+  2010.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevA.81.042105}.}
 
 \bibitem{breuer-2015}
 \abntrefinfo{Breuer \textit{et al.}}{BREUER \textit{et al.}}{2016}
 {BREUER, H.-P. \textit{et al.} Colloquium: Non-markovian dynamics in open
   quantum systems.
-\textbf{Rev. Mod. Phys.}, American Physical Society, v.~88, p. 021002, Apr
-  2016.
+\textbf{Review of Modern Physics}, American Physical Society, v.~88, p. 021002,
+  Apr 2016.
 Available at: \url{https://link.aps.org/doi/10.1103/RevModPhys.88.021002}.}
 
 \bibitem{popovic-2018}
 \abntrefinfo{Popovic, Vacchini and Campbell}{POPOVIC; VACCHINI; CAMPBELL}{2018}
 {POPOVIC, M.; VACCHINI, B.; CAMPBELL, S. Entropy production and correlations in
   a controlled non-markovian setting.
-\textbf{Phys. Rev. A}, American Physical Society, v.~98, p. 012130, Jul 2018.
+\textbf{Physical Review A}, American Physical Society, v.~98, p. 012130, Jul
+  2018.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevA.98.012130}.}
 
 \bibitem{marcantoni-2017}
@@ -424,7 +435,8 @@ Available at: \url{https://doi.org/10.1088/1367-2630/18/11/113028}.}
 \abntrefinfo{Salazar and Landi}{SALAZAR; LANDI}{2020}
 {SALAZAR, D. S.~P.; LANDI, G.~T. Nonlinear onsager relations for gaussian
   quantum maps.
-\textbf{Phys. Rev. Res.}, American Physical Society, v.~2, p. 033090, Jul 2020.
+\textbf{Physical Review Research}, American Physical Society, v.~2, p. 033090,
+  Jul 2020.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevResearch.2.033090}.}
 
 \end{thebibliography}

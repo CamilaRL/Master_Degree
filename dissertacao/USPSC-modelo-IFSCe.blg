@@ -40,7 +40,6 @@ Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'wiz_functions' (item size: 4) to 9000 items.
 Database file #1: abntex2-options.bib
 Database file #2: USPSC-bib/USPSC-modelo-references.bib
-Warning--I didn't find a database entry for "nbr6028"
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'glb_str_end' (item size: 4) to 20 items.
 Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
@@ -52,8 +51,8 @@ Reallocating 'global_strs' (item size: 1) to 4000000 items.
 +---------------------------------------------------------+
 You've used 71 entries,
             6713 wiz_defined-function locations,
-            1617 strings with 21398 characters,
-and the built_in function-call counts, 102089 in all, are:
+            1619 strings with 21469 characters,
+and the built_in function-call counts, 102081 in all, are:
 = -- 12002
 > -- 1752
 < -- 2810
@@ -67,9 +66,9 @@ change.case$ -- 734
 chr.to.int$ -- 219
 cite$ -- 59
 duplicate$ -- 10668
-empty$ -- 3694
+empty$ -- 3690
 format.name$ -- 2672
-if$ -- 20702
+if$ -- 20698
 int.to.chr$ -- 11
 int.to.str$ -- 3
 missing$ -- 1196
@@ -91,4 +90,3 @@ warning$ -- 0
 while$ -- 372
 width$ -- 0
 write$ -- 927
-(There was 1 warning)
