@@ -32,6 +32,38 @@ Available at: \url{https://doi.org/10.1038/nphys3230}.}
   the thermodynamics of quantum information}. 2019.
 Available at: \url{https://arxiv.org/abs/1907.01596}.}
 
+\bibitem{moyses-v2}
+\abntrefinfo{Nussenzveig}{NUSSENZVEIG}{2002}
+{NUSSENZVEIG, H.~M. \textbf{Curso de F{\'\i}sica B{\'a}sica: Fluidos,
+  Oscila{\c{c}}{\~o}es e Ondas, Calor}. 4. ed. S{\~a}o Paulo: Editora Blucher,
+  2002. v.~2.
+ISBN 9788521202998.}
+
+\bibitem{moyses-v3}
+\abntrefinfo{Nussenzveig}{NUSSENZVEIG}{2015}
+{NUSSENZVEIG, H.~M. \textbf{Curso de F{\'\i}sica B{\'a}sica: Eletromagnetismo}.
+  2. ed. S{\~a}o Paulo: Editora Blucher, 2015. v.~3.
+ISBN 9788521208013.}
+
+\bibitem{tipler-v1}
+\abntrefinfo{Tipler and Mosca}{TIPLER; MOSCA}{2009a}
+{TIPLER, P.~A.; MOSCA, G. \textbf{F{\'i}sica para cientistas e engenheiros:
+  mec{\^a}nica, oscila{\c{c}}{\~o}es e ondas, termodin{\^a}mica - volume 1}. 6.
+  ed. Rio de Janeiro, RJ: LTC - Livros T{\'e}cnicos e Cient{\'i}ficos, 2009.
+ISBN 9788521617105.}
+
+\bibitem{tipler-v2}
+\abntrefinfo{Tipler and Mosca}{TIPLER; MOSCA}{2009b}
+{TIPLER, P.~A.; MOSCA, G. \textbf{F{\'\i}sica para cientistas e engenheiros:
+  eletricidade e magnetismo, {\'o}ptica}. 6. ed. Rio de Janeiro, RJ: LTC, 2009.
+  v.~2.
+ISBN 978-85-216-1711-2.}
+
+\bibitem{callen-book}
+\abntrefinfo{Callen}{CALLEN}{1985}
+{CALLEN, H.~B. \textbf{Thermodynamics and an introduction to thermostatistics}.
+  New York: John Wiley and Sons, 1985.}
+
 \bibitem{lapolla-2020}
 \abntrefinfo{Lapolla and Godec}{LAPOLLA; GODEC}{2020}
 {LAPOLLA, A.; GODEC, A. c.~v. Faster uphill relaxation in thermodynamically
@@ -40,11 +72,40 @@ Available at: \url{https://arxiv.org/abs/1907.01596}.}
   Sep 2020.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.125.110602}.}
 
+\bibitem{ibanez-2024}
+\abntrefinfo{Ibáñez \textit{et al.}}{IBáñEZ \textit{et al.}}{2024}
+{IBáñEZ, M. \textit{et al.} Heating and cooling are fundamentally asymmetric
+  and evolve along distinct pathways.
+\textbf{Nature Physics}, v.~20, p. 135--141, Jan 2024.
+Available at: \url{https://doi.org/10.1038/s41567-023-02269-z}.}
+
+\bibitem{seifert-2012}
+\abntrefinfo{Seifert}{SEIFERT}{2012}
+{SEIFERT, U. Stochastic thermodynamics, fluctuation theorems and molecular
+  machines.
+\textbf{Reports on Progress in Physics}, IOP Publishing, v.~75, n.~12, p.
+  126001, nov 2012.
+Available at: \url{https://doi.org/10.1088/0034-4885/75/12/126001}.}
+
+\bibitem{groot-2013}
+\abntrefinfo{Groot and Mazur}{GROOT; MAZUR}{2013}
+{GROOT, S. D.; MAZUR, P. \textbf{Non-Equilibrium Thermodynamics}. New York:
+  Dover Publications, 2013.  (Dover Books on Physics).
+ISBN 9780486153506. Available at:
+  \url{https://books.google.com.br/books?id=mfFyG9jfaMYC}.}
+
 \bibitem{mpemba-1969}
 \abntrefinfo{Mpemba and Osborne}{MPEMBA; OSBORNE}{1969}
 {MPEMBA, E.~B.; OSBORNE, D.~G. Cool?
 \textbf{Physics Education}, v.~4, n.~3, p.~172, may 1969.
 Available at: \url{https://dx.doi.org/10.1088/0031-9120/4/3/312}.}
+
+\bibitem{kell-1969}
+\abntrefinfo{Kell}{KELL}{1969}
+{KELL, G.~S. The freezing of hot and cold water.
+\textbf{American Journal of Physics}, v.~37, n.~5, p. 564--565, 05 1969.
+ISSN 0002-9505.
+Available at: \url{https://doi.org/10.1119/1.1975687}.}
 
 \bibitem{teza-2026}
 \abntrefinfo{Teza \textit{et al.}}{TEZA \textit{et al.}}{2026}
@@ -63,6 +124,28 @@ Available at:
   Oct 2024.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.133.140404}.}
 
+\bibitem{summer-2026}
+\abntrefinfo{Summer \textit{et al.}}{SUMMER \textit{et al.}}{2026}
+{SUMMER, A. \textit{et al.} Resource-theoretical unification of mpemba effects:
+  Classical and quantum.
+\textbf{Physical Review X}, American Physical Society, v.~16, p. 011065, Mar
+  2026.
+Available at: \url{https://link.aps.org/doi/10.1103/rbt4-psfd}.}
+
+\bibitem{calabrese-2026}
+\abntrefinfo{Calabrese}{CALABRESE}{2026}
+{CALABRESE, P. The quantum mpemba effect in closed systems: from theory to
+  experiment.
+\textbf{Journal of Statistical Mechanics: Theory and Experiment}, IOP
+  Publishing, v.~2026, n.~3, p. 034002, mar 2026.
+Available at: \url{https://doi.org/10.1088/1742-5468/ae4bb6}.}
+
+\bibitem{ares-2025}
+\abntrefinfo{Ares, Calabrese and Murciano}{ARES; CALABRESE; MURCIANO}{2025}
+{ARES, F.; CALABRESE, P.; MURCIANO, S. The quantum mpemba effects.
+\textbf{Nature Reviews Physics}, v.~7, n.~8, p. 451--460, 2025.
+Available at: \url{https://doi.org/10.1038/s42254-025-00838-0}.}
+
 \bibitem{medina-2025}
 \abntrefinfo{Medina \textit{et al.}}{MEDINA \textit{et al.}}{2025}
 {MEDINA, I. \textit{et al.} Anomalous discharging of quantum batteries: The
@@ -70,13 +153,6 @@ Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.133.140404}.}
 \textbf{Physical Review Letters}, American Physical Society, v.~134, p. 220402,
   Jun 2025.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.134.220402}.}
-
-\bibitem{ibanez-2024}
-\abntrefinfo{Ibáñez \textit{et al.}}{IBáñEZ \textit{et al.}}{2024}
-{IBáñEZ, M. \textit{et al.} Heating and cooling are fundamentally asymmetric
-  and evolve along distinct pathways.
-\textbf{Nature Physics}, v.~20, p. 135--141, Jan 2024.
-Available at: \url{https://doi.org/10.1038/s41567-023-02269-z}.}
 
 \bibitem{dieball-2023}
 \abntrefinfo{Dieball, Wellecke and Godec}{DIEBALL; WELLECKE; GODEC}{2023}
@@ -117,6 +193,41 @@ Available at: \url{https://link.aps.org/doi/10.1103/PhysRevResearch.3.043160}.}
 \textbf{Journal of Physics A: Mathematical and Theoretical}, IOP Publishing,
   v.~58, n.~12, p. 125004, mar 2025.
 Available at: \url{https://doi.org/10.1088/1751-8121/adc0d0}.}
+
+\bibitem{verstraete-2009}
+\abntrefinfo{Verstraete, Wolf and Cirac}{VERSTRAETE; WOLF; CIRAC}{2009}
+{VERSTRAETE, F.; WOLF, M.~M.; CIRAC, J. I. Quantum computation and
+  quantum-state engineering driven by dissipation.
+\textbf{Nature Physics}, v.~5, n.~9, p. 633--636, 2009.
+Available at: \url{https://doi.org/10.1038/nphys1342}.}
+
+\bibitem{harrington-2022}
+\abntrefinfo{Harrington, Mueller and Murch}{HARRINGTON; MUELLER; MURCH}{2022}
+{HARRINGTON, P.~M.; MUELLER, E.~J.; MURCH, K.~W. Engineered dissipation for
+  quantum information science.
+\textbf{Nature Reviews Physics}, v.~4, n.~10, p. 660--671, 2022.
+Available at: \url{https://doi.org/10.1038/s42254-022-00494-8}.}
+
+\bibitem{walker-2023}
+\abntrefinfo{Walker, Bera and Vucelja}{WALKER; BERA; VUCELJA}{2023}
+{WALKER, M.~R.; BERA, S.; VUCELJA, M. \textbf{Optimal transport and anomalous
+  thermal relaxations}. 2023.
+Available at: \url{https://arxiv.org/abs/2307.16103}.}
+
+\bibitem{liu-2024}
+\abntrefinfo{Liu \textit{et al.}}{LIU \textit{et al.}}{2024}
+{LIU, D. \textit{et al.} Speeding up quantum heat engines by the mpemba effect.
+\textbf{Physical Review A}, American Physical Society, v.~110, p. 042218, Oct
+  2024.
+Available at: \url{https://link.aps.org/doi/10.1103/PhysRevA.110.042218}.}
+
+\bibitem{liu-2026}
+\abntrefinfo{Liu and Wang}{LIU; WANG}{2026}
+{LIU, D.; WANG, J. Enhancing quantum heat engine performance via
+  unitary-enabled exponential speedup of thermalization.
+\textbf{Physical Review E}, American Physical Society, v.~113, p. 044121, Apr
+  2026.
+Available at: \url{https://link.aps.org/doi/10.1103/zrz5-j4cr}.}
 
 \bibitem{ito-2018}
 \abntrefinfo{Ito}{ITO}{2018}
@@ -163,6 +274,21 @@ Available at: \url{https://www.mdpi.com/1099-4300/22/11/1223}.}
   Jul 2024.
 Available at: \url{https://link.aps.org/doi/10.1103/RevModPhys.96.031001}.}
 
+\bibitem{adesso-2016}
+\abntrefinfo{Adesso, Bromley and Cianciaruso}{ADESSO; BROMLEY;
+  CIANCIARUSO}{2016}
+{ADESSO, G.; BROMLEY, T.~R.; CIANCIARUSO, M. Measures and applications of
+  quantum correlations.
+\textbf{Journal of Physics A: Mathematical and Theoretical}, IOP Publishing,
+  v.~49, n.~47, p. 473001, nov 2016.
+Available at: \url{https://doi.org/10.1088/1751-8113/49/47/473001}.}
+
+\bibitem{stefanini-2026}
+\abntrefinfo{Stefanini \textit{et al.}}{STEFANINI \textit{et al.}}{2026}
+{STEFANINI, M. \textit{et al.} Is lindblad for me?
+\textbf{SciPost Phys. Lect. Notes}, SciPost, p.~129, 2026.
+Available at: \url{https://scipost.org/10.21468/SciPostPhysLectNotes.129}.}
+
 \bibitem{petruccione-book}
 \abntrefinfo{Breuer and Petruccione}{BREUER; PETRUCCIONE}{2002}
 {BREUER, H.-P.; PETRUCCIONE, F. \textbf{The theory of open quantum systems}.
@@ -179,17 +305,27 @@ Available at: \url{https://link.aps.org/doi/10.1103/RevModPhys.96.031001}.}
 \textbf{New Journal of Physics}, v.~12, n.~11, p. 113032, nov 2010.
 Available at: \url{https://doi.org/10.1088/1367-2630/12/11/113032}.}
 
+\bibitem{lindblad-1976}
+\abntrefinfo{Lindblad}{LINDBLAD}{1976}
+{LINDBLAD, G. On the generators of quantum dynamical semigroups.
+\textbf{Communications in Mathematical Physics}, v.~48, n.~2, p. 119--130,
+  1976.
+Available at: \url{https://doi.org/10.1007/BF01608499}.}
+
+\bibitem{gorini-1976}
+\abntrefinfo{Gorini, Kossakowski and Sudarshan}{GORINI; KOSSAKOWSKI;
+  SUDARSHAN}{1976}
+{GORINI, V.; KOSSAKOWSKI, A.; SUDARSHAN, E. C.~G. Completely positive dynamical
+  semigroups of n‐level systems.
+\textbf{Journal of Mathematical Physics}, v.~17, n.~5, p. 821--825, 05 1976.
+ISSN 0022-2488.
+Available at: \url{https://doi.org/10.1063/1.522979}.}
+
 \bibitem{sakurai-1994}
 \abntrefinfo{Sakurai}{SAKURAI}{1994}
 {SAKURAI, J.~J. \textbf{Modern Quantum Mechanics}. Revised. Reading, MA:
   Addison-Wesley, 1994.
 ISBN 0-201-53929-2.}
-
-\bibitem{stefanini-2026}
-\abntrefinfo{Stefanini \textit{et al.}}{STEFANINI \textit{et al.}}{2026}
-{STEFANINI, M. \textit{et al.} Is lindblad for me?
-\textbf{SciPost Phys. Lect. Notes}, SciPost, p.~129, 2026.
-Available at: \url{https://scipost.org/10.21468/SciPostPhysLectNotes.129}.}
 
 \bibitem{lidar-2020}
 \abntrefinfo{Lidar}{LIDAR}{2020}
@@ -226,11 +362,6 @@ Available at: \url{https://doi.org/10.1007/s10955-024-03249-0}.}
   work, and entropy production.
 \textbf{Scientific Reports}, v.~6, n.~1, p. 35568, 2016.
 Available at: \url{https://doi.org/10.1038/srep35568}.}
-
-\bibitem{callen-book}
-\abntrefinfo{Callen}{CALLEN}{1985}
-{CALLEN, H.~B. \textbf{Thermodynamics and an introduction to thermostatistics}.
-  New York: John Wiley and Sons, 1985.}
 
 \bibitem{chuang-book}
 \abntrefinfo{Nielsen and Chuang}{NIELSEN; CHUANG}{2010}
@@ -338,15 +469,6 @@ Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.113.140401}.}
 \textbf{Physical Review Letters}, American Physical Society, v.~125, p. 180603,
   Oct 2020.
 Available at: \url{https://link.aps.org/doi/10.1103/PhysRevLett.125.180603}.}
-
-\bibitem{adesso-2016}
-\abntrefinfo{Adesso, Bromley and Cianciaruso}{ADESSO; BROMLEY;
-  CIANCIARUSO}{2016}
-{ADESSO, G.; BROMLEY, T.~R.; CIANCIARUSO, M. Measures and applications of
-  quantum correlations.
-\textbf{Journal of Physics A: Mathematical and Theoretical}, IOP Publishing,
-  v.~49, n.~47, p. 473001, nov 2016.
-Available at: \url{https://doi.org/10.1088/1751-8113/49/47/473001}.}
 
 \bibitem{rigolin-2010}
 \abntrefinfo{Werlang and Rigolin}{WERLANG; RIGOLIN}{2010}

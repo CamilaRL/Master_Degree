@@ -38,6 +38,7 @@ Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'wiz_functions' (item size: 4) to 9000 items.
+Reallocating 'field_info' (item size: 4) to 11072 items.
 Database file #1: abntex2-options.bib
 Database file #2: USPSC-bib/USPSC-modelo-references.bib
 Reallocating 'singl_function' (item size: 4) to 100 items.
@@ -49,44 +50,44 @@ Reallocating 'global_strs' (item size: 1) to 4000000 items.
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-You've used 71 entries,
+You've used 88 entries,
             6713 wiz_defined-function locations,
-            1619 strings with 21469 characters,
-and the built_in function-call counts, 102081 in all, are:
-= -- 12002
-> -- 1752
-< -- 2810
-+ -- 3368
-- -- 514
-* -- 6268
-:= -- 11819
-add.period$ -- 245
-call.type$ -- 74
-change.case$ -- 734
-chr.to.int$ -- 219
-cite$ -- 59
-duplicate$ -- 10668
-empty$ -- 3690
-format.name$ -- 2672
-if$ -- 20698
-int.to.chr$ -- 11
+            1720 strings with 24398 characters,
+and the built_in function-call counts, 126079 in all, are:
+= -- 14704
+> -- 2219
+< -- 3393
++ -- 4076
+- -- 650
+* -- 7804
+:= -- 14644
+add.period$ -- 324
+call.type$ -- 91
+change.case$ -- 921
+chr.to.int$ -- 289
+cite$ -- 76
+duplicate$ -- 13030
+empty$ -- 4663
+format.name$ -- 3371
+if$ -- 25666
+int.to.chr$ -- 12
 int.to.str$ -- 3
-missing$ -- 1196
-newline$ -- 354
-num.names$ -- 237
-pop$ -- 1510
+missing$ -- 1515
+newline$ -- 452
+num.names$ -- 305
+pop$ -- 1929
 preamble$ -- 1
-purify$ -- 290
+purify$ -- 359
 quote$ -- 0
-skip$ -- 11151
+skip$ -- 13445
 stack$ -- 1
-substring$ -- 4083
-swap$ -- 4183
-text.length$ -- 169
+substring$ -- 5098
+swap$ -- 5145
+text.length$ -- 215
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 1
 warning$ -- 0
-while$ -- 372
+while$ -- 484
 width$ -- 0
-write$ -- 927
+write$ -- 1193
