@@ -8,7 +8,7 @@
 \contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase []{Introduction}}{12}{chapter.1}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase []{Quantum Systems Dynamics}}{15}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Dynamics of Close Quantum Systems}{15}{section.2.1}%
+\contentsline {section}{\numberline {2.1}Dynamics of Closed Quantum Systems}{15}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Dynamics of Open Quantum Systems}{16}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Davies Maps}{20}{subsection.2.2.1}%
 \contentsline {subsubsection}{\numberline {2.2.1.1}Example: one qubit coupled to a thermal bath}{22}{subsubsection.2.2.1.1}%
@@ -21,7 +21,7 @@
 \contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase []{Heating-Cooling Asymmetry: Discrete Case}}{31}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Quantum Coherence and Entanglement}{31}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Thermal Relaxation of Two Interacting Qubits}{33}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Asymmetry for Two Interacting Qubits}{37}{section.4.3}%
+\contentsline {section}{\numberline {4.3}Asymmetry for Two Interacting Qubits}{36}{section.4.3}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase []{Heating-Cooling Asymmetry: Continuous-Variable Case}}{41}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Gaussian States}{41}{section.5.1}%
@@ -39,4 +39,8 @@
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \cftinsert {A}
-\contentsline {appendix}{\chapternumberline {A}\MakeTextUppercase []{Concurrence of an X-state}}{71}{appendix.A}%
+\contentsline {appendix}{\chapternumberline {A}\MakeTextUppercase []{Concurrence of an X-state}}{72}{appendix.A}%
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\cftinsert {A}
+\contentsline {appendix}{\chapternumberline {B}\MakeTextUppercase []{Derivation of the Wigner-Fisher information}}{74}{appendix.B}%

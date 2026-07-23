@@ -1,11 +1,12 @@
 
+
 \chapter{Quantum Systems Dynamics}\label{cap:oqs}
 
 This chapter introduces how quantum systems evolve in time. In Sec. \ref{sec:close}, we begin discussing the unitary evolution of closed quantum systems and argument how unitary dynamics fails to describe open quantum systems. Then, in Sec. \ref{sec:open}, we will present the Markovian master equation approach and discuss how it can describe thermalisation processes in Sec. \ref{sec:davies-maps}. The content of this chapter are based on Refs. \cite{petruccione-book, scully-book, plenio-2010}.
 
 
 
-\section{Dynamics of Close Quantum Systems} \label{sec:close}
+\section{Dynamics of Closed Quantum Systems} \label{sec:close}
 %Close Quantum Systems Evolution and motivation for OQS
 % 1. eq de schrodinger + sistemas fechados ideais
 % 2. estados puros vs mistura estatistica = introduzir density matrices
@@ -125,7 +126,7 @@ Although Eq. \eqref{eq:redfield} can describe the relaxation of open quantum sys
     {H}_I (t) = \sum_{\omega} e^{-i\omega t} {A} (\omega) \otimes {B} (t) = \sum_{\omega'} e^{i\omega' t} {A}^\dagger (\omega') \otimes {B}^\dagger (t),
 \end{equation}
 
-\noindent where the last equality follows the property $A (\omega) = A^\dagger (-\omega)$ and $\omega' = -\omega$. With this decompositions, we can write the interaction Hamiltonians from Eq. \ref{eq:redfield} as
+\noindent where the last equality follows the property $A (\omega) = A^\dagger (-\omega)$ and $\omega' = -\omega$. With this decompositions, we can write the interaction Hamiltonians from Eq. \eqref{eq:redfield} as
 \begin{align}
     &{H}_I (t-s) = \sum_{\omega} e^{-i\omega (t-s)} {A} (\omega) \otimes {B} (t-s),\\
     &{H}_I (t) = \sum_{\omega'} e^{i\omega' t} {A}^\dagger (\omega') \otimes {B}^\dagger (t).
@@ -295,4 +296,5 @@ To find out the jump operators of this case, we define ${A} = {a} + {a}^\dagger$
 \end{align}
 
 \noindent This example is fundamentally related to Gaussian states, which will be introduced in Chap. \ref{cap:results-continuous}. In Sec. \ref{sec:thermo-gaussian}, we will analytically solve this master equation.
+
 

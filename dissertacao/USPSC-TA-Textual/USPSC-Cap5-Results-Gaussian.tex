@@ -117,17 +117,17 @@ In addition to characterising Gaussian states, we are interested in the operatio
 
 % Evolução: equação de lyapunov
 % Wigner-Fisher information
-As discussed in Chap. \ref{cap:oqs}, the dynamics of an open system can be described by the Lindblad master equation. In our case, we will consider a single bosonic mode (Eq. \eqref{eq:k-harmonic-oscillator} with $k=1$) interacting with a thermal bath and evolving in time according to Davies maps, which has already been calculated in the example in Sec. \ref{sec:example-oscillator},
+As discussed in Chap. \ref{cap:oqs}, the dynamics of an open system can be described by the Lindblad master equation. In this case, we will consider a single bosonic mode (Eq. \eqref{eq:k-harmonic-oscillator} with $k=1$) interacting with a thermal bath and evolving in time according to Davies maps, which has already been calculated in the example in Sec. \ref{sec:example-oscillator},
 \begin{equation}
     \frac{d}{dt} {\rho} = -i [{H}, {\rho}] + \Gamma (\bar{n}+1) \mathcal{D}_a({\rho}) + \Gamma \bar{n}\mathcal{D}_{a^\dagger} ({\rho}),
     \label{eq:lindblad-gaussian}
 \end{equation}
 
-\noindent where $\Gamma$ is the dissipation rate and $\bar{n} = 1/(e^{\beta \omega} - 1)$ is the Bose distribution. Recalling the jump operators of Eq. \eqref{eq:jump-oscillator}, we can rewrite $\mathcal{D}^-({\rho})= \Gamma (\bar{n}+1) \mathcal{D}_a({\rho})$ and $\mathcal{D}^+({\rho})= \Gamma \bar{n}\mathcal{D}_{a^\dagger} ({\rho})$. Because this is a Davies maps, we know that the final state will always be a thermal state with mean vector $\mathbf{v}_{eq} = 0$ and a covariance matrix equal to $\Theta_{eq} = f(\beta) \mathbb{I}$, where $f(\beta) = \bar{n} + 1/2$.
+\noindent where $\Gamma$ is the dissipation rate and $\bar{n} = 1/(e^{\beta \omega} - 1)$ is the Bose distribution. Recalling the jump operators of Eq. \eqref{eq:jump-oscillator}, we can rewrite $\mathcal{D}^-({\rho})= \Gamma (\bar{n}+1) \mathcal{D}_a({\rho})$ and $\mathcal{D}^+({\rho})= \Gamma \bar{n}\mathcal{D}_{a^\dagger} ({\rho})$. Because this is a Davies maps, we know that the steady state will always be a thermal state with mean vector $\mathbf{v}_{eq} = 0$ and a covariance matrix equal to $\Theta_{eq} = f(\beta) \mathbb{I}$, where $f(\beta) = \bar{n} + 1/2$.
 
-As elaborated in Sec. \ref{sec:gaussian}, it is convenient to use the phase-space representation instead of the density matrix. For this reason, we will rewrite Eq. \eqref{eq:lindblad-gaussian} in terms of the mean vector and the covariance matrix using that $\frac{d}{dt} \braket{O}_\rho = \text{Tr}[O \frac{d}{dt}\rho]$. The mean vector of a single mode has the form $\mathbf{v}_t = (\braket{{a}}, \braket{{a}^\dagger})^T$. To find its time derivative, we compute
+As elaborated in Sec. \ref{sec:gaussian}, it is convenient to use the phase-space representation instead of the density matrix. For this reason, we will rewrite Eq. \eqref{eq:lindblad-gaussian} in terms of the mean vector and the covariance matrix using that $\frac{d}{dt} \braket{O}_\rho = \text{Tr}[O \frac{d}{dt}\rho]$, where $O$ is a time-independent operator. The mean vector of a single mode has the form $\mathbf{v}_t = (\braket{{a}}, \braket{{a}^\dagger})^T$. To find its time derivative, we compute
 \begin{align}
-    &\frac{d}{dt}\braket{{a}} = -\left( i\omega + \frac{\Gamma}{2} \right) \braket{{a}}\\
+    &\frac{d}{dt}\braket{{a}} = -\left( i\omega + \frac{\Gamma}{2} \right) \braket{{a}},\\
     &\frac{d}{dt}\braket{{a}^\dagger} = \left( i\omega - \frac{\Gamma}{2} \right) \braket{{a}^\dagger},
 \end{align}
 
@@ -170,7 +170,7 @@ As elaborated in Sec. \ref{sec:gaussian}, it is convenient to use the phase-spac
 
 \noindent where $F = \Gamma f(\beta) \mathbb{I}$. Therefore, by solving Eqs. \eqref{eq:dt-mean-vector} and \eqref{eq:lyapunov}, we find that the time evolution of a single-mode Gaussian state is given by
 \begin{align}
-    &\mathbf{v}_t = e^{-\Gamma t} (\braket{a}_0 e^{-i \omega t}, \braket{a^\dagger}_0 e^{i \omega t})^T\\
+    &\mathbf{v}_t = e^{-\Gamma t} (\braket{a}_0 e^{-i \omega t}, \braket{a^\dagger}_0 e^{i \omega t})^T,\\
     &\Theta_t^{11} = \Theta_t^{22} = c_{0} e^{-\Gamma t} + f(\beta),\\
     &\Theta_t^{12} = (\Theta_t^{21})^* = d_{0} e^{-(\Gamma + 2i\omega)t},
 \end{align}
@@ -195,7 +195,7 @@ To analyse the thermal relaxation of a Gaussian state from a thermodynamic persp
     \end{split}
 \end{equation}
 
-\noindent where we used $\int W(\mathbf{x}) d^2 \mathbf{x} = 1$. Similar to what we did in Eq. \ref{eq:energia-krissia}, we will introduce the Wigner entropy defined as
+\noindent where we used $\int W(\mathbf{x}) d^2 \mathbf{x} = 1$. Similar to what we did in Eq. \eqref{eq:energia-krissia}, we will introduce the Wigner entropy \cite{landi-2017, gerardo-2014, medina-2025, serafini-book} defined as
 \begin{equation}
     S_W(W(\mathbf{x})) = -\int W(\mathbf{x}) \ln  W(\mathbf{x}) d^2 \mathbf{x} = 1 + \ln \pi + \frac{1}{2} \ln |\Theta|,
     \label{eq:wigner-entropy}
@@ -205,11 +205,11 @@ To analyse the thermal relaxation of a Gaussian state from a thermodynamic persp
 \begin{equation}
     \begin{split}
         E(W(\mathbf{x})) &= -\omega f(\beta) \left[ \ln(\pi f(\beta)) + \int W(\mathbf{x}) \ln W_{th}(\mathbf{x}) d^2 \mathbf{x} + S_W(W(\mathbf{x})) - S_W(W(\mathbf{x})) \right]\\
-        &= -\omega f(\beta) \left[ \ln(\pi f(\beta)) + \int W(\mathbf{x}) \ln W_{th}(\mathbf{x}) d^2 \mathbf{x} - \int W(\mathbf{x}) \ln  W(\mathbf{x}) d^2 \mathbf{x} - S_W(W(\mathbf{x})) \right]
+        &= -\omega f(\beta) \left[ \ln(\pi f(\beta)) + \int W(\mathbf{x}) \ln W_{th}(\mathbf{x}) d^2 \mathbf{x} - \int W(\mathbf{x}) \ln  W(\mathbf{x}) d^2 \mathbf{x} - S_W(W(\mathbf{x})) \right],
     \end{split}
 \end{equation}
 
-\noindent where we can identify the Wigner relative entropy, that is defined as
+\noindent where we can identify the Wigner relative entropy, that is defined as \cite{landi-2017, medina-2025}
 \begin{equation}
    \begin{split}
        K[W_1(\mathbf{x}) || W_2(\mathbf{x})] &= \int W_1(\mathbf{x}) \ln \frac{W_{1}(\mathbf{x})}{W_{2}(\mathbf{x})} d^2 \mathbf{x}\\
@@ -229,7 +229,7 @@ To analyse the thermal relaxation of a Gaussian state from a thermodynamic persp
     F_{\text{neq}}(W(\mathbf{x})) = \omega f(\beta) K[W(\mathbf{x}) || W_{\text{eq}}(\mathbf{x})] + F_{\text{eq}},
 \end{equation}
 
-\noindent which is similar to Eq. \ref{eq:fneq}. So, the Wigner relative entropy (Eq. \eqref{eq:wigner-relative-entropy}) is an indicator of how far from the equilibrium our system is. For this reason, when studying the asymmetry in Gaussian states, we will also impose that the hot and cold initial states have the same initial Wigner relative entropy.
+\noindent which is similar to Eq. \eqref{eq:fneq}. So, the Wigner relative entropy (Eq. \eqref{eq:wigner-relative-entropy}) is an indicator of how far from the equilibrium our system is. For this reason, when studying the asymmetry in Gaussian states, we will also impose that the hot and cold initial states have the same initial Wigner relative entropy.
 
 As discussed in Chap. \ref{cap:thermo}, another approach to study the nonequilibrium regime is using ergotropy defined in Eq. \eqref{eq:ergotropia}. If we substitute \eqref{eq:energy-gaussian} into Eq. \eqref{eq:ergotropia}, we find
 \begin{equation}
@@ -237,16 +237,15 @@ As discussed in Chap. \ref{cap:thermo}, another approach to study the nonequilib
     \label{eq:ergotropy-gaussian-full}
 \end{equation}
 
-\noindent where $W_\pi(\mathbf{x})$ is the Wigner function of the passive state that has inverse temperature $\beta_\pi$ defined by $f(\beta_\pi) = \sqrt{|\Theta|}$. Because the passive state of a Gaussian state is always thermal, we can assume $W_{th}=W_\pi$ such that ergotropy becomes
+\noindent where $W_\pi(\mathbf{x})$ is the Wigner function of the passive state. The passive state of a Gaussian state is always thermal with inverse temperature $\beta_\pi$ defined by $f(\beta_\pi) = \sqrt{|\Theta|}$. For this reason, we can use $W_{th}=W_\pi$ such that ergotropy becomes \cite{medina-2025}
 \begin{equation}
     \mathcal{E}(W(\mathbf{x})) = \omega f(\beta_\pi) K[W(\mathbf{x}) || W_{\pi}(\mathbf{x})].
     \label{eq:ergotropy-gaussian-passive}
 \end{equation}
 
-\noindent From this expression, we find that every squeezed and displaced state have ergotropy meaning they are in the nonequilibrium regime \cite{huber-2016}. Moreover, squeezing operations can also create coherences in the state, so squeezed states can have quantum resources. An interesting result from Ref. \cite{medina-2025} is that squeezed states with higher initial ergotropy relaxate faster than displaced state, what has been named ergotropic Mpemba effect. They also showed that, even when the initial ergotropy is the same, the squeezed state also relaxate faster than the displaced state. These results inspired the
-study of how displacement and squeezing may affect the thermal relaxation asymmetry.
+\noindent From this expression, we find that every squeezed and displaced state have ergotropy meaning they are in the nonequilibrium regime \cite{huber-2016}. An interesting result from Ref. \cite{medina-2025} is that squeezed states with higher initial ergotropy relax faster than displaced state, what has been named ergotropic Mpemba effect. It is also shown that, even when the initial ergotropy is the same, the squeezed state also relax faster than the displaced state. These results inspired the study of how displacement and squeezing may affect the thermal relaxation asymmetry.
 
-However, instead of assuming the arbitrary thermal state is equal to the passive state, we can assume it is the equilibrium state ($W_{th} = W_{\text{eq}}$). Then, we make the time derivative on Eq. \eqref{eq:ergotropy-gaussian-full} and find that the entropy production for Gaussian states are
+Given that the thermal state in Eq. \eqref{eq:ergotropy-gaussian-full} is arbitrary, we can assume it is the equilibrium state, $W_{th} = W_{\text{eq}}$, instead of the passive state. Then, making the time derivative Eq. \eqref{eq:ergotropy-gaussian-full}, we find that the total entropy production for Gaussian states have a passive and an ergotropic part as
 \begin{equation}
     \begin{split}
         \Pi_W &= - \frac{d}{dt} K[W(\mathbf{x}) || W_{th}(\mathbf{x})] \\
@@ -258,37 +257,42 @@ However, instead of assuming the arbitrary thermal state is equal to the passive
 
 \noindent which is similar to Eq. \eqref{eq:sprod-passive-ergotropic}. So it is also possible to separate the entropy production of Gaussian states into a passive and an ergotropic contribution.
 
-Now that we briefly redefined some thermodynamic quantities for Gaussian states, we will discuss how the thermal kinematics change in this regime. As discussed in Sec. \ref{sec:thermal-kinematics}, Fisher information is the essential quantity for the thermal kinematics approach of heating-cooling asymmetry. To find a Fisher information for Gaussian states, we will follow the same procedure of Sec. \ref{sec:thermal-kinematics} and make a second order Taylor expansion in a parameter $\theta$ of the Wigner relative entropy (Eq. \eqref{eq:wigner-relative-entropy}) as
+Now that we briefly redefined some thermodynamic quantities for Gaussian states, we will discuss how the thermal kinematics change in this regime. As discussed in Sec. \ref{sec:thermal-kinematics}, Fisher information is the essential quantity for the thermal kinematics approach of heating-cooling asymmetry. To find a Fisher information for Gaussian states, we will follow the same procedure done in Sec. \ref{sec:thermal-kinematics} to find the Wigner relative entropy as
 \begin{equation}
-    \begin{split}
-        K[W(\mathbf{x}, \theta+d\theta) || W(\mathbf{x}, \theta)] &= \int W(\mathbf{x}, \theta+d\theta) \ln \left ( \frac{W(\mathbf{x}, \theta+d\theta)}{W(\mathbf{x}, \theta)} \right ) d^2 \mathbf{x} \\
-        &= \int [W(\mathbf{x}, \theta) + \partial_\theta W(\mathbf{x}, \theta) d\theta + \frac{1}{2} \partial_\theta^2 W(\mathbf{x}, \theta) d\theta^2 + \mathcal{O}(d\theta^3)] \times\\
-        &\times \left[\frac{\partial_\theta W(\mathbf{x}, \theta)}{W(\mathbf{x}, \theta)} d\theta + \frac{1}{2}\frac{\partial_\theta^2 W(\mathbf{x}, \theta)}{W(\mathbf{x}, \theta)} d\theta^2 + \mathcal{O}(d\theta^3) \right] d^2 \mathbf{x} \\
-        &= \int \frac{(\partial_\theta W(\mathbf{x}, \theta) d\theta)^2}{W(\mathbf{x}, \theta)} d^2 \mathbf{x} + \mathcal{O}(d\theta^3)\\
-        &= \frac{1}{2} \mathcal{I}_W(\theta) d\theta^2 + \mathcal{O}(d\theta^3),
-    \end{split}
+    K[W(\mathbf{x}, \theta+d\theta) || W(\mathbf{x}, \theta)] = \frac{1}{2} \mathcal{I}_W(\theta) d\theta^2 + \mathcal{O}(d\theta^3),
 \end{equation}
 
-\noindent where we identify $\mathcal{I}_W(\theta)$ as the Wigner-Fisher information, that can be written in terms of the mean vector and the covariance matrix resulting in
+\noindent where we identify $\mathcal{I}_W(\theta)$ as the Wigner-Fisher information. The details of this calculation can be found in Appx. \ref{apx:WFI}, where we also show that the Wigner-Fisher information can be written in terms of the mean vector and the covariance matrix as
 \begin{equation}
     \mathcal{I}_W (t) = \dot{\mathbf{v}}_t^\dagger \Theta^{-1}_t \dot{\mathbf{v}}_t + \text{Tr}[(\Theta_t^{-1} \dot{\Theta}_t)^2].
     \label{eq:wigner-fisher}
 \end{equation}
 
-\noindent Note that we changed $\theta=t$ because in thermal kinematics the interesting parameter is time, and, as a result, the thermal kinematics variables become 
+\noindent Note that here we changed $\theta=t$ because in thermal kinematics the interesting parameter is time, and, as a result, the thermal kinematics variables become 
 \begin{align}
-    &v_W(t) =  \sqrt{\frac{1}{2}\mathcal{I}_W ({\rho}(t))} \label{eq:velocidade-gaussian}\\
-    &\mathcal{L}_W(t) = \int_0^{t} \sqrt{\frac{1}{2}\mathcal{I}_W ({\rho}(t))} \label{eq:comprimento-gaussian}\\
+    &v_W(t) =  \sqrt{\frac{1}{2}\mathcal{I}_W ({\rho}(t))} ,\label{eq:velocidade-gaussian}\\
+    &\mathcal{L}_W(t) = \int_0^{t} \sqrt{\frac{1}{2}\mathcal{I}_W ({\rho}(\tau))} d\tau,\label{eq:comprimento-gaussian}\\
     &\varphi_W(t_s) = \frac{\mathcal{L}_W(t_s)}{\mathcal{L}_W(t_f)}. \label{eq:completion-gaussian}
 \end{align}
 
-\noindent Additionally, the Wigner-Fisher information can be separated into a passive and ergotropic contribution: $\mathcal{I}_W (t) = \mathcal{I}_\pi (t) + \mathcal{I}_\mathcal{E} (t)$. To see this, we will use that the passive state of any Gaussian state is always thermal, so the first term of Eq. \eqref{eq:wigner-fisher} is zero because $\mathbf{v}_\pi = 0$. Then, using that the covariance matrix is $\Theta_\pi = f(\beta_\pi) \mathbb{I}$ where $f(\beta_\pi) = \sqrt{|\Theta|}$, we find $\Theta_\pi^{-1} = (1/f(\beta_\pi))\mathbb{I}$ and $\dot{\Theta}_\pi = f(\beta_\pi) \dot{S}_W(t) \mathbb{I}$. Substituting these matrices in the second term of Eq. \eqref{eq:wigner-fisher}, we obtain the passive contribution in the Wigner-Fisher information is
+\noindent Additionally, the Wigner-Fisher information can be separated into a passive and ergotropic contribution,
+\begin{equation}
+    \mathcal{I}_W (t) = \mathcal{I}_\pi (t) + \mathcal{I}_\mathcal{E} (t)
+\end{equation}
+
+\noindent To see this, we will use that the passive state of any Gaussian state is always thermal, so the first term of Eq. \eqref{eq:wigner-fisher} is zero because $\mathbf{v}_\pi = 0$. Then, using that the covariance matrix is $\Theta_\pi = f(\beta_\pi) \mathbb{I}$ where $f(\beta_\pi) = \sqrt{|\Theta|}$, we find $\Theta_\pi^{-1} = (1/f(\beta_\pi))\mathbb{I}$ and $\dot{\Theta}_\pi = f(\beta_\pi) \dot{S}_W(t) \mathbb{I}$. Substituting these matrices in the second term of Eq. \eqref{eq:wigner-fisher}, we obtain the passive contribution in the Wigner-Fisher information is
 \begin{equation}
     \begin{split}
         \mathcal{I}_\pi (t) &= \text{Tr}[(\Theta_t^{-1} \dot{\Theta}_t)^2]\\
         &= \text{Tr}\left[\left(\frac{1}{f(\beta_\pi)} f(\beta_\pi) \dot{S}_W(t) \mathbb{I}\right)^2\right]\\
-        &= 2 \dot{S}_W^2 (t)
+        &= 2 \dot{S}_W^2 (t).
     \end{split}
+    \label{eq:passive-wigner-fisher}
+\end{equation}
+
+\noindent An interesting observation about the time derivative of the Wigner entropy is its relation with the energy change of the passive state. To see this, we use that $E(\pi) = \omega f(\beta_\pi)$ and find
+\begin{equation}
+    \dot{S}_W = \frac{1}{2} \frac{\partial}{\partial t} \ln (|\Theta_t|) = \frac{\dot{E}(\pi)}{E(\pi)}.
 \end{equation}
 
 With this, we introduced all the necessary quantities and can start discussing our results. First, we will discuss the heating-cooling asymmetry for thermal states in Sec. \ref{sec:result-thermal}. Then we will investigate the consequences of displacing this thermal state in Sec. \ref{sec:result-displaced} and squeezing this thermal state in Sec. \ref{sec:result-squeezed}. Because a squeezed state relaxate faster than a displaced state, we will try to invert the asymmetry by combining these Gaussian operations in Sec. \ref{sec:result-invertion}.
@@ -299,7 +303,8 @@ In this section, we consider a Gaussian state initially in a thermal state with 
 
 Similar to the qubits case, to find two thermodynamically equivalent initial states, we use the Wigner relative entropy defined in Eq. \eqref{eq:wigner-relative-entropy}. Using that for thermal states $|\Theta| = (\Delta_\beta)^2$ and $\Theta^{-1}_{th} = \frac{1}{\Delta_\beta} \mathbb{I}$, being the equilibrium $\lim_{t\rightarrow\infty} \Delta_\beta = f(\beta_f)$, the analytical expression for the Wigner-Fisher information (defined in Eq. \eqref{eq:wigner-fisher}) is
 \begin{equation}
-    \mathcal{I}_{W_{th}} (t) = 2 \left[ \frac{\partial}{\partial t} \ln \Delta_\beta \right]^2,
+    \mathcal{I}_{W_{th}} (t) = 2 \left[ \frac{\partial}{\partial t} \ln \Delta_\beta \right]^2 = 2 \left[ \frac{\dot{\Delta}_\beta}{\Delta_\beta} \right]^2,
+    \label{eq:wigner-fisher-thermal}
 \end{equation}
 
 \noindent the statistical velocity (defined in Eq. \eqref{eq:velocidade-gaussian})
@@ -320,7 +325,7 @@ Similar to the qubits case, to find two thermodynamically equivalent initial sta
     \label{eq:L-termico-eq}
 \end{equation}
 
-\noindent Because of the explicit dependence on $\beta_i$, two states with different initial temperatures that relaxate to the same final temperature will have different statistical lengths. To simplify the notation, we define $f_i \equiv f(\beta_f)/f(\beta_i)$ and $k = \exp(-\Gamma t)$ and use the expressions \eqref{eq:L-termico} and \eqref{eq:L-termico-eq} to write the degree of completion (defined in Eq. \eqref{eq:completion-gaussian}) as
+\noindent Because of the explicit dependence on $\beta_i$, two states with different initial temperatures that relax to the same final temperature will have different statistical lengths. To simplify the notation, we define $f_i \equiv f(\beta_f)/f(\beta_i)$ and $k = \exp(-\Gamma t)$ and use the expressions \eqref{eq:L-termico} and \eqref{eq:L-termico-eq} to write the degree of completion (defined in Eq. \eqref{eq:completion-gaussian}) as
 \begin{equation}
     \varphi_{W_{th}}(t) = \frac{\ln (k + (1-k)f_i)}{\ln(f_i)} \equiv \varphi_{i}(k).
     \label{eq:completion-thermal}
@@ -371,7 +376,7 @@ It is relevant to study whether the presence of thermal relaxation asymmetry in 
     \label{eq:sprod-thermal}
 \end{equation}
 
-\noindent where $\dot{S}_{W_{th}} = \dot{\Delta}_\beta/\Delta_\beta $ is the time derivative of the Wigner entropy (Eq. \eqref{eq:wigner-entropy}). From this expression, we obtain Fig. \ref{fig:sprod-thermal} by using $K[W_c || W_f] = K[W_h || W_f] = 0.5$ and $T_f = 2$ (in natural units). Note that heating entropy production reaches zero before cooling, corroborating our conclusion that heating relaxes faster than cooling. Also, heating has an initially higher entropy production rate than cooling, which explains the asymmetry.
+\noindent where $\dot{S}_{W_{th}} = \dot{\Delta}_\beta/\Delta_\beta $ is the time derivative of the Wigner entropy (Eq. \eqref{eq:wigner-entropy}). From this expression, we obtain Fig. \ref{fig:sprod-thermal} by using $K[W_c || W_f] = K[W_h || W_f] = 0.5$ and $T_f = 2$ (in natural units). Note that heating has an initially higher entropy production rate that reaches zero before cooling. This results corroborate with previous studies showing that heating is faster than cooling for Gaussian states far-from-equilibrium \cite{tejero-2025, tejero-misc-2025, ibanez-2024}.
 
 
 
@@ -385,11 +390,7 @@ Now, we can analyse what happens to the asymmetry when we displace a thermal sta
     \label{eq:K-displaced}
 \end{equation}
 
-\noindent The term containing the displacement parameter ($\mu$) is independent of the system's initial temperature, which means that, regardless of the initial temperature, applying a displacement operator to any thermal state results in the same shift in their Wigner relative entropy. Thus, for simplicity, we chose two equidistant thermal states and then applied the same amount of work on both (which is equivalent to using the same $\mu$). However, because displacement also adds ergotropy to the state, it is important to use initial states with the same ergotropy. The ergotropy for a displaced state is $\mathcal{E}_d= |\mu|^2 e^{-\Gamma t}$, which means that using the same $\mu$ is enough to guarantee different states have the same ergotropy. As we did before, we could try to analytically calculate the thermal kinematics variables, but the Wigner-Fisher information for a displaced state is
-\begin{equation}
-    \mathcal{I}_{W_d} (t) = \frac{2}{\Delta_\beta} \left[ \frac{\dot{\Delta}_\beta^2}{\Delta_\beta} + \left(\omega^2 + \frac{\Gamma^2}{4} \right)|\mu|^2 e^{-\Gamma t} \right],
-    \label{eq:WFI-displaced}
-\end{equation}
+\noindent The term containing the displacement parameter ($\mu$) is independent of the system's initial temperature, which means that, applying a displacement operator to any thermal state results in the same shift in their Wigner relative entropy. Additionally, given that the ergotropy of a displaced state is $\mathcal{E}_d= |\mu|^2 e^{-\Gamma t}$, using the same $\mu$ is enough to guarantee different states have the same initial ergotropy and relative entropy. 
 
 \begin{figure}[t]
     \centering
@@ -409,7 +410,15 @@ Now, we can analyse what happens to the asymmetry when we displace a thermal sta
     \label{fig:velocity-displaced}
 \end{figure}
 
-\noindent and, despite being possible to analytically find the statistical velocity and length, the complexity of the final expressions ultimately makes it difficult to extract useful information. Therefore, we use a numerical approach for this case. The chosen parameter were $\omega = 1$, $\Gamma = 0.1$, $T_f = 2$, and $K[W_c || W_f] = K[W_h || W_f] = 0.5$. Fig. \ref{fig:completion-displaced} shows the degree of completion for different displacement parameters, with the thermal relaxation of $W_c$ (in red) being faster than that of $W_h$ (in blue) for all the displacements. An interesting result is that increasing the displacement parameter, moves the initial state further away from the equilibrium (as one can see from Eq. \eqref{eq:K-displaced}), but the heating-cooling asymmetry remains unchanged. However, the initial statistical velocity also increase with $\mu$ as shown in Fig. \ref{fig:velocity-displaced} and expected from Eq. \eqref{eq:WFI-displaced}. Therefore, a possible explanation for the asymmetry remaining unchanged with displacement is that the initial distance from equilibrium is compensated by a higher initial velocity.
+The Wigner-Fisher information for a displaced state is
+\begin{equation}
+    \mathcal{I}_{W_d} (t) =  2 \left[ \frac{\dot{\Delta}_\beta}{\Delta_\beta} \right]^2 + \frac{2}{\Delta_\beta} \left(\omega^2 + \frac{\Gamma^2}{4} \right)|\mu|^2 e^{-\Gamma t},
+    \label{eq:WFI-displaced}
+\end{equation}
+
+\noindent where we identify the first term as the passive contribution, which is the same as the Wigner-Fisher information of the thermal state presented in Eq. \eqref{eq:wigner-fisher-thermal}. The second term can be identified as the ergotropic contribution. Even though displaced states do not have a real temperature, its passive state is always thermal so we can assume it will heat up or cool down. One interesting aspect of this separation is that the displacement do not affect the trajectory of the passive state, so the heating-cooling asymmetry will not be affected, as we will see in our results.
+
+As we did for the thermal state, we could use Eq. \eqref{eq:WFI-displaced} to try to analytically calculate the thermal kinematics variables. Despite being possible to analytically find the statistical velocity and length, the complexity of the final expressions ultimately makes it difficult to extract useful information. Therefore, we use a numerical approach for this case. The chosen parameter were $\omega = 1$, $\Gamma = 0.1$, $T_f = 2$, and $K[W_c || W_f] = K[W_h || W_f] = 0.5$. Fig. \ref{fig:completion-displaced} shows the degree of completion for different displacement parameters, with the thermal relaxation of $W_c$ (in red) being faster than that of $W_h$ (in blue) for all the displacements. An interesting result is that increasing the displacement parameter, moves the initial state further away from the equilibrium (as one can see from Eq. \eqref{eq:K-displaced}), but the heating-cooling asymmetry remains unchanged. However, the initial statistical velocity also increase with $\mu$ as shown in Fig. \ref{fig:velocity-displaced} and expected from Eq. \eqref{eq:WFI-displaced}. Therefore, a possible explanation for the asymmetry remaining unchanged with displacement is that the initial distance from equilibrium is compensated by a higher initial velocity.
 
 \begin{figure}[t]
     \centering
@@ -451,7 +460,7 @@ In this section, we study the thermal relaxation asymmetry of squeezed thermal s
     \end{bmatrix},
 \end{equation}
 
-\noindent where $\phi_t$ is the squeezing phase, the squeezing parameter is implicitly defined as
+\noindent where $\phi_t = \phi_s - 2\omega t$ is the squeezing phase, the squeezing parameter is implicitly defined as
 \begin{equation}
     \cosh(2r_t) = \frac{1}{f(\beta_t)} [\Delta_\beta + 2f(\beta_i) e^{-\Gamma t} \sinh^2(r)],
     \label{eq:coshrt-squeezing}
@@ -469,15 +478,15 @@ In this section, we study the thermal relaxation asymmetry of squeezed thermal s
     \label{eq:relative-entropy-squeezing}
 \end{equation}
 
-\noindent Different from the displacement case, because the $r_t$ and $f(\beta_t)$ that contains the initial temperature are related, doing the same squeezing in different thermal states do not preserve their equidistance. As a consequence, to make a fair comparison, we must use different squeezing parameters for each state. Just like displacement, squeezing also generates ergotropy in the state, so it is important to choose initial states with same ergotropy. The ergotropy of a squeezed thermal state is
+\noindent As the squeezing operation affects the thermal occupation number, applying the same squeezing to different thermal states will not preserve the equidistance between them. Just like displacement, squeezing also generates ergotropy in the state, so it is important to choose initial states with same ergotropy. The ergotropy of a squeezed thermal state is
 \begin{equation}
-    \mathcal{E}_s(t) = \omega f(\beta_t) (\cosh (2r_t) - 1).
+    \mathcal{E}_s(t) = \omega f(\beta_t) (\cosh (2r_t) - 1),
     \label{eq:ergo-squeezing}
 \end{equation}
 
-\noindent Because of the dependence of $f(\beta_t)$, in $t=0$, $f(\beta_t) = f(\beta_i)$ and applying the same squeezing (that is, the same $r$ and $\phi$) in different thermal states results in a higher ergotropy to the squeezed hotter state. For clarity, we will describe how we choose a state with same initial relative entropy and ergotropy. To start, we choose an initial relative entropy $K_0$ and a squeezing parameter for the hotter state ($r_h$), for example. Then, we look for the temperature $T_h$ a thermal state must have to satisfy $K[W_h || W_f] = K_0$ after squeezing with parameter $r_h$. After finding our hotter initial state, we can try to find the colder initial state. By combining Eq. \eqref{eq:relative-entropy-squeezing} and Eq. \eqref{eq:ergo-squeezing}, we get that $f(\beta_c) - f(\beta_h) + f(\beta_f)\ln(f(\beta_h)/f(\beta_c))=0$ must be true to satisfy the condition of same initial relative entropy and ergotropy. Given that we already know $T_h$, we can solve this equation to obtain the temperature of the cold squeezed state and use Eq. \eqref{eq:coshrt-squeezing} to find $r_c$. We will call the initial hotter state $W_h$ and the initial colder state $W_c$. Squeezed states do not have a real temperature, but because the passive state is always a thermal state, we will assume that $W_h$ will cool down and $W_c$ will heat up. Fig. \ref{fig:initial-squeezing} presents Wigner relative entropy as a function of temperature and shows which initial temperatures we find in the end of this process. The left plot corresponds to the smaller squeezing parameters and the right plot corresponds to the bigger squeezing parameters. Note that increasing the squeezing parameter almost conserves de difference between $r_c$ and $r_h$. However, the colder temperature (in blue) have a bigger variation than the hotter temperature (in red), resulting in a bigger variation of ergotropy. From this, it seems that colder states are more sensible to variations on the squeezing parameter.
+\noindent from which we can see that applying the same squeezing to different thermal states will also not result in the same ergotropy. As a consequence, to make a fair comparison between heating and cooling, we must use different squeezing parameters for the colder and the hotter thermal states such that the final squeezed states have the same initial relative entropy from equilibrium and same initial ergotropy. Just like in the displacement case, squeezed states do not have a real temperature, but we can assume it will heat up or cool down because its passive state is always thermal. So, in these results, we represent the initial hotter state as $W_h$ and the initial colder state as $W_c$.
 
-\begin{figure}[t]
+\begin{figure}[b!]
     \centering
     \includegraphics[width=\linewidth]{Images/Gaussian/initialization-squeezing.png}
     \caption{\small Wigner relative entropy of a squeezed thermal state and the equilibrium thermal state as a function of inverse temperature. The black line indicates the chosen initial Wigner relative entropy that both hot (red dot) and cold (blue dot) squeezed states must have. The left plot uses a small squeezing parameters and the right plot use bigger squeezing parameters.}
@@ -485,6 +494,8 @@ In this section, we study the thermal relaxation asymmetry of squeezed thermal s
     {\small Source: By the author}
     \label{fig:initial-squeezing}
 \end{figure}
+
+For clarity, we will present an example of how to find the appropriate initial states. To start, we choose an initial relative entropy $K_0$ and a squeezing parameter, $r_h$, that will be applied in the hotter thermal state, for example. To find the initial temperature $T_h$ of this thermal state, we use that the final squeezed state $W_h$ must satisfy $K[W_h || W_f] = K_0$, which can be numerically done. After finding our hotter initial state, we can try to find the colder initial state. By combining Eq. \eqref{eq:relative-entropy-squeezing} and Eq. \eqref{eq:ergo-squeezing}, we get that $f(\beta_c) - f(\beta_h) + f(\beta_f)\ln(f(\beta_h)/f(\beta_c))=0$ must be true to satisfy the condition of same initial relative entropy and ergotropy. Given that we already know $T_h$, we can solve this equation to obtain the temperature of the cold squeezed state and use Eq. \eqref{eq:coshrt-squeezing} to find $r_c$. Fig. \ref{fig:initial-squeezing} presents Wigner relative entropy as a function of temperature and shows which initial temperatures we find in the end of this process. The left plot corresponds to the smaller squeezing parameters and the right plot corresponds to the bigger squeezing parameters. Note that after increasing $r_h$ by $0.4$, the initial temperature of the hot state drops by half, while increasing $r_c$ by $0.38$ results in a colder temperature four times bigger. This means that the colder states are more sensitive to variations of the squeezing parameter.
 
 The Wigner-Fisher information of a squeezed thermal state is
 \begin{equation}
@@ -507,7 +518,7 @@ The Wigner-Fisher information of a squeezed thermal state is
     \label{fig:completion-squeezing}
 \end{figure}
 
-\noindent Again, obtaining the analytical thermal kinematic expressions from Eq. \eqref{eq:Iw-squeezing} will not bring additional information, so we will solve it numerically. In Fig. \ref{fig:completion-squeezing}, we show the degree of completion as a function of time for the squeezed thermal state (left) and its passive state (right). In each plot, we compared a squeezing with small parameters (solid lines) with a squeezing with bigger parameters (dashed lines). In the both plots, because $W_c$ (in red) is always above $W_h$ (in blue), we can say that heating is faster than cooling for these squeezed states and their passive states. However, in the left plot, by comparing the solid lines with the dashed lines, we observe that increasing the squeezing parameters reduces the heating-cooling asymmetry of the total state. However, in the right plot, the asymmetry in the passive states seems to increase as we increase the squeezing parameters.
+\noindent Again, obtaining the analytical thermal kinematic expressions from Eq. \eqref{eq:Iw-squeezing} will not bring additional information, so we will solve it numerically. In Fig. \ref{fig:completion-squeezing}, we show the degree of completion as a function of time for the squeezed thermal state (left) and its passive state (right). In each plot, we compared a squeezing with small parameters (solid lines) with a squeezing with bigger parameters (dashed lines). In both plots, because $W_c$ (in red) is always above $W_h$ (in blue), we can say that the initially colder state relaxate faster than the initially hotter state. In the left plot, by comparing the solid lines with the dashed lines, we observe that increasing the squeezing parameters reduces the heating-cooling asymmetry of the total state, while in the right plot, the asymmetry in the passive states seems to increase as we increase the squeezing parameters.
 
 To investigate this behaviour, we will analyse the entropy production rate and separate into its passive and ergotropic contribution from Eq. \eqref{eq:sprod-passive-ergotropic-gaussian}. The total entropy production rate is
 \begin{equation}
@@ -540,10 +551,9 @@ To investigate this behaviour, we will analyse the entropy production rate and s
     \label{fig:contribution-squeezing}
 \end{figure}
 
-Fig. \ref{fig:contribution-squeezing} show the entropy production rate, where the upper plots correspond to smaller $r$ and the lower plots correspond to bigger $r$. Each graph shows the total entropy production rate (solid line) with its passive (dashed line) and ergotropic (dotted line) contributions. First, the initial total entropy production of $W_c$ is bigger than the initial total entropy production of $W_h$, which explain why heating is faster than cooling again. Also, when we increase the squeezing parameters, the heating and the cooling total entropy productions decrease, but the heating process suffers a bigger reduction when compared with cooling. This can be explained by the previous discussion that colder states have higher sensibility to squeezing variations. As a result, for bigger squeezing parameters, the difference in initial total entropy production between heating and cooling is smaller, which explains why the asymmetry was reduced for the total squeezed state. However, as we already noticed in the equations of entropy production, unlike the displacement operation, squeezing affects both passive and ergotropic contributions, which means that the asymmetry is not fully generated by the passive state. When we look at the passive contribution, the difference between the initial entropy production of heating and cooling becomes bigger as we increase the squeezing parameter. This can explain why the asymmetry in the passive contribution increases. The explanation of how these related quantities can have opposite behaviours with the increase of squeezing parameter is in the ergotropic contribution. Given that for small $r$ the passive contribution was bigger, to preserve the same entropy production, the ergotropic contribution should compensate the decrease of the passive. However, this is not the case and ergotropic increase do not compensate the passive loss as shown in Fig. \ref{fig:contribution-squeezing}.
+Fig. \ref{fig:contribution-squeezing} show the entropy production rate, where the upper plots correspond to smaller $r$ and the lower plots correspond to bigger $r$. Each graph shows the total entropy production rate (solid line) with its passive (dashed line) and ergotropic (dotted line) contributions. First, the initial total entropy production of $W_c$ is bigger than the initial total entropy production of $W_h$, which explain why heating is faster than cooling again. Also, when we increase the squeezing parameters, the heating and the cooling total entropy productions decrease, but the heating process suffers a bigger reduction when compared with cooling. This can be explained by the previous discussion that colder states have higher sensitivity to squeezing variations. As a result, for bigger squeezing parameters, the difference in initial total entropy production between heating and cooling is smaller, which explains why the asymmetry was reduced for the total squeezed state. As we already noticed in the equations of entropy production, unlike the displacement operation, squeezing affects both passive and ergotropic contributions, which means that the asymmetry is not fully generated by the passive state. When we look at the passive contribution, the difference between the initial entropy production of heating and cooling becomes bigger as we increase the squeezing parameter. This can explain why the asymmetry in the passive contribution increases. The explanation of how these related quantities can have opposite behaviours with the increase of squeezing parameter is in the ergotropic contribution. Note in Fig. \ref{fig:contribution-squeezing} that the ergotropic contribution increase with $r$, but it is not enough to compensate the decrease of the passive contribution, resulting in the reduction of the asymmetry.
 
-
-One last comment of this section is regarding the oscillation in the degree of completion that appears for the passive state of the big squeezing parameter case (red dashed line of the right plot in Fig. \ref{fig:completion-squeezing}). Additionally, the statistical velocity of this same passive state is shown in Fig. \ref{fig:velocity-squeezing-passive} and also presents this oscillation. Recalling the degree of completion and statistical velocity we had for the interacting qubits, we also saw this oscillations and attributed them to a local non-Markovian dynamics witnessed as negative entropy production. The inset in Fig. \ref{fig:contribution-squeezing} shows that the entropy production of the passive state with big squeezing parameter also have negative value for a period of time, which is a signature of non-Markovianity. From this observations, we can again affirm that non-Markovianity may be related to faster relaxation. The origin of this non-Markovian dynamics for the passive state can be understood as a part of squeezing being converted into energy for the passive state. It is interesting that this behaviour was only observed for heating state with big squeezing parameter and not in the correspondent cooling state. One possibility is that the squeezing parameter used in heating was bigger than the one in cooling. However, this cooling process do have a different behaviour, which is a small increase in its entropy production and statistical velocity. This means that, instead of receiving a feedback information from the environment, the system accelerates and loose more information to the environment. We do not know its cause, but it is important to highlight that, while negative entropy production indicate non-Markovianity, the opposite is not always true, i.e., non-Markovian dynamics without negative entropy production is possible \cite{popovic-2018}.
+One last comment of this section is regarding the oscillation in the degree of completion that appears for the passive state of the big squeezing parameter case (red dashed line of the right plot in Fig. \ref{fig:completion-squeezing}). Additionally, the statistical velocity of this same passive state is shown in Fig. \ref{fig:velocity-squeezing-passive} and also presents this oscillation. Recalling the degree of completion and statistical velocity we had for the interacting qubits, we also saw this oscillations and attributed them to a local non-Markovian dynamics witnessed as negative entropy production. The inset in Fig. \ref{fig:contribution-squeezing} shows that the entropy production of the passive state with big squeezing parameter also have negative value for a period of time, which is a signature of non-Markovianity. From this observations, we can again affirm that non-Markovianity may be related to faster relaxation. The origin of this non-Markovian dynamics is a consequence of squeezing affecting the passive state, whose time evolution will not be described by Eq. \eqref{eq:lindblad-gaussian}. It is interesting that negative entropy production is only observed for heating state with big squeezing parameter and not in its correspondent cooling state. One possibility is that the squeezing parameter used in heating is bigger than the one in cooling. However, this cooling process do have a different behaviour, which is a small increase in its entropy production and statistical velocity. This means that, instead of receiving a feedback information from the environment, the system accelerates and loose more information to the environment.
 
 \begin{figure}[t]
     \centering
@@ -560,7 +570,7 @@ One last comment of this section is regarding the oscillation in the degree of c
 
 Until this moment, we only observed that heating was faster than cooling, but previous works have shown that this is not always true \cite{vu-2021, bravetti-2025, teza-2026}. In this section, we will try to invert this asymmetry using the previous observation that squeezed states relaxate faster than displaced states. So, we will apply a squeezing operation on the slower process, that is cooling, and will apply a displacement operation on heating because both initial state must have the same initial ergotropy.
 
-To find a hotter squeezed state and colder displaced state with the same initial relative entropy and ergotropy, we will use a similar approach as the one from Sec. \ref{sec:result-squeezed}. We combine $K[W_s || W_f] = K[W_d || W_f]$ and $\mathcal{E}_s = \mathcal{E}_d$ to obtain $f(\beta_d) - f(\beta_s) + f(\beta_f)\ln(f(\beta_s)/f(\beta_d))=0$, which can be used to find the temperature of a state from the the other state.
+To find a hotter squeezed state and colder displaced state with the same initial relative entropy and ergotropy, we will use a similar approach as the one from Sec. \ref{sec:result-squeezed}. We combine $K[W_s || W_f] = K[W_d || W_f]$ and $\mathcal{E}_s = \mathcal{E}_d$ to obtain $f(\beta_d) - f(\beta_s) + f(\beta_f)\ln(f(\beta_s)/f(\beta_d))=0$, which can be used to find the temperature of a displaced state given the squeezed state.
 
 \begin{figure}[t]
     \centering
@@ -582,7 +592,7 @@ The degree of completion for this system is presented in Fig. \ref{fig:completio
     \label{fig:completion-inversion-passive}
 \end{figure}
 
-To study the entropy production rate of heating the displaced state, we used the same expressions of Section \ref{sec:result-displaced} and, for the entropy production rate of cooling the squeezed state, we used the expressions of Section \ref{sec:result-squeezed}. Fig. \ref{fig:sprod-inversion} shows the total entropy production (solid lines), the passive (dashed lines) and the ergotropic (dotted lines) contributions for the entropy production of smaller and bigger parameters, respectively. Given that heating is faster for the passive states, what accelerates cooling to create the inversion must be the ergotropic contribution. Different from the results comparing only squeezing or only displacement, the ergotropic contribution of cooling (squeezing) is initially higher than the one of heating, which explains the full inversion of the asymmetry. Furthermore, for the partial inversion, we see that the ergotropic part had almost no participation in the relaxation and all the asymmetry was generated by the passive state. In this case, heating had higher initial entropy production and was faster than cooling according to the degree of completion in Fig. \ref{fig:completion-inversion}. However, when the entropy production of cooling cross with heating and we find the partial inversion in the degree of completion. In this case, the initial entropy production could not tell us which process relaxate faster, but its time evolution is still helpful to understand the dynamics. Additionally, heating crossing cooling at some time was already observed in the ergotropic Mpemba effect \cite{medina-2025} and it is a consequence of comparing the relaxation of a displaced state with a squeezed state.
+To study the entropy production rate of heating the displaced state, we used the same expressions of Section \ref{sec:result-displaced} and, for the entropy production rate of cooling the squeezed state, we used the expressions of Section \ref{sec:result-squeezed}. Fig. \ref{fig:sprod-inversion} shows the total entropy production (solid lines), the passive (dashed lines) and the ergotropic (dotted lines) contributions for the entropy production of smaller and bigger parameters, respectively. Given that heating is faster for the passive states, what accelerates cooling to create the inversion must be the ergotropic contribution. Different from the results comparing only squeezing or only displacement, the ergotropic contribution of cooling (squeezing) is initially higher than the one of heating, which explains the full inversion of the asymmetry. Furthermore, for the partial inversion, we see that the ergotropic part has almost no participation in the relaxation and all the asymmetry was generated by the passive state. In this case, heating has higher initial entropy production and is faster than cooling according to the degree of completion in Fig. \ref{fig:completion-inversion}. When the entropy production of cooling cross with heating, we find the partial inversion in the degree of completion. In this case, the initial entropy production could not tell us which process relaxate faster, but its time evolution is still helpful to understand the dynamics. Heating crossing cooling at some time can be a consequence of comparing the relaxation of a displaced state with a squeezed state, as it was similarly observed in the ergotropic Mpemba effect \cite{medina-2025}. 
 
 
 \begin{figure}[t]
@@ -593,4 +603,5 @@ To study the entropy production rate of heating the displaced state, we used the
     {\small Source: By the author}
     \label{fig:sprod-inversion}
 \end{figure}
+
 

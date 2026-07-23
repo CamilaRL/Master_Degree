@@ -112,5 +112,82 @@ A general way to define an X-state is
 
 \noindent To obtain the concurrence, we must use the eigenvalues of $R$: $\lambda_1 = ad+|f|^2 (1 + 2\sqrt{ad})$, $\lambda_2 = ad+|f|^2 (1 - 2\sqrt{ad})$, $\lambda_3 =  bc+|e|^2(1 + 2\sqrt{bc})$, and $\lambda_4 =  bc+|e|^2(1 - 2\sqrt{bc})$. Without specifying the matrix elements of $\rho$, we cannot go further. But the next steps are taking the square root of each eigenvalue of $R$, organizing them in decreasing order and substituting in Eq. \eqref{eq:concurrence}.
 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Derivation of the Wigner-Fisher information}
+\label{apx:WFI}
+
+The Wigner-Fisher information can be obtained from similar calculations as the ones of Sec \ref{sec:thermal-kinematics}. First, we consider two close Wigner distributions and make a second order Taylor expansion in a parameter $\theta$ of $W(\mathbf{x}, \theta+d\theta)$, finding that the Wigner relative entropy (defined in the first equality of Eq. \eqref{eq:wigner-relative-entropy}) becomes
+\begin{equation}
+    \begin{split}
+        K[&W(\mathbf{x}, \theta+d\theta) || W(\mathbf{x}, \theta)] = \int W(\mathbf{x}, \theta+d\theta) \ln \left ( \frac{W(\mathbf{x}, \theta+d\theta)}{W(\mathbf{x}, \theta)} \right ) d^2 \mathbf{x} \\
+        &= \int [W(\mathbf{x}, \theta) + \partial_\theta W(\mathbf{x}, \theta) d\theta + \frac{1}{2} \partial_\theta^2 W(\mathbf{x}, \theta) d\theta^2 + \mathcal{O}(d\theta^3)]\\
+        &\times \left[\frac{\partial_\theta W(\mathbf{x}, \theta)}{W(\mathbf{x}, \theta)} d\theta + \frac{1}{2}\frac{\partial_\theta^2 W(\mathbf{x}, \theta)}{W(\mathbf{x}, \theta)} d\theta^2 - \frac{1}{2} \frac{(\partial_\theta W(\mathbf{x}, \theta)d\theta)^2}{W(\mathbf{x}, \theta)^2} + \mathcal{O}(d\theta^3) \right] d^2 \mathbf{x} \\
+        &= \frac{1}{2}\int \frac{(\partial_\theta W(\mathbf{x}, \theta) d\theta)^2}{W(\mathbf{x}, \theta)} d^2 \mathbf{x} + \mathcal{O}(d\theta^3)\\
+        &= \frac{1}{2} \mathcal{I}_W(\theta) d\theta^2 + \mathcal{O}(d\theta^3),
+    \end{split}
+\end{equation}
+
+\noindent where we used $\ln (1+x) = x - \frac{1}{2}x^2 + \mathcal{O}(x^3)$ in the second line and that $\int W(\mathbf{x}, \theta) d^2 \mathbf{x} = 1$ in the third line. In the last equality, we identify the Wigner-Fisher information as 
+\begin{equation}
+    \mathcal{I}_W(\theta) = \int \frac{(\partial_\theta W(\mathbf{x}, \theta) d\theta)^2}{W(\mathbf{x}, \theta)}.
+\end{equation}
+
+\noindent Additionally, we can also write the Wigner-Fisher information in terms of the mean vector and the covariance matrix. One way to do it, is expanding the last line of Eq. \eqref{eq:wigner-relative-entropy}, that in our case is
+\begin{equation}
+    \begin{split}
+        K[W(\mathbf{x}, \theta+d\theta) || W(\mathbf{x}, \theta)] &= -1 + \frac{1}{2} \Big[(\mathbf{v}_{\theta+d\theta} - \mathbf{v}_\theta)^\dagger \Theta_\theta^{-1} (\mathbf{v}_{\theta+d\theta} - \mathbf{v}_\theta) \\
+        &+ \text{Tr}(\Theta_\theta^{-1} \Theta_{\theta+d\theta}) + \ln \frac{|\Theta_\theta|}{|\Theta_{\theta+d\theta}|} \Big].
+    \end{split}
+    \label{eq:K-wigner-fisher}
+\end{equation}
+
+\noindent First, we use the second order Taylor expansion of
+\begin{align}
+    &\mathbf{v}_{\theta+d\theta} \approx \mathbf{v}_{\theta} + \left(\frac{d\mathbf{v}_{\theta}}{d\theta}\right)d\theta + \frac{1}{2}\left(\frac{d^2\mathbf{v}_{\theta}}{d\theta^2}\right)d\theta^2 , \\
+    &\Theta_{\theta+d\theta} \approx \Theta_{\theta} + \left(\frac{d\Theta_{\theta}}{d\theta}\right)d\theta + \frac{1}{2}\left(\frac{d^2\Theta_{\theta}}{d\theta^2}\right)d\theta^2 , \\
+    &\ln( |\Theta_{\theta+d\theta}|) \approx \ln( |\Theta_{\theta}|) + \left(\frac{d}{d\theta} \ln( |\Theta_{\theta}|)\right)d\theta + \frac{1}{2}\left(\frac{d^2}{d\theta^2} \ln( |\Theta_{\theta}|) \right)d\theta^2,
+    \label{eq:expansao-ln-Theta}
+\end{align}
+
+\noindent such that the mean vector term in Eq. \eqref{eq:K-wigner-fisher} becomes
+\begin{equation}
+    (\mathbf{v}_{\theta+d\theta} - \mathbf{v}_\theta)^\dagger \Theta_\theta^{-1} (\mathbf{v}_{\theta+d\theta} - \mathbf{v}_\theta) \approx \dot{\mathbf{v}}_{\theta}^\dagger \Theta_\theta^{-1} \dot{\mathbf{v}}_{\theta} d\theta^2,
+\end{equation}
+
+\noindent and the trace term in Eq. \eqref{eq:K-wigner-fisher} becomes
+\begin{align}
+    \text{Tr}(\Theta_\theta^{-1} \Theta_{\theta+d\theta}) &\approx \text{Tr}\left[\Theta_\theta^{-1} \Theta_{\theta} + \Theta_\theta^{-1} \dot{\Theta}_{\theta} d\theta + \frac{1}{2} \Theta_\theta^{-1} \ddot{\Theta}_{\theta} d\theta^2 \right] \nonumber\\
+    &= 2 + \text{Tr}\left[\Theta_\theta^{-1} \dot{\Theta}_{\theta} \right] d\theta + \frac{1}{2} \text{Tr}\left[\Theta_\theta^{-1} \ddot{\Theta}_{\theta} \right] d\theta^2.
+\end{align}
+
+\noindent To rewrite the logarithm term in Eq. \eqref{eq:K-wigner-fisher}, we will need the identities \cite{medina-2026}
+\begin{align}
+    &\frac{d}{d\theta} \ln(|\Theta_\theta|) = \text{Tr}\left[\Theta_\theta^{-1} \dot{\Theta}_{\theta} \right]\\
+    &\frac{d^2}{d\theta^2} \ln(|\Theta_\theta|) = \text{Tr}\left[\Theta_\theta^{-1} \ddot{\Theta}_{\theta} + \Theta_\theta^{-1} \dot{\Theta}_{\theta}\Theta_\theta^{-1} \dot{\Theta}_{\theta} \right],
+\end{align}
+
+\noindent which can be used in Eq. \eqref{eq:expansao-ln-Theta}, resulting in
+\begin{equation}
+    \ln( |\Theta_{\theta+d\theta}|) \approx \ln( |\Theta_{\theta}|) + \text{Tr}\left[\Theta_\theta^{-1} \dot{\Theta}_{\theta} \right] d\theta + \frac{1}{2}\text{Tr}\left[\Theta_\theta^{-1} \ddot{\Theta}_{\theta} + \Theta_\theta^{-1} \dot{\Theta}_{\theta}\Theta_\theta^{-1} \dot{\Theta}_{\theta} \right]d\theta^2,
+\end{equation}
+
+\noindent that allow us to rewrite the logarithm term as
+\begin{equation}
+    \ln \frac{|\Theta_\theta|}{|\Theta_{\theta+d\theta}|} \approx -\text{Tr}\left[\Theta_\theta^{-1} \dot{\Theta}_{\theta} \right] d\theta - \frac{1}{2}\text{Tr}\left[\Theta_\theta^{-1} \ddot{\Theta}_{\theta}\right]d\theta^2 + \text{Tr}\left[(\Theta_\theta^{-1} \dot{\Theta}_{\theta})^2 \right]d\theta^2.
+\end{equation}
+
+\noindent As a result, the Wigner relative entropy expanded in terms of the mean vector and covariance matrix is
+\begin{equation}
+    K[W(\mathbf{x}, \theta+d\theta) || W(\mathbf{x}, \theta)] \approx \frac{1}{2} \{\dot{\mathbf{v}}_t^\dagger \Theta^{-1}_t \dot{\mathbf{v}}_t + \text{Tr}[(\Theta_t^{-1} \dot{\Theta}_t)^2]\} d\theta^2,
+\end{equation}
+
+\noindent in which we identify the Wigner-Fisher information as
+\begin{equation}
+    \mathcal{I}_W (t) = \dot{\mathbf{v}}_t^\dagger \Theta^{-1}_t \dot{\mathbf{v}}_t + \text{Tr}[(\Theta_t^{-1} \dot{\Theta}_t)^2].
+\end{equation}
+
 \end{apendicesenv}
 % ---
