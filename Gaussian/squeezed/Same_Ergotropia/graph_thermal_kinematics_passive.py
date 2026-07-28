@@ -34,7 +34,7 @@ for k in range(2):
 
 ### Wigner Fisher Information
 
-plt.figure(figsize=(10,5))
+'''plt.figure(figsize=(10,5))
 
 for i in range(2):
     
@@ -144,15 +144,15 @@ for i in range(2):
     plt.legend(fontsize=12)
     
     if i == 0:
-        plt.ylabel('Degree of Completion', fontsize=12)
+        plt.ylabel('Degree of Completion', fontsize=14)
     
-    plt.xlabel('Time', fontsize=12)
-    plt.xticks(fontsize=12)
-    plt.yticks(fontsize=12)
+    plt.xlabel('Time', fontsize=14)
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14)
     plt.xlim(right=80)
 
 plt.tight_layout()
-plt.show()
+plt.show()'''
 
 
 plt.plot(tlist, completion_list[0][0], color='red', linestyle=symbols[0], label=r'$r_c$ = '+f'{rhList[0]:.2f} ')
@@ -161,11 +161,11 @@ plt.plot(tlist, completion_list[1][0], color='red', linestyle=symbols[1], label=
 plt.plot(tlist, completion_list[1][1], color='blue', linestyle=symbols[1], linewidth=2, label=r'$r_h$ = '+f'{rcList[1]:.2f} ')
 
 #plt.ylabel('Degree of Completion', fontsize=12)
-plt.xlabel('Time', fontsize=12)
-plt.title('Passive State', fontsize=14)
-plt.xticks(fontsize=12)
-plt.yticks(fontsize=12)
-plt.legend(fontsize=12)
+plt.xlabel('Time', fontsize=14)
+plt.title('Passive State', fontsize=16)
+plt.xticks(fontsize=14)
+plt.yticks([])
+plt.legend(fontsize=14)
 plt.xlim(right=80)
 
 plt.show()

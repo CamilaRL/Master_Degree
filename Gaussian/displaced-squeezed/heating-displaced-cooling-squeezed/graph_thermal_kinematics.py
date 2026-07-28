@@ -38,9 +38,9 @@ for k in range(len(rList)):
     
 
 ## Plots
-'''
-### Wigner Fisher Information
 
+### Wigner Fisher Information
+'''
 plt.figure(figsize=(10,5))
 
 for i in range(2):
@@ -131,7 +131,7 @@ plt.yticks(fontsize=12)
 plt.legend(fontsize=12)
 
 plt.tight_layout()
-plt.show()
+plt.show()'''
 
 
 ### Completion
@@ -144,20 +144,22 @@ for i in range(2):
     num = 121 + i #221 + i
     
     plt.subplot(num)
-    plt.plot(tlist, completion_list[i][0], color='red', linestyle=symbols[i], linewidth=2, label='Heating - '+r'$\mu$ = '+f'{muList[i]:.2f}')
-    plt.plot(tlist, completion_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label='Cooling - '+r'$r$ = '+f'{rList[i]:.2f}')
+    plt.plot(tlist, completion_list[i][0], color='red', linewidth=2, label='Heating - '+r'$\mu$ = '+f'{muList[i]:.2f}')
+    plt.plot(tlist, completion_list[i][1], color='blue', linewidth=2, label='Cooling - '+r'$r$ = '+f'{rList[i]:.2f}')
     
     if i == 0:
-        plt.ylabel('Degree of Completion', fontsize=12)
+        plt.ylabel('Degree of Completion', fontsize=14)
+        plt.yticks(fontsize=14)
+    if i == 1:
+        plt.yticks([])
     
-    plt.xlabel('Time', fontsize=12)
-    plt.xticks(fontsize=12)
-    plt.yticks(fontsize=12)
-    plt.legend(fontsize=12)
+    plt.xlabel('Time', fontsize=14)
+    plt.xticks(fontsize=14)
+    plt.legend(fontsize=14)
 
 plt.tight_layout()
 plt.show()
-
+'''
 ### Relative Entropy
 
 plt.figure(figsize=(10,5))
@@ -220,7 +222,7 @@ plt.legend(fontsize=12)
 plt.tight_layout()
 plt.show()
 
-'''
+
 
 for i in range(2):
     
@@ -228,12 +230,13 @@ for i in range(2):
     plt.plot(tlist, Sprod_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label=r'$r$ = '+f'{rList[i]:.2f} - Cooling')
 
 plt.xscale('log')
-plt.ylabel('Entropy Production', fontsize=12)
-plt.xlabel('Time', fontsize=12)
-plt.title('Heating with Displacement', fontsize=12)
+plt.ylabel('Entropy Production', fontsize=14)
+plt.xlabel('Time', fontsize=14)
+plt.title('Heating with Displacement', fontsize=16)
 plt.xticks(fontsize=12)
 plt.yticks(fontsize=12)
 plt.legend(fontsize=12)
 
 plt.show()
 
+'''

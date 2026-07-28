@@ -128,16 +128,18 @@ for i in range(0,2,1):
     plt.plot(tlist, ergo_c_list, color='red', linestyle=symbols[2], linewidth=2, label='Ergotropic')
     
     plt.xscale('log')
+    plt.ylim(top=0.6)
     plt.xlim(left=0.1)
-    plt.title(f'r = {rc:.2f}', fontsize=14)
-    plt.xlabel('Time', fontsize=12)
-    plt.xticks(fontsize=12)
-    plt.yticks(fontsize=12)
-    plt.ylabel('Entropy Production Rate', fontsize=12)  
+    plt.title(f'r = {rc:.2f}', fontsize=16)
+    plt.xlabel('Time', fontsize=14)
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14)
+    plt.ylabel('Entropy Production Rate', fontsize=14)  
+    plt.tight_layout()
     
     
     if i == 1:
-        plt.legend(loc='best', bbox_to_anchor=(1, 0.4),fontsize=12)
+        plt.legend(loc='best', bbox_to_anchor=(1, 0.4),fontsize=14)
         
         # Inset do passivo
         ax_inset = inset_axes(fig_heating, width="40%", height="40%", loc="upper right", borderpad=2.5)
@@ -150,7 +152,7 @@ for i in range(0,2,1):
 
         ax_inset.tick_params(axis='both', labelsize=9)
     else:
-        plt.legend(fontsize=12)
+        plt.legend(fontsize=14)
     
     fig_cooling = plt.subplot(1, 2, 2)
 
@@ -159,82 +161,17 @@ for i in range(0,2,1):
     plt.plot(tlist, ergo_h_list, color='blue', linestyle=symbols[2], linewidth=2, label='Ergotropic')
 
     plt.xscale('log')
+    plt.ylim(top=0.6)
     plt.xlim(left=0.1)
-    plt.title(f'r = {rh:.2f}', fontsize=14)
-    plt.xlabel('Time', fontsize=12)
-    plt.xticks(fontsize=12)
-    plt.yticks(fontsize=12)
-    plt.legend(fontsize=12)
+    plt.title(f'r = {rh:.2f}', fontsize=16)
+    plt.xlabel('Time', fontsize=14)
+    plt.xticks(fontsize=14)
+    plt.yticks([])
+    plt.legend(fontsize=14)
     
     plt.tight_layout()
     plt.show()
     
-    
-    
-    
-    
-    
-    
-    ''' LEGENDA FORA
-    fig = plt.figure(figsize=(12,6))
-
-    fig_heating = plt.subplot(1, 2, 1)
-    
-    line_ht = plt.plot(tlist, Sprod_c[:400], color='red', linestyle=symbols[0], linewidth=2)
-    line_hp = plt.plot(tlist, pi_c_list, color='red', linestyle=symbols[1], linewidth=2)
-    line_he = plt.plot(tlist, ergo_c_list, color='red', linestyle=symbols[2], linewidth=2)
-    
-    plt.xscale('log')
-    plt.xlim(left=0.1)
-    plt.title(f'r = {rc:.2f}', fontsize=14)
-    plt.xlabel('Time', fontsize=12)
-    plt.xticks(fontsize=12)
-    plt.yticks(fontsize=12)
-    
-    plt.ylabel('Entropy Production Rate', fontsize=12)
-    handles_red = [line_ht[0], line_hp[0], line_he[0]]
-    
-    
-    fig_cooling = plt.subplot(1, 2, 2)
-
-    line_ct = plt.plot(tlist, Sprod_h[:400], color='blue', linestyle=symbols[0], linewidth=2)
-    line_cp = plt.plot(tlist, pi_h_list, color='blue', linestyle=symbols[1], linewidth=2)
-    line_ce = plt.plot(tlist, ergo_h_list, color='blue', linestyle=symbols[2], linewidth=2)
-
-    plt.xscale('log')
-    plt.xlim(left=0.1)
-    plt.title(f'r = {rh:.2f}', fontsize=14)
-    plt.xlabel('Time', fontsize=12)
-    plt.xticks(fontsize=12)
-    plt.yticks(fontsize=12)
-    
-    handles_blue = [line_ct[0], line_cp[0], line_ce[0]]
-
-
-    # Legenda Heating (Vermelha) - Superior
-    leg_h = fig.legend(handles_red, labels, 
-                       loc='lower center', 
-                       ncol=3, 
-                       title=r'$W_c$', 
-                       title_fontproperties={'weight':'bold', 'size':12},
-                       fontsize=12,
-                       bbox_to_anchor=(0.5, 0.1), 
-                       frameon=False)
-
-    # Legenda Cooling (Azul) - Inferior
-    leg_c = fig.legend(handles_blue, labels, 
-                       loc='lower center', 
-                       ncol=3, 
-                       title=r'$W_h$', 
-                       title_fontproperties={'weight':'bold', 'size':12},
-                       fontsize=12,
-                       bbox_to_anchor=(0.5, 0.01), 
-                       frameon=False)
-
-    plt.tight_layout()
-    plt.subplots_adjust(bottom=0.35)
-    plt.show()
-    '''
 
 
 

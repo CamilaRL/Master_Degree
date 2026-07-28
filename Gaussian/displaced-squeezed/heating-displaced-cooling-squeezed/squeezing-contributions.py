@@ -93,6 +93,8 @@ rList, beta_hot_list, muList, beta_cold_list = np.loadtxt('./ThermalKinematics/i
 symbols = ['-', '--', ':']
 labels = ['Total', 'Passive Contribution', 'Ergotropic Contribution']
 
+fig = plt.figure(figsize=(12,6))
+
 for i in range(2):
     
     # hot = cooling = squeezing || cold = heating = displacement
@@ -129,7 +131,7 @@ for i in range(2):
     
     
     # Legenda dentro
-    
+    '''
     fig = plt.figure(figsize=(12,6))
 
     fig_heating = plt.subplot(1, 2, 1)
@@ -163,92 +165,66 @@ for i in range(2):
     plt.legend(fontsize=12)
     
     plt.tight_layout()
-    plt.show()
+    plt.show()'''
     
-    
-    
-    # TODO MUNDO MISTURADOOO \o/
 
-    plt.plot(tlist, Sprod_heating, color='red', linestyle=symbols[0], linewidth=2, label='Total'+r' - $W_d$')
-    plt.plot(tlist, pi_heating_list, color='red', linestyle=symbols[1], linewidth=2, label='Passive'+r' - $W_d$')
-    plt.plot(tlist, ergo_heating_list, color='red', linestyle=symbols[2], linewidth=2, label='Ergotropic'+r' - $W_d$')
     
-    plt.plot(tlist, Sprod_cooling, color='blue', linestyle=symbols[0], linewidth=2, label='Total'+r' - $W_s$')
-    plt.plot(tlist, pi_cooling_list, color='blue', linestyle=symbols[1], linewidth=2, label='Passive'+r' - $W_s$')
-    plt.plot(tlist, ergo_cooling_list, color='blue', linestyle=symbols[2], linewidth=2, label='Ergotropic'+r' - $W_s$')
+    # LEGENDA FORA
     
+    n = 121 + i
+
+    plt.subplot(n)
+    
+    line_ht = plt.plot(tlist, Sprod_heating, color='red', linestyle=symbols[0], linewidth=2, label='Total')
+    line_hp = plt.plot(tlist, pi_heating_list, color='red', linestyle=symbols[1], linewidth=2, label='Passive')
+    line_he = plt.plot(tlist, ergo_heating_list, color='red', linestyle=symbols[2], linewidth=2, label='Ergotropic')
+    
+    line_ct = plt.plot(tlist, Sprod_cooling, color='blue', linestyle=symbols[0], linewidth=2, label='Total')
+    line_cp = plt.plot(tlist, pi_cooling_list, color='blue', linestyle=symbols[1], linewidth=2, label='Passive')
+    line_ce = plt.plot(tlist, ergo_cooling_list, color='blue', linestyle=symbols[2], linewidth=2, label='Ergotropic')
+    
+    plt.ylim(top=0.4)
     plt.xscale('log')
     plt.xlim(left=0.1)
-    plt.xlabel('Time', fontsize=12)
-    plt.ylabel('Entropy Production Rate', fontsize=12)
-    plt.title(r'$r$ = '+f'{rList[i]:.2f} '+r'- $\mu$ = '+f'{muList[i]:.2f}', fontsize=14)
-    plt.xticks(fontsize=12)
-    plt.yticks(fontsize=12)
-    plt.legend(fontsize=12)
-
-    plt.show()
+    plt.xlabel('Time', fontsize=14)
+    plt.title(r'$r$ = '+f'{rList[i]:.2f} '+r'- $\mu$ = '+f'{muList[i]:.2f}', fontsize=16)
+    plt.xticks(fontsize=14)
     
     
-    ''' LEGENDA FORA
-    fig = plt.figure(figsize=(12,6))
+    if i == 0:
+        plt.ylabel('Entropy Production Rate', fontsize=14)
+        plt.yticks(fontsize=14)
+    else:
+        plt.yticks([])
+        
+        handles_red = [line_ht[0], line_hp[0], line_he[0]]
+        handles_blue = [line_ct[0], line_cp[0], line_ce[0]]
+        
+        # Legenda Heating (Vermelha) - Superior
+        leg_h = fig.legend(handles_red, labels, 
+                           loc='lower center', 
+                           ncol=3, 
+                           title="Heating with Displacement", 
+                           title_fontproperties={'weight':'bold', 'size':15},
+                           fontsize=14,
+                           bbox_to_anchor=(0.5, 0.1), 
+                           frameon=False)
 
-    fig_heating = plt.subplot(1, 2, 1)
-    
-    line_ht = plt.plot(tlist, Sprod_heating, color='red', linestyle=symbols[0], linewidth=2)
-    line_hp = plt.plot(tlist, pi_heating_list, color='red', linestyle=symbols[1], linewidth=2)
-    line_he = plt.plot(tlist, ergo_heating_list, color='red', linestyle=symbols[2], linewidth=2)
-    
-    plt.xscale('log')
-    plt.xlim(left=0.1)
-    plt.title(r'$\mu$ = '+f'{muList[i]:.2f}', fontsize=14)
-    plt.xlabel('Time', fontsize=12)
-    plt.xticks(fontsize=12)
-    plt.yticks(fontsize=12)
-    
-    plt.ylabel('Entropy Production Rate', fontsize=12)
-    handles_red = [line_ht[0], line_hp[0], line_he[0]]
-    
-    
-    fig_cooling = plt.subplot(1, 2, 2)
-
-    line_ct = plt.plot(tlist, Sprod_cooling, color='blue', linestyle=symbols[0], linewidth=2)
-    line_cp = plt.plot(tlist, pi_cooling_list, color='blue', linestyle=symbols[1], linewidth=2)
-    line_ce = plt.plot(tlist, ergo_cooling_list, color='blue', linestyle=symbols[2], linewidth=2)
-
-    plt.xscale('log')
-    plt.xlim(left=0.1)
-    plt.title(r'$r$ = '+f'{rList[i]:.2f}', fontsize=14)
-    plt.xlabel('Time', fontsize=12)
-    plt.xticks(fontsize=12)
-    plt.yticks(fontsize=12)
-    
-    handles_blue = [line_ct[0], line_cp[0], line_ce[0]]
+        # Legenda Cooling (Azul) - Inferior
+        leg_c = fig.legend(handles_blue, labels, 
+                           loc='lower center', 
+                           ncol=3, 
+                           title="Cooling with Squeezing", 
+                           title_fontproperties={'weight':'bold', 'size':15},
+                           fontsize=14,
+                           bbox_to_anchor=(0.5, 0.01), 
+                           frameon=False)
 
 
-    # Legenda Heating (Vermelha) - Superior
-    leg_h = fig.legend(handles_red, labels, 
-                       loc='lower center', 
-                       ncol=3, 
-                       title="Heating with Displacement", 
-                       title_fontproperties={'weight':'bold', 'size':12},
-                       fontsize=12,
-                       bbox_to_anchor=(0.5, 0.1), 
-                       frameon=False)
+plt.tight_layout()
+plt.subplots_adjust(bottom=0.35)
+plt.show()
 
-    # Legenda Cooling (Azul) - Inferior
-    leg_c = fig.legend(handles_blue, labels, 
-                       loc='lower center', 
-                       ncol=3, 
-                       title="Cooling with Squeezing", 
-                       title_fontproperties={'weight':'bold', 'size':12},
-                       fontsize=12,
-                       bbox_to_anchor=(0.5, 0.01), 
-                       frameon=False)
-
-    plt.tight_layout()
-    plt.subplots_adjust(bottom=0.35)
-    plt.show()
-    '''
 
 
 
