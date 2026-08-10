@@ -226,8 +226,8 @@ plt.show()
 
 ### Distance
 
-plt.plot(tlist, Lw_heating, color='red', label='Heating')
-plt.plot(tlist, Lw_cooling, color='blue', label='Cooling')
+plt.plot(tlist, Lw_heating, color='red', linewidth=2, label='Heating')
+plt.plot(tlist, Lw_cooling, color='blue', linewidth=2, label='Cooling')
 plt.ylabel('Statistical Distance', fontsize=14)
 plt.xlabel('Time', fontsize=14)
 plt.legend(fontsize=14)
@@ -235,28 +235,34 @@ plt.show()
 
 ### Completion
 
-plt.plot(tlist, completion_heating, color='red', label='Heating')
-plt.plot(tlist, completion_cooling, color='blue', label='Cooling')
+plt.plot(tlist, completion_heating, color='red', linewidth=2, label='Heating')
+plt.plot(tlist, completion_cooling, color='blue', linewidth=2, label='Cooling')
 plt.ylabel('Degree of Completion', fontsize=14)
 plt.xlabel('Time', fontsize=14)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
 plt.legend(fontsize=14)
 plt.show()
 
 ### Relative Entropy
 
-plt.plot(tlist, Kevol_heating, color='red', label='Heating')
-plt.plot(tlist, Kevol_cooling, color='blue', label='Cooling')
+plt.plot(tlist, Kevol_heating, color='red', linewidth=2, label='Heating')
+plt.plot(tlist, Kevol_cooling, color='blue', linewidth=2, label='Cooling')
 plt.ylabel('Relative Entropy', fontsize=14)
 plt.xlabel('Time', fontsize=14)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
 plt.legend(fontsize=14)
 plt.show()
 
 ### Entropy Production
 
-plt.plot(tlist, Sprod_heating, color='red', label='Heating')
-plt.plot(tlist, Sprod_cooling, color='blue', label='Cooling')
+plt.plot(tlist, Sprod_heating, color='red', linewidth=2, label='Heating')
+plt.plot(tlist, Sprod_cooling, color='blue', linewidth=2, label='Cooling')
 plt.ylabel('Entropy Production', fontsize=14)
 plt.xlabel('Time', fontsize=14)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
 plt.legend(fontsize=14)
 plt.show()
 

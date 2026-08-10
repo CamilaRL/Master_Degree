@@ -207,12 +207,12 @@ for i in range(len(muList)):
     line_h3 = plt.plot(tlist, Sprod_e_list[i][0], color='red', linestyle=symbols[2], linewidth=2)
     
     plt.xscale('log')
-    plt.xticks(fontsize=12)
-    plt.yticks(fontsize=12)
-    plt.title(r'$\mu$ = ' + f'{muList[i]}', fontsize=12)
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14)
+    plt.title(r'$\mu$ = ' + f'{muList[i]}', fontsize=16)
 
     if i == 0:
-        plt.ylabel('Entropy Production Rate', fontsize=12)
+        plt.ylabel('Entropy Production Rate', fontsize=14)
         handles_red = [line_h1[0], line_h2[0], line_h3[0]]
         
     
@@ -224,10 +224,10 @@ for i in range(len(muList)):
     line_c3 = plt.plot(tlist, Sprod_e_list[i][1], color='blue', linestyle=symbols[2], linewidth=2)
     
     plt.xscale('log')
-    plt.xticks(fontsize=12)
-    plt.yticks(fontsize=12)
-    plt.title(r'$\mu$ = ' + f'{muList[i]}', fontsize=12)
-    plt.xlabel('Time', fontsize=12)
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14)
+    plt.title(r'$\mu$ = ' + f'{muList[i]}', fontsize=16)
+    plt.xlabel('Time', fontsize=14)
     
     if i == 0:
         plt.ylabel('Entropy Production Rate', fontsize=12)
@@ -242,7 +242,7 @@ leg_h = fig.legend(handles_red, labels,
                    ncol=3, 
                    title=r'$W_c$', 
                    title_fontproperties={'weight':'bold', 'size':12},
-                   fontsize=12,
+                   fontsize=14,
                    bbox_to_anchor=(0.5, 0.08), 
                    frameon=False)
 
@@ -252,7 +252,7 @@ leg_c = fig.legend(handles_blue, labels,
                    ncol=3, 
                    title=r'$W_h$', 
                    title_fontproperties={'weight':'bold', 'size':12},
-                   fontsize=12,
+                   fontsize=14,
                    bbox_to_anchor=(0.5, 0.01), 
                    frameon=False)
 
