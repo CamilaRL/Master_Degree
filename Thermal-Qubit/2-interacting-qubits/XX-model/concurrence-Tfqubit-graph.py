@@ -19,7 +19,7 @@ def vonNeumann_Entropy(rho):
     
 
 w0 = 1
-Jlist = np.arange(0, 10, 0.01)
+Jlist = np.arange(0, 2, 0.01)
 beta_R = 1
 
 Clist = []
@@ -78,24 +78,32 @@ fig = plt.figure(figsize=(12,5))
 
 plt.subplot(131)
 plt.plot(Jlist, Clist, color='black', linewidth=2)
-plt.xlabel(r'$J$', fontsize=12)
-plt.ylabel('Concurrence', fontsize=12)
+plt.xlabel(r'$J$', fontsize=14)
+plt.ylabel('Concurrence', fontsize=14)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
 
 plt.subplot(132)
 plt.plot(Jlist, Elist, color='black', linewidth=2)
-plt.xlabel(r'$J$', fontsize=12)
-plt.ylabel('Entanglement of Formation', fontsize=12)
+plt.xlabel(r'$J$', fontsize=14)
+plt.ylabel('Entanglement of Formation', fontsize=14)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
 
 plt.subplot(133)
 plt.plot(Jlist, MIlist, color='black', linewidth=2)
-plt.xlabel(r'$J$', fontsize=12)
-plt.ylabel('Mutual Information', fontsize=12)
+plt.xlabel(r'$J$', fontsize=14)
+plt.ylabel('Mutual Information', fontsize=14)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
 
 plt.tight_layout()
 plt.show()
 
 
 plt.plot(Jlist, betaList, color='black', linewidth=2)
-plt.xlabel(r'$J$', fontsize=12)
-plt.ylabel(r'$\beta_{f}^{q}$', fontsize=12)
+plt.xlabel(r'$J$', fontsize=14)
+plt.ylabel(r'$\beta_{f}^{q}$', fontsize=14)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
 plt.show()

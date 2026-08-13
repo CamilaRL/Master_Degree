@@ -54,14 +54,14 @@ for i in range(len(cList)):
     plt.plot(tlist_a1, completion_a1, color='red', linewidth=2, label='J = 0.8 - Heating')
     plt.plot(tlist_r1, completion_r1, color='blue', linewidth=2, label='J = 0.8 - Cooling')
     
-    plt.xlabel('Time', fontsize=12)
-    plt.title(titulo[i], fontsize=14)
-    plt.legend(loc='center right', fontsize=12)
-    plt.yticks(fontsize=12)
-    plt.xticks(fontsize=12)
+    plt.xlabel('Time', fontsize=14)
+    plt.title(titulo[i], fontsize=16)
+    plt.legend(loc='center right', fontsize=14)
+    plt.yticks(fontsize=14)
+    plt.xticks(fontsize=14)
     
     if i == 0:
-        plt.ylabel('Degree of Completion', fontsize=12)
+        plt.ylabel('Degree of Completion', fontsize=14)
 
 plt.tight_layout()
 plt.show()
@@ -86,15 +86,15 @@ for i in range(len(cList)):
     plt.plot(tlist_a1, velocidade_a1, color='red', linewidth=2, label='J = 0.8 - Heating')
     plt.plot(tlist_r1, velocidade_r1, color='blue', linewidth=2, label='J = 0.8 - Cooling')
     
-    plt.xlabel('Time', fontsize=12)
-    plt.title(titulo[i], fontsize=14)
-    plt.legend(loc='center right', fontsize=12)
-    plt.yticks(fontsize=12)
-    plt.xticks(fontsize=12)
+    plt.xlabel('Time', fontsize=14)
+    plt.title(titulo[i], fontsize=16)
+    plt.legend(loc='center right', fontsize=14)
+    plt.yticks(fontsize=14)
+    plt.xticks(fontsize=14)
     plt.xlim(right=18)
     
     if i == 0:
-        plt.ylabel('Velocity', fontsize=12)
+        plt.ylabel('Velocity', fontsize=14)
 
 plt.tight_layout()
 plt.show()
@@ -119,15 +119,15 @@ for i in range(len(cList)):
     plt.plot(t_sigma_am, sigma_am, color='red', linewidth=2, label='J = 0.8 - Heating')
     plt.plot(t_sigma_rm, sigma_rm, color='blue', linewidth=2, label='J = 0.8 - Cooling')
     
-    plt.xlabel('Time', fontsize=12)
-    plt.title(titulo[i], fontsize=14)
-    plt.legend(fontsize=12)
-    plt.yticks(fontsize=12)
-    plt.xticks(fontsize=12)
+    plt.xlabel('Time', fontsize=14)
+    plt.title(titulo[i], fontsize=16)
+    plt.legend(fontsize=14)
+    plt.yticks(fontsize=14)
+    plt.xticks(fontsize=14)
     plt.xlim(right=15)
     
     if i == 0:
-        plt.ylabel('Local Entropy Production Rate', fontsize=12)
+        plt.ylabel('Local Entropy Production Rate', fontsize=14)
     
 plt.tight_layout()
 plt.show()
@@ -153,11 +153,11 @@ for i, g in enumerate(glist):
     plt.plot(tlist_amax, completion_amax, color='red', linestyle='--', linewidth=2, label=f'|c| = {cmax[i]:.3f} - Heating')
     plt.plot(tlist_rmax, completion_rmax, color='blue', linestyle='--', linewidth=2, label=f'|c| = {cmax[i]:.3f} - Cooling')
 
-    plt.xlabel('Time', fontsize=12)
-    plt.ylabel('Degree of Completion', fontsize=12)
-    plt.legend(loc='lower right', fontsize=12)
-    plt.yticks(fontsize=12)
-    plt.xticks(fontsize=12)
+    plt.xlabel('Time', fontsize=14)
+    plt.ylabel('Degree of Completion', fontsize=14)
+    plt.legend(loc='lower right', fontsize=16)
+    plt.yticks(fontsize=14)
+    plt.xticks(fontsize=14)
     plt.xscale('log')
     plt.xlim(left=0.1)
 
@@ -175,15 +175,15 @@ for i, g in enumerate(glist):
     plt.plot(tlist_amax, velocidade_amax, color='red', linestyle='--', linewidth=2, label=f'|c| = {cmax[i]:.3f} - Heating')
     plt.plot(tlist_rmax, velocidade_rmax, color='blue', linestyle='--', linewidth=2, label=f'|c| = {cmax[i]:.3f} - Cooling')
 
-    plt.xlabel('Time', fontsize=12)
-    plt.ylabel('Velocity', fontsize=12)
-    plt.legend(loc='upper right', fontsize=12)
-    plt.yticks(fontsize=12)
-    plt.xticks(fontsize=12)
+    plt.xlabel('Time', fontsize=14)
+    plt.ylabel('Velocity', fontsize=14)
+    plt.legend(loc='upper right', fontsize=14)
+    plt.yticks(fontsize=14)
+    plt.xticks(fontsize=14)
     plt.xscale('log')
     plt.xlim(left=0.1)
     
-    plt.suptitle(f'J = {g}', fontsize=14)
+    plt.suptitle(f'J = {g}', fontsize=16)
     plt.tight_layout()
     plt.show()
 

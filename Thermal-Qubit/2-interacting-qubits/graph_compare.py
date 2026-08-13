@@ -69,11 +69,11 @@ r_J0_cmin = plt.plot(tlist_r_J0_cmin, completion_r_J0_cmin, color='blue', linest
 r_J1_cmin = plt.plot(tlist_r_J1_cmin, completion_r_J1_cmin, color='blue', linestyle='-', linewidth=2, label=f'J = {J[1]:.1f}')
 rE_J2_cmin = plt.plot(tlist_rE_J2_cmin, completion_rE_J2_cmin, color='blue', linestyle=':', linewidth=2, label=f'J = {J[2]:.1f}')
 
-plt.xlabel('Time', fontsize=12)
-plt.ylabel('Degree of Completion', fontsize=12)
-plt.title(f'{titulo[0]}', fontsize=12)
-plt.yticks(fontsize=12)
-plt.xticks(fontsize=12)
+plt.xlabel('Time', fontsize=14)
+plt.ylabel('Degree of Completion', fontsize=14)
+plt.title(f'{titulo[0]}', fontsize=16)
+plt.yticks(fontsize=14)
+plt.xticks(fontsize=14)
 plt.xscale('log')
 plt.xlim(left=0.1)
 
@@ -88,10 +88,10 @@ r_J0_cmax = plt.plot(tlist_r_J0_cmax, completion_r_J0_cmax, color='blue', linest
 r_J1_cmax = plt.plot(tlist_r_J1_cmax, completion_r_J1_cmax, color='blue', linestyle='-', linewidth=2, label=f'J = {J[1]:.1f}')
 rE_J2_cmax = plt.plot(tlist_rE_J2_cmax, completion_rE_J2_cmax, color='blue', linestyle=':', linewidth=2, label=f'J = {J[2]:.1f}')
 
-plt.xlabel('Time', fontsize=12)
-plt.title(f'{titulo[1]}', fontsize=12)
-plt.yticks(fontsize=12)
-plt.xticks(fontsize=12)
+plt.xlabel('Time', fontsize=14)
+plt.title(f'{titulo[1]}', fontsize=16)
+plt.yticks(fontsize=14)
+plt.xticks(fontsize=14)
 plt.xscale('log')
 plt.xlim(left=0.1)
 
@@ -105,7 +105,7 @@ leg_h = fig.legend(handles_red, labels,
                    ncol=3, 
                    title='Heating', 
                    title_fontproperties={'weight':'bold', 'size':12},
-                   fontsize=12,
+                   fontsize=14,
                    bbox_to_anchor=(0.5, 0.1), 
                    frameon=False)
 
@@ -115,7 +115,7 @@ leg_c = fig.legend(handles_blue, labels,
                    ncol=3, 
                    title='Cooling', 
                    title_fontproperties={'weight':'bold', 'size':12},
-                   fontsize=12,
+                   fontsize=14,
                    bbox_to_anchor=(0.5, 0.01), 
                    frameon=False)
 

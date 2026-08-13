@@ -226,7 +226,7 @@ def Write_Density_Matrices(rhof, rhof_q1, rhof_q2, c, g):
 
 w0 = 1
 gamma = 0.1
-g = 0.8
+g = 0.0
 
 tlist = np.arange(0, 30, 0.01)
 
@@ -280,12 +280,12 @@ plt.scatter([ph], [Srh], color='red', s=70, label=r'$T_h$ '+f'= {Th:.3f}')
 plt.plot(pList0, Sr0, color='orange', linewidth=2)
 plt.plot(pList1, Sr1, color='orange', linewidth=2)
 plt.hlines(y=Sr_inicial, xmin=min(pList1), xmax=max(pList0), color='black', label='Initial Relative Entropy')
-plt.xlabel('Populations', fontsize=12)
-plt.ylabel('Relative Entropy', fontsize=12)
-plt.title(f'J = {g}', fontsize=14)
-plt.yticks(fontsize=12)
-plt.xticks(fontsize=12)
-plt.legend(fontsize=12)
+plt.xlabel('Populations', fontsize=14)
+plt.ylabel('Relative Entropy', fontsize=14)
+plt.title(f'J = {g}', fontsize=16)
+plt.yticks(fontsize=14)
+plt.xticks(fontsize=14)
+plt.legend(fontsize=14)
 plt.show()
 
 '''
