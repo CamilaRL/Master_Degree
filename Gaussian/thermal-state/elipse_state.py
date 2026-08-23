@@ -74,11 +74,11 @@ ax.set_xlim(-max_val, max_val)
 ax.set_ylim(-max_val, max_val)
 
 # Rótulos dos eixos (posicionados nas pontas)
-ax.set_xlabel('$q$', fontsize=12, loc='right')
-ax.set_ylabel('$p$', fontsize=12, loc='top', rotation=0)
+ax.set_xlabel('$q$', fontsize=20, loc='right')
+ax.set_ylabel('$p$', fontsize=20, loc='top', rotation=0)
 
 #ax.grid(True, linestyle='--', alpha=0.5)
 ax.set_aspect('equal')  # Garante escala 1:1 para não distorcer a elipse
-plt.legend(loc='upper right')
+plt.legend(loc='upper right', fontsize=16)
 
 plt.show()
