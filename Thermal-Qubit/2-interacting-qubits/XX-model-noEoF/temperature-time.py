@@ -64,14 +64,14 @@ fig = plt.figure(figsize=(10,5))
 
 plt.subplot(121)
     
-plt.plot(tempo_real, temp_q1[0], color='red', linestyle='--', linewidth=2, label='J = 0 - Heating')
-plt.plot(tempo_real, temp_q2[0], color='blue', linestyle='--', linewidth=2, label='J = 0 - Cooling')
+plt.plot(tempo_real, temp_q1[0], color='red', linestyle='--', linewidth=2, label='J = 0.0 - Heating')
+plt.plot(tempo_real, temp_q2[0], color='blue', linestyle='--', linewidth=2, label='J = 0.0 - Cooling')
     
 plt.plot(tempo_real, temp_q1[1], color='red', linewidth=2, label='J = 0.8 - Heating')
 plt.plot(tempo_real, temp_q2[1], color='blue', linewidth=2, label='J = 0.8 - Cooling')
 
 plt.xlabel('Time', fontsize=14)
-plt.ylabel('Qubit\'s Temperature', fontsize=14)
+plt.ylabel(r'$\beta^q$', fontsize=14)
 plt.title('Zero Initial Coherence', fontsize=16)
 plt.legend(loc='upper right', fontsize=14)
 plt.yticks(fontsize=14)
@@ -80,8 +80,8 @@ plt.xticks(fontsize=14)
 
 plt.subplot(122)
     
-plt.plot(tempo_real, temp_q1[2], color='red', linestyle='--', linewidth=2, label='J = 0 - Heating')
-plt.plot(tempo_real, temp_q2[2], color='blue', linestyle='--', linewidth=2, label='J = 0 - Cooling')
+plt.plot(tempo_real, temp_q1[2], color='red', linestyle='--', linewidth=2, label='J = 0.0 - Heating')
+plt.plot(tempo_real, temp_q2[2], color='blue', linestyle='--', linewidth=2, label='J = 0.0 - Cooling')
     
 plt.plot(tempo_real, temp_q1[3], color='red', linewidth=2, label='J = 0.8 - Heating')
 plt.plot(tempo_real, temp_q2[3], color='blue', linewidth=2, label='J = 0.8 - Cooling')
