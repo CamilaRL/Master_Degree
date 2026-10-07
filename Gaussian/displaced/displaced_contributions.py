@@ -29,7 +29,7 @@ def Wigner_Fisher_Info(mu, w, beta_i, beta_f, gamma, t):
 
     delta_beta, d_delta_beta = Delta_Beta(w, beta_i, beta_f, gamma, t)
     
-    Iw_passive = 2 * (d_delta_beta/delta_beta)**2
+    Iw_passive = (d_delta_beta/delta_beta)**2
     Iw_ergotropic = 2 * (w**2 + (gamma**2)/4) * (abs(mu)**2)*np.exp(-gamma*t)/delta_beta
     
     return Iw_passive, Iw_ergotropic

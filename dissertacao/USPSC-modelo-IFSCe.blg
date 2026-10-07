@@ -1,0 +1,95 @@
+This is BibTeX, Version 0.99e
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: USPSC-modelo-IFSCe.aux
+Reallocating 'name_of_file' (item size: 1) to 34 items.
+The style file: USPSC-classe/abntex2-numeng-USPSC.bst
+Reallocating 'name_of_file' (item size: 1) to 42 items.
+A level-1 auxiliary file: USPSC-TA-PreTextual/USPSC-Dedicatoria.aux
+Reallocating 'name_of_file' (item size: 1) to 45 items.
+A level-1 auxiliary file: USPSC-TA-PreTextual/USPSC-Agradecimentos.aux
+Reallocating 'name_of_file' (item size: 1) to 39 items.
+A level-1 auxiliary file: USPSC-TA-PreTextual/USPSC-Epigrafe.aux
+Reallocating 'name_of_file' (item size: 1) to 39 items.
+A level-1 auxiliary file: USPSC-TA-PreTextual/USPSC-Abstract.aux
+Reallocating 'name_of_file' (item size: 1) to 37 items.
+A level-1 auxiliary file: USPSC-TA-PreTextual/USPSC-Resumo.aux
+Reallocating 'name_of_file' (item size: 1) to 45 items.
+A level-1 auxiliary file: USPSC-TA-Textual/USPSC-Cap1-Introduction.aux
+Reallocating 'name_of_file' (item size: 1) to 51 items.
+A level-1 auxiliary file: USPSC-TA-Textual/USPSC-Cap2-OpenQuantumSystems.aux
+Reallocating 'name_of_file' (item size: 1) to 54 items.
+A level-1 auxiliary file: USPSC-TA-Textual/USPSC-Cap3-QuantumThermodynamics.aux
+Reallocating 'name_of_file' (item size: 1) to 47 items.
+A level-1 auxiliary file: USPSC-TA-Textual/USPSC-Cap4-Results-Qubits.aux
+Reallocating 'name_of_file' (item size: 1) to 49 items.
+A level-1 auxiliary file: USPSC-TA-Textual/USPSC-Cap5-Results-Gaussian.aux
+Reallocating 'name_of_file' (item size: 1) to 43 items.
+A level-1 auxiliary file: USPSC-TA-Textual/USPSC-Cap6-Conclusion.aux
+Reallocating 'name_of_file' (item size: 1) to 16 items.
+Reallocating 'name_of_file' (item size: 1) to 34 items.
+Reallocating 'name_of_file' (item size: 1) to 40 items.
+A level-1 auxiliary file: USPSC-TA-PosTextual/USPSC-Apendices.aux
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 9000 items.
+Reallocating 'field_info' (item size: 4) to 11900 items.
+Database file #1: abntex2-options.bib
+Database file #2: USPSC-bib/USPSC-modelo-references.bib
+Warning--I didn't find a database entry for "landi-2004"
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'glb_str_end' (item size: 4) to 20 items.
+Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
+Reallocating 'global_strs' (item size: 1) to 4000000 items.
++---------------------------------------------------------+
+| Estilo bibliográfico abntex2-num.bst versão v-1.9.7           |
+| Em caso de dúvidas ou problemas com este estilo procure |
+| http://www.abntex.net.br/                               |
++---------------------------------------------------------+
+You've used 99 entries,
+            6713 wiz_defined-function locations,
+            1787 strings with 26780 characters,
+and the built_in function-call counts, 144899 in all, are:
+= -- 16965
+> -- 2533
+< -- 3939
++ -- 4711
+- -- 742
+* -- 8977
+:= -- 16833
+add.period$ -- 371
+call.type$ -- 102
+change.case$ -- 1048
+chr.to.int$ -- 327
+cite$ -- 87
+duplicate$ -- 15064
+empty$ -- 5259
+format.name$ -- 3856
+if$ -- 29402
+int.to.chr$ -- 12
+int.to.str$ -- 3
+missing$ -- 1714
+newline$ -- 517
+num.names$ -- 349
+pop$ -- 2191
+preamble$ -- 1
+purify$ -- 406
+quote$ -- 0
+skip$ -- 15469
+stack$ -- 1
+substring$ -- 5910
+swap$ -- 5937
+text.length$ -- 248
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 1
+warning$ -- 0
+while$ -- 559
+width$ -- 0
+write$ -- 1365
+(There was 1 warning)

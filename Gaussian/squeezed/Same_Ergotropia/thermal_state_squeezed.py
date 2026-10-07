@@ -211,10 +211,12 @@ def EquidistantInitial(Kinit, beta_eq, rh, w, gamma, beta_list):
     
     plt.scatter([beta_c], [Kc], s=70, color='blue', label=r'$T_c$ '+f'= {1/beta_c:.3f}')
     plt.scatter([beta_h], [Kh], s=70, color='red', label=r'$T_h$ '+f'= {1/beta_h:.3f}')
-    plt.xlabel(r'$\beta$', fontsize=12)
-    plt.ylabel('Relative Entropy', fontsize=12)
-    plt.title(r'$r_h =$'+f' {rh:.2f} - '+r'$r_c =$'+f' {rc:.2f}', fontsize=14)
-    plt.legend(fontsize=12)
+    plt.xlabel(r'$\beta$', fontsize=14)
+    #plt.ylabel('Relative Entropy', fontsize=14)
+    plt.title(r'$r_h =$'+f' {rh:.2f} - '+r'$r_c =$'+f' {rc:.2f}', fontsize=16)
+    plt.legend(fontsize=14)
+    plt.yticks(fontsize=14)
+    plt.xticks(fontsize=14)
     plt.show()
     
     
@@ -244,7 +246,7 @@ def WriteOutput(r, processo, tlist, Iw, Vw, Lw, completion, Kevol, Sprod, Ip, Vp
 
 w = 1
 gamma = 0.1
-rh = 0.1 ## 0.1 e 0.5
+rh = 0.5 ## 0.1 e 0.5
 
 Kinit = 1
 

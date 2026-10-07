@@ -29,7 +29,7 @@ def Wigner_Fisher_Info(w, beta_i, beta_f, gamma, t):
 
     delta_beta, d_delta_beta = Delta_Beta(w, beta_i, beta_f, gamma, t)
     
-    return 2 * (d_delta_beta/delta_beta)**2
+    return (d_delta_beta/delta_beta)**2
 
 
 def Velocity(Iw):

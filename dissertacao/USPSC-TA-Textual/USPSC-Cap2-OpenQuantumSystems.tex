@@ -23,6 +23,7 @@ Quantum mechanics was initially formulated for closed systems, whose physical st
 The time evolution of closed quantum systems is given by the Schrödinger equation,
 \begin{equation}
     i \hbar \frac{d}{dt} \ket{\psi (t)} = {H}(t) \ket{\psi (t)},
+    \label{eq:schrodinger}
 \end{equation}
 
 \noindent where ${H}(t)$ is the system's Hamiltonian and Planck's constant will be $\hbar = 1$ from now on. This equation can be translated into the density matrices notation as the Liouville-von Neumann equation,
@@ -37,7 +38,7 @@ The time evolution of closed quantum systems is given by the Schrödinger equati
     \label{eq:unitary-evol-rho}
 \end{equation}
 
-\noindent where ${U}(t)$ is a unitary operator with properties ${U}^{-1} = {U}^\dagger$ and ${U} {U}^\dagger = \mathbb{I}$, in which $\mathbb{I}$ is the identity matrix. As a consequence, the unitary dynamics preserve the information of the system, resulting in a time-reversible process.
+\noindent where ${U}(t)$ is a unitary operator, that has the form ${U}(t) = \exp{-iH t}$ for time-independent Hamiltonians, for example. This operator is called unitary because of the properties ${U}^{-1} = {U}^\dagger$ and ${U} {U}^\dagger = \mathbb{I}$, in which $\mathbb{I}$ is the identity matrix. As a consequence, the unitary dynamics preserve the information of the system, resulting in a time-reversible process.
 
 Even though all this formalism describes a variety of quantum phenomena, it is an idealisation because every physical system interacts with an environment, which can change the system's dynamics. If we consider a quantum systems ($S$) interacting with an environment ($E$), we can assume that together they form a closed quantum system that evolves in time by the unitary dynamics described before. The total system ($S+E$) is defined by the Hamiltonian
 \begin{equation}
@@ -46,7 +47,7 @@ Even though all this formalism describes a variety of quantum phenomena, it is a
 
 \noindent where ${H}_S$ is the system's Hamiltonian, ${H}_E$ is the environment's Hamiltonian, and ${H}_I$ describes the system-environment interaction. The environment is usually considered to have infinite degrees of freedom, over which we cannot access information or have control. As a result, the system $S$ is the only part we can manipulate, being the focus of our studies. However, because the system $S$ exchanges information with the environment, it cannot be described by a unitary dynamics. This is what we call an open quantum system, illustrated in Fig. \ref{fig:oqs-scheme}, whose dynamics will be discussed in the next section.
 
-\begin{figure}[b!]
+\begin{figure}[t]
     \centering
     \includegraphics[width=0.3\linewidth]{Images/open-systems-scheme.png}
     \caption{\small A system $S$ described by the Hamiltonian $H_S$ is at a state $\rho_S$ and it is coupled to an environment $E$ described by the Hamiltonian $H_E$ that is at a state $\rho_E$. They can interact according to Hamiltonian $H_I$ and together they form a close system $S+E$ described by the Hamiltonian $H_{SE}$ at a state $\rho_{SE}$.}
@@ -60,11 +61,12 @@ Even though all this formalism describes a variety of quantum phenomena, it is a
 %Derivation of Master Equations (Markovian approximation and weak-coupling)
 %Davies Map
 
-In this section, we discuss the fundamental steps to obtain the Gorini-Kossakowski-Sudarshan-Lindblad (GKSL) master equation, also called the Lindblad master equation for short \cite{lindblad-1976, gorini-1976, petruccione-book}. We assume the time evolution of the total system ($S+E$) is unitary, meaning that the Liouville-von Neumann equation (Eq. \eqref{eq:liouville-von-neumann}) can be used. However, we do not have access to all the information in the environment, and including its dynamics in the calculation can be overwhelming. Fortunately, it is possible to describe the system's dynamics while taking into account environmental effects, without needing to deal with the environment's time evolution. 
+In this section, we discuss the fundamental steps to obtain the Gorini-Kossakowski-Sudarshan-Lindblad (GKSL) master equation, also called the Lindblad master equation for short \cite{lindblad-1976, gorini-1976, petruccione-book}. We assume the time evolution of the total system ($S+E$) is unitary, meaning that the Liouville-von Neumann equation (Eq. \eqref{eq:liouville-von-neumann}) can be used. However, we do not have access to all the information of the environment, and including its dynamics in the calculation can be overwhelming. Fortunately, it is possible to describe the system's dynamics while taking into account environmental effects, without needing to deal with the environment's time evolution. 
 
-Up to this point, we have used the Schrödinger picture, in which the state evolves with time while the observables remain unchanged. In this section, we will change to the interaction picture, where the Lindblad master equation is easer to deduce. The interaction picture have both states and operators changing with time \cite{sakurai-1994, petruccione-book}. To convert from the Schrödinger picture to the interaction picture, we split the total Hamiltonian into a time-independent and a perturbation parts as ${H} = {H}_0 + {V}(t)$. Then, we define the interaction picture unitary operator ${U}_I (t) = {U}_0^\dagger (t) {U} (t)$ where ${U} (t)$ is the time-evolution operator of the Schrödinger picture discussed before (Eq. \eqref{eq:unitary-evol-rho}) and ${U}_0 (t) = \exp[-i {H}_0 t]$ \cite{sakurai-1994, petruccione-book}. This allow us to write the state time-evolution in the interaction picture as
+Up to this point, we have used the Schrödinger picture, in which the state evolves with time while the observables remain unchanged. In this section, we will change to the interaction picture, where the Lindblad master equation is easer to deduce. The interaction picture have both states and operators changing with time \cite{sakurai-1994, petruccione-book}. To convert from the Schrödinger picture to the interaction picture, we split the total Hamiltonian into the system's Hamiltonian and a perturbation part (which can be time-dependent) as ${H}(t) = {H}_0 + {V}(t)$. Then, we define the interaction picture unitary operator ${U}_I (t) = {U}_0^\dagger (t) {U} (t)$ where ${U} (t)$ is the time-evolution operator of the Schrödinger picture discussed before (Eq. \eqref{eq:unitary-evol-rho}) and ${U}_0 (t) = \exp[-i {H}_0 t]$ \cite{sakurai-1994, petruccione-book}. This allow us to write the state time-evolution in the interaction picture as
 \begin{equation}
     \ket{\psi(t)}_I = {U}_0^\dagger (t) \ket{\psi(t)} = {U}_I (t) \ket{\psi (0)},
+    \label{eq:psi-interacao}
 \end{equation}
 
 \noindent which is equivalent as writing the time-evolution of the density matrix as
@@ -77,17 +79,22 @@ Up to this point, we have used the Schrödinger picture, in which the state evol
     {O}_I (t) = {U}_0^\dagger (t) {O} {U}_0 (t).
 \end{equation}
 
-\noindent As a result, the Schrödinger equation becomes
+\noindent Now, we can take the time derivative of Eq. \eqref{eq:psi-interacao} as
 \begin{equation}
-    i \frac{d}{dt} \ket{\psi(t)}_I = {V}_I (t) \ket{\psi(t)}_I,
+	\begin{split}
+		 i \frac{d}{dt} \ket{\psi(t)}_I &= i \frac{d}{dt} {U}_0^\dagger (t) \ket{\psi(t)} + i {U}_0^\dagger (t) \frac{d}{dt} \ket{\psi(t)}\\
+		 &= i  {U}_0^\dagger (t) (-i H_0 ) \ket{\psi(t)} + {U}_0^\dagger (t) (H_0 + V(t)) \ket{\psi(t)} \\
+		 &= {U}_0^\dagger (t) V_I (t) {U}_0 (t) {U}_0^\dagger (t) \ket{\psi (t)}\\
+		 &= {V}_I (t) \ket{\psi(t)}_I,
+	\end{split}
 \end{equation}
 
-\noindent where ${V}_I (t) = {U}_0^\dagger (t) {V} (t) {U}_0 (t)$ is the time-dependent part of the Hamiltonian in the interaction picture \cite{sakurai-1994, petruccione-book}. Additionally, this result can be extended to the density matrices, resulting in the interaction picture Liouville-von Neumann equation,
+\noindent where in the second line we used Eq. \eqref{eq:schrodinger}, and included an identity to get the interaction picture of the perturbation, ${V}_I (t) = {U}_0^\dagger (t) {V} (t) {U}_0 (t)$ \cite{sakurai-1994, petruccione-book}. Additionally, this result can be extended to the density matrices, resulting in the interaction picture Liouville-von Neumann equation,
 \begin{equation}
     \frac{d}{dt} {\rho}(t) = -i [{V}_I (t), {\rho}(t)].
 \end{equation}
 
-With this picture changes, we can go back to the open quantum system discussion. Our time-independent Hamiltonian is ${H}_0 = {H}_S \otimes \mathbb{I}_E + \mathbb{I}_S \otimes {H}_E$ and the time-dependent is the interaction between the system and the environment, which in the interaction picture is ${V}_I(t) = {H}_I(t)$. So, because $S+E$ is considered a closed system, their Liouville-von Neumann equation becomes
+With this picture changes, we can go back to the open quantum system discussion. The system and environment without interaction is described by the Hamiltonian ${H}_0 = {H}_S \otimes \mathbb{I}_E + \mathbb{I}_S \otimes {H}_E$ and their interaction is given by ${V}_I(t) = {H}_I(t)$. Because $S+E$ is considered a closed system, their Liouville-von Neumann equation becomes
 \begin{equation}
     \frac{d}{dt} {\rho}_{SE}(t) = -i [{H}_I (t), {\rho}_{SE}(t)].
     \label{eq:neumann-diferencial}
@@ -98,7 +105,7 @@ With this picture changes, we can go back to the open quantum system discussion.
     \frac{d}{dt}{\rho}_{SE}(t) = -i [{H}_I(t), {\rho}_{SE}(0)] - \int_{0}^{t} ds [{H}_I(t), [{H}_I(s), {\rho}_{SE}(s)]].
 \end{equation}
 
-\noindent This equation still takes account of the environment's time evolution and degrees of freedom, which can be overwhelming to solve as previously discussed. To solve this issue, we will make some assumptions and approximations to describe only the system's dynamics including environmental effects. First, we will assume that the system-environment initial state is separable, meaning they are not correlated, ${\rho}_{SE} (0) = {\rho}_S (0) \otimes {\rho}_E (0)$. Next, we can do the Born approximation that consists of considering a weak interaction between the system and the environment, which keeps the global state (${\rho}_{SE} (t)$) separable throughout the evolution. Given that the environment have much more degrees of freedom than the system, we can assume that the weak effects of the system will not change the environment's state. As a result, the environment's state is constant in time and from now on denoted by ${\rho}_E$. Because we are interested in the system dynamics, we can trace out the environment degrees of freedom, resulting in
+\noindent This equation still takes account of the environment's time evolution and degrees of freedom, which can be overwhelming to solve as previously discussed. To solve this issue, we will make some assumptions and approximations to describe only the system's dynamics including environmental effects. First, we will assume that the system-environment initial state is separable, meaning they are not correlated, ${\rho}_{SE} (0) = {\rho}_S (0) \otimes {\rho}_E (0)$. Next, we can do the Born approximation that consists of considering a weak interaction between the system and the environment, which keeps the global state (${\rho}_{SE} (t)$) separable throughout the evolution. Given that the environment has much more degrees of freedom than the system, we can assume that the weak effects of the system will not change the environment's state. As a result, the environment's state is constant in time and from now on denoted by ${\rho}_E$. Because we are interested in the system dynamics, we can trace out the environment degrees of freedom, resulting in
 \begin{equation}
     \frac{d}{dt} {\rho}_{S}(t) = -i \text{Tr}_E[{H}_I(t), {\rho}_S (0) \otimes {\rho}_E] - \int_{0}^{t} ds \text{Tr}_E[{H}_I(t), [{H}_I(s), {\rho}_S (s) \otimes {\rho}_E]].
 \end{equation}
@@ -115,7 +122,7 @@ Although Eq. \eqref{eq:redfield} can describe the relaxation of open quantum sys
     \label{eq:HI-AkBk}
 \end{equation}
 
-\noindent where $A$ and $B$ are hermitian operators acting on the system and the environment, respectively. The next step is to write ${A}$ in terms of the eigenstates of the system's Hamiltonian, ${H}_S \ket{n} = \lambda_n \ket{n}$. To make the secular approximation, we will separate this operator as ${A} = \sum_\omega {A} (\omega)$, where
+\noindent where $A$ and $B$ are Hermitian operators acting on the system and the environment, respectively. The next step is to write ${A}$ in terms of the eigenstates of the system's Hamiltonian, ${H}_S \ket{n} = \lambda_n \ket{n}$. To make the secular approximation, we will separate this operator as ${A} = \sum_\omega {A} (\omega)$, where
 \begin{equation}
     {A} (\omega) = \sum_{\substack{n,m \\ \omega = \lambda_m - \lambda_n}} \ket{n}\bra{n} {A} \ket{m}\bra{m},
     \label{eq:Ak-w}
@@ -145,7 +152,7 @@ Although Eq. \eqref{eq:redfield} can describe the relaxation of open quantum sys
     \end{split}
 \end{equation}
 
-\noindent where $\text{h.c}$ means hermitian conjugate and
+\noindent where $\text{h.c}$ means Hermitian conjugate and
 \begin{equation}
     \Gamma (\omega) = \int_0^{\infty} ds e^{i\omega s} \braket{{B}^\dagger (t) {B} (t-s)}_E,
 \end{equation}
@@ -167,7 +174,7 @@ Although Eq. \eqref{eq:redfield} can describe the relaxation of open quantum sys
     \label{eq:gamma-coef}
 \end{equation}
 
-\noindent and $S (\omega)$ produce slight changes on the system's energy levels, which are included in the Lamb shift Hamiltonian 
+\noindent and $S (\omega)$ produce slight changes on the system's energy levels, which are included in the Lamb shift Hamiltonian \cite{petruccione-book}
 \begin{equation}
     {H}_{LS} = \sum_\omega S (\omega) {A}^\dagger (\omega) {A} (\omega).
     \label{eq:hamiltonian-lamb-shift}
@@ -203,19 +210,19 @@ An important class of Lindblad master equations is the Davies maps, which genera
     {\rho}_{ss} = \frac{e^{-\beta {H}_S}}{\mathcal{Z}_S},
 \end{equation}
 
-\noindent where $\mathcal{Z}_S = \text{Tr}[\exp(-\beta {H}_S)]$ is the partition function. An important characteristic of this dynamics is that it represent processes that obey the detailed balance condition, meaning that the transition rates $\gamma (\omega)$ (Eq. \eqref{eq:gamma-coef}) must satisfy
+\noindent where $\mathcal{Z}_S = \text{Tr}[\exp(-\beta {H}_S)]$ is the partition function. An important characteristic of this dynamics is that it represent processes that obey the detailed balance condition, meaning that the transition rates $\gamma (\omega)$ in Eq. \eqref{eq:gamma-coef} must satisfy
 \begin{equation}
     \gamma(-\omega) = \gamma (\omega) e^{-\beta \omega}.
     \label{eq:detailed-balance}
 \end{equation}
 
-\noindent Given these conditions, the jump operators of the Davies map have a specific format. Let's rewrite the dissipator (Eq. \eqref{eq:dissipator}) as
+\noindent Given these conditions, the jump operators of the Davies map have a specific format. Let's rewrite the dissipator Eq. \eqref{eq:dissipator} as
 \begin{equation}
     \mathcal{D}({\rho}_S) = \sum_\omega {L}_\omega {\rho}_S {L}_\omega^\dagger - \frac{1}{2} \{ {L}_\omega^\dagger {L}_\omega , {\rho}_S \},
     \label{eq:dissipator-L}
 \end{equation}
 
-\noindent defining the jump operators as ${L}_\omega = \sqrt{\gamma (\omega)} {A}(\omega)$. To compute the transition rate, $\gamma (\omega)$, according to Eq. \eqref{eq:gamma-coef}, we assume that our environment is a thermal bath. The thermal bath can be described by a set of infinite independent harmonic oscillators, ${H}_E = \sum_k \omega_k {b}_k^\dagger {b}_k$, where $\omega_k$ is the frequency of the $k$-mode, and ${b}_k$ and ${b}_k^\dagger$ are the annihilation and creation operators of the $k$-mode. That said, the hermitian operator from Eq. \eqref{eq:HI-AkBk} is ${B} = \sum_k (g_k {b}_k^\dagger + g_k^* {b}_k)$, which in the interaction picture becomes
+\noindent defining the jump operators as ${L}_\omega = \sqrt{\gamma (\omega)} {A}(\omega)$. To compute the transition rate, $\gamma (\omega)$, according to Eq. \eqref{eq:gamma-coef}, we assume that our environment is a thermal bath. The thermal bath can be described by a set of infinite independent harmonic oscillators, ${H}_E = \sum_k \omega_k {b}_k^\dagger {b}_k$, where $\omega_k$ is the frequency of the $k$-mode, and ${b}_k$ and ${b}_k^\dagger$ are the annihilation and creation operators of the $k$-mode. That said, the Hermitian operator from Eq. \eqref{eq:HI-AkBk} is ${B} = \sum_k (g_k {b}_k^\dagger + g_k^* {b}_k)$, which in the interaction picture becomes
 \begin{equation}
     {B} (s) = \sum_k (g_k {b}_k^\dagger e^{i \omega_k s} + g_k^* {b}_k e^{-i \omega_k s}),
 \end{equation}
@@ -236,7 +243,7 @@ An important class of Lindblad master equations is the Davies maps, which genera
     &\gamma (+\omega) = 2\pi \sum_k |g_k|^2 (\bar{n}(\omega_k) + 1) \delta(\omega - \omega_k).
 \end{align}
 
-\noindent Assuming that the infinite harmonic oscillators of the bath have close frequencies, we can convert from discrete to continuum space by transforming the sum into an integral in $\omega$, $g_k$ into a function $g(\omega)$ and including the density function of the bath's states $d(\omega)$. The solution of this new integral gives transition rates that respect the detailed balance (Eq. \eqref{eq:detailed-balance}),
+\noindent Assuming that the infinite harmonic oscillators of the bath have close frequencies, we can convert from discrete to continuum space by transforming the sum into an integral in $\omega$, $g_k$ into a function $g(\omega)$ and including the density function of the bath's states $d(\omega)$. The solution of this new integral gives transition rates that respect the detailed balance Eq. \eqref{eq:detailed-balance},
 \begin{align}
     &\gamma (-\omega) = \Gamma (\omega) \bar{n}(\omega),\\
     &\gamma (+\omega) = \Gamma (\omega) (\bar{n}(\omega) + 1),
@@ -250,11 +257,13 @@ An important class of Lindblad master equations is the Davies maps, which genera
 
 \noindent where each dissipator's jump operator is
 \begin{align}
-    &L_\omega^{+} = \sqrt{\Gamma (\bar{n}(\omega)+1)} \bra{n}{A}\ket{m} \ket{n}\bra{m},\\
+    &L_\omega^{+} = \sqrt{\Gamma (\bar{n}(\omega)+1)} \bra{n}{A}\ket{m} \ket{n}\bra{m},
+    \label{eq:jump-lindblad+}\\
     &L_\omega^{-} = \sqrt{\Gamma \bar{n}(\omega)} \bra{m}{A}^\dagger\ket{n} \ket{m}\bra{n},
+    \label{eq:jump-lindblad-}
 \end{align}
 
-\noindent and we used the definition of ${A}(\omega) = {A}^\dagger(-\omega)$ in Eq. \eqref{eq:Ak-w} and that $m<n$. The physical interpretation of these operators is that $L_\omega^{+}$ describes the absorption process (system gain energy) and the $L_\omega^{-}$ describes the spontaneous emission process (system loses energy).
+\noindent and we used the definition of ${A}(\omega) = {A}^\dagger(-\omega)$ in Eq. \eqref{eq:Ak-w} and that $m>n$ for increasing ordering of the Hamiltonian eigenvalues. The physical interpretation of these operators is that $L_\omega^{+}$ describes the absorption process (system gain energy) and the $L_\omega^{-}$ describes the spontaneous emission process (system loses energy).
 
 After discussing some of the open quantum systems theory, it is always helpful to solve an example. Below, we will solve the thermalisation of one qubit and a single-mode harmonic oscillator, whose solution will be used later in this work's results.
 

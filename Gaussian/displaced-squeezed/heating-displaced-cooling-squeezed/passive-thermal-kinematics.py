@@ -132,12 +132,12 @@ for i in range(2):
     plt.plot(tlist, completion_p_displace, color='red', linestyle=symbols[i], linewidth=2, label=r'$\mu$ = '+f'{muList[i]:.2f}')
     plt.plot(tlist, completion_p_squeezing, color='blue', linestyle=symbols[i], linewidth=2, label=r'$r$ = '+f'{rList[i]:.2f}')
     
-plt.xlabel('Time', fontsize=12)
-plt.ylabel('Degree of Completion', fontsize=12)
-plt.title('Passive State', fontsize=14)
-plt.xticks(fontsize=12)
-plt.yticks(fontsize=12)
-plt.legend(fontsize=12)
+plt.xlabel('Time', fontsize=14)
+plt.ylabel('Degree of Completion', fontsize=14)
+plt.title('Passive State', fontsize=16)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
+plt.legend(fontsize=14)
 
 plt.show()
     

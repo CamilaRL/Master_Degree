@@ -131,8 +131,7 @@ for i in range(0,2,1):
     plt.ylim(top=0.6)
     plt.xlim(left=0.1)
     plt.title(f'r = {rc:.2f}', fontsize=16)
-    plt.xlabel('Time', fontsize=14)
-    plt.xticks(fontsize=14)
+    plt.xticks([])
     plt.yticks(fontsize=14)
     plt.ylabel('Entropy Production Rate', fontsize=14)  
     plt.tight_layout()
@@ -140,6 +139,8 @@ for i in range(0,2,1):
     
     if i == 1:
         plt.legend(loc='best', bbox_to_anchor=(1, 0.4),fontsize=14)
+        plt.xlabel('Time', fontsize=14)
+        plt.xticks(fontsize=14)
         
         # Inset do passivo
         ax_inset = inset_axes(fig_heating, width="40%", height="40%", loc="upper right", borderpad=2.5)
@@ -164,10 +165,13 @@ for i in range(0,2,1):
     plt.ylim(top=0.6)
     plt.xlim(left=0.1)
     plt.title(f'r = {rh:.2f}', fontsize=16)
-    plt.xlabel('Time', fontsize=14)
-    plt.xticks(fontsize=14)
+    plt.xticks([])
     plt.yticks([])
     plt.legend(fontsize=14)
+
+    if i==1:
+        plt.xlabel('Time', fontsize=14)
+        plt.xticks(fontsize=14)
     
     plt.tight_layout()
     plt.show()

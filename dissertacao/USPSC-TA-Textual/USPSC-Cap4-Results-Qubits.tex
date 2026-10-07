@@ -35,11 +35,11 @@ There are different ways to measure the coherence of a state, with the relative 
     \label{eq:relative-coherence}
 \end{equation}
 
-\noindent that is a minimization over all the set of incoherent states $I$ of the relative entropy between the state we want to measure ${\rho}$ and the incoherent state ${\sigma}$ \cite{streltsov-2017, baumgratz-2014}. The last equality is obtained by using that we can separate any density matrix into a diagonal part ${\rho}_d = \sum_i \ket{i}\bra{i} {\rho} \ket{i}\bra{i}$ and a coherent part, which allow us to rewrite the relative entropy as $D[{\rho} || {\sigma}] = S({\rho}_d) - S({\rho}) + D[{\rho}_d || {\sigma}]$. The minimization over ${\sigma}$ of this expression, means that ${\rho}_d = {\sigma}$, resulting the last equality in Eq. \eqref{eq:relative-coherence}. Using this measure, we can prove that the maximally coherent state have maximum values of the off-diagonal elements, resulting in the pure state $\ket{\psi_{MCS}} = d^{-1} \sum_{i=0}^{d} \ket{i}$ that has $C_R ({\rho}) = \log d$ \cite{baumgratz-2014}.
+\noindent that is a minimization over all the set of incoherent states $I$ of the relative entropy between the state we want to measure ${\rho}$ and the incoherent state ${\sigma}$ \cite{streltsov-2017, baumgratz-2014}. The last equality is obtained by using that we can separate any density matrix into a diagonal part ${\rho}_d = \sum_i \ket{i}\bra{i} {\rho} \ket{i}\bra{i}$ and a coherent part, which allow us to rewrite the relative entropy in terms of the von Neumann entropy as $D[{\rho} || {\sigma}] = S({\rho}_d) - S({\rho}) + D[{\rho}_d || {\sigma}]$. The minimization over ${\sigma}$ of this expression, means that ${\rho}_d = {\sigma}$. Using this measure, we can prove that the maximally coherent state have maximum values of the off-diagonal elements, resulting in the pure state $\ket{\psi_{MCS}} = d^{-1} \sum_{i=0}^{d} \ket{i}$ that has $C_R ({\rho}) = \log d$ \cite{baumgratz-2014}.
 
 Coherence has non-trivial consequences in thermodynamic processes and, for this reason, investigating its effects in the heating-cooling asymmetry can be interesting. One example of how coherence affects thermodynamics is that coherence in the energy basis can increase the ergotropy of the state, which means it can be exploited as a resource for work extraction \cite{francica-2020}. However, there are cases where coherence can be detrimental for physical processes, such as in some stages of quantum battery operations \cite{campaioli-2024} and in thermal relaxation processes \cite{krissia-2024}.
 
-When we have two or more quantum systems, they can share information through classical and quantum correlations. There are a variety of quantum correlations that can be organised as a hierarchy, being coherence the necessary condition for all of them \cite{adesso-2016}. In this work, we will only study the bipartite entanglement, that is the entanglement between two parts. Consider a composite system whose global state can be written as a product state, $\ket{\psi}_{AB} = \ket{\alpha}_A \otimes \ket{\beta}_B$. This means that the subsystems $A$ and $B$ are separable. When we cannot write the global state as a product state, the system is said to be entangled \cite{adesso-2016}. In the density matrices formulation, separable states can be decomposed into local pure mixed states,
+When we have two or more quantum systems, they can share information through classical and quantum correlations. There are a variety of quantum correlations that can be organised as a hierarchy, being coherence the necessary condition for all of them \cite{adesso-2016}. In this work, we will only study the bipartite entanglement, that is the entanglement between two parts. Consider a composite system whose global state can be written as a product state, $\ket{\psi}_{AB} = \ket{\alpha}_A \otimes \ket{\beta}_B$. This means that the subsystems $A$ and $B$ are separable. When we cannot write the global state as a product state, the system is said to be entangled \cite{adesso-2016}. In the density matrices formulation, separable states can be decomposed into local states,
 \begin{equation}
     {\rho} = \sum_i p_i {\rho}_i^A \otimes {\rho}_i^B.
     \label{eq:rho-separavel}
@@ -51,7 +51,9 @@ When we have two or more quantum systems, they can share information through cla
     \label{eq:mutual-info}
 \end{equation}
 
-\noindent where $S(\rho)$ is the von Neumann entropy, ${\rho}_A$ and ${\rho}_B$ are parts of the global state ${\rho}_{AB}$ \cite{chuang-book}. This quantity indicates how much information is shared through both classical and quantum correlations, meaning it cannot be used alone as a signature of quantumness. In this work, we are only interested in using bipartite entanglement, for which we can use a specific quantifier, namely entanglement of formation (EoF), which is defined as
+\noindent where $S(\rho)$ is the von Neumann entropy, ${\rho}_A$ and ${\rho}_B$ are parts of the global state ${\rho}_{AB}$ \cite{chuang-book}. This quantity indicates how much information is shared through both classical and quantum correlations, meaning it cannot be used alone as a signature of quantumness.
+
+In this work, we are only interested in using bipartite entanglement, for which we can use a specific quantifier, namely entanglement of formation (EoF), which for two qubits can be written as
 \begin{equation}
     E_f ({\rho}) = H \left( \frac{1+\sqrt{1-C({\rho})^2}}{2} \right),
     \label{eq:eof}
@@ -63,7 +65,7 @@ When we have two or more quantum systems, they can share information through cla
     \label{eq:concurrence}
 \end{equation}
 
-\noindent is the concurrence for the case of two qubits\footnote{The general definition can be found in Ref. \cite{adesso-2016}} with $\lambda_i > \lambda_j$ for $i<j$ being the square root of the eigenvalues of the matrix $R = \rho \tilde{\rho}$. To find $R$, first we take complex conjugation of each matrix element obtaining $\rho^*$ and then we compute the time-reversed matrix $\tilde{\rho} = (\sigma_y \otimes \sigma_y) \rho^* (\sigma_y \otimes \sigma_y)$ \cite{rigolin-2010}.
+\noindent is the concurrence for the case of two qubits\footnote{The general definition can be found in Ref. \cite{adesso-2016}} with $\lambda_i > \lambda_j$ for $i<j$ being the square root of the eigenvalues of the matrix $R = \rho \tilde{\rho}$. To find $R$, first we take complex conjugation of each matrix element obtaining $\rho^*$ and then we compute the time-reversed matrix $\tilde{\rho} = (\sigma_y \otimes \sigma_y) \rho^* (\sigma_y \otimes \sigma_y)$ \cite{rigolin-2010}. Given that a zero concurrence represents separable states and that concurrence equal to one occurs for maximally entangled states, we using concurrence to find out if a state is entangled is enough, making unecessary further calculations from EoF in this case.
 
 Entanglement is widely used as a quantum resource in communication and computation \cite{chitambar-2019}, and it can also bring advantages in thermodynamic processes. For example, refrigerators can make entangled systems reach lower temperatures than non-correlated states \cite{alba-2026}. Another example is that entanglement can help extract more work in quantum batteries \cite{alicki-2013}.
 
@@ -84,7 +86,7 @@ The two-interaction-qubit model we will use can be described by
 
 \begin{figure}[t!]
     \centering
-    \includegraphics[width=0.35\linewidth]{Images/Qubits/model-2-qubits.png}
+    \includegraphics[width=0.35\linewidth]{Images/Qubits/model-2-qubits.pdf}
     \caption{\small Illustration of two interacting qubits in contact with a global bath. The red qubit is at a colder temperature $T_c$ and will heat up to the bath's temperature $T_w$. The blue qubit is at a hotter temperature $T_h$ and will cool down to the bath's temperature $T_w$. The qubits can interact with a strength $J$.}
      \vspace{0.1cm}
     {\small Source: By the author}
@@ -115,9 +117,9 @@ As discussed in Sec. \ref{sec:correlations}, the positivity of every density mat
     \label{eq:initial-rho}
 \end{equation}
 
-\noindent where $\beta_i = 1/T_i$ and the partition function is $\mathcal{Z}_i = 2 \cosh(\beta_i \omega_0 / 2)$ with $i = (c,h)$. After its diagonalization, we obtain that the maximum value for $|e|$ and $|f|$ is $1/\mathcal{Z}_c \mathcal{Z}_h$. Even though this initial state can have coherence, this limitation for the off-diagonal elements makes it impossible to have entanglement according to the requirements in Ref. \cite{ali-2010}.
+\noindent where $\beta_i = 1/T_i$ and the partition function is $\mathcal{Z}_i = 2 \cosh(\beta_i \omega_0 / 2)$ with $i = (c,h)$. After its diagonalization, we obtain that the maximum value for $|e|$ and $|f|$ is $1/\mathcal{Z}_c \mathcal{Z}_h$. Even though this initial state can have coherence, it will never be initially entangled according to the requirements in Ref. \cite{ali-2010}, because of this limitation for the off-diagonal elements.
 
-To study the thermal relaxation of this model and initial state, we will use the Davies maps presented in Sec. \ref{sec:davies-maps}. As we previously discussed, the steady state of this dynamics is always a thermal state in the Hamiltonian eigenbasis, but, in the computational basis, it becomes
+To study the thermal relaxation of this model and initial state, we will use the Davies maps presented in Sec. \ref{sec:davies-maps}. The explicit form of the jump operators used are presented in Appx. \ref{apx:lindblad-qubits}. As we previously discussed, the steady state of this dynamics is always a thermal state in the Hamiltonian eigenbasis, but, in the computational basis, it becomes
 \begin{equation}
     \begin{split}
         \rho_{ss}^{G} &= \frac{e^{-\beta_w H_S}}{\mathcal{Z}_S}\\
@@ -134,8 +136,8 @@ To study the thermal relaxation of this model and initial state, we will use the
 
 \begin{figure}[b!]
     \centering
-    \includegraphics[width=\linewidth]{Images/Qubits/correlations-J.png}
-    \caption{\small Quantifiers of correlations in the global thermal state (Eq. \eqref{eq:global-steady-state}) caused by the qubits' interaction. Concurrence (left), entanglement of formation (right), and mutual information as a function of the interaction parameter $J$.}
+    \includegraphics[width=\linewidth]{Images/Qubits/correlations-J.pdf}
+    \caption{\small Quantifiers of correlations in the global thermal state (Eq. \eqref{eq:global-steady-state}) caused by the qubits' interaction. Concurrence (left), entanglement of formation (middle), and mutual information as a function of the interaction parameter $J$ (right).}
      \vspace{0.1cm}
     {\small Source: By the author}
     \label{fig:C-EoF-MI}
@@ -145,7 +147,7 @@ To study the thermal relaxation of this model and initial state, we will use the
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.5\linewidth]{Images/Qubits/qubit-final-T.png}
+    \includegraphics[width=0.5\linewidth]{Images/Qubits/qubit-final-T.pdf}
     \caption{\small Final temperature of the qubits (Eq. \eqref{eq:qubit-final-T}) as a function of the interaction parameter $J$.}
      \vspace{0.1cm}
     {\small Source: By the author}
@@ -168,8 +170,7 @@ The presence of correlations between the qubits affects their local steady state
     \label{eq:qubit-final-T}
 \end{equation}
 
-\noindent which is smaller than the bath's temperature for $J>0$, as shown in Fig. \ref{fig:qubit-final-T}. It must be emphasised that the global system thermalises to the bath's temperature, as we calculated in Eq. \eqref{eq:global-steady-state}. However, because the interaction between the qubits generates correlations (as signalled by the mutual information), tracing out one of them erases part of the information, which changes the qubit's populations, resulting in a different local temperature.
-
+\noindent which is smaller than the bath's temperature for $J>0$, as shown in Fig. \ref{fig:qubit-final-T}. This occurs because the interaction between the qubits generates correlations (as signalled by the mutual information), tracing out one of them erases part of the information, which changes the qubit's populations, resulting in a different local temperature. However, it must be emphasised that the global system thermalises to the bath's temperature, as we calculated in Eq. \eqref{eq:global-steady-state}.
 
 Now that we have discussed the interaction model between the qubits and the structure of the initial and final states, we can analyse how the heating-cooling asymmetry behaves for our system. In the next section, we present our results and how we obtained them. 
 
@@ -187,7 +188,7 @@ Before solving the dynamics for our model and analysing the asymmetry, it is imp
 
 \begin{figure}[b!]
     \centering
-    \includegraphics[width=\linewidth]{Images/Qubits/same-D-qubits.png}
+    \includegraphics[width=\linewidth]{Images/Qubits/same-D-qubits.pdf}
     \caption{\small Relative entropy of a thermal qubit and its equilibrium state as a function of its ground state population. The orange curve is obtained by varying the qubit's temperature and the orange dot corresponds to the equilibrium state. The black line indicates the chosen initial relative entropy that both hot (red dot) and cold (blue dot) qubits must have. The left plot is the no-interaction case, while the right plot show the interaction case with $J = 0.8$.}
      \vspace{0.1cm}
     {\small Source: By the author}
@@ -197,11 +198,11 @@ Before solving the dynamics for our model and analysing the asymmetry, it is imp
 \noindent where we use the relative entropy definition from Eq. \eqref{eq:relative-entropy}. This equality can be numerically solved by varying the initial temperature of the qubit's thermal state and computing its relative entropy from $\rho_{ss}^q$. This will result is the orange curve in Fig. \ref{fig:same-D-qubits}, where the orange dot indicates the equilibrium state with inverse temperature $\beta_{f}^{q}$. Then, we can find the points where this orange curve is equal to the initial relative entropy $D_0$ (black line). Using that the population of the ground state, $\bra{0}\rho\ket{0} = \exp(\omega_0/2T_i)/2\cosh(\omega_0/2T_i)$ with $i=(c,h)$, we can find the initial cold (blue dot) and hot (red dot) temperatures that the qubits must have to be thermodynamically equivalent.
 
 
-With this initialisation of our system, we can analyse the heating and cooling asymmetry. In the next figures, heating and cooling are represented in red and blue, respectively. Dashed lines indicate the non-interaction case ($J = 0$), while solid lines represent the interaction case without entanglement ($J = 0.8$). The degree of completion (defined by Eq. \eqref{eq:completion}) is shown in Fig. \ref{fig:completion-xx} for the case without initial coherence (left) and the case with maximum initial coherence (right). When comparing heating and cooling, the red lines are above their corresponding blue lines, so we conclude that heating is faster than cooling. Using this same idea, we see that the interaction between qubits allows a faster relaxation. Furthermore, only for the interaction case, the initial coherence seems to affect the intermediary dynamics by delaying cooling, which increases the asymmetry while keeping the total relaxation time unchanged. These same observations can also be obtained from the statistical velocity (defined by Eq. \eqref{eq:velocidade}) shown in Fig. \ref{fig:velocity-xx}. In addition to this, note that the interaction case has many oscillations in both degree of completion and statistical velocity, which will be discussed later.
+With this initialisation of our system, we can analyse the heating and cooling asymmetry. In the next figures, heating and cooling are represented in red and blue, respectively. Dashed lines indicate the non-interaction case ($J = 0$), while solid lines represent the interaction case without entanglement ($J = 0.8$). The degree of completion (defined by Eq. \eqref{eq:completion}) is shown in Fig. \ref{fig:completion-xx} for the case without initial coherence (left) and the case with maximum initial coherence (right). When comparing heating and cooling, the red lines are above their corresponding blue lines, so we conclude that heating is faster than cooling. Using this same idea, we see that the interaction between qubits allows a faster relaxation. Furthermore, only for the interaction case, the initial coherence seems to affect the intermediary dynamics by delaying cooling, which increases the asymmetry while keeping the total relaxation time unchanged. These same observations can also be obtained from the statistical velocity (defined by Eq. \eqref{eq:velocidade}) shown in Fig. \ref{fig:velocity-xx}. In addition to this, note that the interaction case has many oscillations in both degree of completion and statistical velocity, which will be discussed later. Another behaviour that we observe is that the heating and cooling curves becomes more separated for the interaction case with maximum initial coherence, which means there is an increase in the asymmetry.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.8\linewidth]{Images/Qubits/XX/completion-xx.png}
+    \includegraphics[width=0.8\linewidth]{Images/Qubits/completion-xx.pdf}
     \caption{\small Degree of completion for XX-model. Each line corresponds to cooling (blue) or heating (red) processes with (solid) or without (dashed) interaction between qubits.}
      \vspace{0.1cm}
     {\small Source: By the author}
@@ -210,18 +211,24 @@ With this initialisation of our system, we can analyse the heating and cooling a
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.8\linewidth]{Images/Qubits/XX/velocity-xx.png}
+    \includegraphics[width=0.8\linewidth]{Images/Qubits/velocity-xx.pdf}
     \caption{\small Statistical velocity for XX-model. Each line corresponds to cooling (blue) or heating (red) processes with (solid) or without (dashed) interaction between qubits.}
      \vspace{0.1cm}
     {\small Source: By the author}
     \label{fig:velocity-xx}
 \end{figure}
 
-Previous works have stated that heating is faster than cooling because it has higher entropy production \cite{tejero-misc-2025, ibanez-2024}. As we noticed that the interaction case relaxes faster than the no-interaction case, we could also try to use the argument that the faster process has higher entropy production. In Fig. \ref{fig:sprod-xx}, we show the entropy production rate (defined in Eq. \eqref{eq:sprod}) as a function of time. First, heating without interaction has higher entropy production than cooling, which agrees with previous works \cite{tejero-misc-2025, ibanez-2024}. However, the interaction case has many oscillations, and heating entropy production is not always bigger than cooling entropy production. Additionally, the entropy production of the interaction case becomes negative for some time intervals. If we recall that entropy is related to the lack of information, negative entropy production means the system is gaining information instead of losing it to the environment, which seems like a violation of the second law of thermodynamics. This gain of information is also called information backflow and is related to non-Markovian dynamics \cite{breuer-2015}. It is important to emphasise that the global state evolution is given by a Markovian master equation as defined in Chap. \ref{cap:oqs}. However, the Born-Markov approximations are not always valid for the dynamics of the subsystem. In our case, when tracing out one of the qubits, the remaining one will perceive a structured bath where the energy and information shared through correlations between the qubits are faster than the dissipation to the environment. As a result, the subsystem can have the information backflow. This problem has already been studied before and it was shown that negative entropy production can be a witness of non-Markovianity \cite{popovic-2018, marcantoni-2017}. So a conclusion from this analysis is that non-Markovianity may help the system relax faster.
+Previous works have stated that heating is faster than cooling because it has higher entropy production \cite{tejero-misc-2025, ibanez-2024}. As we noticed that the interaction case relaxes faster than the no-interaction case, we could also try to use the argument that the faster process has higher entropy production. In Fig. \ref{fig:sprod-xx}, we show the entropy production rate (defined in Eq. \eqref{eq:sprod}) as a function of time. First, heating without interaction has higher entropy production than cooling, which agrees with previous works \cite{tejero-misc-2025, ibanez-2024}. However, the interaction case has many oscillations, and heating entropy production is not always bigger than cooling entropy production. Additionally, the entropy production of the interaction case becomes negative for some time intervals. If we recall that entropy is related to the lack of information, negative entropy production means the system is gaining information instead of losing it to the environment, which may seems like a violation of the second law of thermodynamics. In our model, we can understand this behaviour as a consequence of erasing part of the information shared through correlations between the qubits when tracing out one of them, which can explain why local negative entropy production does not violate the second law. Mathematically, we can see this by taking the time derivative of the mutual information defined in Eq. \eqref{eq:mutual-info} and using that $\frac{d}{dt} S(\rho) = - \Pi_\rho + \text{Tr} [\dot{\rho} \ln \rho_{\text{eq}}]$ to find that
+
+\begin{equation}
+	\Pi_\rho = \Pi_{\rho_c} + \Pi_{\rho_h} - \frac{d}{dt} \mathcal{M}(\rho) - \text{Tr} [\dot{\rho}_c \ln \rho_{ss}^q] - \text{Tr} [\dot{\rho}_h \ln \rho_{ss}^q] + \text{Tr} [\dot{\rho} \ln \rho_{ss}].
+\end{equation}
+
+\noindent This expression shows that the entropy production of the global state has contributions from correlations in addition to the subsystems' entropy productions and other terms. Because these correlations are faster than the dissipation to the environment, the Born-Markov approximations are not always valid for the dynamics of the subsystem. Previous studies such as Refs.  \cite{popovic-2018, landi-2004, marcantoni-2017} have shown that information backflow indicates that the subsystems have a non-Markovian dynamics even though the global state evolution is still Markovian as described in Chap.  \ref{cap:oqs} \cite{breuer-2015}. As a result, it is valid to interpretate the negative entropy production as a witness of non-Markovianity. Combining this discussion with our results, we can conclude that non-Markovianity in the interaction case may have helped the system to relax faster. 
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.8\linewidth]{Images/Qubits/XX/sprod-xx.png}
+    \includegraphics[width=0.8\linewidth]{Images/Qubits/sprod-xx.pdf}
     \caption{\small Entropy production rate for the XX-model. Each line corresponds to cooling (blue) or heating (red) processes with (solid) or without (dashed) interaction between qubits.}
      \vspace{0.1cm}
     {\small Source: By the author}
@@ -232,11 +239,13 @@ Up to this point, we have only discussed an interaction case that do not generat
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.9\linewidth]{Images/Qubits/XX/completion-assimetria-xx.png}
+    \includegraphics[width=0.9\linewidth]{Images/Qubits/completion-assimetria-xx.pdf}
     \caption{\small Degree of completion for heating (red) and cooling (blue) states with zero (left) or maximum (right) initial coherence. The interaction parameters used are $J=0$ (dashed), $J=0.8$ (solid), and $J=1.6$ (dotted).}
      \vspace{0.1cm}
     {\small Source: By the author}
     \label{fig:completion-all-J-xx}
 \end{figure}
+
+
 
 

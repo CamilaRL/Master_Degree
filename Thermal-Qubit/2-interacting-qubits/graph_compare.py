@@ -26,7 +26,7 @@ def Read_Velocidade(c, modo, g):
 
 modoList = ['Cooling', 'Heating']
 
-titulo = ['Zero Initial Coherence', 'Maximum Initial Coherence']
+titulo = [r'$\chi$ = 0', r'$\chi$ = $1/ \mathcal{Z}_c \mathcal{Z}_h$']
 
 cList = ['min', 'max']
 

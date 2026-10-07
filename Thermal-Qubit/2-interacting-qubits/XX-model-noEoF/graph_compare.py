@@ -26,7 +26,7 @@ def Read_Velocidade(c, modo, g):
 
 modoList = ['Cooling', 'Heating']
 
-titulo = ['Zero Initial Coherence', 'Maximum Initial Coherence']
+titulo = [r'$\chi$ = 0', r'$\chi$ = $1/ \mathcal{Z}_c \mathcal{Z}_h$']
 
 cList = ['min', 'max']
 
@@ -48,8 +48,8 @@ for i in range(len(cList)):
     tlist_r1, completion_r1 = Read_Completion(cList[i], modoList[0], glist[1])
     tlist_a1, completion_a1 = Read_Completion(cList[i], modoList[1], glist[1])
     
-    plt.plot(tlist_a0, completion_a0, color='red', linestyle='--', linewidth=2, label='J = 0 - Heating')
-    plt.plot(tlist_r0, completion_r0, color='blue', linestyle='--', linewidth=2, label='J = 0 - Cooling')
+    plt.plot(tlist_a0, completion_a0, color='red', linestyle='--', linewidth=2, label='J = 0.0 - Heating')
+    plt.plot(tlist_r0, completion_r0, color='blue', linestyle='--', linewidth=2, label='J = 0.0 - Cooling')
     
     plt.plot(tlist_a1, completion_a1, color='red', linewidth=2, label='J = 0.8 - Heating')
     plt.plot(tlist_r1, completion_r1, color='blue', linewidth=2, label='J = 0.8 - Cooling')
@@ -80,8 +80,8 @@ for i in range(len(cList)):
     tlist_r1, velocidade_r1 = Read_Velocidade(cList[i], modoList[0], glist[1])
     tlist_a1, velocidade_a1 = Read_Velocidade(cList[i], modoList[1], glist[1])
     
-    plt.plot(tlist_a0, velocidade_a0, color='red', linestyle='--', linewidth=2, label='J = 0 - Heating')
-    plt.plot(tlist_r0, velocidade_r0, color='blue', linestyle='--', linewidth=2, label='J = 0 - Cooling')
+    plt.plot(tlist_a0, velocidade_a0, color='red', linestyle='--', linewidth=2, label='J = 0.0 - Heating')
+    plt.plot(tlist_r0, velocidade_r0, color='blue', linestyle='--', linewidth=2, label='J = 0.0 - Cooling')
     
     plt.plot(tlist_a1, velocidade_a1, color='red', linewidth=2, label='J = 0.8 - Heating')
     plt.plot(tlist_r1, velocidade_r1, color='blue', linewidth=2, label='J = 0.8 - Cooling')
@@ -113,8 +113,8 @@ for i in range(len(cList)):
     t_sigma_am, sigma_am = np.loadtxt(f'./Thermodynamics/dSr_q1_c{cList[i]}_g{glist[1]}.txt', unpack=True)
     t_sigma_rm, sigma_rm = np.loadtxt(f'./Thermodynamics/dSr_q2_c{cList[i]}_g{glist[1]}.txt', unpack=True)
     
-    plt.plot(t_sigma_a0, sigma_a0, color='red', linestyle='--', linewidth=2, label='J = 0 - Heating')
-    plt.plot(t_sigma_r0, sigma_r0, color='blue', linestyle='--', linewidth=2, label='J = 0 - Cooling')
+    plt.plot(t_sigma_a0, sigma_a0, color='red', linestyle='--', linewidth=2, label='J = 0.0 - Heating')
+    plt.plot(t_sigma_r0, sigma_r0, color='blue', linestyle='--', linewidth=2, label='J = 0.0 - Cooling')
     
     plt.plot(t_sigma_am, sigma_am, color='red', linewidth=2, label='J = 0.8 - Heating')
     plt.plot(t_sigma_rm, sigma_rm, color='blue', linewidth=2, label='J = 0.8 - Cooling')

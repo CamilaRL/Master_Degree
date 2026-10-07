@@ -115,6 +115,297 @@ A general way to define an X-state is
 
 
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Lindblad operators for the two interacting qubits model.}
+\label{apx:lindblad-qubits}
+
+In Chap. \ref{cap:oqs}, we showed two examples of Lindblad operators for the Davies map of one qubit and one harmonic oscillator in contact with a thermal bath. In this appendix, we will show how these operators are for the two interacting qubits model used in Chap. \ref{cap:results-discrete}.
+
+The Hamiltonian from Eq. \eqref{eq:HS-qubit} in the matrix-form is
+\begin{equation}
+	H_S = \omega_0 \begin{bmatrix}
+        1& 0& 0& 0 \\
+        0& 0& 0& 0\\
+        0& 0& 0& 0\\
+        0& 0& 0& -1
+    \end{bmatrix}
+    = \sum_i \lambda_i \ket{i}\bra{i},
+\end{equation}
+
+\noindent where the eigenvalues $\lambda_0 = -\omega_0$, $\lambda_1 = \lambda_2 = 0$, and $\lambda_3 = \omega_0$. The eigenvectors are
+\begin{equation}
+\begin{array}{cccc}
+	\ket{0} = \begin{bmatrix}
+		0\\
+		0\\
+		0\\
+		1
+	\end{bmatrix}
+	&
+	\ket{1} = \begin{bmatrix}
+		0\\
+		0\\
+		1\\
+		0
+	\end{bmatrix}
+	&
+	\ket{2} = \begin{bmatrix}
+		0\\
+		1\\
+		0\\
+		0
+	\end{bmatrix}
+	&
+	\ket{3} = \begin{bmatrix}
+		1\\
+		0\\
+		0\\
+		0
+	\end{bmatrix}.
+\end{array}
+\end{equation}
+
+Now, we can subtitute these quantities in Eqs. \eqref{eq:jump-lindblad+} and \eqref{eq:jump-lindblad-} to find our jump operators $L_{mn}^{1}$ and $L_{mn}^{2}$, repectively. Note that we have not defined an operator $A$ for this model and that in the expressions we would need its matrix element. Given that this matrix element is a constant, we can include it in the other constant $\Gamma$. Also, to compute the Bose-Einstein distribution we use $\omega = \lambda_m - \lambda_n$ with $m>n$ with eigenvalues in increasing ordering and also removing when $\omega = 0$ because of degeneracies in the Hamiltonian. As a result, the jump operators used in the results from Chap. \ref{cap:results-discrete} are
+\begin{align}
+	&L_{10}^{1} = \sqrt{\Gamma (\bar{n}(\omega_0)+1)} \ket{0}\bra{1} & L_{10}^{2} = \sqrt{\Gamma \bar{n}(\omega_0)} \ket{1}\bra{0}\\
+	&L_{20}^{1} = \sqrt{\Gamma (\bar{n}(\omega_0)+1)} \ket{0}\bra{2} & L_{20}^{2} = \sqrt{\Gamma \bar{n}(\omega_0)} \ket{2}\bra{0}\\
+	&L_{30}^{1} = \sqrt{\Gamma (\bar{n}(2\omega_0)+1)} \ket{0}\bra{3} & L_{30}^{2} = \sqrt{\Gamma \bar{n}(2\omega_0)} \ket{3}\bra{0}\\
+	&L_{31}^{1} = \sqrt{\Gamma (\bar{n}(\omega_0)+1)} \ket{1}\bra{3} & L_{31}^{2} = \sqrt{\Gamma \bar{n}(\omega_0)} \ket{3}\bra{1}\\
+	&L_{32}^{1} = \sqrt{\Gamma (\bar{n}(\omega_0)+1)} \ket{2}\bra{3} & L_{32}^{2} = \sqrt{\Gamma \bar{n}(\omega_0)} \ket{3}\bra{2}.
+\end{align}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Mean vector and covariance matrix: from the quadrature basis to the complex phase-space basis.}
+\label{apx:change-basis}
+
+In Chap. \ref{cap:results-continuous}, we defined the mean vector and covariance matrix in the quadrature basis, which for a single mode has the form
+\begin{align}
+    &\mathbf{v} = \braket{R} = (\braket{q}, \braket{p})^T\\
+    &\Theta_{ij} = \frac{1}{2} \braket{R_i R_j + R_j R_i} - \braket{R_i} \braket{R_j}.
+\end{align}
+
+\noindent To change from this basis to the complex phase-space basis, we use Eqs. \eqref{eq:q-quadrature} and \eqref{eq:p-quadrature} to build the transformation matrix
+\begin{equation}
+    L = \frac{1}{\sqrt{2}} \begin{bmatrix}
+        1& 1\\
+        -i& i
+    \end{bmatrix}.
+\end{equation}
+
+\noindent This leads to the mean vector
+\begin{equation}
+    \mathbf{v}_\alpha = L^\dagger \mathbf{v} = \frac{1}{\sqrt{2}} \begin{bmatrix}
+        1& i\\
+        1& -i
+    \end{bmatrix}
+    \begin{bmatrix}
+        \braket{q}\\
+        \braket{p}
+    \end{bmatrix}= 
+    \begin{bmatrix} 
+        \braket{a}\\
+        \braket{a^\dagger}
+    \end{bmatrix}.
+\end{equation}
+
+\noindent For the covariance matrix, we have
+\begin{equation}
+    \begin{split}
+    \Theta_{\alpha} &= L^\dagger \Theta L\\ 
+    &= \frac{1}{2} \begin{bmatrix}
+    1& i\\
+    1& -i
+    \end{bmatrix}
+    \begin{bmatrix}
+    \Theta_{00}& \Theta_{01}\\
+    \Theta_{10}& \Theta_{11}
+    \end{bmatrix}
+    \begin{bmatrix}
+    1& 1\\
+    -i& i
+    \end{bmatrix}\\
+    &= \frac{1}{2} \begin{bmatrix}
+    \Theta_{00} + \Theta_{11}& \Theta_{00} - \Theta_{11} + 2i\Theta_{01}\\
+    \Theta_{00} - \Theta_{11} -2i\Theta_{10}& \Theta_{00} + \Theta_{11}
+    \end{bmatrix}
+    \end{split}.
+    \label{eq:covariance-alpha}
+\end{equation}
+
+\noindent Knowing that $\Theta_{ij} = \frac{1}{2} \braket{R_i R_j + R_j R_i} - \braket{R_i} \braket{R_j}$, each term of the covariance matrix becomes
+\begin{align}
+    \Theta_{00} &= \braket{R_0^2} - \braket{R_0}^2 = \braket{q^2} - \braket{q}^2 \nonumber\\
+    &= \frac{1}{2} \braket{a^{\dagger 2} + a^\dagger a+ a a^\dagger + a^2 } - \frac{1}{2} (\braket{a^\dagger}^2 + \braket{a}^2 + 2 \braket{a^\dagger} \braket{a})\\
+    \Theta_{11} &= \braket{R_1^2} - \braket{R_1}^2 = \braket{q^2} - \braket{q}^2 \nonumber\\
+    &= -\frac{1}{2} \braket{a^{\dagger 2} - a^\dagger a - a a^\dagger + a^2 } + \frac{1}{2} (\braket{a^\dagger}^2 + \braket{a}^2 - 2 \braket{a^\dagger} \braket{a})\\
+    \Theta_{01} &= \Theta_{10} = \frac{1}{2} (\braket{R_0 R_1} + \braket{R_1 R_0}) - \braket{R_0}\braket{R_1} \nonumber\\
+    &= \frac{i}{2} (\braket{a^{\dagger 2}} - \braket{a^\dagger}^2 - \braket{a^2} + \braket{a}^2 ).
+\end{align}
+
+\noindent By substituting these matrix elements in Eq. \eqref{eq:covariance-alpha}, we find that the covariance matrix in the complex phase-space basis is 
+\begin{equation}
+    \Theta_\alpha = \begin{bmatrix}
+        \frac{1}{2}(\braket{{a}^\dagger {a}} + \braket{{a} {a}^\dagger}) - \braket{{a}^\dagger} \braket{{a}} & \braket{{a}^2} - \braket{{a}}^2\\
+        \braket{{a}^{\dagger 2}} - \braket{{a}^\dagger}^2 & \frac{1}{2}(\braket{{a}^\dagger {a}} + \braket{{a} {a}^\dagger}) - \braket{{a}^\dagger} \braket{{a}}
+    \end{bmatrix}.
+\end{equation}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Wigner entropy and Wigner relative entropy in terms of the mean vector and covariance matrix}
+\label{apx:K-wigner}
+
+In this appendix we show how to write the Wigner entropy,
+\begin{equation}
+    S_W(W(\mathbf{x})) = -\int W(\mathbf{x}) \ln  W(\mathbf{x}) d^2 \mathbf{x},
+    \tag{\ref{eq:wigner-entropy}}
+\end{equation}
+
+\noindent and the Wigner relative entropy,
+\begin{equation}
+    K[W_1(\mathbf{x}) || W_2(\mathbf{x})] = \int W_1(\mathbf{x}) \ln \frac{W_{1}(\mathbf{x})}{W_{2}(\mathbf{x})} d^2 \mathbf{x}
+   \tag{\ref{eq:wigner-relative-entropy}}
+\end{equation}
+
+\noindent in terms of the mean vector and covariance matrix. These calculations are based on Ref. \cite{medina-2025}. Remembering that the Wigner distribution can be written as
+\begin{equation}
+    W (\mathbf{x}) = \frac{1}{\pi^N \sqrt{|\Theta|}} \exp \left( -(\mathbf{x} - \mathbf{v})^T \Theta^{-1} (\mathbf{x} - \mathbf{v}) \right),
+    \tag{\ref{eq:wigner-dist}}
+\end{equation}
+
+\noindent we can use that $\braket{f(\mathbf{x})}_W = \int d\mathbf{x} W(\mathbf{x}) f(\mathbf{x})$ to find\footnote{In some equations, we are using only one Gaussian distribution, which allow us to simplify the notation by omitting the subscripts $W$. The subscripts will only be used to clarify when we are using different distributions.}
+\begin{equation}
+    \braket{\ln W(\mathbf{x})} = - \frac{1}{2} \braket{(\mathbf{x} - \mathbf{v})^\dagger \Theta^{-1} (\mathbf{x} - \mathbf{v})} - \braket{\ln \pi} - \frac{1}{2} \braket{\ln |\Theta|}.
+    \label{eq:lnW}
+\end{equation}
+
+\noindent To compute the first term, we can introduce the completion relation $\sum_n \mathbf{n} \mathbf{n}^\dagger = \mathbb{I}$ as
+\begin{equation}
+    \begin{split}
+        \braket{(\mathbf{x} - \mathbf{v})^\dagger \Theta^{-1} (\mathbf{x} - \mathbf{v})} &= \braket{\sum_n (\mathbf{x} - \mathbf{v})^\dagger \mathbf{n} \mathbf{n}^\dagger \Theta^{-1} (\mathbf{x} - \mathbf{v})}\\
+        &= \braket{\sum_n \mathbf{n}^\dagger \Theta^{-1} (\mathbf{x} - \mathbf{v})(\mathbf{x} - \mathbf{v})^\dagger \mathbf{n}} \\
+        &= \braket{ \text{Tr}[ \Theta^{-1} (\mathbf{x} - \mathbf{v})(\mathbf{x} - \mathbf{v})^\dagger]}\\
+        &= \text{Tr}[ \Theta^{-1} \braket{(\mathbf{x} - \mathbf{v})(\mathbf{x} - \mathbf{v})^\dagger}].
+    \end{split}
+    \label{eq:cyclic-trace-mean}
+\end{equation}
+
+\noindent To solve this mean value, we can remember that, for a single mode Gaussian state, $\mathbf{x} = (x, x^*)^T$ and $\mathbf{v} = (\braket{a}, \braket{a^\dagger})^T$, so
+\begin{equation}
+    \begin{split}
+        \braket{(\mathbf{x} - \mathbf{v})(\mathbf{x} - \mathbf{v})^\dagger} &= \int d\mathbf{x} W(\mathbf{x})
+        \begin{bmatrix}
+            (x - \braket{a})(x^* - \braket{a^\dagger}) & (x - \braket{a})^2\\
+            (x^* - \braket{a^\dagger})^2 & (x^* - \braket{a^\dagger})(x - \braket{a})
+        \end{bmatrix}\\
+        &= \begin{bmatrix}
+        \frac{1}{2}(\braket{{a}^\dagger {a}} + \braket{{a} {a}^\dagger}) - \braket{{a}^\dagger} \braket{{a}} & \braket{{a}^2} - \braket{{a}}^2\\
+        \braket{{a}^{\dagger 2}} - \braket{{a}^\dagger}^2 & \frac{1}{2}(\braket{{a}^\dagger {a}} + \braket{{a} {a}^\dagger}) - \braket{{a}^\dagger} \braket{{a}}
+    \end{bmatrix}\\
+    &= \Theta,
+    \end{split}
+\end{equation}
+
+\noindent where we used the properties
+\begin{align}
+    &\int d\mathbf{x} W(\mathbf{x}) x = \braket{a} & \int d\mathbf{x} W(\mathbf{x}) x^* = \braket{a^\dagger},
+    \label{eq:pW-1}\\
+    &\int d\mathbf{x} W(\mathbf{x}) x^2 = \braket{a^2} & \int d\mathbf{x} W(\mathbf{x}) x^{*2} = \braket{a^{\dagger2}},
+    \label{eq:pW-2}\\
+    &\int d\mathbf{x} W(\mathbf{x}) x^* x = \frac{1}{2}(\braket{a^\dagger a} + \braket{a a^\dagger}).
+    \label{eq:pW-3}
+\end{align}
+
+\noindent Now, we can use this result to find that
+\begin{equation}
+    \braket{(\mathbf{x} - \mathbf{v})^\dagger \Theta^{-1} (\mathbf{x} - \mathbf{v})} = \text{Tr}[ \Theta^{-1} \Theta] = 2.
+\end{equation}
+
+\noindent Introducing this result into Eq. \eqref{eq:lnW}, we obtain that the Wigner entropy is
+\begin{equation}
+    S_W(W(\mathbf{x})) = -\braket{\ln W(\mathbf{x})} = 1 + {\ln \pi} + \frac{1}{2} {\ln |\Theta|}.
+    \label{eq:Sw-forma-final}
+\end{equation}
+
+We can use this result of the Wigner entropy to rewrite the Wigner relative entropy as\footnote{Note that here we are using subscripts to differentiate the Gaussian distributions used for the expectation value.}
+\begin{equation}
+    K[W_1(\mathbf{x}) || W_2(\mathbf{x})] = - S_W(W_1) - \braket{\ln W_2}_{W_1},
+    \label{eq:Kw-forma-meio}
+\end{equation}
+
+\noindent with this last term being
+\begin{equation}
+    \begin{split}
+        \braket{\ln W_2}_{W_1} &= - \frac{1}{2} \braket{(\mathbf{x} - \mathbf{v}_2)^\dagger \Theta^{-1}_2 (\mathbf{x} - \mathbf{v}_2)}_{W_1} - \braket{\ln \pi}_{W_1} - \frac{1}{2} \braket{\ln |\Theta_2|}_{W_1}\\
+        &= - \frac{1}{2} \text{Tr}[ \Theta^{-1}_2 \braket{(\mathbf{x} - \mathbf{v}_2)(\mathbf{x} - \mathbf{v}_2)^\dagger}_{W_1}] - \ln \pi -\frac{1}{2} \ln |\Theta_2|,
+    \end{split}
+    \label{eq:lnW2_W1}
+\end{equation}
+
+\noindent where we used the completion relation as before in Eq. \eqref{eq:cyclic-trace-mean} and $\mathbf{v}_2 = (\braket{a}_{W_2}, \braket{a^\dagger}_{W_2})^T$. So, the mean value in the first term of Eq. \ref{eq:lnW2_W1} is $\braket{(\mathbf{x} - \mathbf{v}_2)(\mathbf{x} - \mathbf{v}_2)^\dagger}_{W_1} = \braket{\mathbf{x}\mathbf{x}^\dagger}_{W_1} - \braket{\mathbf{x}\mathbf{v}_2^\dagger}_{W_1} - \braket{\mathbf{v}_2\mathbf{x}^\dagger}_{W_1} + \braket{\mathbf{v}_2\mathbf{v}_2^\dagger}_{W_1}$. To solve each of these terms, we use the properties \ref{eq:pW-1}, \ref{eq:pW-2}, and \ref{eq:pW-1}, finding 
+\begin{equation}
+    \begin{split}
+        \braket{\mathbf{x} \mathbf{x}^\dagger}_{W_1} &= \int d\mathbf{x} W_1(\mathbf{x})
+        \begin{bmatrix}
+            x x^* & x^2\\
+            x^{*2} & x^* x
+        \end{bmatrix}\\
+        &= \begin{bmatrix}
+            \frac{1}{2}(\braket{a^\dagger a}_{W_1} + \braket{a a^\dagger}_{W_1}) & \braket{a^2}_{W_1}\\
+            \braket{a^{\dagger2}}_{W_1} & \frac{1}{2}(\braket{a^\dagger a}_{W_1} + \braket{a a^\dagger}_{W_1})
+        \end{bmatrix} =\Theta_1 + \mathbf{v}_1 \mathbf{v}_1^\dagger,
+    \end{split}
+\end{equation}
+
+\begin{equation}
+        \braket{\mathbf{x} \mathbf{v}_2^\dagger}_{W_1} = \braket{\mathbf{x}}_{W_1} \mathbf{v}_2^\dagger = \int d\mathbf{x} W_1(\mathbf{x})
+        \begin{bmatrix}
+            x\\
+            x^*
+        \end{bmatrix} \mathbf{v}_2^\dagger = \begin{bmatrix}
+            \braket{a}_{W_1}\\
+            \braket{a^\dagger}_{W_1}
+        \end{bmatrix} \mathbf{v}_2^\dagger = \mathbf{v}_1 \mathbf{v}_2^\dagger,
+\end{equation}
+
+\begin{equation}
+        \braket{\mathbf{v}_2 \mathbf{x}^\dagger}_{W_1} = \mathbf{v}_2 \braket{\mathbf{x}^\dagger}_{W_1} = \mathbf{v}_2 \int d\mathbf{x} W_1(\mathbf{x})
+        \begin{bmatrix}
+            x^* & x
+        \end{bmatrix} = \mathbf{v}_2 \begin{bmatrix}
+            \braket{a^\dagger}_{W_1} & \braket{a}_{W_1}
+        \end{bmatrix} = \mathbf{v}_2 \mathbf{v}_1^\dagger,
+\end{equation}
+
+\begin{equation}
+        \braket{\mathbf{v}_2 \mathbf{v}_2^\dagger}_{W_1} = \mathbf{v}_2 \mathbf{v}_2^\dagger.
+\end{equation}
+
+\noindent As a result, Eq. \eqref{eq:lnW2_W1} becomes
+\begin{equation}
+    \begin{split}
+        \braket{\ln W_2}_{W_1} &= - \frac{1}{2} \text{Tr}[ \Theta^{-1}_2 (\Theta_1 + \mathbf{v}_1 \mathbf{v}_1^\dagger - \mathbf{v}_1 \mathbf{v}_2^\dagger - \mathbf{v}_2 \mathbf{v}_1^\dagger + \mathbf{v}_2 \mathbf{v}_2^\dagger)] - \ln \pi -\frac{1}{2} \ln |\Theta_2|\\
+        &= - \frac{1}{2} \text{Tr}[ \Theta^{-1}_2 \Theta_1 + \Theta^{-1}_2 (\mathbf{v}_1 - \mathbf{v}_2)(\mathbf{v}_1 - \mathbf{v}_2)^\dagger] - \ln \pi -\frac{1}{2} \ln |\Theta_2|\\
+        &= - \frac{1}{2} (\text{Tr}[ \Theta^{-1}_2 \Theta_1] + (\mathbf{v}_1 - \mathbf{v}_2)^\dagger \Theta^{-1}_2 (\mathbf{v}_1 - \mathbf{v}_2)) - \ln \pi -\frac{1}{2} \ln |\Theta_2|.
+    \end{split}
+\end{equation}
+
+\noindent Substituting this result and Eq. \eqref{eq:Sw-forma-final} in Eq. \eqref{eq:Kw-forma-meio}, we obtain that the Wigner relative entropy in terms of the mean vector and covariance matrix is
+\begin{equation}
+    K[W_1(\mathbf{x}) || W_2(\mathbf{x})] = -1 + \frac{1}{2} \left [(\mathbf{v}_1 - \mathbf{v}_2)^\dagger \Theta^{-1}_2  (\mathbf{v}_1 - \mathbf{v}_2) + \text{Tr}[ \Theta^{-1}_2 \Theta_1] + \ln \frac{|\Theta_2|}{|\Theta_1|} \right].
+\end{equation}
+
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Derivation of the Wigner-Fisher information}
 \label{apx:WFI}
@@ -188,6 +479,144 @@ The Wigner-Fisher information can be obtained from similar calculations as the o
 \begin{equation}
     \mathcal{I}_W (t) = \dot{\mathbf{v}}_t^\dagger \Theta^{-1}_t \dot{\mathbf{v}}_t + \text{Tr}[(\Theta_t^{-1} \dot{\Theta}_t)^2].
 \end{equation}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Davies map solution for Gaussian systems}
+\label{apx:lyapunov}
+
+
+In Sec. \ref{sec:thermo-gaussian}, we discussed how to write a Davies map dynamics for Gaussian systems in terms of mean vector and covariance matrix. There, we gave a general solution for the differential equation \eqref{eq:dt-mean-vector} and the Lyapunov equation \eqref{eq:lyapunov}. In this appendix, we show how to compute the specific solutions for the three cases we are studying: initially thermal state, displaced state, and squeezed state.
+
+A single mode Gaussian state with Hamiltonian $H = \omega a^\dagger a$ is in a thermal state with inverse temperature $\beta_i$ (and $f(\beta_i) = \bar{n} + 1/2$) equal to
+\begin{equation}
+	\rho_{th} = \frac{e^{-\beta H}}{\mathcal{Z}} = \sum_n p_n \ket{n}\bra{n},
+\end{equation}
+
+\noindent where $p_n = (1- e^{-\beta \omega}) e^{-\beta \omega n}$. To solve the differential equation for the mean vector, we properties the $a \ket{n} = \sqrt{n} \ket{n-1}$ and $a^\dagger \ket{n} = \sqrt{n+1} \ket{n+1}$ to compute
+\begin{equation}
+	\begin{split}
+		\braket{a}_{th} &= \text{Tr} [a \rho_{th}]\\
+		&= \sum_k \sum_n p_n \bra{k} a \ket{n} \bra{n} \ket{k}\\
+		&= \sum_n p_n \bra{n} a \ket{n}\\
+		& = \sum_n p_n \sqrt{n} \bra{n}\ket{n-1} = 0,
+	\end{split}
+\end{equation}
+
+\noindent and we can do the same for its complex conjugate to find $\braket{a^\dagger}_{th} = 0$. As a result, the mean vector for this case is $\mathbf{v}_{th} = 0$. Now, for the covariance matrix, we follow similar steps to find
+\begin{align}
+	&\braket{a^2}_{th} = 0\\
+	& \braket{a^{\dagger 2}}_{th} = 0\\
+	&\braket{a^\dagger a}_{th} = \sum_n n p_n = (1- e^{-\beta \omega}) \sum_n n e^{-\beta \omega n} = (1- e^{-\beta \omega}) \frac{e^{-\beta \omega}}{(1- e^{-\beta \omega})^2} = \bar{n}\\
+	&\braket{a a^\dagger}_{th} = \sum_n (n+1) p_n = (1- e^{-\beta \omega}) \sum_n (n+1) e^{-\beta \omega n} = \bar{n} + 1.
+\end{align}
+
+\noindent From these calculations, the covariance matrix at $t=0$ is
+\begin{equation}
+	\Theta_{0} = 
+	\begin{bmatrix}
+		f(\beta_i) & 0\\
+		0 & f(\beta_i)
+        \end{bmatrix}.
+\end{equation}
+
+\noindent So, we find that $d_0 = 0$ in Eq. \eqref{eq:solution-theta-antidiag} and that $c_0 = f(\beta_i) - f(\beta)$, resulting in $\Theta_th = \Delta_\beta \mathbb{I}$ with $\Delta_\beta = (f(\beta_i) - f(\beta)) e^{-\Gamma t} + f(\beta)$ where $\beta$ is the final inverse temperature.
+
+For the case in which the initial state is displaced as $\rho_d = D (\mu) \rho_{th} D^\dagger (\mu)$ with $D (\mu)$ defined in Eq. \eqref{eq:displacement-single-mode}, the covariance matrix remains unchanged and the solution is the same as above. To find the solution for the mean vector, we use the properties
+\begin{align}
+	&D^\dagger (\mu) a D (\mu) = a + \mu\\
+	&D^\dagger (\mu) a^\dagger D (\mu) = a^\dagger + \mu^*,
+\end{align}
+
+\noindent which can be obtained by using the Baker-Campbell-Hausdorff relation. Now, we can compute
+\begin{align}
+	&\braket{a}_{d} = \text{Tr} [a \rho_{d}] = \text{Tr} [D^\dagger (\mu) a D (\mu) \rho_{th}] = \text{Tr} [(a + \mu) \rho_{th}] = \mu \\
+	&\braket{a^\dagger}_{d} = \text{Tr} [a^\dagger \rho_{d}] = \text{Tr} [D^\dagger (\mu) a^\dagger D (\mu) \rho_{th}] = \text{Tr} [(a^\dagger + \mu^*) \rho_{th}] = \mu^*,
+\end{align}
+
+\noindent such that $\mathbf{v}_{0} = (\mu, \mu^*)^T$, which can be used in Eq. \eqref{eq:solution-v} to find that $\mathbf{v}_{d} = (\mu_t, \mu_t^*)^T$ with $\mu_t = \mu e^{-(i\omega + \Gamma / 2)t}$.
+
+For the squeezing case, the initial state is given by  $\rho_s = S (z) \rho_{th} S^\dagger (z)$ with $S (z)$ defined in Eq. \eqref{eq:squeezing-operator} and $z = r e^{i\phi}$, which changes only the covariance matrix solution, keeping $\mathbf{v}_s = 0$ like in the thermal state case. For these squeezing operators, we can use the Bugoliubov transformation,
+\begin{align}
+	&S^\dagger (z) a S (z) = a \cosh(r) - a^\dagger e^{i\phi} \sinh(r)\\
+	&S^\dagger (z) a^\dagger S (z) = a^\dagger \cosh(r) - a e^{-i\phi} \sinh(r),
+\end{align}
+
+\noindent to find
+\begin{equation}
+	\begin{split}
+		\braket{a^\dagger a}_s &= \text{Tr} [a^\dagger a \rho_{s}] = \text{Tr} [a^\dagger a S (z) \rho_{th} S^\dagger (z)]\\
+		&= \text{Tr} [S^\dagger (z) a^\dagger S (z) S^\dagger (z) a S (z) \rho_{th}]\\
+		&= \text{Tr} [ (a^\dagger \cosh(r) - a e^{-i\phi} \sinh(r)) (a \cosh(r) - a^\dagger e^{i\phi} \sinh(r)) \rho_{th}]\\
+		&= \text{Tr} [ (\cosh^2 (r) a^\dagger a - e^{i\phi}\cosh(r) \sinh(r) a^{\dagger 2} - e^{-i\phi}\cosh(r) \sinh(r) a^{2}\\
+		&+ \sinh^2(r) a a^\dagger) \rho_{th}]\\
+		&= \cosh^2 (r) \braket{a^\dagger a}_{th} - e^{i\phi}\cosh(r) \sinh(r) \braket{a^{\dagger 2}}_{th} - e^{-i\phi}\cosh(r) \sinh(r) \braket{a^{2}}_{th}\\
+		&+ \sinh^2(r) \braket{a a^\dagger}_{th}\\
+		&= \bar{n} \cosh^2 (r) + (\bar{n} + 1) \sinh^2 (r).
+	\end{split}
+\end{equation}
+
+\noindent Using the anticommutator $[a, a^\dagger] = 1$, we find
+\begin{equation}
+	\braket{a a^\dagger}_s = \braket{a^\dagger a}_s + 1 = \bar{n} \cosh^2 (r) + (\bar{n} + 1) \sinh^2 (r) + 1.
+\end{equation}
+
+\noindent and the last mean values we need are
+\begin{equation}
+	\begin{split}
+		\braket{a^{2}}_s &= \text{Tr} [a^{2} \rho_{s}]\\
+		&= \text{Tr} [S^\dagger (z) a S (z) S^\dagger (z) a S (z) \rho_{th}]\\
+		&= \text{Tr} [ ( a \cosh(r) - a^\dagger e^{i\phi} \sinh(r)) (a \cosh(r) - a^\dagger e^{i\phi} \sinh(r)) \rho_{th}]\\
+		&= \cosh^2 (r) \braket{a^{2}}_{th} - e^{i\phi}\cosh(r) \sinh(r) (\braket{a^{\dagger} a}_{th} + \braket{a a^\dagger}_{th})\\
+		&+ e^{2i\phi}\sinh^2(r) \braket{a^{\dagger 2}}_{th}\\
+		&= -\frac{1}{2} e^{i \phi} \sinh(2r) (2\bar{n} +1),
+	\end{split}
+\end{equation}
+
+\begin{equation}
+	\begin{split}
+		\braket{a^{\dagger 2}}_s &= \text{Tr} [a^{\dagger 2} \rho_{s}]\\
+		&= \text{Tr} [S^\dagger (z) a^\dagger S (z) S^\dagger (z) a^\dagger S (z) \rho_{th}]\\
+		&= \text{Tr} [ (a^\dagger \cosh(r) - a e^{-i\phi} \sinh(r)) (a^\dagger \cosh(r) - a e^{-i\phi} \sinh(r)) \rho_{th}]\\
+		&= \cosh^2 (r) \braket{a^{\dagger 2}}_{th} - e^{-i\phi}\cosh(r) \sinh(r) (\braket{a^{\dagger} a}_{th} + \braket{a a^\dagger}_{th}) \\
+		&+ e^{-2i\phi} \sinh^2(r) \braket{a^2}_{th}\\
+		&= -\frac{1}{2} e^{-i \phi} \sinh(2r) (2\bar{n} +1).
+	\end{split}
+\end{equation}
+
+\noindent Combining these results as previously done, we find
+\begin{align}
+	&\Theta^{11}_t = \Theta^{22}_t = (f(\beta_i)\cosh(2r) - f(\beta))e^{-\Gamma t} + f(\beta)\\
+	&\Theta^{12}_t = (\Theta^{21}_t )^* = -f(\beta_i) e^{i\phi} \sinh(2r) e^{-(\Gamma + 2i \omega)t},
+\end{align}
+
+\noindent that can be rewritten by introducing $\Delta_\beta = (f(\beta_i) - f(\beta)) e^{-\Gamma t} + f(\beta)$ as
+\begin{equation}
+    \Theta_s = f(\beta_t) 
+    \begin{bmatrix}
+        \cosh(2 r_t) & -e^{i \phi_t} \sinh(2r_t)\\
+        -e^{-i \phi_t} \sinh(2r_t) & \cosh(2 r_t)
+    \end{bmatrix},
+\end{equation}
+
+\noindent where $\phi_t = \phi - 2\omega t$ is the squeezing phase, the squeezing parameter is implicitly defined as
+\begin{equation}
+    \cosh(2r_t) = \frac{1}{f(\beta_t)} [\Delta_\beta + 2f(\beta_i) e^{-\Gamma t} \sinh^2(r)],
+\end{equation}
+
+\noindent and $\beta_t$ is implicitly defined by
+\begin{equation}
+    f(\beta_t) = \sqrt{\Delta_\beta^2 + 4 f(\beta_i) f(\beta) e^{-2\Gamma t} (e^{\Gamma t} - 1) \sinh^2(r)}.
+\end{equation}
+
+
+
+
 
 \end{apendicesenv}
 % ---

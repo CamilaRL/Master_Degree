@@ -34,7 +34,7 @@ for k in range(2):
 
 ### Wigner Fisher Information
 
-'''plt.figure(figsize=(10,5))
+plt.figure(figsize=(10,5))
 
 for i in range(2):
     
@@ -76,24 +76,28 @@ for i in range(2):
     plt.subplot(122)
     plt.plot(tlist, Vw_list[i][1], color='blue', linestyle=symbols[i], linewidth=2, label=r'$r$ = '+f'{rcList[i]:.2f}')
 
-plt.subplot(121)
-plt.ylabel('Statistical Velocity', fontsize=12)
-plt.xlabel('Time', fontsize=12)
-plt.title('Heating', fontsize=12)
-plt.xticks(fontsize=12)
-plt.yticks(fontsize=12)
-plt.legend(fontsize=12)
-plt.xlim(right=50)
-plt.yscale('log')
+ymin, ymax = 5e-6, 1.2
 
-plt.subplot(122)
-plt.xlabel('Time', fontsize=12)
-plt.title('Cooling', fontsize=12)
-plt.xticks(fontsize=12)
-plt.yticks(fontsize=12)
-plt.legend(fontsize=12)
+plt.subplot(121)
+plt.ylabel('Statistical Velocity', fontsize=14)
+plt.xlabel('Time', fontsize=14)
+plt.title('Heating', fontsize=16)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
+plt.legend(fontsize=14)
 plt.xlim(right=80)
 plt.yscale('log')
+plt.ylim(ymin, ymax)
+
+plt.subplot(122)
+plt.xlabel('Time', fontsize=14)
+plt.title('Cooling', fontsize=16)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
+plt.legend(fontsize=14)
+plt.xlim(right=80)
+plt.yscale('log')
+plt.ylim(ymin, ymax)
 
 plt.tight_layout()
 plt.show()
@@ -152,7 +156,9 @@ for i in range(2):
     plt.xlim(right=80)
 
 plt.tight_layout()
-plt.show()'''
+plt.show()
+
+'''
 
 
 plt.plot(tlist, completion_list[0][0], color='red', linestyle=symbols[0], label=r'$r_c$ = '+f'{rhList[0]:.2f} ')
@@ -168,4 +174,4 @@ plt.yticks([])
 plt.legend(fontsize=14)
 plt.xlim(right=80)
 
-plt.show()
+plt.show()'''

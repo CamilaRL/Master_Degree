@@ -107,10 +107,10 @@ def Coherences(w0, beta_1, beta_2):
 def Collapse_Operators(beta_R, H_S, gamma):
 
     ## collapse operators
-
     L_operators = []
 
     evals, evecs = H_S.eigenstates()
+    print(evals)
 
     for n, valn in enumerate(evals):
         for m, valm in enumerate(evals):
@@ -118,7 +118,7 @@ def Collapse_Operators(beta_R, H_S, gamma):
             dmn = valm.real - valn.real
 
             if dmn > 1e-9:
-                 
+                print(m, n)
                 f = Distribution('bose', beta_R, dmn)
                     
                 C_emi = np.sqrt(gamma * (1 + f)) * (evecs[n] * evecs[m].dag())
